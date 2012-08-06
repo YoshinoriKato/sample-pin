@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>販売商品ページ</title>
+<title>Sample-Pin</title>
 <script type="text/javascript" src="jquery-1.7.2.js"></script>
 <script type="text/javascript" src="jquery.wookmark.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
@@ -35,7 +35,7 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="brand" href=".">Escrow</a>
+				<a class="brand" href=".">Sample-Pin</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li class="active"><a href=".">Components</a>
@@ -56,7 +56,7 @@
 					int stars = r.nextInt(6);
 			%>
 			<li>
-				<div class="center stars"><p>
+				<div class="center stars star"><h3>
 					<%
 						for (int j = 0; j < stars; j++) {
 					%>
@@ -64,7 +64,7 @@
 					<%
 						}
 					%>
-				</p></div>
+				</h3></div>
 				<div class="header deco">
 					<h3>
 						雨ニモマケズ 風ニモマケズ 雪ニモ夏ノ暑サニモマケヌ 丈夫ナカラダヲモチ<%=i + 1%></h3>
