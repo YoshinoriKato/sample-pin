@@ -51,8 +51,8 @@
 			<%
 				Random r = new Random(System.nanoTime());
 				for (int i = 0; i < 200; i++) {
-					int h = 100 + r.nextInt(500);
-					int stars = r.nextInt(100);
+					int h = 60 + r.nextInt(300);
+					int stars = r.nextInt(40);
 			%>
 			<li><div class="cell">
 					<div class="center stars star">
@@ -108,6 +108,9 @@
 					<div>
 						<span class="Ribon"><span class="ribon-text"><%=r.nextInt(100000)%>
 								view</span></span>
+					</div>
+					<div class="center">
+						<h2 class="feeling">★</h2>
 					</div>
 				</div></li>
 			<%

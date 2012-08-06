@@ -23,6 +23,9 @@ body {
 	background-color: rgba(0, 0, 255, 0.05);
 	margin-top: 10px;
 	margin-bottom: 10px;
+	border-radius: 3px; /* CSS3ëêàƒ */
+	-webkit-border-radius: 3px; /* Safari,Google Chromeóp */
+	-moz-border-radius: 3px;
 }
 
 .pic {
@@ -59,6 +62,9 @@ body {
 	-webkit-border-radius: 2px 30px 2px; /* Safari,Google Chromeóp */
 	-moz-border-radius: 2px 30px 2px;
 	border: 1px solid white; /* Firefoxóp */
+	
+	box-shadow: 2px 2px 1px rgba(0,0,0,0.4);
+	-webkit-box-shadow: 2px 2px 1px rgba(0,0,0,0.4);
 }
 
 .Ribon {
@@ -66,29 +72,37 @@ body {
 	z-index: 2;
 	top: 0px;
 	left: 5px;
-	width: 210px;
-	height: 210px;
+	width: 220px;
+	height: 220px;
 	overflow: hidden;
 }
 
 .ribon-text {
-	text-shadow: 0px 0px 0px rgba(255, 255, 255, 0.8);
+	text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.6);
 	position: absolute;
 	z-index: 2;
 	top: 19px;
-	left: -28px;
+	left: -33px;
 	width: 125px;
 	height: 22px;
 	padding-top: 8px;
 	text-align: center;
 	font-size: 11px;
 	color: #ffffff;
-	background-color: rgba(0, 100, 200, 0.6);
+	background-color: rgba(0, 100, 200, 0.3);
 	overflow: hidden;
 	-webkit-transform: rotate(-45deg);
 	-moz-transform: rotate(-45deg);
 	-o-transform: rotate(-45deg);
 	-ms-transform: rotate(-45deg);
+}
+
+.feeling {
+	color: #cccccc;
+}
+
+.feeling:hover {
+	color: #6666ff;
 }
 
 #main {
@@ -97,10 +111,11 @@ body {
 
 .header {
 	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .stars {
-	height: 30px;
+	height: 25px;
 }
 
 .center {
@@ -108,6 +123,7 @@ body {
 }
 
 .star {
+	z-index: 3;
 	color: #44c0fe;
 	text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.6), 0 1px 1px
 		rgba(0, 0, 0, 0.5);
