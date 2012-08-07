@@ -27,25 +27,7 @@
 
 
 <body>
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<button type="button" class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="brand" href=".">Sample-Pin</a>
-				<div class="nav-collapse collapse">
-					<ul class="nav">
-						<li class="active"><a href=".">Components</a></li>
-						<li class="divider-vertical"></li>
-						<li class=""><a href=".">Examples</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
 		<ul id="content">
 			<%
@@ -53,34 +35,38 @@
 				for (int i = 0; i < 200; i++) {
 					int h = 60 + r.nextInt(300);
 					int stars = r.nextInt(40);
+					int views = r.nextInt(50);
 			%>
 			<li><div class="cell">
+					<div>
+						<%
+							if (views != 0) {
+						%>
+						<span class="Ribon"><span class="ribon-text"><%=views%>
+								view</span></span>
+						<%
+							}
+						%>
+					</div>
 					<div class="center stars star">
-						<h3>
-							<%
-								if (stars > 5) {
-							%>
-							★
-							<%=stars%>
-							<%
-								} else {
-										for (int j = 0; j < stars; j++) {
-							%>
-							★
-							<%
+						<%
+						if (views != 0) if (stars > 5) {
+						%>
+						★
+						<%=stars%>
+						<%
+							} else {
+									for (int j = 0; j < stars; j++) {
+						%>
+						★
+						<%
+							}
 								}
-									}
-							%>
-						</h3>
+						%>
 					</div>
 					<%
-						int title_min = 5;
-							String title = "雨ニモマケズ 風ニモマケズ 雪ニモ夏ノ暑サニモマケヌ 丈夫ナカラダヲモチ";
-							title = title.substring(0,
-									r.nextInt(title.length() - title_min) + title_min);
-
-							int comm_min = 20;
-							String comment = "雨ニモマケズ 風ニモマケズ 雪ニモ夏ノ暑サニモマケヌ 丈夫ナカラダヲモチ"
+							int cap_min = 10;
+							String caption = "雨ニモマケズ 風ニモマケズ 雪ニモ夏ノ暑サニモマケヌ 丈夫ナカラダヲモチ"
 									+ " 慾ハナク 決シテ瞋ラズ イツモシヅカニワラッテヰル"
 									+ " 一日ニ玄米四合ト 味噌ト少シノ野菜ヲタベ"
 									+ " アラユルコトヲ ジブンヲカンジョウニ入レズニ ヨクミキキシワカリ ソシテワスレズ"
@@ -93,24 +79,14 @@
 									+ " ミンナニデクノボートヨバレ ホメラレモセズ クニモサレズ"
 									+ " サウイフモノニ ワタシハナリタイ"
 									+ " 南無無辺行菩薩 南無上行菩薩 南無多宝如来 南無妙法蓮華経 南無釈迦牟尼仏 南無浄行菩薩 南無安立行菩薩";
-							comment = comment.substring(0,
-									r.nextInt(comment.length() - comm_min) + comm_min);
+							caption = caption.substring(0,
+									r.nextInt(caption.length() - cap_min) + cap_min);
 					%>
-					<div class="header deco">
-						<h3>
-							<%=title%>
-							<%=i + 1%></h3>
-					</div>
-					<div style="height: <%=h%>px;" class="image-shot"></div>
-					<div class="deco">
-						<blockquote><%=comment%></blockquote>
-					</div>
-					<div>
-						<span class="Ribon"><span class="ribon-text"><%=r.nextInt(100000)%>
-								view</span></span>
-					</div>
-					<div class="center">
-						<h2 class="feeling">★</h2>
+					<div class="image-holder"><img src="6023677971_1a47ac6105_o.jpg" class="image-shot deco"></div>
+					<div class="title deco">
+						<h4>
+							<%=caption%>
+							<%=i + 1%></h4>
 					</div>
 				</div></li>
 			<%

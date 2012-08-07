@@ -6,26 +6,28 @@
 
 @font-face {
 	font-family: 'HuiFontPRegular';
-	src: local('HuiFontP Regular'), /*フォントがローカルにインストールされている時の指定*/   
+	src: local('HuiFontP Regular'), /*フォントがローカルにインストールされている時の指定*/         
 		           
-		           local('HuiFontP'), url('../font/HuiFontP29.ttf')
+		                 local('HuiFontP'), url('../font/HuiFontP29.ttf')
 		format('truetype');
 	/* Safari、Chrome、Firefox、Opera */
 }
 
 body {
 	background-color: #eee;
-	background-image: url("wallpaper.png");
+	background-image: url("wallpaper2.png?201208071516");
 	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
 }
 
 .image-shot {
-	background-color: rgba(0, 0, 255, 0.05);
+	background-color: rgba(30, 30, 30, 0.02);
 	margin-top: 10px;
 	margin-bottom: 10px;
-	border-radius: 3px; /* CSS3草案 */
-	-webkit-border-radius: 3px; /* Safari,Google Chrome用 */
-	-moz-border-radius: 3px;
+	border: 1px dashed rgba(0, 0, 0, 0.6);
+	border-radius: 2px 45px 2px; /* CSS3草案 */
+	-webkit-border-radius: 2px 45px 2px; /* Safari,Google Chrome用 */
+	-moz-border-radius: 2px 45px 2px;
+	color: rgba(80, 80, 80, 0.4);
 }
 
 .pic {
@@ -53,18 +55,16 @@ body {
 	margin-right: 5px;
 	margin-bottom: 10px;
 	border: 1px solid white;
-	background-color: rgba(255, 255, 255, 0.7);
+	background-color: rgba(255, 255, 255, 1.0);
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 20px;
 	padding-right: 20px;
-	border-radius: 2px 30px 2px; /* CSS3草案 */
-	-webkit-border-radius: 2px 30px 2px; /* Safari,Google Chrome用 */
-	-moz-border-radius: 2px 30px 2px;
-	border: 1px solid white; /* Firefox用 */
-	
-	box-shadow: 2px 2px 1px rgba(0,0,0,0.4);
-	-webkit-box-shadow: 2px 2px 1px rgba(0,0,0,0.4);
+	border-radius: 5px 60px 5px; /* CSS3草案 */
+	-webkit-border-radius: 5px 60px 5px; /* Safari,Google Chrome用 */
+	-moz-border-radius: 5px 60px 5px; /* Firefox用 */
+	box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.4);
 }
 
 .Ribon {
@@ -89,7 +89,7 @@ body {
 	text-align: center;
 	font-size: 11px;
 	color: #ffffff;
-	background-color: rgba(0, 100, 200, 0.3);
+	background-color: rgba(230, 30, 40, 0.9);
 	overflow: hidden;
 	-webkit-transform: rotate(-45deg);
 	-moz-transform: rotate(-45deg);
@@ -99,9 +99,14 @@ body {
 
 .feeling {
 	color: #cccccc;
+	font-size: x-large;
 }
 
-.feeling:hover {
+.feeling:HOVER {
+	color: #6666ff;
+}
+
+.feeling:VISITED {
 	color: #6666ff;
 }
 
@@ -109,12 +114,14 @@ body {
 	margin-top: 60px;
 }
 
-.header {
+.title {
 	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 30px;
+	color: rgba(90,90,90, 0.8);
 }
 
 .stars {
+	z-index: 1;
 	height: 25px;
 }
 
@@ -123,8 +130,9 @@ body {
 }
 
 .star {
-	z-index: 3;
+	z-index: 1;
 	color: #44c0fe;
+	font-size: large;
 	text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.6), 0 1px 1px
 		rgba(0, 0, 0, 0.5);
 }
@@ -140,4 +148,12 @@ body {
 	-webkit-mask-image: -webkit-linear-gradient(-85deg, rgba(0, 0, 0, 1),
 		rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0.25) 48%, rgba(0, 0, 0, 0) 48%,
 		rgba(0, 0, 0, 0) );
+}
+
+.actions:HOVER {
+	display: block;
+}
+
+.actions {
+	display: none;
 }
