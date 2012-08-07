@@ -7,7 +7,7 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="brand" href="pinterest.jsp">Sample-Pin</a>
+			<a class="brand" href="index.jsp">Sample-Pin</a>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li class="active"><a href="pinterest.jsp">Pinterest Like</a></li>

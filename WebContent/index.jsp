@@ -14,10 +14,11 @@
 		for ( var i = 0; i < array.length; i++) {
 			var $jqLi = $("<li/>");
 			var $jqDiv = $("<div/>").addClass("cell");
-			var $jqDiv1 = $("<div/>").addClass("Ribon");
+			var $jqDiv1 = $("<div/>").addClass("ribon");
 			var $jqDiv2 = $("<div/>").addClass("center stars star");
 			var $jqDiv3 = $("<div/>").addClass("image-holder");
 			var $jqDiv4 = $("<div/>").addClass("title deco");
+			var $jqA = $("<a/>").addClass("no-hover").attr("href", "card.jsp?id=" + array[i].id);
 
 			$jqDiv1.append($("<span/>").addClass("ribon-text").text(
 					array[i].view + " view"));
@@ -25,17 +26,19 @@
 			$jqDiv3.append($("<img/>").addClass("image-shot deco").attr("src",
 					array[i].url));
 			$jqDiv4.text(array[i].caption);
-			$jqDiv.append($jqDiv1).append($jqDiv2).append($jqDiv3).append(
+			$jqDiv.append($jqA);
+			
+			$jqA.append($jqDiv1).append($jqDiv2).append($jqDiv3).append(
 					$jqDiv4);
 			$jqLi.append($jqDiv);
 
 			$('#content').append($jqLi);
 		}
+		$('#content li').wookmark({
+			offset : 12
+		});
 	}
 	$(document).ready(function() {
-		$('#content li').wookmark({
-			offset : 2
-		});
 		$(window).resize(function() {
 			$('#content li').wookmark({
 				offset : 12

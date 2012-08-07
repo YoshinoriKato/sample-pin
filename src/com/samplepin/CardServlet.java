@@ -44,8 +44,9 @@ public class CardServlet extends HttpServlet {
 			String caption2 = this.caption.substring(0,
 					dice.nextInt(this.caption.length() - this.cap_min)
 							+ this.cap_min);
-			cards.add(new Card("6023677971_1a47ac6105_o.jpg", caption2, dice
-					.nextInt(10), dice.nextInt(100)));
+			cards.add(new Card("ID_" + System.nanoTime(),
+					"29062360065790233_nVEunrt3_f.jpg", caption2, dice.nextInt(10),
+					dice.nextInt(100)));
 		}
 
 		try (ServletOutputStream os = resp.getOutputStream()) {

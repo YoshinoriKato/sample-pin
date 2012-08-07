@@ -11,17 +11,27 @@ public class Card implements Serializable {
 	String caption;
 	int likes;
 	int view;
+	String id;
 
-	public Card(String url, String caption, int likes, int view) {
+	public Card(String id, String url, String caption, int likes, int view) {
 		super();
+		this.id = id;
 		this.url = url;
 		this.caption = caption;
 		this.likes = likes;
 		this.view = view;
 	}
-	
-	public Card(){
-		
+
+	public Card() {
+
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getUrl() {
@@ -55,6 +65,5 @@ public class Card implements Serializable {
 	public void setView(int view) {
 		this.view = view;
 	}
-	
-	
+
 }

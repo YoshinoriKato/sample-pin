@@ -21,9 +21,8 @@ body {
 
 .image-shot {
 	background-color: rgba(30, 30, 30, 0.02);
-	margin-top: 10px;
-	margin-bottom: 10px;
-	border: 1px dashed rgba(0, 0, 0, 0.6);
+
+	border: 1px dotted rgba(255, 255, 255, 0.3);
 	border-radius: 2px 45px 2px; /* CSS3ëêàƒ */
 	-webkit-border-radius: 2px 45px 2px; /* Safari,Google Chromeóp */
 	-moz-border-radius: 2px 45px 2px;
@@ -67,7 +66,7 @@ body {
 	-webkit-box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.4);
 }
 
-.Ribon {
+.ribon {
 	position: absolute;
 	z-index: 2;
 	top: 0px;
@@ -75,6 +74,11 @@ body {
 	width: 220px;
 	height: 220px;
 	overflow: hidden;
+}
+
+a .no-hover:HOVER {
+	text-decoration:none;
+	border-style:none;
 }
 
 .ribon-text {

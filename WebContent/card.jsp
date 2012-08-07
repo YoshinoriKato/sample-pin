@@ -44,6 +44,7 @@
 				<h3>
 					<%=title%></h3>
 			</div>
+			<div><img src="6023677971_1a47ac6105_o.jpg"></div>
 			<div class="deco">
 				<blockquote><%=comment%></blockquote>
 			</div>

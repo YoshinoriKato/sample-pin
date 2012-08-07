@@ -12,7 +12,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#content li').wookmark({
-			offset : 2
+			offset : 12
 		});
 		$(window).resize(function() {
 			$('#content li').wookmark({
@@ -41,7 +41,7 @@
 					<%
 						if (views != 0) {
 					%>
-					<div class="Ribon">
+					<div class="ribon">
 						<span class="ribon-text"><%=views%> view</span>
 					</div>
 					<%
