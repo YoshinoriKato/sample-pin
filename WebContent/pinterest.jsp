@@ -38,34 +38,34 @@
 					int views = r.nextInt(50);
 			%>
 			<li><div class="cell">
-					<div>
-						<%
-							if (views != 0) {
-						%>
-						<span class="Ribon"><span class="ribon-text"><%=views%>
-								view</span></span>
-						<%
-							}
-						%>
+					<%
+						if (views != 0) {
+					%>
+					<div class="Ribon">
+						<span class="ribon-text"><%=views%> view</span>
 					</div>
+					<%
+						}
+					%>
 					<div class="center stars star">
 						<%
-						if (views != 0) if (stars > 5) {
+							if (views != 0)
+									if (stars > 5) {
 						%>
 						★
 						<%=stars%>
 						<%
 							} else {
-									for (int j = 0; j < stars; j++) {
+										for (int j = 0; j < stars; j++) {
 						%>
 						★
 						<%
 							}
-								}
+									}
 						%>
 					</div>
 					<%
-							int cap_min = 10;
+						int cap_min = 10;
 							String caption = "雨ニモマケズ 風ニモマケズ 雪ニモ夏ノ暑サニモマケヌ 丈夫ナカラダヲモチ"
 									+ " 慾ハナク 決シテ瞋ラズ イツモシヅカニワラッテヰル"
 									+ " 一日ニ玄米四合ト 味噌ト少シノ野菜ヲタベ"
@@ -82,7 +82,9 @@
 							caption = caption.substring(0,
 									r.nextInt(caption.length() - cap_min) + cap_min);
 					%>
-					<div class="image-holder"><img src="6023677971_1a47ac6105_o.jpg" class="image-shot deco"></div>
+					<div class="image-holder">
+						<img src="6023677971_1a47ac6105_o.jpg" class="image-shot deco">
+					</div>
 					<div class="title deco">
 						<h4>
 							<%=caption%>
