@@ -32,6 +32,13 @@ public class CardServlet extends HttpServlet {
 			+ " ミンナニデクノボートヨバレ ホメラレモセズ クニモサレズ" + " サウイフモノニ ワタシハナリタイ"
 			+ " 南無無辺行菩薩 南無上行菩薩 南無多宝如来 南無妙法蓮華経 南無釈迦牟尼仏 南無浄行菩薩 南無安立行菩薩";
 
+	String[] images = { "171136854560954777_w8G7ssLN_b.jpg",
+			"211174953484576_dyuSomSz_b.jpg",
+			"211317407485625618_ueI09UXp_b.jpg",
+			"29062360065790233_nVEunrt3_f.jpg", "3450910519_0739fe4c95_q.jpg",
+			"36521446948450850_3A8h2194_b.jpg", "6023677971_1a47ac6105_o.jpg",
+			"87538786477858313_UHvBNBnH_b.jpg" };
+
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		resp.setContentType("application/json");
@@ -44,9 +51,9 @@ public class CardServlet extends HttpServlet {
 			String caption2 = this.caption.substring(0,
 					dice.nextInt(this.caption.length() - this.cap_min)
 							+ this.cap_min);
-			cards.add(new Card("ID_" + System.nanoTime(),
-					"29062360065790233_nVEunrt3_f.jpg", caption2, dice.nextInt(10),
-					dice.nextInt(100)));
+			cards.add(new Card("ID_" + System.nanoTime(), "img/"
+					+ images[dice.nextInt(images.length)], caption2, dice
+					.nextInt(10), dice.nextInt(100)));
 		}
 
 		try (ServletOutputStream os = resp.getOutputStream()) {

@@ -83,7 +83,7 @@
 									r.nextInt(caption.length() - cap_min) + cap_min);
 					%>
 					<div class="image-holder">
-						<img src="6023677971_1a47ac6105_o.jpg" class="image-shot deco">
+						<img src="img/6023677971_1a47ac6105_o.jpg" class="image-shot deco">
 					</div>
 					<div class="caption deco">
 						<h4>
