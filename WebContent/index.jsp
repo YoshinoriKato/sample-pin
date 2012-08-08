@@ -14,22 +14,23 @@
 		for ( var i = 0; i < array.length; i++) {
 			var $jqLi = $("<li/>");
 			var $jqDiv = $("<div/>").addClass("cell");
-			var $jqDiv1 = $("<div/>").addClass("ribon");
-			var $jqDiv2 = $("<div/>").addClass("center stars star");
-			var $jqDiv3 = $("<div/>").addClass("image-holder");
-			var $jqDiv4 = $("<div/>").addClass("title deco");
-			var $jqA = $("<a/>").addClass("no-hover").attr("href", "card.jsp?id=" + array[i].id);
+			var $jqA = $("<a/>").addClass("no-hover").attr("href",
+					"card.jsp?id=" + array[i].id);
+			var $divRibon = $("<div/>").addClass("ribon");
+			var $divImage = $("<div/>").addClass("image-holder");
+			var $divCaption = $("<div/>").addClass("caption deco");
+			var $divStar = $("<div/>").addClass("star right");
 
-			$jqDiv1.append($("<span/>").addClass("ribon-text").text(
-					array[i].view + " view"));
-			$jqDiv2.text("★" + array[i].likes);
-			$jqDiv3.append($("<img/>").addClass("image-shot deco").attr("src",
+			$jqA.append($("<img/>").addClass("image-shot deco").attr("src",
 					array[i].url));
-			$jqDiv4.text(array[i].caption);
-			$jqDiv.append($jqA);
-			
-			$jqA.append($jqDiv1).append($jqDiv2).append($jqDiv3).append(
-					$jqDiv4);
+			$divRibon.append($("<span/>").addClass("ribon-text").text(
+					array[i].view + " view"));
+			$divCaption.text(array[i].caption);
+			$divImage.append($jqA);
+			$divStar.text("★" + array[i].likes);
+
+			$jqDiv.append($divRibon).append($divImage).append($divCaption)
+					.append($divStar);
 			$jqLi.append($jqDiv);
 
 			$('#content').append($jqLi);
@@ -58,7 +59,7 @@
 	});
 </script>
 <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="common.css" rel="stylesheet">
+<link href="common.css?201208080911" rel="stylesheet">
 </head>
 
 

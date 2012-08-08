@@ -85,7 +85,7 @@
 					<div class="image-holder">
 						<img src="6023677971_1a47ac6105_o.jpg" class="image-shot deco">
 					</div>
-					<div class="title deco">
+					<div class="caption deco">
 						<h4>
 							<%=caption%>
 							<%=i + 1%></h4>
