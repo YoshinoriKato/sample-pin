@@ -10,7 +10,7 @@ import com.google.code.morphia.Morphia;
 import com.mongodb.Mongo;
 import com.mongodb.MongoException;
 
-public class Init {
+public class Initializer {
 
 	static int cap_min = 10;
 
@@ -36,11 +36,10 @@ public class Init {
 	 */
 	public static void main(String[] args) {
 		try {
-			Mongo mongo = new Mongo("127.0.0.1");
+			ACMongo mongo = new ACMongo();
 			mongo.dropDatabase("sample-pin");
 
-			Morphia morphia = new Morphia();
-			Datastore datastore = morphia.createDatastore(mongo, "sample-pin");
+			Datastore datastore = mongo.createDatastore();
 			User user = new User();
 			user.setUserId("yoshinori");
 			user.setPassword("hoge".hashCode());
@@ -56,7 +55,7 @@ public class Init {
 						.nextInt(10), dice.nextInt(100)));
 			}
 			datastore.save(cards);
-			
+
 			mongo.close();
 			System.out.println("bye.");
 		} catch (UnknownHostException | MongoException e) {

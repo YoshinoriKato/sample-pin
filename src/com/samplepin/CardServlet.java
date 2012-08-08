@@ -32,10 +32,8 @@ public class CardServlet extends HttpServlet {
 
 		List<Card> cards = new ArrayList<>();
 
-		try {
-			Mongo mongo = new Mongo("127.0.0.1");
-			Morphia morphia = new Morphia();
-			Datastore datastore = morphia.createDatastore(mongo, "sample-pin");
+		try (ACMongo mongo = new ACMongo()){
+			Datastore datastore = mongo.createDatastore();
 			Query<Card> query = datastore.createQuery(Card.class);
 			cards = query.asList();
 		} catch (UnknownHostException | MongoException e1) {

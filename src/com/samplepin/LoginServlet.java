@@ -25,17 +25,13 @@ public class LoginServlet extends HttpServlet {
 
 	final boolean acceptPassword(String userId, Integer password)
 			throws UnknownHostException, MongoException {
-		Mongo mongo = new Mongo("127.0.0.1");
 
-		try {
-			Morphia morphia = new Morphia();
-			Datastore datastore = morphia.createDatastore(mongo, "sample-pin");
+		try (ACMongo mongo = new ACMongo()) {
+			Datastore datastore = mongo.createDatastore();
 			Query<User> query = datastore.createQuery(User.class).filter(
 					"userId = ", userId);
 			User user = query.get();
 			return password.equals(user.getPassword());
-		} finally {
-			mongo.close();
 		}
 	}
 
