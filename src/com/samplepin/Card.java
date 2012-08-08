@@ -2,64 +2,84 @@ package com.samplepin;
 
 import java.io.Serializable;
 
+import org.bson.types.ObjectId;
+
+import com.google.code.morphia.annotations.Id;
+
 public class Card implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2686047770755644944L;
-	String url;
-	String caption;
-	int likes;
-	int view;
-	String id;
 
-	public Card(String id, String url, String caption, int likes, int view) {
+	@Id
+	ObjectId id;
+
+	String url;
+
+	String caption;
+
+	int likes;
+
+	int view;
+
+	String cardId;
+
+	public Card() {
+
+	}
+
+	public Card(String cardId, String url, String caption, int likes, int view) {
 		super();
-		this.id = id;
+		this.cardId = cardId;
 		this.url = url;
 		this.caption = caption;
 		this.likes = likes;
 		this.view = view;
 	}
 
-	public Card() {
-
+	public String getCaption() {
+		return this.caption;
 	}
 
-	public String getId() {
-		return id;
+	public String getCardId() {
+		return this.cardId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public int getLikes() {
+		return this.likes;
 	}
 
 	public String getUrl() {
-		return url;
+		return this.url;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getCaption() {
-		return caption;
+	public int getView() {
+		return this.view;
 	}
 
 	public void setCaption(String caption) {
 		this.caption = caption;
 	}
 
-	public int getLikes() {
-		return likes;
+	public ObjectId getId() {
+		return id;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
+	}
+
+	public void setCardId(String cardId) {
+		this.cardId = cardId;
 	}
 
 	public void setLikes(int likes) {
 		this.likes = likes;
 	}
 
-	public int getView() {
-		return view;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	public void setView(int view) {

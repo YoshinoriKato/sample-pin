@@ -11,6 +11,7 @@
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li class="active"><a href="pinterest.jsp">Pinterest Like</a></li>
+					<li><a href="login.jsp">Login</a></li>
 					<li class="divider-vertical"></li>
 					<li class=""><a href="make-card.jsp">Make Card</a></li>
 				</ul>
