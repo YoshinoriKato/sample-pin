@@ -11,10 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.code.morphia.Datastore;
-import com.google.code.morphia.Morphia;
 import com.google.code.morphia.query.Query;
 import com.google.gson.Gson;
-import com.mongodb.Mongo;
 import com.mongodb.MongoException;
 
 @WebServlet(urlPatterns = { "/xxx.do" })
@@ -32,7 +30,7 @@ public class CardServlet extends HttpServlet {
 
 		List<Card> cards = new ArrayList<>();
 
-		try (ACMongo mongo = new ACMongo()){
+		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
 			Query<Card> query = datastore.createQuery(Card.class);
 			cards = query.asList();

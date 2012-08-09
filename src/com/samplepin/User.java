@@ -37,6 +37,10 @@ public class User {
 		return this.createDate;
 	}
 
+	public ObjectId getId() {
+		return this.id;
+	}
+
 	public Long getLastUpdate() {
 		return this.lastUpdate;
 	}
@@ -65,6 +69,10 @@ public class User {
 		this.createDate = createDate;
 	}
 
+	public void setId(ObjectId id) {
+		this.id = id;
+	}
+
 	public void setLastUpdate(Long lastUpdate) {
 		this.lastUpdate = lastUpdate;
 	}
@@ -85,13 +93,4 @@ public class User {
 		this.userId = userId;
 	}
 
-	public ObjectId getId() {
-		return id;
-	}
-
-	public void setId(ObjectId id) {
-		this.id = id;
-	}
-	
-	
 }

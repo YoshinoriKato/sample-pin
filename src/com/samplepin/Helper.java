@@ -12,13 +12,38 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import sun.swing.StringUIClientPropertyKey;
-
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 import com.mongodb.MongoException;
 
 public class Helper {
+
+	static String ID_LETTER = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+	static String PASSWORD_LETTER = ID_LETTER + "0123456789_";
+
+	static int DEFAULT_LEN = 12;
+
+	static int FIRST_CHAR = 1;
+
+	public static String generatedUserId() {
+		Random r = new Random(System.nanoTime());
+		StringBuilder builder = new StringBuilder();
+
+		int len = ID_LETTER.length();
+		char[] array = ID_LETTER.toCharArray();
+		builder.append(array[r.nextInt(len)]);
+
+		len = PASSWORD_LETTER.length();
+		array = PASSWORD_LETTER.toCharArray();
+
+		int range = r.nextInt(24);
+
+		for (int i = 0; i < ((DEFAULT_LEN - FIRST_CHAR) + range); i++) {
+			builder.append(array[r.nextInt(len)]);
+		}
+		return builder.toString();
+	}
 
 	public static Card getCardInfoByID(String cardId) {
 		try (ACMongo mongo = new ACMongo()) {
@@ -32,13 +57,20 @@ public class Helper {
 		return new Card();
 	}
 
-	static String ID_LETTER = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	public static void main(String[] args) {
+		String LS = System.getProperty("line.separator");
+		StringBuilder builder = new StringBuilder();
+		builder.append("サインアップ完了しました。").append(LS);
+		builder.append(LS);
+		builder.append("仮ユーザーID: ").append("hoge").append(LS);
+		builder.append("仮パスワード: ").append("foo").append(LS);
+		builder.append(LS);
+		builder.append("URL: ").append(LS);
+		builder.append("http://localhost:8080/sample-pin/").append(LS);
 
-	static String PASSWORD_LETTER = ID_LETTER + "0123456789_";
-
-	static int DEFAULT_LEN = 12;
-
-	static int FIRST_CHAR = 1;
+		sendMail("katoy.acces.co.jp@gmail.com", builder.toString());
+		System.out.println("OK?");
+	}
 
 	static void sendMail(String mail, String text) {
 		Properties properties = new Properties();
@@ -65,39 +97,5 @@ public class Helper {
 		} catch (UnsupportedEncodingException | MessagingException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public static String generatedUserId() {
-		Random r = new Random(System.nanoTime());
-		StringBuilder builder = new StringBuilder();
-
-		int len = ID_LETTER.length();
-		char[] array = ID_LETTER.toCharArray();
-		builder.append(array[r.nextInt(len)]);
-
-		len = PASSWORD_LETTER.length();
-		array = PASSWORD_LETTER.toCharArray();
-
-		int range = r.nextInt(24);
-
-		for (int i = 0; i < DEFAULT_LEN - FIRST_CHAR + range; i++) {
-			builder.append(array[r.nextInt(len)]);
-		}
-		return builder.toString();
-	}
-
-	public static void main(String[] args) {
-		String LS = System.getProperty("line.separator");
-		StringBuilder builder = new StringBuilder();
-		builder.append("サインアップ完了しました。").append(LS);
-		builder.append(LS);
-		builder.append("仮ユーザーID: ").append("hoge").append(LS);
-		builder.append("仮パスワード: ").append("foo").append(LS);
-		builder.append(LS);
-		builder.append("URL: ").append(LS);
-		builder.append("http://localhost:8080/sample-pin/").append(LS);
-
-		sendMail("katoy.acces.co.jp@gmail.com", builder.toString());
-		System.out.println("OK?");
 	}
 }

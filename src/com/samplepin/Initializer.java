@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Random;
 
 import com.google.code.morphia.Datastore;
-import com.google.code.morphia.Morphia;
-import com.mongodb.Mongo;
 import com.mongodb.MongoException;
 
 public class Initializer {

@@ -46,6 +46,10 @@ public class Card implements Serializable {
 		return this.cardId;
 	}
 
+	public ObjectId getId() {
+		return this.id;
+	}
+
 	public int getLikes() {
 		return this.likes;
 	}
@@ -62,16 +66,12 @@ public class Card implements Serializable {
 		this.caption = caption;
 	}
 
-	public ObjectId getId() {
-		return id;
+	public void setCardId(String cardId) {
+		this.cardId = cardId;
 	}
 
 	public void setId(ObjectId id) {
 		this.id = id;
-	}
-
-	public void setCardId(String cardId) {
-		this.cardId = cardId;
 	}
 
 	public void setLikes(int likes) {

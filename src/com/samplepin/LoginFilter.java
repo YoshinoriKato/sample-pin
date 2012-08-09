@@ -17,9 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebFilter(urlPatterns = { "/make-card.jsp" }, dispatcherTypes = DispatcherType.REQUEST)
 public class LoginFilter implements Filter {
 
+	private ServletContext context;
+
 	@Override
 	public void destroy() {
-		context = null;
+		this.context = null;
 	}
 
 	@Override
@@ -28,7 +30,7 @@ public class LoginFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		String url = request.getRequestURL().toString();
 		String userId = (String) request.getSession().getAttribute("userId");
-		context.log("Request URL: " + url);
+		this.context.log("Request URL: " + url);
 		if (userId == null) {
 			HttpServletResponse response = (HttpServletResponse) res;
 			request.setAttribute("fromUrl", url);
@@ -38,11 +40,9 @@ public class LoginFilter implements Filter {
 		}
 	}
 
-	private ServletContext context;
-
 	@Override
 	public void init(FilterConfig conf) throws ServletException {
-		context = conf.getServletContext();
+		this.context = conf.getServletContext();
 	}
 
 }

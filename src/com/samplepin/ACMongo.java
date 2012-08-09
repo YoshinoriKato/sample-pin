@@ -13,14 +13,14 @@ public class ACMongo extends Mongo implements AutoCloseable {
 		super("127.0.0.1");
 	}
 
-	public Datastore createDatastore() {
-		Morphia morphia = new Morphia();
-		return morphia.createDatastore(this, "sample-pin");
-	}
-
 	@Override
 	public void close() {
 		super.close();
+	}
+
+	public Datastore createDatastore() {
+		Morphia morphia = new Morphia();
+		return morphia.createDatastore(this, "sample-pin");
 	}
 
 }
