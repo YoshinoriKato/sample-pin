@@ -7,6 +7,7 @@ import java.util.Random;
 
 import com.google.code.morphia.Datastore;
 import com.mongodb.MongoException;
+import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 public class Initializer {
 
@@ -33,8 +34,7 @@ public class Initializer {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		try {
-			ACMongo mongo = new ACMongo();
+		try (ACMongo mongo = new ACMongo()) {
 			mongo.dropDatabase("sample-pin");
 
 			Datastore datastore = mongo.createDatastore();
@@ -45,16 +45,18 @@ public class Initializer {
 
 			List<Card> cards = new ArrayList<>();
 			Random dice = new Random(System.nanoTime());
+
 			for (int i = 0; i < 300; i++) {
 				String caption2 = caption.substring(0,
 						dice.nextInt(caption.length() - cap_min) + cap_min);
-				cards.add(new Card("ID_" + System.nanoTime(), "img/"
+				String cardId = Base64.encode(String.valueOf(System.nanoTime())
+						.getBytes());
+				cards.add(new Card(cardId, "img/"
 						+ images[dice.nextInt(images.length)], caption2, dice
 						.nextInt(10), dice.nextInt(100)));
 			}
 			datastore.save(cards);
 
-			mongo.close();
 			System.out.println("bye.");
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();

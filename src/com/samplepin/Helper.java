@@ -2,6 +2,8 @@ package com.samplepin;
 
 import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
 
@@ -25,6 +27,13 @@ public class Helper {
 	static int DEFAULT_LEN = 12;
 
 	static int FIRST_CHAR = 1;
+
+	static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+	public static String formatToDateTimeString(Long mills) {
+		Date date = new Date(mills);
+		return sdf.format(date);
+	}
 
 	public static String generatedUserId() {
 		Random r = new Random(System.nanoTime());
@@ -72,7 +81,7 @@ public class Helper {
 		System.out.println("OK?");
 	}
 
-	static void sendMail(String mail, String text) {
+	public static void sendMail(String mail, String text) {
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "smtp.gmail.com");
 		properties.put("mail.smtp.port", "587");

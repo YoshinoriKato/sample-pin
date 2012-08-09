@@ -43,7 +43,7 @@
 								r.nextInt(comment.length() - comm_min) + comm_min);
 					%>
 					<div class="form-horizontal">
-						<form action="xxx.do" enctype="multipart/form-data" method="post"
+						<form action="uplaod.do" enctype="multipart/form-data" method="post"
 							class="form-horizontal">
 							<fieldset>Make
 							<div class="control-group">

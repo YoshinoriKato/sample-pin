@@ -10,6 +10,27 @@
 <script type="text/javascript" src="jquery-1.7.2.js"></script>
 <script type="text/javascript" src="jquery.wookmark.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript">
+	function change(id) {
+		var $textarea = $(id);
+		var text = $textarea;
+
+		alert(text);
+
+		$textarea.empty();
+
+		var $form = $("<form/>").attr("method", "post")
+				.attr("action", "xxx.do");
+
+		var $input = $("<input/>").attr("type", "submit");
+
+		$form.append("<textarea/>");
+		$form.append($input);
+
+		$textarea.append($form);
+		$textarea.attr("onclick", "");
+	}
+</script>
 <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="common.css" rel="stylesheet">
 </head>
@@ -19,12 +40,13 @@
 <%
 	String cardId = request.getParameter("cardId");
 	Card card = Helper.getCardInfoByID(cardId);
+	String userId = (String) session.getAttribute("userId");
+	Random dice = new Random(System.nanoTime());
 %>
 
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
-		<div class="center"><img src="<%=card.getUrl()%>" class="image"></div>
 		<ul id="content">
 			<li>
 				<div class="cell">
@@ -32,8 +54,6 @@
 						<a href="card.jsp?cardId=<%=cardId%>"> <img
 							src="<%=card.getUrl()%>" class="image-shot"></a>
 					</div>
-					<div class="star">
-						★<%=card.getLikes()%></div>
 					<div class="ribon">
 						<span class="ribon-text"> <%=card.getView()%> view
 						</span>
@@ -41,23 +61,41 @@
 					<div class="caption deco">
 						<%=card.getCaption()%>
 					</div>
+					<div class="star right">
+						★<%=card.getLikes()%></div>
 				</div>
 			</li>
-			<%
-				Random dice = new Random(System.nanoTime());
-				for (int i = 0; i < dice.nextInt(500); i++) {
-			%>
 
-			<li><div class="cell"
-					style="min-height: <%=dice.nextInt(400) + 60%>px;">
-					<div>
-						No.<%=i + 1%></div>
-					<div class="caption deco">
+			<li><div class="cell">
+					<div class="caption">
+						@<%=userId%></div>
+					<div id="comment-area" onclick="change('#comment-area');"
+						class="caption deco"
+						style="min-height: <%=dice.nextInt(400) + 60%>px;">
 						<!-- comment -->
 						ほげほげ。
 					</div>
+					<div class="caption right">
+						<%=Helper.formatToDateTimeString(System.currentTimeMillis())%></div>
 				</div></li>
 
+			<%
+				for (int i = 0; i < dice.nextInt(500); i++) {
+			%>
+
+			<li><div class="cell">
+					<div class="caption">
+						No.<%=i + 1%>
+						@<%=userId%></div>
+					<div class="caption deco"
+						style="min-height: <%=dice.nextInt(400) + 60%>px;">
+						<!-- comment -->
+						ほげほげ。
+					</div>
+					<div class="caption right">
+						<%=Helper.formatToDateTimeString(System
+						.currentTimeMillis())%></div>
+				</div></li>
 
 			<%
 				}
