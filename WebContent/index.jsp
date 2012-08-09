@@ -15,7 +15,7 @@
 			var $jqLi = $("<li/>");
 			var $jqDiv = $("<div/>").addClass("cell");
 			var $jqA = $("<a/>").addClass("no-hover").attr("href",
-					"card.jsp?id=" + array[i].cardId);
+					"card.jsp?cardId=" + array[i].cardId);
 			var $divRibon = $("<div/>").addClass("ribon");
 			var $divImage = $("<div/>").addClass("image-holder");
 			var $divCaption = $("<div/>").addClass("caption deco");

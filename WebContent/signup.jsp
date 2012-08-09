@@ -29,23 +29,17 @@
 				<div class="cell">
 					<form action="login.do" method="post" class="form-horizontal">
 						<fieldset>
-							Login <input type="hidden" name="redirectUrl"
+							Sign up <input type="hidden" name="redirectUrl"
 								value="<%=fromUrl%>" />
 							<div class="control-group">
-								<label for="userId" class="control-label">User ID</label>
+								<label for="mail" class="control-label">Mail Address</label>
 								<div class="controls">
-									<input type="text" name="userId" class="span6" placeholder="User ID" />
-								</div>
-							</div>
-							<div class="control-group">
-								<label for="password" class="control-label">Password</label>
-								<div class="controls">
-									<input type="password" name="password" class="span6" placeholder="password" />
+									<input type="text" name="mail" class="span6 input" placeholder="xxxxxx@xxx.xxx" />
 								</div>
 							</div>
 							<div class="control-group">
 								<div class="controls">
-									<input type="submit" name="submit" value="Login" class="btn btn-large btn-primary" />
+									<input type="submit" name="submit" value="Sign up" class="btn btn-large btn-primary" />
 								</div>
 							</div>
 						</fieldset>

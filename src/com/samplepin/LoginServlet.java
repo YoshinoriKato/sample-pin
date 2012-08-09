@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.code.morphia.Datastore;
-import com.google.code.morphia.Morphia;
 import com.google.code.morphia.query.Query;
-import com.mongodb.Mongo;
 import com.mongodb.MongoException;
 
 @WebServlet(urlPatterns = { "/login.do" })
@@ -43,13 +41,9 @@ public class LoginServlet extends HttpServlet {
 			String userId = req.getParameter("userId");
 			Integer password = req.getParameter("password").hashCode();
 			if (acceptPassword(userId, password)) {
-				HttpSession sessionOld = req.getSession();
-				sessionOld.invalidate();
-				HttpSession sessionNew = req.getSession(true);
-				log(sessionOld.getId() + " -> " + sessionNew.getId());
+				login(req, userId);
 				String redirectUrl = req.getParameter("redirectUrl");
 				log("forward: " + redirectUrl);
-				sessionNew.setAttribute("userId", userId);
 				resp.sendRedirect(redirectUrl);
 			}
 		} catch (Exception e) {
@@ -57,6 +51,14 @@ public class LoginServlet extends HttpServlet {
 			req.setAttribute("error", e);
 			resp.sendRedirect("login.jsp");
 		}
+	}
+
+	final void login(HttpServletRequest req, String userId) {
+		HttpSession sessionOld = req.getSession();
+		sessionOld.invalidate();
+		HttpSession sessionNew = req.getSession(true);
+		log(sessionOld.getId() + " -> " + sessionNew.getId());
+		sessionNew.setAttribute("userId", userId);
 	}
 
 }

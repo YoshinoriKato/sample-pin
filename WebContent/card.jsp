@@ -1,4 +1,5 @@
 <%@page import="java.util.Random"%>
+<%@page import="com.samplepin.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,58 +8,74 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Sample-Pin</title>
 <script type="text/javascript" src="jquery-1.7.2.js"></script>
+<script type="text/javascript" src="jquery.wookmark.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="common.css" rel="stylesheet">
 </head>
 
-<%
-	Random r = new Random(System.nanoTime());
-	int title_min = 5;
-	String title = "雨ニモマケズ 風ニモマケズ 雪ニモ夏ノ暑サニモマケヌ 丈夫ナカラダヲモチ";
-	title = title.substring(0, r.nextInt(title.length() - title_min)
-			+ title_min);
 
-	int comm_min = 20;
-	String comment = "雨ニモマケズ 風ニモマケズ 雪ニモ夏ノ暑サニモマケヌ 丈夫ナカラダヲモチ"
-			+ " 慾ハナク 決シテ瞋ラズ イツモシヅカニワラッテヰル" + " 一日ニ玄米四合ト 味噌ト少シノ野菜ヲタベ"
-			+ " アラユルコトヲ ジブンヲカンジョウニ入レズニ ヨクミキキシワカリ ソシテワスレズ"
-			+ " 野原ノ松ノ林ノノ 小サナ萓ブキノ小屋ニヰテ" + " 東ニ病気ノコドモアレバ 行ッテ看病シテヤリ"
-			+ " 西ニツカレタ母アレバ 行ッテソノ稲ノ朿ヲ負ヒ"
-			+ " 南ニ死ニサウナ人アレバ 行ッテコハガラナクテモイヽトイヒ"
-			+ " 北ニケンクヮヤソショウガアレバ ツマラナイカラヤメロトイヒ"
-			+ " ヒドリノトキハナミダヲナガシ サムサノナツハオロオロアルキ"
-			+ " ミンナニデクノボートヨバレ ホメラレモセズ クニモサレズ" + " サウイフモノニ ワタシハナリタイ"
-			+ " 南無無辺行菩薩 南無上行菩薩 南無多宝如来 南無妙法蓮華経 南無釈迦牟尼仏 南無浄行菩薩 南無安立行菩薩";
-	comment = comment.substring(0,
-			r.nextInt(comment.length() - comm_min) + comm_min);
+
+<%
+	String cardId = request.getParameter("cardId");
+	Card card = Helper.getCardInfoByID(cardId);
 %>
 
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
-		<div class="container">
-			<div class="row">
-				<div class="span6">
-					<div class="cell">
-						<div class="header deco">
-							<h3>
-								<%=title%></h3>
-						</div>
-						<div>
-							<img src="img/6023677971_1a47ac6105_o.jpg" class="image-shot">
-						</div>
-						<div class="caption deco">
-							<%=comment%>
-						</div>
+		<div class="center"><img src="<%=card.getUrl()%>" class="image"></div>
+		<ul id="content">
+			<li>
+				<div class="cell">
+					<div>
+						<a href="card.jsp?cardId=<%=cardId%>"> <img
+							src="<%=card.getUrl()%>" class="image-shot"></a>
+					</div>
+					<div class="star">
+						★<%=card.getLikes()%></div>
+					<div class="ribon">
+						<span class="ribon-text"> <%=card.getView()%> view
+						</span>
+					</div>
+					<div class="caption deco">
+						<%=card.getCaption()%>
 					</div>
 				</div>
-				<div class="span6">
-					<div class="cell">hoge</div>
-				</div>
-			</div>
-		</div>
+			</li>
+			<%
+				Random dice = new Random(System.nanoTime());
+				for (int i = 0; i < dice.nextInt(500); i++) {
+			%>
+
+			<li><div class="cell"
+					style="min-height: <%=dice.nextInt(400) + 60%>px;">
+					<div>
+						No.<%=i + 1%></div>
+					<div class="caption deco">
+						<!-- comment -->
+						ほげほげ。
+					</div>
+				</div></li>
+
+
+			<%
+				}
+			%>
+		</ul>
+		<br style="clear: both;" />
 	</div>
 </body>
-
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#content li').wookmark({
+			offset : 12
+		});
+		$(window).resize(function() {
+			$('#content li').wookmark({
+				offset : 12
+			})
+		});
+	});
+</script>
 </html>
