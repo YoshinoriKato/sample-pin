@@ -47,12 +47,6 @@
 							class="form-horizontal">
 							<fieldset>Make
 							<div class="control-group">
-								<label for="title" class="control-label">Title</label>
-								<div class="controls">
-									<input type="text" name="title" class="span8" value="<%=title%>" />
-								</div>
-							</div>
-							<div class="control-group">
 								<label for="iconPath" class="control-label">Image</label>
 								<div class="controls">
 									<input type="file" class="span8" name="iconPath" />

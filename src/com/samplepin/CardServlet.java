@@ -2,6 +2,8 @@ package com.samplepin;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
@@ -37,6 +39,14 @@ public class CardServlet extends HttpServlet {
 		} catch (UnknownHostException | MongoException e1) {
 			e1.printStackTrace();
 		}
+
+		Collections.sort(cards, new Comparator<Card>() {
+
+			@Override
+			public int compare(Card o1, Card o2) {
+				return o2.getCreateDate().compareTo(o1.getCreateDate());
+			}
+		});
 
 		try (ServletOutputStream os = resp.getOutputStream()) {
 			Gson gson = new Gson();

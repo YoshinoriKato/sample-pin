@@ -1,15 +1,27 @@
 package com.samplepin;
 
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.google.code.morphia.Datastore;
 import com.mongodb.MongoException;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 
-public class Initializer {
+@WebServlet(urlPatterns = { "/init.do" })
+public class Initializer extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9090615824997426253L;
 
 	static int cap_min = 10;
 
@@ -46,14 +58,15 @@ public class Initializer {
 			List<Card> cards = new ArrayList<>();
 			Random dice = new Random(System.nanoTime());
 
-			for (int i = 0; i < 300; i++) {
+			for (int i = 0; i < 30; i++) {
 				String caption2 = caption.substring(0,
 						dice.nextInt(caption.length() - cap_min) + cap_min);
 				String cardId = Base64.encode(String.valueOf(System.nanoTime())
 						.getBytes());
 				cards.add(new Card(cardId, "img/"
 						+ images[dice.nextInt(images.length)], caption2, dice
-						.nextInt(10), dice.nextInt(100)));
+						.nextInt(10), dice.nextInt(100), System
+						.currentTimeMillis()));
 			}
 			datastore.save(cards);
 
@@ -61,6 +74,13 @@ public class Initializer {
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		main(null);
+		resp.sendRedirect("index.jsp");
 	}
 
 }

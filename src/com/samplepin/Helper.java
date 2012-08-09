@@ -13,6 +13,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
@@ -54,12 +55,27 @@ public class Helper {
 		return builder.toString();
 	}
 
-	public static Card getCardInfoByID(String cardId) {
+	public static Card getCardInfoByID(String cardId, HttpSession session) {
 		try (ACMongo mongo = new ACMongo()) {
+			String userId = (String) session.getAttribute("userId");
+
 			Datastore datastore = mongo.createDatastore();
 			Query<Card> query = datastore.createQuery(Card.class).filter(
 					"cardId = ", cardId);
-			return query.get();
+			Card card = query.get();
+			if (card != null) {
+				Query<View> query2 = datastore.createQuery(View.class)
+						.filter("userID =", userId).filter("cardId = ", cardId);
+				if (query2.countAll() == 0) {
+					card.setView(card.getView() + 1);
+					datastore.save(card);
+
+					View view = new View(System.currentTimeMillis(), cardId,
+							userId);
+					datastore.save(view);
+				}
+			}
+			return card;
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();
 		}

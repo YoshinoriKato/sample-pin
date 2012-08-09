@@ -25,17 +25,21 @@ public class Card implements Serializable {
 
 	String cardId;
 
+	Long createDate;
+
 	public Card() {
 
 	}
 
-	public Card(String cardId, String url, String caption, int likes, int view) {
+	public Card(String cardId, String url, String caption, int likes, int view,
+			long createDate) {
 		super();
 		this.cardId = cardId;
 		this.url = url;
 		this.caption = caption;
 		this.likes = likes;
 		this.view = view;
+		this.createDate = createDate;
 	}
 
 	public String getCaption() {
@@ -44,6 +48,10 @@ public class Card implements Serializable {
 
 	public String getCardId() {
 		return this.cardId;
+	}
+
+	public Long getCreateDate() {
+		return this.createDate;
 	}
 
 	public ObjectId getId() {
@@ -68,6 +76,10 @@ public class Card implements Serializable {
 
 	public void setCardId(String cardId) {
 		this.cardId = cardId;
+	}
+
+	public void setCreateDate(Long createDate) {
+		this.createDate = createDate;
 	}
 
 	public void setId(ObjectId id) {

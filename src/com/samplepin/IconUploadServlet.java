@@ -170,6 +170,7 @@ public class IconUploadServlet extends HttpServlet {
 				.getBytes());
 		Card card = new Card();
 		card.setCardId(cardId);
+		card.setCreateDate(System.currentTimeMillis());
 		for (Part part : req.getParts()) {
 			String title = getValueByKeyword(part, "title");
 			String comment = getValueByKeyword(part, "comment");

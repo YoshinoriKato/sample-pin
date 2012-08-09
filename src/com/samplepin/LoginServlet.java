@@ -2,6 +2,8 @@ package com.samplepin;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,12 +55,24 @@ public class LoginServlet extends HttpServlet {
 		}
 	}
 
-	final void login(HttpServletRequest req, String userId) {
+	final void login(HttpServletRequest req, String userId)
+			throws UnknownHostException, MongoException {
 		HttpSession sessionOld = req.getSession();
 		sessionOld.invalidate();
 		HttpSession sessionNew = req.getSession(true);
 		log(sessionOld.getId() + " -> " + sessionNew.getId());
 		sessionNew.setAttribute("userId", userId);
+
+		try (ACMongo mongo = new ACMongo()) {
+			Datastore datastore = mongo.createDatastore();
+			Query<View> q = datastore.createQuery(View.class).filter("userId",
+					userId);
+			Set<String> visited = new HashSet<>();
+			for (View view : q.asList()) {
+				visited.add(view.getCardId());
+			}
+			sessionNew.setAttribute("visited", visited);
+		}
 	}
 
 }
