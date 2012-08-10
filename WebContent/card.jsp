@@ -1,3 +1,4 @@
+<%@page import="com.samplepin.servlet.CommentServlet"%>
 <%@page import="java.util.*"%>
 <%@page import="com.samplepin.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -49,9 +50,17 @@
 	<div id="main">
 		<div class="center caption">
 			<div id="comment-area">
-				<% if(userId !=null){ %>
+				<% if(comments.size() >= CommentServlet.COMMENTS_LIMIT) { %>
+				<p>
+					Thanks. This card received
+					<%=CommentServlet.COMMENTS_LIMIT %>
+					comments.
+				</p>
+
+				<%} else if(userId !=null){ %>
 				<input type="button" value="Comment" class="btn btn-large"
 					onclick="change('#comment');" id="comment" />
+
 				<%} else { %>
 				<p>Please, Login.</p>
 				<%} %>
@@ -77,11 +86,15 @@
 
 			<%
 				for (Comment comment : comments) {
+					User user = Helper.getUserById(comment.getUserId());
+					String wallPaper = Helper.getWallPaper(user);
+					String fontColor = Helper.getFontColor(user);
+					String userName = user != null ? user.getUserName() : "nanashi";
 			%>
 
-			<li><div class="cell">
+			<li><div class="cell" style="<%=wallPaper%> <%=fontColor%>">
 					<div class="caption">
-						@<%=comment.getUserId()%></div>
+						@<%=userName%></div>
 					<div class="caption deco">
 						<!-- comment -->
 						<%=comment.getComment() %>

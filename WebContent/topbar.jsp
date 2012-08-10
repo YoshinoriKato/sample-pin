@@ -16,6 +16,7 @@
 					<li class=""><a href="make-card.jsp">Make Card</a></li>
 					<li class="divider-vertical"></li>
 					<li><a href="login.jsp">Login</a></li>
+					<li class=""><a href="my-card.jsp">My Card</a></li>
 					<li class="divider-vertical"></li>
 					<li class=""><a href="signup.jsp">Sign up</a></li>
 				</ul>

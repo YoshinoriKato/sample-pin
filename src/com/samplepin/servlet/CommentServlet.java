@@ -24,6 +24,8 @@ public class CommentServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 5426777241563315344L;
 
+	public static final Long COMMENTS_LIMIT = 1000L;
+
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
@@ -54,11 +56,16 @@ public class CommentServlet extends HttpServlet {
 
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
-			Query<Comment> query = datastore.createQuery(Comment.class)
+			Query<Comment> query0 = datastore.createQuery(Comment.class)
 					.filter("userId = ", comment.getUserId())
 					.filter("comment = ", comment.getComment());
-			if (query.countAll() == 0) {
+			Query<Comment> query1 = datastore.createQuery(Comment.class)
+					.filter("cardId = ", comment.getCardId());
+
+			if ((query0.countAll() == 0)
+					&& (query1.countAll() < COMMENTS_LIMIT)) {
 				datastore.save(comment);
+
 				Query<Card> query2 = datastore.createQuery(Card.class).filter(
 						"cardId", comment.getCardId());
 				Card card = query2.get();

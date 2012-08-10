@@ -22,13 +22,12 @@ import org.apache.log4j.Logger;
 
 import com.google.code.morphia.Datastore;
 import com.samplepin.ACMongo;
-import com.samplepin.Card;
 import com.samplepin.User;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 
-@WebServlet(name = "IconUploadServlet", urlPatterns = "/uplaod.do")
+@WebServlet(urlPatterns = "/my-card.do")
 @MultipartConfig(location = "/Developer/uploaded")
-public class IconUploadServlet extends HttpServlet {
+public class MyCardUploadServlet extends HttpServlet {
 
 	final class Uploader {
 
@@ -115,9 +114,9 @@ public class IconUploadServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		log("upload start.");
-		List<Uploader> uploadQue = new ArrayList<IconUploadServlet.Uploader>();
-		Card card = readRequest(req, uploadQue);
-		writeFiles(req, uploadQue, card);
+		List<Uploader> uploadQue = new ArrayList<MyCardUploadServlet.Uploader>();
+		User user = readRequest(req, uploadQue);
+		writeFiles(req, uploadQue, user);
 		log("upload end.");
 
 		resp.sendRedirect("index.jsp");
@@ -167,22 +166,22 @@ public class IconUploadServlet extends HttpServlet {
 		log("destination file name: " + fileName);
 	}
 
-	final Card readRequest(HttpServletRequest req, List<Uploader> uploadQue)
+	final User readRequest(HttpServletRequest req, List<Uploader> uploadQue)
 			throws IllegalStateException, IOException, ServletException {
 		String cardId = Base64.encode(String.valueOf(System.nanoTime())
 				.getBytes());
-		Card card = new Card();
-		card.setCardId(cardId);
-		card.setCreateDate(System.currentTimeMillis());
+		User user = new User();
+		user.setUserId(cardId);
+		user.setCreateDate(System.currentTimeMillis());
 		for (Part part : req.getParts()) {
-			String title = getValueByKeyword(part, "title");
-			String comment = getValueByKeyword(part, "comment");
+			String userName = getValueByKeyword(part, "userName");
+			String fontColor = getValueByKeyword(part, "fontColor");
 
-			if (title != null) {
-				card.setCaption(title);
+			if (userName != null) {
+				user.setUserName(userName);
 
-			} else if (comment != null) {
-				card.setCaption(comment);
+			} else if (fontColor != null) {
+				user.setFontColor(fontColor);
 
 			} else {
 				String path = getFileName(part);
@@ -191,32 +190,32 @@ public class IconUploadServlet extends HttpServlet {
 				}
 			}
 		}
-		return card;
+		return user;
 	}
 
-	final void saveUserInfo(File referenceFolder, String fileName, Card card)
+	final void saveUserInfo(File referenceFolder, String fileName, User user)
 			throws RuntimeException, UnknownHostException {
 		File referenceFile = new File(referenceFolder, fileName);
-		card.setUrl(referenceFile.getPath());
+		user.setBackgroundImage(referenceFile.getPath());
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
-			datastore.save(card);
+			datastore.save(user);
 		}
 		log("update user icon: " + referenceFile.getPath());
 	}
 
 	final void writeFiles(HttpServletRequest req, List<Uploader> uploadQue,
-			Card card) throws IOException {
+			User user) throws IOException {
 		List<String> acceptFields = new ArrayList<String>();
 		String fullPath = req.getServletContext().getRealPath("../icon-keeper");
 		File realFolder = new File(fullPath);
 		if (realFolder.exists() || realFolder.mkdirs()) {
 			File referenceFolder = new File("../../icon-keeper");
-			writeIconFiles(uploadQue, card, realFolder, referenceFolder,
+			writeIconFiles(uploadQue, user, realFolder, referenceFolder,
 					acceptFields);
 			req.setAttribute("acceptFields", acceptFields);
 		} else {
-			Logger.getLogger(IconUploadServlet.class).error(
+			Logger.getLogger(MyCardUploadServlet.class).error(
 					"upload folder does not exist.");
 		}
 	}
@@ -228,17 +227,17 @@ public class IconUploadServlet extends HttpServlet {
 		log("upload user icon: " + realPathFile.getPath());
 	}
 
-	final void writeIconFiles(List<Uploader> uploadQue, Card card,
+	final void writeIconFiles(List<Uploader> uploadQue, User user,
 			File realFolder, File referenceFolder, List<String> acceptFields)
 			throws FileNotFoundException, IOException {
 		for (Uploader u : uploadQue) {
 			try {
 				String fileName = makePrefix() + u.fileName;
 				writeIconFile(realFolder, fileName, u.part.getInputStream());
-				saveUserInfo(referenceFolder, fileName, card);
+				saveUserInfo(referenceFolder, fileName, user);
 				acceptFields.add(u.fileName);
 			} catch (RuntimeException e) {
-				Logger.getLogger(IconUploadServlet.class).error(
+				Logger.getLogger(MyCardUploadServlet.class).error(
 						"fail to upload icon file: " + u.fileName, e);
 				throw e;
 			}

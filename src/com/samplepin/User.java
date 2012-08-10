@@ -25,8 +25,28 @@ public class User {
 
 	Long createDate;
 
+	String fontColor;
+
+	String backgroundImage;
+
+	String userName;
+
 	public User() {
 		super();
+		this.userId = "";
+		this.password = 0;
+		this.birthDay = 0L;
+		this.mail = "";
+		this.loginFaileds = 0;
+		this.lastUpdate = 0L;
+		this.createDate = System.currentTimeMillis();
+		this.fontColor = "#666666";
+		this.backgroundImage = "img/wallpaper.png";
+		this.userName = "nanashi";
+	}
+
+	public String getBackgroundImage() {
+		return this.backgroundImage;
 	}
 
 	public Long getBirthDay() {
@@ -35,6 +55,10 @@ public class User {
 
 	public Long getCreateDate() {
 		return this.createDate;
+	}
+
+	public String getFontColor() {
+		return this.fontColor;
 	}
 
 	public ObjectId getId() {
@@ -61,12 +85,24 @@ public class User {
 		return this.userId;
 	}
 
+	public String getUserName() {
+		return this.userName;
+	}
+
+	public void setBackgroundImage(String backgroundImage) {
+		this.backgroundImage = backgroundImage;
+	}
+
 	public void setBirthDay(Long birthDay) {
 		this.birthDay = birthDay;
 	}
 
 	public void setCreateDate(Long createDate) {
 		this.createDate = createDate;
+	}
+
+	public void setFontColor(String fontColor) {
+		this.fontColor = fontColor;
 	}
 
 	public void setId(ObjectId id) {
@@ -91,6 +127,10 @@ public class User {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 }
