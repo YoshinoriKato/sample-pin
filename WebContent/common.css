@@ -6,9 +6,10 @@
 
 @font-face {
 	font-family: 'HuiFontPRegular';
-	src: local('HuiFontP Regular'), /*フォントがローカルにインストールされている時の指定*/           
+	src: local('HuiFontP Regular'), /*フォントがローカルにインストールされている時の指定*/
 		           
-		                   local('HuiFontP'), url('../font/HuiFontP29.ttf')
+		           
+		                    local('HuiFontP'), url('../font/HuiFontP29.ttf')
 		format('truetype');
 	/* Safari、Chrome、Firefox、Opera */
 }
@@ -36,31 +37,19 @@ body {
 	min-height: 30px;
 }
 
-text, textarea, dropdown{
-	border:1px solid #777;
+text,textarea,dropdown {
+	border: 1px solid #777;
 	padding: 5px;
 	color: #999;
 	background: #fff;
-	
-/* Webkit */
-	background: -webkit-gradient(
-		linear,
-		left top,
-		left bottom,
-		from(#eee),
-		to(#fff)
-		);
-	
-/* Firefox */
-	background: -moz-linear-gradient(
-		top,
-		#eee,
-		#fff
-		);
-	
-/* IE */
-	filter:progid:DXImageTransform.Microsoft.gradient
-        (startColorstr=#ffeeeeee,endColorstr=#ffffffff);
+	/* Webkit */
+	background: -webkit-gradient(linear, left top, left bottom, from(#eee),
+		to(#fff) );
+	/* Firefox */
+	background: -moz-linear-gradient(top, #eee, #fff);
+	/* IE */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffeeeeee,
+		endColorstr=#ffffffff );
 	zoom: 1;
 }
 
@@ -133,12 +122,24 @@ a .no-hover:HOVER {
 	font-size: 11px;
 	font-weight: bold;
 	color: #ffffff;
-	background-color: rgba(230, 30, 40, 0.9);
+	background-color: rgba(230, 40, 40, 0.9);
 	overflow: hidden;
 	-webkit-transform: rotate(-45deg);
 	-moz-transform: rotate(-45deg);
 	-o-transform: rotate(-45deg);
 	-ms-transform: rotate(-45deg);
+}
+
+.color-red {
+	background-color: rgba(230, 40, 40, 0.9);
+}
+
+.color-green {
+	background-color: rgba(40, 230, 40, 0.9);
+}
+
+.color-blue {
+	background-color: rgba(40, 40, 230, 0.9);
 }
 
 .feeling {

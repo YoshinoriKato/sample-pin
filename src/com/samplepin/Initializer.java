@@ -56,6 +56,7 @@ public class Initializer extends HttpServlet {
 			datastore.save(user);
 
 			List<Card> cards = new ArrayList<>();
+			List<Comment> comments = new ArrayList<>();
 			Random dice = new Random(System.nanoTime());
 
 			for (int i = 0; i < 30; i++) {
@@ -63,12 +64,23 @@ public class Initializer extends HttpServlet {
 						dice.nextInt(caption.length() - cap_min) + cap_min);
 				String cardId = Base64.encode(String.valueOf(System.nanoTime())
 						.getBytes());
+				int like = dice.nextInt(10);
+				int view = dice.nextInt(100);
+				view = view < like ? like : view;
 				cards.add(new Card(cardId, "img/"
-						+ images[dice.nextInt(images.length)], caption2, dice
-						.nextInt(10), dice.nextInt(100), System
-						.currentTimeMillis()));
+						+ images[dice.nextInt(images.length)], caption2, like,
+						view, System.currentTimeMillis()));
+
+				long mills = System.currentTimeMillis();
+				for (int j = 0; j < like; j++) {
+					String caption3 = caption.substring(0,
+							dice.nextInt(caption.length() - cap_min) + cap_min);
+					comments.add(new Comment("nanashi", cardId, caption3,
+							++mills));
+				}
 			}
 			datastore.save(cards);
+			datastore.save(comments);
 
 			System.out.println("bye.");
 		} catch (UnknownHostException | MongoException e) {

@@ -11,25 +11,27 @@
 <script type="text/javascript" src="jquery.wookmark.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript">
+	$(document).ready(function() {
+		cardId = $("#cardId").text();
+	});
+	
 	function change(id) {
-		var $textarea = $(id);
-		var text = $textarea;
-
-		alert(text);
-
-		$textarea.empty();
-
-		var $form = $("<form/>").attr("method", "post")
-				.attr("action", "xxx.do");
-
-		var $input = $("<input/>").attr("type", "submit");
-
-		$form.append("<textarea/>");
-		$form.append($input);
-
+		var $clicked = $(id);
+		var $textarea = $("#comment-area");
+		var $form = $("<form/>").attr("method", "post").attr("action",
+				"comment.do").addClass("form-horizontal");
+		var $hidden = $("<input/>").attr("type", "hidden").attr("name",
+				"cardId").attr("value", cardId).addClass("btn btn-large");
+		var $input = $("<input/>").attr("type", "submit").addClass(
+				"btn btn-large");
+		var $divText = $("<div/>").addClass("control-group").append(
+				$("<textarea/>").attr("name", "comment").addClass("span8")
+						.attr("rows", "6"));
+		var $divSubmit = $("<div/>").addClass("control-group").append($input);
+		$clicked.attr("onclick", "");
 		$textarea.append($form);
-		$textarea.attr("onclick", "");
-	}
+		$form.append($divText).append($divSubmit).append($hidden);
+	};
 </script>
 <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="common.css" rel="stylesheet">
@@ -39,20 +41,24 @@
 
 <%
 	String cardId = request.getParameter("cardId");
-	Card card = Helper.getCardInfoByID(cardId, session);
 	String userId = (String) session.getAttribute("userId");
+	Card card = Helper.getCardInfoByID(cardId, userId);
 	Random dice = new Random(System.nanoTime());
+	List<Comment> comments = Helper.getCommentsInfoByID(cardId, userId);
 %>
 
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
+		<div class="center">
+			<div id="comment-area"></div>
+		</div>
 		<ul id="content">
 			<li>
 				<div class="cell">
 					<div>
-						<a href="card.jsp?cardId=<%=cardId%>"> <img
-							src="<%=card.getUrl()%>" class="image-shot"></a>
+						<a> <img src="<%=card.getUrl()%>" class="image-shot"
+							onclick="change('#comment');" id="comment"></a>
 					</div>
 					<div class="ribon">
 						<span class="ribon-text"> <%=card.getView()%> view
@@ -66,35 +72,19 @@
 				</div>
 			</li>
 
-			<li><div class="cell">
-					<div class="caption">
-						@<%=userId%></div>
-					<div id="comment-area" onclick="change('#comment-area');"
-						class="caption deco"
-						style="min-height: <%=dice.nextInt(400) + 60%>px;">
-						<!-- comment -->
-						ほげほげ。
-					</div>
-					<div class="caption right">
-						<%=Helper.formatToDateTimeString(System.currentTimeMillis())%></div>
-				</div></li>
-
 			<%
-				for (int i = 0; i < dice.nextInt(500); i++) {
+				for (Comment comment : comments) {
 			%>
 
 			<li><div class="cell">
 					<div class="caption">
-						No.<%=i + 1%>
-						@<%=userId%></div>
-					<div class="caption deco"
-						style="min-height: <%=dice.nextInt(400) + 60%>px;">
+						@<%=comment.getUserId()%></div>
+					<div class="caption deco">
 						<!-- comment -->
-						ほげほげ。
+						<%=comment.getComment() %>
 					</div>
 					<div class="caption right">
-						<%=Helper.formatToDateTimeString(System
-						.currentTimeMillis())%></div>
+						<%=Helper.formatToDateTimeString(comment.getCreateDate())%></div>
 				</div></li>
 
 			<%
@@ -103,6 +93,7 @@
 		</ul>
 		<br style="clear: both;" />
 	</div>
+	<div style="display: none;" id="cardId"><%=cardId%></div>
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {

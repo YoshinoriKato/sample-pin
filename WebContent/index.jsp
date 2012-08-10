@@ -1,6 +1,10 @@
 <%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String sorted = request.getParameter("sorted");
+	sorted = sorted == null ? "" : "?sorted=" + sorted;
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,8 +33,10 @@
 			$divImage.append($jqA);
 			$divStar.text("★" + array[i].likes);
 
-			$jqDiv.append($divRibon).append($divImage).append($divCaption)
-					.append($divStar);
+			if (array[i].view > 0) {
+				$jqDiv.append($divRibon);
+			}
+			$jqDiv.append($divImage).append($divCaption).append($divStar);
 			$jqLi.append($jqDiv);
 
 			$('#content').append($jqLi);
@@ -38,24 +44,28 @@
 		$('#content li').wookmark({
 			offset : 12
 		});
-	}
+	};
+
 	$(document).ready(function() {
+
+		$sorted = $('#sorted').text();
+
 		$(window).resize(function() {
 			$('#content li').wookmark({
 				offset : 12
 			})
 		});
-	});
 
-	$.ajax({
-		type : 'get',
-		url : 'http://localhost:8080/sample-pin/xxx.do',
-		data : {
-			name : 'サンプル',
-			key : '0381075127472'
-		},
-		success : callback,
-		dataType : 'json'
+		$.ajax({
+			type : 'get',
+			url : 'http://localhost:8080/sample-pin/xxx.do' + $sorted,
+			data : {
+				name : 'サンプル',
+				key : '0381075127472'
+			},
+			success : callback,
+			dataType : 'json'
+		});
 	});
 </script>
 <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -70,6 +80,7 @@
 		</ul>
 		<br style="clear: both;" />
 	</div>
+	<div style="display: none" id="sorted"><%=sorted%></div>
 </body>
 
 </html>

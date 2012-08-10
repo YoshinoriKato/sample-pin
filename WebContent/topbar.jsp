@@ -10,7 +10,9 @@
 			<a class="brand" href="pinterest.jsp">Sample-Pin</a>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
-					<li class="active"><a href="index.jsp">Pinterest Like</a></li>
+					<li class="active"><a href="index.jsp">Latest</a></li>
+					<li><a href="index.jsp?sorted=view">Viewed Most</a></li>
+					<li><a href="index.jsp?sorted=comment">Commented Most</a></li>
 					<li class=""><a href="make-card.jsp">Make Card</a></li>
 					<li class="divider-vertical"></li>
 					<li><a href="login.jsp">Login</a></li>

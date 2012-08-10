@@ -19,16 +19,16 @@ public class Card implements Serializable {
 
 	String caption;
 
-	int likes;
+	Integer likes;
 
-	int view;
+	Integer view;
 
 	String cardId;
 
 	Long createDate;
 
 	public Card() {
-
+		this("", "", "", 0, 0, System.currentTimeMillis());
 	}
 
 	public Card(String cardId, String url, String caption, int likes, int view,
@@ -58,7 +58,7 @@ public class Card implements Serializable {
 		return this.id;
 	}
 
-	public int getLikes() {
+	public Integer getLikes() {
 		return this.likes;
 	}
 
@@ -66,7 +66,7 @@ public class Card implements Serializable {
 		return this.url;
 	}
 
-	public int getView() {
+	public Integer getView() {
 		return this.view;
 	}
 
@@ -86,7 +86,7 @@ public class Card implements Serializable {
 		this.id = id;
 	}
 
-	public void setLikes(int likes) {
+	public void setLikes(Integer likes) {
 		this.likes = likes;
 	}
 
@@ -94,7 +94,7 @@ public class Card implements Serializable {
 		this.url = url;
 	}
 
-	public void setView(int view) {
+	public void setView(Integer view) {
 		this.view = view;
 	}
 
