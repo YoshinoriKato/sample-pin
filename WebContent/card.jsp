@@ -1,3 +1,4 @@
+<%@page import="com.samplepin.servlet.CommentServlet"%>
 <%@page import="java.util.*"%>
 <%@page import="com.samplepin.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -12,24 +13,23 @@
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript">
 	function change(id) {
-		var $textarea = $(id);
-		var text = $textarea;
-
-		alert(text);
-
+		var $clicked = $(id);
+		var $textarea = $("#comment-area");
+		var $form = $("<form/>").attr("method", "post").attr("action",
+				"comment.do").addClass("form-horizontal");
+		var $hidden = $("<input/>").attr("type", "hidden").attr("name",
+				"cardId").attr("value", cardId).addClass("btn btn-large");
+		var $input = $("<input/>").attr("type", "submit").addClass(
+				"btn btn-large");
+		var $divText = $("<div/>").addClass("control-group").append(
+				$("<textarea/>").attr("name", "comment").addClass("span8")
+						.attr("rows", "6"));
+		var $divSubmit = $("<div/>").addClass("control-group").append($input);
+		$clicked.attr("onclick", "");
 		$textarea.empty();
-
-		var $form = $("<form/>").attr("method", "post")
-				.attr("action", "xxx.do");
-
-		var $input = $("<input/>").attr("type", "submit");
-
-		$form.append("<textarea/>");
-		$form.append($input);
-
 		$textarea.append($form);
-		$textarea.attr("onclick", "");
-	}
+		$form.append($divText).append($divSubmit).append($hidden);
+	};
 </script>
 <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="common.css" rel="stylesheet">
@@ -39,20 +39,38 @@
 
 <%
 	String cardId = request.getParameter("cardId");
-	Card card = Helper.getCardInfoByID(cardId, session);
 	String userId = (String) session.getAttribute("userId");
+	Card card = Helper.getCardInfoByID(cardId, userId);
 	Random dice = new Random(System.nanoTime());
+	List<Comment> comments = Helper.getCommentsInfoByID(cardId, userId);
 %>
 
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
+		<div class="center caption">
+			<div id="comment-area">
+				<% if(comments.size() >= CommentServlet.COMMENTS_LIMIT) { %>
+				<p>
+					Thanks. This card received
+					<%=CommentServlet.COMMENTS_LIMIT %>
+					comments.
+				</p>
+
+				<%} else if(userId !=null){ %>
+				<input type="button" value="Comment" class="btn btn-large"
+					onclick="change('#comment');" id="comment" />
+
+				<%} else { %>
+				<p>Please, Login.</p>
+				<%} %>
+			</div>
+		</div>
 		<ul id="content">
 			<li>
 				<div class="cell">
 					<div>
-						<a href="card.jsp?cardId=<%=cardId%>"> <img
-							src="<%=card.getUrl()%>" class="image-shot"></a>
+						<img src="<%=card.getUrl()%>" class="image-shot">
 					</div>
 					<div class="ribon">
 						<span class="ribon-text"> <%=card.getView()%> view
@@ -66,35 +84,25 @@
 				</div>
 			</li>
 
-			<li><div class="cell">
-					<div class="caption">
-						@<%=userId%></div>
-					<div id="comment-area" onclick="change('#comment-area');"
-						class="caption deco"
-						style="min-height: <%=dice.nextInt(400) + 60%>px;">
-						<!-- comment -->
-						ほげほげ。
-					</div>
-					<div class="caption right">
-						<%=Helper.formatToDateTimeString(System.currentTimeMillis())%></div>
-				</div></li>
-
 			<%
-				for (int i = 0; i < dice.nextInt(500); i++) {
+				for (Comment comment : comments) {
+					User user = Helper.getUserById(comment.getUserId());
+					String wallPaper = Helper.getWallPaper(user);
+					String fontColor = Helper.getFontColor(user);
+					String backgroundColor = Helper.getBackgroundColor(user);
+					String userName = user != null ? user.getUserName() : "nanashi";
 			%>
 
-			<li><div class="cell">
-					<div class="caption">
-						No.<%=i + 1%>
-						@<%=userId%></div>
-					<div class="caption deco"
-						style="min-height: <%=dice.nextInt(400) + 60%>px;">
+			<li><div class="cell"
+					style="<%=wallPaper%> <%=backgroundColor %>">
+					<div class="comment" style="<%=fontColor%>">
+						@<%=userName%></div>
+					<div class="comment deco" style="<%=fontColor%>">
 						<!-- comment -->
-						ほげほげ。
+						<%=comment.getComment() %>
 					</div>
-					<div class="caption right">
-						<%=Helper.formatToDateTimeString(System
-						.currentTimeMillis())%></div>
+					<div class="comment right" style="<%=fontColor%>">
+						<%=Helper.formatToDateTimeString(comment.getCreateDate())%></div>
 				</div></li>
 
 			<%
@@ -103,17 +111,19 @@
 		</ul>
 		<br style="clear: both;" />
 	</div>
+	<div style="display: none;" id="cardId"><%=cardId%></div>
 </body>
 <script type="text/javascript">
-	$(document).ready(function() {
+	$(window).load(function() {
 		$('#content li').wookmark({
 			offset : 12
 		});
-		$(window).resize(function() {
-			$('#content li').wookmark({
-				offset : 12
-			})
-		});
+		cardId = $("#cardId").text();
+	});
+	$(window).resize(function() {
+		$('#content li').wookmark({
+			offset : 12
+		})
 	});
 </script>
 </html>

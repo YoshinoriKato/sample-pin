@@ -43,26 +43,28 @@
 								r.nextInt(comment.length() - comm_min) + comm_min);
 					%>
 					<div class="form-horizontal">
-						<form action="uplaod.do" enctype="multipart/form-data" method="post"
-							class="form-horizontal">
-							<fieldset>Make
-							<div class="control-group">
-								<label for="iconPath" class="control-label">Image</label>
-								<div class="controls">
-									<input type="file" class="span8" name="iconPath" />
+						<form action="uplaod.do" enctype="multipart/form-data"
+							method="post" class="form-horizontal">
+							<fieldset>
+								<h3>Make Card</h3>
+								<div class="control-group">
+									<label for="iconPath" class="control-label">Image</label>
+									<div class="controls">
+										<input type="file" class="span8" name="iconPath" />
+									</div>
 								</div>
-							</div>
-							<div class="control-group">
-								<label for="comment" class="control-label">Comment</label>
-								<div class="controls">
-									<textarea name="comment" class="span8" rows="8"><%=comment%></textarea>
+								<div class="control-group">
+									<label for="comment" class="control-label">Comment</label>
+									<div class="controls">
+										<textarea name="comment" class="span8" rows="8"><%=comment%></textarea>
+									</div>
 								</div>
-							</div>
-							<div class="control-group">
-								<div class="controls">
-									<input type="submit" value="Make" class="btn">
+								<div class="control-group">
+									<div class="controls">
+										<input type="submit" value="Make" class="btn">
+									</div>
 								</div>
-							</div></fieldset>
+							</fieldset>
 						</form>
 					</div>
 				</div>

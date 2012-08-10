@@ -4,20 +4,21 @@ import org.bson.types.ObjectId;
 
 import com.google.code.morphia.annotations.Id;
 
-
 public class View {
 
 	@Id
 	ObjectId id;
-	
+
 	Long visitedDate;
-	
+
 	String cardId;
-	
+
 	String userId;
-	
-	
-	
+
+	public View() {
+
+	}
+
 	public View(Long visitedDate, String cardId, String userId) {
 		super();
 		this.visitedDate = visitedDate;
@@ -25,39 +26,35 @@ public class View {
 		this.userId = userId;
 	}
 
-	public View(){
-		
+	public String getCardId() {
+		return this.cardId;
 	}
 
 	public ObjectId getId() {
-		return id;
+		return this.id;
 	}
 
-	public void setId(ObjectId id) {
-		this.id = id;
+	public String getUserId() {
+		return this.userId;
 	}
 
 	public Long getVisitedDate() {
-		return visitedDate;
-	}
-
-	public void setVisitedDate(Long visitedDate) {
-		this.visitedDate = visitedDate;
-	}
-
-	public String getCardId() {
-		return cardId;
+		return this.visitedDate;
 	}
 
 	public void setCardId(String cardId) {
 		this.cardId = cardId;
 	}
 
-	public String getUserId() {
-		return userId;
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public void setVisitedDate(Long visitedDate) {
+		this.visitedDate = visitedDate;
 	}
 }

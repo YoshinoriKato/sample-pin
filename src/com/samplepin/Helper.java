@@ -3,7 +3,11 @@ package com.samplepin;
 import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 
@@ -13,7 +17,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpSession;
 
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
@@ -29,7 +32,16 @@ public class Helper {
 
 	static int FIRST_CHAR = 1;
 
-	static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	static SimpleDateFormat sdf = new SimpleDateFormat(
+			"yyyy-MM-dd HH:mm:ss.SSS");
+
+	static Comparator<Comment> LATEST_COMMENT = new Comparator<Comment>() {
+
+		@Override
+		public int compare(Comment o1, Comment o2) {
+			return o2.getCreateDate().compareTo(o1.getCreateDate());
+		}
+	};
 
 	public static String formatToDateTimeString(Long mills) {
 		Date date = new Date(mills);
@@ -55,24 +67,39 @@ public class Helper {
 		return builder.toString();
 	}
 
-	public static Card getCardInfoByID(String cardId, HttpSession session) {
+	public static String getBackgroundColor(User user) {
+		if (user != null) {
+			String color = user.getBackgroundColor();
+			color = (color != null) && !color.isEmpty() ? "background-color: "
+					+ color + "; " : "";
+			return color;
+		}
+		return "";
+	}
+
+	public static Card getCardInfoByID(String cardId, String userId) {
 		try (ACMongo mongo = new ACMongo()) {
-			String userId = (String) session.getAttribute("userId");
 
 			Datastore datastore = mongo.createDatastore();
 			Query<Card> query = datastore.createQuery(Card.class).filter(
 					"cardId = ", cardId);
 			Card card = query.get();
 			if (card != null) {
-				Query<View> query2 = datastore.createQuery(View.class)
-						.filter("userID =", userId).filter("cardId = ", cardId);
-				if (query2.countAll() == 0) {
+				if (userId != null) {
+					Query<View> query2 = datastore.createQuery(View.class)
+							.filter("userId =", userId)
+							.filter("cardId = ", cardId);
+					if (query2.countAll() == 0) {
+						card.setView(card.getView() + 1);
+						datastore.save(card);
+
+						View view = new View(System.currentTimeMillis(),
+								cardId, userId);
+						datastore.save(view);
+					}
+				} else {
 					card.setView(card.getView() + 1);
 					datastore.save(card);
-
-					View view = new View(System.currentTimeMillis(), cardId,
-							userId);
-					datastore.save(view);
 				}
 			}
 			return card;
@@ -80,6 +107,56 @@ public class Helper {
 			e.printStackTrace();
 		}
 		return new Card();
+	}
+
+	public static List<Comment> getCommentsInfoByID(String cardId, String userId) {
+		try (ACMongo mongo = new ACMongo()) {
+
+			Datastore datastore = mongo.createDatastore();
+			Query<Comment> query = datastore.createQuery(Comment.class).filter(
+					"cardId = ", cardId);
+			List<Comment> comments = query.asList();
+			Collections.sort(comments, LATEST_COMMENT);
+			return comments;
+		} catch (UnknownHostException | MongoException e) {
+			e.printStackTrace();
+		}
+		return new ArrayList<Comment>();
+	}
+
+	public static String getFontColor(User user) {
+		if (user != null) {
+			String color = user.getFontColor();
+			color = (color != null) && !color.isEmpty() ? "color: " + color
+					+ "; " : "";
+			return color;
+		}
+		return "";
+	}
+
+	public static User getUserById(String userId) {
+		try (ACMongo mongo = new ACMongo()) {
+
+			Datastore datastore = mongo.createDatastore();
+			Query<User> query = datastore.createQuery(User.class).filter(
+					"userId = ", userId);
+			User card = query.get();
+			return card;
+		} catch (UnknownHostException | MongoException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static String getWallPaper(User user) {
+		if (user != null) {
+			String wallpaper = user.getBackgroundImage();
+			wallpaper = (wallpaper != null) && !wallpaper.isEmpty() ? "background-image: url('"
+					+ wallpaper + "'); "
+					: "";
+			return wallpaper;
+		}
+		return "";
 	}
 
 	public static void main(String[] args) {
