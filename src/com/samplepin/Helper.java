@@ -48,27 +48,6 @@ public class Helper {
 		return sdf.format(date);
 	}
 
-	public static String getWallPaper(User user) {
-		if (user != null) {
-			String wallpaper = user.getBackgroundImage();
-			wallpaper = wallpaper != null && !wallpaper.isEmpty() ? "background-image: url('"
-					+ wallpaper + "'); "
-					: "";
-			return wallpaper;
-		}
-		return "";
-	}
-
-	public static String getFontColor(User user) {
-		if (user != null) {
-			String fontColor = user.getFontColor();
-			fontColor = fontColor != null && !fontColor.isEmpty() ? "color: "
-					+ fontColor + "; " : "";
-			return fontColor;
-		}
-		return "";
-	}
-
 	public static String generatedUserId() {
 		Random r = new Random(System.nanoTime());
 		StringBuilder builder = new StringBuilder();
@@ -135,6 +114,16 @@ public class Helper {
 		return new ArrayList<Comment>();
 	}
 
+	public static String getFontColor(User user) {
+		if (user != null) {
+			String fontColor = user.getFontColor();
+			fontColor = (fontColor != null) && !fontColor.isEmpty() ? "color: "
+					+ fontColor + "; " : "";
+			return fontColor;
+		}
+		return "";
+	}
+
 	public static User getUserById(String userId) {
 		try (ACMongo mongo = new ACMongo()) {
 
@@ -147,6 +136,17 @@ public class Helper {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static String getWallPaper(User user) {
+		if (user != null) {
+			String wallpaper = user.getBackgroundImage();
+			wallpaper = (wallpaper != null) && !wallpaper.isEmpty() ? "background-image: url('"
+					+ wallpaper + "'); "
+					: "";
+			return wallpaper;
+		}
+		return "";
 	}
 
 	public static void main(String[] args) {

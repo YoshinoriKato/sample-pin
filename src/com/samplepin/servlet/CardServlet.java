@@ -1,13 +1,13 @@
 package com.samplepin.servlet;
 
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -78,12 +78,13 @@ public class CardServlet extends HttpServlet {
 			Collections.sort(cards, LATEST);
 		}
 
-		try (ServletOutputStream os = resp.getOutputStream()) {
+		try (OutputStreamWriter osw = new OutputStreamWriter(
+				resp.getOutputStream(), "UTF-8")) {
 			Gson gson = new Gson();
 			String out = gson.toJson(cards);
 			log(out);
-			os.write(out.getBytes());
-			os.flush();
+			osw.write(out);
+			osw.flush();
 		} catch (Exception e) {
 			e.printStackTrace();
 			log(e.getMessage());

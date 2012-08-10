@@ -18,7 +18,6 @@ import com.google.code.morphia.query.Query;
 import com.google.gson.Gson;
 import com.mongodb.MongoException;
 import com.samplepin.ACMongo;
-import com.samplepin.Card;
 import com.samplepin.Comment;
 
 @WebServlet(urlPatterns = { "/comments.do" })
