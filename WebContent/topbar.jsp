@@ -1,4 +1,12 @@
 
+<!-- メニュー -->
+
+<script type="text/javascript" charset="utf-8">
+	$(window).load(function() {
+		$('.dropdown-toggle').dropdown();
+	});
+</script>
+
 <div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
@@ -7,7 +15,7 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="brand" href="pinterest.jsp">Sample-Pin</a>
+			<a class="brand">Sample-Pin</a>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li class="active"><a href="index.jsp">Latest</a></li>

@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebFilter(urlPatterns = { "/make-card.jsp" }, dispatcherTypes = DispatcherType.REQUEST)
+@WebFilter(urlPatterns = { "/make-card.jsp", "/my-card.jsp" }, dispatcherTypes = DispatcherType.REQUEST)
 public class LoginFilter implements Filter {
 
 	private ServletContext context;
@@ -33,7 +33,7 @@ public class LoginFilter implements Filter {
 		this.context.log("Request URL: " + url);
 		if (userId == null) {
 			HttpServletResponse response = (HttpServletResponse) res;
-			request.setAttribute("fromUrl", url);
+			request.getSession().setAttribute("fromUrl", url);
 			response.sendRedirect("login.jsp");
 		} else {
 			chain.doFilter(req, res);

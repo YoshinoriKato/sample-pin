@@ -10,16 +10,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Script-Type"
-	content="text/javascript charset=UTF-8" />
-<meta charset="UTF-8">
-<link rel="shortcut icon" href="img/favicon.ico?201208101954">
-<title>Sample-Pin</title>
-<script type="text/javascript" src="jquery-1.7.2.js"></script>
-<script type="text/javascript" src="jquery.wookmark.js"></script>
-<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-<script type="text/javascript" src="callback.js" charset="UTF-8"></script>
+<jsp:include page="header.jsp"></jsp:include>
 <script type="text/javascript" charset="utf-8">
 	$(window).resize(function() {
 		$('#content li').wookmark({
@@ -46,8 +37,6 @@
 		});
 	});
 </script>
-<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="common.css?201208080923" rel="stylesheet">
 </head>
 
 
