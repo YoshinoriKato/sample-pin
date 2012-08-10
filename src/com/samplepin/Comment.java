@@ -5,7 +5,7 @@ import org.bson.types.ObjectId;
 import com.google.code.morphia.annotations.Id;
 
 public class Comment {
-	
+
 	@Id
 	ObjectId id;
 
@@ -21,17 +21,6 @@ public class Comment {
 		super();
 	}
 
-
-	public String getCardId() {
-		return cardId;
-	}
-
-
-	public void setCardId(String cardId) {
-		this.cardId = cardId;
-	}
-
-
 	public Comment(String userId, String cardId, String comment, Long createDate) {
 		super();
 		this.userId = userId;
@@ -40,6 +29,9 @@ public class Comment {
 		this.createDate = createDate;
 	}
 
+	public String getCardId() {
+		return this.cardId;
+	}
 
 	public String getComment() {
 		return this.comment;
@@ -55,6 +47,10 @@ public class Comment {
 
 	public String getUserId() {
 		return this.userId;
+	}
+
+	public void setCardId(String cardId) {
+		this.cardId = cardId;
 	}
 
 	public void setComment(String comment) {

@@ -11,10 +11,6 @@
 <script type="text/javascript" src="jquery.wookmark.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		cardId = $("#cardId").text();
-	});
-	
 	function change(id) {
 		var $clicked = $(id);
 		var $textarea = $("#comment-area");
@@ -29,6 +25,7 @@
 						.attr("rows", "6"));
 		var $divSubmit = $("<div/>").addClass("control-group").append($input);
 		$clicked.attr("onclick", "");
+		$textarea.empty();
 		$textarea.append($form);
 		$form.append($divText).append($divSubmit).append($hidden);
 	};
@@ -50,15 +47,21 @@
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
-		<div class="center">
-			<div id="comment-area"></div>
+		<div class="center caption">
+			<div id="comment-area">
+				<% if(userId !=null){ %>
+				<input type="button" value="Comment" class="btn btn-large"
+					onclick="change('#comment');" id="comment" />
+				<%} else { %>
+				<p>Please, Login.</p>
+				<%} %>
+			</div>
 		</div>
 		<ul id="content">
 			<li>
 				<div class="cell">
 					<div>
-						<a> <img src="<%=card.getUrl()%>" class="image-shot"
-							onclick="change('#comment');" id="comment"></a>
+						<img src="<%=card.getUrl()%>" class="image-shot">
 					</div>
 					<div class="ribon">
 						<span class="ribon-text"> <%=card.getView()%> view
@@ -96,15 +99,16 @@
 	<div style="display: none;" id="cardId"><%=cardId%></div>
 </body>
 <script type="text/javascript">
-	$(document).ready(function() {
+	$(window).load(function() {
 		$('#content li').wookmark({
 			offset : 12
 		});
-		$(window).resize(function() {
-			$('#content li').wookmark({
-				offset : 12
-			})
-		});
+		cardId = $("#cardId").text();
+	});
+	$(window).resize(function() {
+		$('#content li').wookmark({
+			offset : 12
+		})
 	});
 </script>
 </html>

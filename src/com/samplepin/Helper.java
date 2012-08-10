@@ -32,7 +32,16 @@ public class Helper {
 
 	static int FIRST_CHAR = 1;
 
-	static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+	static SimpleDateFormat sdf = new SimpleDateFormat(
+			"yyyy-MM-dd HH:mm:ss.SSS");
+
+	static Comparator<Comment> LATEST_COMMENT = new Comparator<Comment>() {
+
+		@Override
+		public int compare(Comment o1, Comment o2) {
+			return o2.getCreateDate().compareTo(o1.getCreateDate());
+		}
+	};
 
 	public static String formatToDateTimeString(Long mills) {
 		Date date = new Date(mills);
@@ -89,22 +98,14 @@ public class Helper {
 		}
 		return new Card();
 	}
-	
-	static Comparator<Comment> LATEST_COMMENT = new Comparator<Comment>() {
 
-		@Override
-		public int compare(Comment o1, Comment o2) {
-			return o2.getCreateDate().compareTo(o1.getCreateDate());
-		}
-	};
-	
 	public static List<Comment> getCommentsInfoByID(String cardId, String userId) {
 		try (ACMongo mongo = new ACMongo()) {
 
 			Datastore datastore = mongo.createDatastore();
 			Query<Comment> query = datastore.createQuery(Comment.class).filter(
 					"cardId = ", cardId);
-			List<Comment> comments= query.asList();
+			List<Comment> comments = query.asList();
 			Collections.sort(comments, LATEST_COMMENT);
 			return comments;
 		} catch (UnknownHostException | MongoException e) {
