@@ -21,9 +21,9 @@ import javax.servlet.http.Part;
 import org.apache.log4j.Logger;
 
 import com.google.code.morphia.Datastore;
+import com.google.code.morphia.query.Query;
 import com.samplepin.ACMongo;
 import com.samplepin.User;
-import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 @WebServlet(urlPatterns = "/my-card.do")
 @MultipartConfig(location = "/Developer/uploaded")
@@ -95,28 +95,18 @@ public class MyCardUploadServlet extends HttpServlet {
 		return false;
 	}
 
-	final boolean confirmed(HttpServletRequest req, String password, User user) {
-		// String print = "";
-		// for (int i = 0; i < password.length(); i++) {
-		// print += "*";
-		// }
-		//
-		// if (user.getPassword().equals(password.hashCode())) {
-		// log("passoword : " + print);
-		return true;
-		// }
-		// Logger.getLogger(IconUploadServlet.class).error("passoword : " +
-		// print);
-		// return false;
-	}
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		log("upload start.");
+		String userId = (String) req.getSession().getAttribute("userId");
 		List<Uploader> uploadQue = new ArrayList<MyCardUploadServlet.Uploader>();
-		User user = readRequest(req, uploadQue);
+		User user = readRequest(req, uploadQue, userId);
 		writeFiles(req, uploadQue, user);
+		try (ACMongo mongo = new ACMongo()) {
+			Datastore datastore = mongo.createDatastore();
+			datastore.save(user);
+		}
 		log("upload end.");
 
 		resp.sendRedirect("index.jsp");
@@ -166,41 +156,47 @@ public class MyCardUploadServlet extends HttpServlet {
 		log("destination file name: " + fileName);
 	}
 
-	final User readRequest(HttpServletRequest req, List<Uploader> uploadQue)
-			throws IllegalStateException, IOException, ServletException {
-		String cardId = Base64.encode(String.valueOf(System.nanoTime())
-				.getBytes());
-		User user = new User();
-		user.setUserId(cardId);
-		user.setCreateDate(System.currentTimeMillis());
-		for (Part part : req.getParts()) {
-			String userName = getValueByKeyword(part, "userName");
-			String fontColor = getValueByKeyword(part, "fontColor");
+	final User readRequest(HttpServletRequest req, List<Uploader> uploadQue,
+			String userId) throws IllegalStateException, IOException,
+			ServletException {
 
-			if (userName != null) {
-				user.setUserName(userName);
+		try (ACMongo mongo = new ACMongo()) {
+			Datastore datastore = mongo.createDatastore();
+			Query<User> query = datastore.createQuery(User.class).filter(
+					"userId =", userId);
+			User user = query.get();
+			user.setLastUpdate(System.currentTimeMillis());
 
-			} else if (fontColor != null) {
-				user.setFontColor(fontColor);
+			for (Part part : req.getParts()) {
+				String userName = getValueByKeyword(part, "userName");
+				String fontColor = getValueByKeyword(part, "fontColor");
+				String backgroundColor = getValueByKeyword(part,
+						"backgroundColor");
 
-			} else {
-				String path = getFileName(part);
-				if (path != null) {
-					readFile(path, part, uploadQue);
+				if (userName != null) {
+					user.setUserName(userName);
+
+				} else if (fontColor != null) {
+					user.setFontColor(fontColor);
+
+				} else if (backgroundColor != null) {
+					user.setBackgroundColor(backgroundColor);
+
+				} else {
+					String path = getFileName(part);
+					if (path != null) {
+						readFile(path, part, uploadQue);
+					}
 				}
 			}
+			return user;
 		}
-		return user;
 	}
 
 	final void saveUserInfo(File referenceFolder, String fileName, User user)
 			throws RuntimeException, UnknownHostException {
 		File referenceFile = new File(referenceFolder, fileName);
 		user.setBackgroundImage(referenceFile.getPath());
-		try (ACMongo mongo = new ACMongo()) {
-			Datastore datastore = mongo.createDatastore();
-			datastore.save(user);
-		}
 		log("update user icon: " + referenceFile.getPath());
 	}
 

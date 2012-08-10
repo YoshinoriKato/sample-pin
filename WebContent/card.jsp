@@ -89,17 +89,19 @@
 					User user = Helper.getUserById(comment.getUserId());
 					String wallPaper = Helper.getWallPaper(user);
 					String fontColor = Helper.getFontColor(user);
+					String backgroundColor = Helper.getBackgroundColor(user);
 					String userName = user != null ? user.getUserName() : "nanashi";
 			%>
 
-			<li><div class="cell" style="<%=wallPaper%> <%=fontColor%>">
-					<div class="caption">
+			<li><div class="cell"
+					style="<%=wallPaper%> <%=backgroundColor %>">
+					<div class="comment" style="<%=fontColor%>">
 						@<%=userName%></div>
-					<div class="caption deco">
+					<div class="comment deco" style="<%=fontColor%>">
 						<!-- comment -->
 						<%=comment.getComment() %>
 					</div>
-					<div class="caption right">
+					<div class="comment right" style="<%=fontColor%>">
 						<%=Helper.formatToDateTimeString(comment.getCreateDate())%></div>
 				</div></li>
 

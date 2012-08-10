@@ -27,9 +27,9 @@ body {
 
 .image-shot {
 	background-color: rgba(30, 30, 30, 0.02);
-	border-radius: 2px 45px 2px; /* CSS3草案 */
-	-webkit-border-radius: 2px 45px 2px; /* Safari,Google Chrome用 */
-	-moz-border-radius: 2px 45px 2px;
+	border-radius: 3px 25px 3px; /* CSS3草案 */
+	-webkit-border-radius: 3px 25px 3px; /* Safari,Google Chrome用 */
+	-moz-border-radius: 3px 25px 3px;
 	color: rgba(80, 80, 80, 0.4);
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -87,9 +87,9 @@ text,textarea,dropdown {
 	padding-bottom: 10px;
 	padding-left: 20px;
 	padding-right: 20px;
-	border-radius: 5px 60px 5px; /* CSS3草案 */
-	-webkit-border-radius: 5px 60px 5px; /* Safari,Google Chrome用 */
-	-moz-border-radius: 5px 60px 5px; /* Firefox用 */
+	border-radius: 6px 40px 6px; /* CSS3草案 */
+	-webkit-border-radius: 6px 40px 6px; /* Safari,Google Chrome用 */
+	-moz-border-radius: 6px 40px 6px; /* Firefox用 */
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 	-webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
@@ -160,6 +160,12 @@ a .no-hover:HOVER {
 }
 
 .caption {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: rgba(60, 60, 60, 0.7);
+}
+
+.comment {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	color: rgba(60, 60, 60, 0.7);

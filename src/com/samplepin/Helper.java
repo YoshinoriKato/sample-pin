@@ -67,6 +67,16 @@ public class Helper {
 		return builder.toString();
 	}
 
+	public static String getBackgroundColor(User user) {
+		if (user != null) {
+			String color = user.getBackgroundColor();
+			color = (color != null) && !color.isEmpty() ? "background-color: "
+					+ color + "; " : "";
+			return color;
+		}
+		return "";
+	}
+
 	public static Card getCardInfoByID(String cardId, String userId) {
 		try (ACMongo mongo = new ACMongo()) {
 
@@ -116,10 +126,10 @@ public class Helper {
 
 	public static String getFontColor(User user) {
 		if (user != null) {
-			String fontColor = user.getFontColor();
-			fontColor = (fontColor != null) && !fontColor.isEmpty() ? "color: "
-					+ fontColor + "; " : "";
-			return fontColor;
+			String color = user.getFontColor();
+			color = (color != null) && !color.isEmpty() ? "color: " + color
+					+ "; " : "";
+			return color;
 		}
 		return "";
 	}

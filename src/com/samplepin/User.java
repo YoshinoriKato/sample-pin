@@ -31,6 +31,8 @@ public class User {
 
 	String userName;
 
+	String backgroundColor;
+
 	public User() {
 		super();
 		this.userId = "";
@@ -43,6 +45,11 @@ public class User {
 		this.fontColor = "#666666";
 		this.backgroundImage = "img/wallpaper.png";
 		this.userName = "nanashi";
+		this.backgroundColor = "#cccccc";
+	}
+
+	public String getBackgroundColor() {
+		return this.backgroundColor;
 	}
 
 	public String getBackgroundImage() {
@@ -87,6 +94,10 @@ public class User {
 
 	public String getUserName() {
 		return this.userName;
+	}
+
+	public void setBackgroundColor(String backgroundColor) {
+		this.backgroundColor = backgroundColor;
 	}
 
 	public void setBackgroundImage(String backgroundImage) {

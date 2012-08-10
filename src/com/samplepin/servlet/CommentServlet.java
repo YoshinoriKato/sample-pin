@@ -57,6 +57,7 @@ public class CommentServlet extends HttpServlet {
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
 			Query<Comment> query0 = datastore.createQuery(Comment.class)
+					.filter("cardId = ", comment.getCardId())
 					.filter("userId = ", comment.getUserId())
 					.filter("comment = ", comment.getComment());
 			Query<Comment> query1 = datastore.createQuery(Comment.class)

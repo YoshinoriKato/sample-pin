@@ -36,7 +36,14 @@
 						<form action="my-card.do" enctype="multipart/form-data"
 							method="post" class="form-horizontal">
 							<fieldset>
-								My Card
+								<h3>My Card</h3>
+								<div class="control-group">
+									<label for="userName" class="control-label">Name</label>
+									<div class="controls">
+										<input type="text" name="userName"
+											value="<%=user.getUserName()%>" class="span8">
+									</div>
+								</div>
 								<div class="control-group">
 									<label for="iconPath" class="control-label">Background
 										Image</label>
@@ -46,17 +53,17 @@
 									</div>
 								</div>
 								<div class="control-group">
-									<label for="userName" class="control-label">Name</label>
+									<label for="backgroundColor" class="control-label">Background
+										Coror</label>
 									<div class="controls">
-										<input type="text" name="userName" value="<%=user.getUserName()%>"
-											class="span8">
+										<input type="text" name="backgroundColor"
+											value="<%=user.getBackgroundColor()%>" class="span8">
 									</div>
 								</div>
 								<div class="control-group">
-									<label for="font-color" class="control-label">Font
-										Coror</label>
+									<label for="fontColor" class="control-label">Font Coror</label>
 									<div class="controls">
-										<input type="text" name="font-color"
+										<input type="text" name="fontColor"
 											value="<%=user.getFontColor()%>" class="span8">
 									</div>
 								</div>
