@@ -36,10 +36,16 @@ public class Helper {
 			"yyyy-MM-dd HH:mm:ss.SSS");
 
 	static Comparator<Comment> LATEST_COMMENT = new Comparator<Comment>() {
-
 		@Override
 		public int compare(Comment o1, Comment o2) {
 			return o2.getCreateDate().compareTo(o1.getCreateDate());
+		}
+	};
+
+	static Comparator<View> LATEST_VIEW = new Comparator<View>() {
+		@Override
+		public int compare(View o1, View o2) {
+			return o2.getVisitedDate().compareTo(o1.getVisitedDate());
 		}
 	};
 
@@ -77,6 +83,19 @@ public class Helper {
 		return "";
 	}
 
+	public static Card getCardInfoByID(String cardId) {
+		try (ACMongo mongo = new ACMongo()) {
+			Datastore datastore = mongo.createDatastore();
+			Query<Card> query = datastore.createQuery(Card.class).filter(
+					"cardId = ", cardId);
+			Card card = query.get();
+			return card;
+		} catch (UnknownHostException | MongoException e) {
+			e.printStackTrace();
+		}
+		return new Card();
+	}
+
 	public static Card getCardInfoByID(String cardId, String userId) {
 		try (ACMongo mongo = new ACMongo()) {
 
@@ -89,14 +108,18 @@ public class Helper {
 					Query<View> query2 = datastore.createQuery(View.class)
 							.filter("userId =", userId)
 							.filter("cardId = ", cardId);
-					if (query2.countAll() == 0) {
+					View view = query2.get();
+					if (view == null) {
 						card.setView(card.getView() + 1);
 						datastore.save(card);
 
-						View view = new View(System.currentTimeMillis(),
-								cardId, userId);
-						datastore.save(view);
+						view = new View(System.currentTimeMillis(), cardId,
+								userId);
+					} else {
+						view.setVisitedDate(System.currentTimeMillis());
 					}
+
+					datastore.save(view);
 				} else {
 					card.setView(card.getView() + 1);
 					datastore.save(card);
@@ -146,6 +169,21 @@ public class Helper {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static List<View> getViewsInfoByID(String userId) {
+		try (ACMongo mongo = new ACMongo()) {
+
+			Datastore datastore = mongo.createDatastore();
+			Query<View> query = datastore.createQuery(View.class).filter(
+					"userId = ", userId);
+			List<View> comments = query.asList();
+			Collections.sort(comments, LATEST_VIEW);
+			return comments;
+		} catch (UnknownHostException | MongoException e) {
+			e.printStackTrace();
+		}
+		return new ArrayList<View>();
 	}
 
 	public static String getWallPaper(User user) {

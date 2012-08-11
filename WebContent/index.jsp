@@ -14,7 +14,7 @@
 <script type="text/javascript" charset="utf-8">
 	$(window).resize(function() {
 		$('#content li').wookmark({
-			offset : 12
+			offset : 20
 		})
 	});
 
@@ -43,7 +43,7 @@
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
-		<div class="center caption">
+		<div class="center page-menu">
 			<span class="btn"><a href="index.jsp">Latest</a></span><span class="btn"><a
 				href="index.jsp?sorted=view">Viewed Most</a></span><span class="btn"><a
 				href="index.jsp?sorted=comment">Commented Most</a></span>

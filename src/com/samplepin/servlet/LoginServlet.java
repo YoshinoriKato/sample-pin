@@ -23,21 +23,6 @@ public class LoginServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 5426777241563315344L;
 
-	final User getUserByMailAndPassword(String mail, Integer password)
-			throws UnknownHostException, MongoException {
-
-		try (ACMongo mongo = new ACMongo()) {
-			Datastore datastore = mongo.createDatastore();
-			Query<User> query = datastore.createQuery(User.class).filter(
-					"mail = ", mail);
-			User user = query.get();
-			if (password.equals(user.getPassword())) {
-				return user;
-			}
-			return null;
-		}
-	}
-
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
@@ -56,6 +41,21 @@ public class LoginServlet extends HttpServlet {
 			log(e.getMessage());
 			req.setAttribute("error", e);
 			resp.sendRedirect("login.jsp");
+		}
+	}
+
+	final User getUserByMailAndPassword(String mail, Integer password)
+			throws UnknownHostException, MongoException {
+
+		try (ACMongo mongo = new ACMongo()) {
+			Datastore datastore = mongo.createDatastore();
+			Query<User> query = datastore.createQuery(User.class).filter(
+					"mail = ", mail);
+			User user = query.get();
+			if (password.equals(user.getPassword())) {
+				return user;
+			}
+			return null;
 		}
 	}
 

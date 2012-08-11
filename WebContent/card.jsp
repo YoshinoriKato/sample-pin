@@ -42,7 +42,7 @@
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
-		<div class="center caption">
+		<div class="center page-menu">
 			<div id="comment-area">
 				<% if(comments.size() >= CommentServlet.COMMENTS_LIMIT) { %>
 				<p>
@@ -56,7 +56,10 @@
 					onclick="change('#comment');" id="comment" />
 
 				<%} else { %>
-				<p>Please, Login.</p>
+				<p>
+					Please, <a href="login.jsp">Login</a> or <a href="signup.jsp">Sign
+						up</a>.
+				</p>
 				<%} %>
 			</div>
 		</div>
@@ -110,13 +113,13 @@
 <script type="text/javascript">
 	$(window).load(function() {
 		$('#content li').wookmark({
-			offset : 12
+			offset : 20
 		});
 		cardId = $("#cardId").text();
 	});
 	$(window).resize(function() {
 		$('#content li').wookmark({
-			offset : 12
+			offset : 20
 		})
 	});
 </script>

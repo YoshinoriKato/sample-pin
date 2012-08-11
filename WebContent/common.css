@@ -16,7 +16,7 @@
 
 body {
 	background-color: #eee;
-	/*background-image: url("img/wallpaper2.png?201208080923");*/
+	background-image: url("img/wallpaper.png?201208080923");
 	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
 }
 
@@ -33,7 +33,7 @@ body {
 	color: rgba(80, 80, 80, 0.4);
 	margin-top: 10px;
 	margin-bottom: 10px;
-	min-width: 190px;
+	min-width: 200px;
 	min-height: 30px;
 }
 
@@ -78,9 +78,6 @@ text,textarea,dropdown {
 }
 
 .cell {
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-bottom: 10px;
 	border: 1px solid white;
 	background-color: rgba(255, 255, 255, 1.0);
 	padding-top: 10px;
@@ -90,15 +87,15 @@ text,textarea,dropdown {
 	border-radius: 6px 40px 6px; /* CSS3ëêàƒ */
 	-webkit-border-radius: 6px 40px 6px; /* Safari,Google Chromeóp */
 	-moz-border-radius: 6px 40px 6px; /* Firefoxóp */
-	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+	box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
 }
 
 .ribon {
 	position: absolute;
 	z-index: 2;
 	top: 0px;
-	left: 5px;
+	left: 0px;
 	width: 90px;
 	height: 90px;
 	overflow: hidden;
@@ -163,6 +160,11 @@ a .no-hover:HOVER {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	color: rgba(60, 60, 60, 0.7);
+}
+
+.page-menu {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 .comment {
