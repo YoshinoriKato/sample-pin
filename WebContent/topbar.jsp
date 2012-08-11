@@ -1,6 +1,19 @@
 
 <!-- メニュー -->
 
+<%
+	String url = request.getRequestURI();
+	final String CLASS_ACTIVE = "class=\"active\"";
+	String classIndex = url.contains("index") ? CLASS_ACTIVE : "";
+	String classMakeCard = url.contains("make-card")
+			? CLASS_ACTIVE
+			: "";
+	String classMyCard = url.contains("my-card") ? CLASS_ACTIVE : "";
+	String classLogin = url.contains("login") ? CLASS_ACTIVE : "";
+	String classLogout = url.contains("logout") ? CLASS_ACTIVE : "";
+	String classSignup = url.contains("signup") ? CLASS_ACTIVE : "";
+%>
+
 <script type="text/javascript" charset="utf-8">
 	$(window).load(function() {
 		$('.dropdown-toggle').dropdown();
@@ -18,15 +31,24 @@
 			<a class="brand">Sample-Pin</a>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
-					<li class="active"><a href="index.jsp">Latest</a></li>
-					<li><a href="index.jsp?sorted=view">Viewed Most</a></li>
-					<li><a href="index.jsp?sorted=comment">Commented Most</a></li>
-					<li class=""><a href="make-card.jsp">Make Card</a></li>
+					<li <%=classIndex%>><a href="index.jsp">Cards</a></li>
+					<li <%=classMakeCard%>><a href="make-card.jsp">Make Card</a></li>
 					<li class="divider-vertical"></li>
-					<li><a href="login.jsp">Login</a></li>
-					<li class=""><a href="my-card.jsp">My Card</a></li>
+					<li <%=classMyCard%>><a href="my-card.jsp">My Card</a></li>
 					<li class="divider-vertical"></li>
-					<li class=""><a href="signup.jsp">Sign up</a></li>
+					<%
+						String userId = (String) session.getAttribute("userId");
+						if (userId != null) {
+					%>
+					<li <%=classLogout%>><a href="logout.do">Logout</a></li>
+					<%
+						} else {
+					%>
+					<li <%=classLogin%>><a href="login.jsp">Login</a></li>
+					<li <%=classSignup%>><a href="signup.jsp">Sign up</a></li>
+					<%
+						}
+					%>
 				</ul>
 			</div>
 		</div>

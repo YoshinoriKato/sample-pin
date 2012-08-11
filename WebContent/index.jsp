@@ -43,6 +43,11 @@
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
+		<div class="center caption">
+			<span class="btn"><a href="index.jsp">Latest</a></span><span class="btn"><a
+				href="index.jsp?sorted=view">Viewed Most</a></span><span class="btn"><a
+				href="index.jsp?sorted=comment">Commented Most</a></span>
+		</div>
 		<ul id="content">
 		</ul>
 		<br style="clear: both;" />

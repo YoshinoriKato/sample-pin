@@ -11,8 +11,8 @@
 	 String message = e != null ? e.getMessage() : "";
 	 */
 
-	 String fromUrl = (String) session.getAttribute("fromUrl");
-	 fromUrl = fromUrl != null ? fromUrl : "index.jsp";
+	String fromUrl = (String) session.getAttribute("fromUrl");
+	fromUrl = fromUrl != null ? fromUrl : "index.jsp";
 %>
 
 <body>
@@ -26,10 +26,10 @@
 							<h3>Login</h3>
 							<input type="hidden" name="redirectUrl" value="<%=fromUrl%>" />
 							<div class="control-group">
-								<label for="userId" class="control-label">User ID</label>
+								<label for="mail" class="control-label">Mail</label>
 								<div class="controls">
-									<input type="text" name="userId" class="span6"
-										placeholder="User ID" />
+									<input type="text" name="mail" class="span6 input"
+										placeholder="xxxxxx@xxx.xxx" />
 								</div>
 							</div>
 							<div class="control-group">

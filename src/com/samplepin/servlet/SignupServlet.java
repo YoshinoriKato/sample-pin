@@ -65,7 +65,6 @@ public class SignupServlet extends HttpServlet {
 		StringBuilder builder = new StringBuilder();
 		builder.append("サインアップ完了しました。").append(LS);
 		builder.append(LS);
-		builder.append("ユーザーID: ").append(userId).append(LS);
 		builder.append("仮パスワード: ").append(password).append(LS);
 		builder.append(LS);
 		builder.append("URL: ")

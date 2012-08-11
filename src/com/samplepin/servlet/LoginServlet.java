@@ -23,15 +23,18 @@ public class LoginServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 5426777241563315344L;
 
-	final boolean acceptPassword(String userId, Integer password)
+	final User getUserByMailAndPassword(String mail, Integer password)
 			throws UnknownHostException, MongoException {
 
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
 			Query<User> query = datastore.createQuery(User.class).filter(
-					"userId = ", userId);
+					"mail = ", mail);
 			User user = query.get();
-			return password.equals(user.getPassword());
+			if (password.equals(user.getPassword())) {
+				return user;
+			}
+			return null;
 		}
 	}
 
@@ -40,10 +43,11 @@ public class LoginServlet extends HttpServlet {
 			throws IOException {
 		resp.setCharacterEncoding("UTF-8");
 		try {
-			String userId = req.getParameter("userId");
+			String mail = req.getParameter("mail");
 			Integer password = req.getParameter("password").hashCode();
-			if (acceptPassword(userId, password)) {
-				login(req, userId);
+			User user = getUserByMailAndPassword(mail, password);
+			if (user != null) {
+				login(req, user.getUserId());
 				String redirectUrl = req.getParameter("redirectUrl");
 				log("forward: " + redirectUrl);
 				resp.sendRedirect(redirectUrl);
@@ -60,7 +64,6 @@ public class LoginServlet extends HttpServlet {
 		HttpSession sessionOld = req.getSession();
 		sessionOld.invalidate();
 		HttpSession sessionNew = req.getSession(true);
-		log(sessionOld.getId() + " -> " + sessionNew.getId());
 		sessionNew.setAttribute("userId", userId);
 	}
 
