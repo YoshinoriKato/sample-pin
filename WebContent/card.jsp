@@ -67,7 +67,7 @@
 			<li>
 				<div class="cell">
 					<div>
-						<img src="<%=card.getUrl()%>" class="image-shot">
+						<img src="<%=card.getImagePath()%>" class="image-shot">
 					</div>
 					<div class="ribon">
 						<span class="ribon-text"> <%=card.getView()%> view

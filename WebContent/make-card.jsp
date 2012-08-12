@@ -35,6 +35,12 @@
 									</div>
 								</div>
 								<div class="control-group">
+									<label for="url" class="control-label">URL</label>
+									<div class="controls">
+										<input type="url" name="url">
+									</div>
+								</div>
+								<div class="control-group">
 									<div class="controls">
 										<input type="submit" value="Make" class="btn btn-large">
 									</div>

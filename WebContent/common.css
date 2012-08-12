@@ -91,6 +91,20 @@ text,textarea,dropdown {
 	-webkit-box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
 }
 
+.cell2 {
+	border: 1px solid white;
+	background-color: rgba(255, 255, 255, 0.1);
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-radius: 6px 40px 6px; /* CSS3ëêàƒ */
+	-webkit-border-radius: 6px 40px 6px; /* Safari,Google Chromeóp */
+	-moz-border-radius: 6px 40px 6px; /* Firefoxóp */
+	box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+}
+
 .ribon {
 	position: absolute;
 	z-index: 2;

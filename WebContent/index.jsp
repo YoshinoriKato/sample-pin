@@ -54,6 +54,7 @@
 		<br style="clear: both;" />
 	</div>
 	<div style="display: none" id="sorted"><%=sorted%></div>
+	<div class="center caption">&copy; Sample-Pin</div>
 </body>
 
 </html>

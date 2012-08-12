@@ -72,8 +72,8 @@ public class Initializer extends HttpServlet {
 				int view = dice.nextInt(100);
 				view = view < like ? like : view;
 				cards.add(new Card(cardId, "img/"
-						+ images[dice.nextInt(images.length)], caption2, like,
-						view, System.currentTimeMillis()));
+						+ images[dice.nextInt(images.length)], "", caption2,
+						like, view, System.currentTimeMillis()));
 
 				long mills = System.currentTimeMillis();
 				for (int j = 0; j < like; j++) {

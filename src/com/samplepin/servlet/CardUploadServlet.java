@@ -118,6 +118,10 @@ public class CardUploadServlet extends HttpServlet {
 		List<Uploader> uploadQue = new ArrayList<CardUploadServlet.Uploader>();
 		Card card = readRequest(req, uploadQue);
 		writeFiles(req, uploadQue, card);
+		try (ACMongo mongo = new ACMongo()) {
+			Datastore datastore = mongo.createDatastore();
+			datastore.save(card);
+		}
 		log("upload end.");
 
 		resp.sendRedirect("index.jsp");
@@ -177,12 +181,16 @@ public class CardUploadServlet extends HttpServlet {
 		for (Part part : req.getParts()) {
 			String title = getValueByKeyword(part, "title");
 			String comment = getValueByKeyword(part, "comment");
+			String url = getValueByKeyword(part, "url");
 
 			if (title != null) {
 				card.setCaption(title);
 
 			} else if (comment != null) {
 				card.setCaption(comment);
+
+			} else if (url != null) {
+				card.setUrl(url);
 
 			} else {
 				String path = getFileName(part);
@@ -197,11 +205,7 @@ public class CardUploadServlet extends HttpServlet {
 	final void saveCardInfo(File referenceFolder, String fileName, Card card)
 			throws RuntimeException, UnknownHostException {
 		File referenceFile = new File(referenceFolder, fileName);
-		card.setUrl(referenceFile.getPath());
-		try (ACMongo mongo = new ACMongo()) {
-			Datastore datastore = mongo.createDatastore();
-			datastore.save(card);
-		}
+		card.setImagePath(referenceFile.getPath());
 		log("update user icon: " + referenceFile.getPath());
 	}
 

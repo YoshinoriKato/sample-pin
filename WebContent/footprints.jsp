@@ -28,8 +28,9 @@
 
 			<li>
 				<div class="cell">
-					<div><a href="card.jsp?cardId=<%=card.getCardId()%>">
-						<img src="<%=card.getUrl()%>" class="image-shot"></a>
+					<div>
+						<a href="card.jsp?cardId=<%=card.getCardId()%>"> <img
+							src="<%=card.getImagePath()%>" class="image-shot"></a>
 					</div>
 					<div class="ribon">
 						<span class="ribon-text"> <%=card.getView()%> view
