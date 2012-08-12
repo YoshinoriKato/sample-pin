@@ -1,34 +1,42 @@
 /* Font HuiFontP */
 @font-face {
 	font-family: 'HuiFontPRegular';
-	src: url(../font/HuiFontP29.eot); /* IE */
+	src: url('font/HuiFontP29.eot'); /* IE */
 }
 
 @font-face {
 	font-family: 'HuiFontPRegular';
-	src: local('HuiFontP Regular'), /*ƒtƒHƒ“ƒg‚ªƒ[ƒJƒ‹‚ÉƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚é‚Ìw’è*/
-		           
-		           
-		                    local('HuiFontP'), url('../font/HuiFontP29.ttf')
+	src: local('HuiFontP Regular'), /*ãƒ•ã‚©ãƒ³ãƒˆãŒãƒ­ãƒ¼ã‚«ãƒ«ã«ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã‚‹æ™‚ã®æŒ‡å®š*/ 
+		local('HuiFontP'), url('font/HuiFontP29.ttf')
 		format('truetype');
-	/* SafariAChromeAFirefoxAOpera */
+	/* Safariã€Chromeã€Firefoxã€Opera */
 }
 
 body {
 	background-color: #eee;
-	background-image: url("img/wallpaper.png?201208080923");
+	background-image: url("img/ttr_033_1.jpg?201208080923");
 	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
 }
 
-.image {
-	margin: 20px;
-	border: solid 10px white;
+.image-holder {
+	background-color: rgba(0, 0, 0, 0.7);
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	text-align: center;
+	
+}
+
+.image-origin {
+	border: solid 0px white;
+	background-image: url("img/ichimatsu.png?201208122147");
+	margin: 40px;
 }
 
 .image-shot {
-	background-color: rgba(30, 30, 30, 0.02);
-	border-radius: 3px 25px 3px; /* CSS3‘ˆÄ */
-	-webkit-border-radius: 3px 25px 3px; /* Safari,Google Chrome—p */
+	background-image: url("img/ichimatsu.png?201208122147");
+	border-radius: 3px 25px 3px; /* CSS3è‰æ¡ˆ */
+	-webkit-border-radius: 3px 25px 3px; /* Safari,Google Chromeç”¨ */
 	-moz-border-radius: 3px 25px 3px;
 	color: rgba(80, 80, 80, 0.4);
 	margin-top: 10px;
@@ -61,7 +69,6 @@ text,textarea,dropdown {
 #content {
 	width: 100%;
 	position: relative;
-	margin-right: 20px;
 }
 
 .deco {
@@ -78,29 +85,29 @@ text,textarea,dropdown {
 }
 
 .cell {
-	border: 1px solid white;
-	background-color: rgba(255, 255, 255, 1.0);
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	background-color: rgba(255, 255, 255, 0.8);
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 20px;
 	padding-right: 20px;
-	border-radius: 6px 40px 6px; /* CSS3‘ˆÄ */
-	-webkit-border-radius: 6px 40px 6px; /* Safari,Google Chrome—p */
-	-moz-border-radius: 6px 40px 6px; /* Firefox—p */
+	border-radius: 6px 40px 6px; /* CSS3è‰æ¡ˆ */
+	-webkit-border-radius: 6px 40px 6px; /* Safari,Google Chromeç”¨ */
+	-moz-border-radius: 6px 40px 6px; /* Firefoxç”¨ */
 	box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
 }
 
 .cell2 {
-	border: 1px solid white;
+	border: 1px solid rgba(255, 255, 255, 0.6);
 	background-color: rgba(255, 255, 255, 0.1);
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 20px;
 	padding-right: 20px;
-	border-radius: 6px 40px 6px; /* CSS3‘ˆÄ */
-	-webkit-border-radius: 6px 40px 6px; /* Safari,Google Chrome—p */
-	-moz-border-radius: 6px 40px 6px; /* Firefox—p */
+	border-radius: 6px 40px 6px; /* CSS3è‰æ¡ˆ */
+	-webkit-border-radius: 6px 40px 6px; /* Safari,Google Chromeç”¨ */
+	-moz-border-radius: 6px 40px 6px; /* Firefoxç”¨ */
 	box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
 }
@@ -201,7 +208,6 @@ a .no-hover:HOVER {
 }
 
 .star {
-	font-size: large;
 	color: rgba(130, 130, 130, 0.4);
 }
 

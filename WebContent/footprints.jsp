@@ -40,7 +40,7 @@
 						<%=card.getCaption()%>
 					</div>
 					<div class="star right">
-						★<%=card.getLikes()%></div>
+					<%=card.getLikes()%> comment</div>
 				</div>
 			</li>
 

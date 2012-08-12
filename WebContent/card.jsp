@@ -29,8 +29,6 @@
 </script>
 </head>
 
-
-
 <%
 	String cardId = request.getParameter("cardId");
 	String userId = (String) session.getAttribute("userId");
@@ -42,6 +40,9 @@
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
+		<div class="image-holder">
+			<img src="<%=card.getImagePath()%>" class="image-origin">
+		</div>
 		<div class="center page-menu">
 			<div id="comment-area">
 				<% if(comments.size() >= CommentServlet.COMMENTS_LIMIT) { %>
@@ -77,10 +78,11 @@
 						<%=card.getCaption()%>
 					</div>
 					<div class="star right">
-						★<%=card.getLikes()%></div>
+						<%=card.getLikes()%>
+						comment
+					</div>
 				</div>
 			</li>
-
 			<%
 				for (Comment comment : comments) {
 					User user = Helper.getUserById(comment.getUserId());
@@ -89,7 +91,6 @@
 					String backgroundColor = Helper.getBackgroundColor(user);
 					String userName = user != null ? user.getUserName() : "nanashi";
 			%>
-
 			<li><div class="cell"
 					style="<%=wallPaper%> <%=backgroundColor %>">
 					<div class="comment" style="<%=fontColor%>">
@@ -101,7 +102,6 @@
 					<div class="comment right" style="<%=fontColor%>">
 						<%=Helper.formatToDateTimeString(comment.getCreateDate())%></div>
 				</div></li>
-
 			<%
 				}
 			%>

@@ -36,6 +36,7 @@ public class LoginServlet extends HttpServlet {
 				String redirectUrl = req.getParameter("redirectUrl");
 				log("forward: " + redirectUrl);
 				resp.sendRedirect(redirectUrl);
+				return;
 			}
 		} catch (Exception e) {
 			log(e.getMessage());

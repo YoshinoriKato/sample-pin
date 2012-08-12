@@ -5,20 +5,20 @@ function callback(array) {
 		var $jqDiv = $("<div/>");
 		var $jqA = $("<a/>").addClass("no-hover");
 		var $divRibon = $("<div/>").addClass("ribon");
-		var $divImage = $("<div/>").addClass("image-holder");
+		var $divImage = $("<div/>");
 		var $divCaption = $("<div/>").addClass("caption deco");
 		var $divStar = $("<div/>").addClass("star right");
 
 		if ($url != null && $url != "") {
 			$jqDiv.addClass("cell2");
 			$jqA.attr("href", $url).attr("target", "blank");
-			$divStar.text("external link");
+			$divStar.text($url);
 		} else {
 			$jqDiv.addClass("cell");
 			$jqA.attr("href", "card.jsp?cardId=" + array[i].cardId);
 			$divRibon.append($("<span/>").addClass("ribon-text").text(
 					array[i].view + " view"));
-			$divStar.text("★" + array[i].likes);
+			$divStar.text(array[i].likes + " comment");
 		}
 		$jqA.append($("<img/>").addClass("image-shot deco").attr("src",
 				array[i].imagePath));

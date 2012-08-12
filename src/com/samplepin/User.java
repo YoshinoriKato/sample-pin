@@ -46,7 +46,7 @@ public class User {
 		this.createDate = System.currentTimeMillis();
 		this.fontColor = "#666666";
 		this.backgroundImage = "img/wallpaper.png";
-		this.userName = "nanashi";
+		this.userName = "anonymous";
 		this.backgroundColor = "#cccccc";
 		this.useBackgroundImage = true;
 	}
