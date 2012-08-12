@@ -33,6 +33,8 @@ public class User {
 
 	String backgroundColor;
 
+	Boolean useBackgroundImage;
+
 	public User() {
 		super();
 		this.userId = "";
@@ -46,6 +48,7 @@ public class User {
 		this.backgroundImage = "img/wallpaper.png";
 		this.userName = "nanashi";
 		this.backgroundColor = "#cccccc";
+		this.useBackgroundImage = true;
 	}
 
 	public String getBackgroundColor() {
@@ -86,6 +89,10 @@ public class User {
 
 	public Integer getPassword() {
 		return this.password;
+	}
+
+	public Boolean getUseBackgroundImage() {
+		return this.useBackgroundImage;
 	}
 
 	public String getUserId() {
@@ -134,6 +141,10 @@ public class User {
 
 	public void setPassword(Integer password) {
 		this.password = password;
+	}
+
+	public void setUseBackgroundImage(Boolean useBackgroundImage) {
+		this.useBackgroundImage = useBackgroundImage;
 	}
 
 	public void setUserId(String userId) {

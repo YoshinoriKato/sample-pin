@@ -189,9 +189,9 @@ public class Helper {
 	public static String getWallPaper(User user) {
 		if (user != null) {
 			String wallpaper = user.getBackgroundImage();
-			wallpaper = (wallpaper != null) && !wallpaper.isEmpty() ? "background-image: url('"
-					+ wallpaper + "'); "
-					: "";
+			wallpaper = (wallpaper != null) && !wallpaper.isEmpty()
+					&& user.getUseBackgroundImage() ? "background-image: url('"
+					+ wallpaper + "'); " : "";
 			return wallpaper;
 		}
 		return "";

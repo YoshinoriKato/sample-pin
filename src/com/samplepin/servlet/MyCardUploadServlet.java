@@ -78,7 +78,7 @@ public class MyCardUploadServlet extends HttpServlet {
 		}
 	}
 
-	boolean accept(String name) {
+	final boolean accept(String name) {
 		name = name.toLowerCase();
 		if (name.endsWith(".gif")) {
 			return true;
@@ -109,7 +109,7 @@ public class MyCardUploadServlet extends HttpServlet {
 		}
 		log("upload end.");
 
-		resp.sendRedirect("index.jsp");
+		resp.sendRedirect("my-card.jsp");
 	}
 
 	final String getFileName(Part part) {
@@ -166,12 +166,16 @@ public class MyCardUploadServlet extends HttpServlet {
 					"userId =", userId);
 			User user = query.get();
 			user.setLastUpdate(System.currentTimeMillis());
+			user.setUseBackgroundImage(false);
 
 			for (Part part : req.getParts()) {
 				String userName = getValueByKeyword(part, "userName");
 				String fontColor = getValueByKeyword(part, "fontColor");
 				String backgroundColor = getValueByKeyword(part,
 						"backgroundColor");
+				String useBackgroundImage = getValueByKeyword(part,
+						"useBackgroundImage");
+				;
 
 				if (userName != null) {
 					user.setUserName(userName);
@@ -181,6 +185,11 @@ public class MyCardUploadServlet extends HttpServlet {
 
 				} else if (backgroundColor != null) {
 					user.setBackgroundColor(backgroundColor);
+
+				} else if (useBackgroundImage != null) {
+					log(useBackgroundImage);
+					Boolean use = "on".equals(useBackgroundImage);
+					user.setUseBackgroundImage(use);
 
 				} else {
 					String path = getFileName(part);
