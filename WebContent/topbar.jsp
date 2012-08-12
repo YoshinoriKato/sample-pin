@@ -12,6 +12,9 @@
 	String classLogin = url.contains("login") ? CLASS_ACTIVE : "";
 	String classLogout = url.contains("logout") ? CLASS_ACTIVE : "";
 	String classSignup = url.contains("signup") ? CLASS_ACTIVE : "";
+	String classFootprints = url.contains("footprints")
+			? CLASS_ACTIVE
+			: "";
 %>
 
 <script type="text/javascript" charset="utf-8">
@@ -39,7 +42,7 @@
 					%>
 					<li <%=classMakeCard%>><a href="make-card.jsp">Make Card</a></li>
 					<li <%=classMyCard%>><a href="my-card.jsp">My Card</a></li>
-					<li <%=classLogout%>><a href="footprints.jsp">Footprints</a></li>
+					<li <%=classFootprints%>><a href="footprints.jsp">Footprints</a></li>
 					<li class="divider-vertical"></li>
 					<li <%=classLogout%>><a href="logout.do">Logout</a></li>
 					<%

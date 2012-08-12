@@ -176,6 +176,7 @@ public class CardUploadServlet extends HttpServlet {
 		String cardId = Base64.encode(String.valueOf(System.nanoTime())
 				.getBytes());
 		Card card = new Card();
+		card.setImagePath("img/no_image.png");
 		card.setCardId(cardId);
 		card.setCreateDate(System.currentTimeMillis());
 		for (Part part : req.getParts()) {
