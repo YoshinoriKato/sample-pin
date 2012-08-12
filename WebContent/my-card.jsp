@@ -68,7 +68,7 @@
 								<div class="control-group">
 									<label for="userName" class="control-label">Name</label>
 									<div class="controls">
-										<input type="text" name="userName"
+										<input type="text" name="userName" maxlength="40"
 											value="<%=user.getUserName()%>" class="span8">
 									</div>
 								</div>
@@ -90,17 +90,17 @@
 								</div>
 								<div class="control-group">
 									<label for="backgroundColor" class="control-label">Background
-										Coror</label>
+										Color</label>
 									<div class="controls">
-										<input type="text" name="backgroundColor"
-											value="<%=user.getBackgroundColor()%>" class="span4">
+										<input type="color" name="backgroundColor"
+											value="<%=user.getBackgroundColor()%>">
 									</div>
 								</div>
 								<div class="control-group">
-									<label for="fontColor" class="control-label">Font Coror</label>
+									<label for="fontColor" class="control-label">Font Color</label>
 									<div class="controls">
-										<input type="text" name="fontColor"
-											value="<%=user.getFontColor()%>" class="span4" id="fontColor"
+										<input type="color" name="fontColor"
+											value="<%=user.getFontColor()%>" id="fontColor"
 											onchange="previewChange('#fontColor', '#prevFontColor')">
 									</div>
 								</div>

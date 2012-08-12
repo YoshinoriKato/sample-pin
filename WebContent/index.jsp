@@ -44,9 +44,10 @@
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
 		<div class="center page-menu">
-			<span class="btn"><a href="index.jsp">Latest</a></span><span class="btn"><a
-				href="index.jsp?sorted=view">Viewed Most</a></span><span class="btn"><a
-				href="index.jsp?sorted=comment">Commented Most</a></span>
+			<span><a href="index.jsp" class="btn btn-large">Latest</a> <a
+				href="index.jsp?sorted=view" class="btn btn-large">Viewed Most</a> <a
+				href="index.jsp?sorted=comment" class="btn btn-large">Commented
+					Most</a></span>
 		</div>
 		<ul id="content">
 		</ul>
