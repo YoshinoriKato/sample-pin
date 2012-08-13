@@ -11,15 +11,17 @@ function callback(array) {
 
 		if ($url != null && $url != "") {
 			$jqDiv.addClass("cell2");
-			$jqA.attr("href", $url).attr("target", "blank");
+			$jqA.attr("href", "jump.jsp?cardId=" + array[i].cardId
+					+ "&redirectUrl=" + $url).attr("target", "_blank");
 			$divStar.text($url);
+			$divCaption.addClass("star");
 		} else {
 			$jqDiv.addClass("cell");
 			$jqA.attr("href", "card.jsp?cardId=" + array[i].cardId);
-			$divRibon.append($("<span/>").addClass("ribon-text").text(
-					array[i].view + " view"));
 			$divStar.text(array[i].likes + " comment");
 		}
+		$divRibon.append($("<span/>").addClass("ribon-text").text(
+				array[i].view + " view"));
 		$jqA.append($("<img/>").addClass("image-shot deco").attr("src",
 				array[i].imagePath));
 		$divCaption.text(array[i].caption);

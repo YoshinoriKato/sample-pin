@@ -32,7 +32,8 @@
 <%
 	String cardId = request.getParameter("cardId");
 	String userId = (String) session.getAttribute("userId");
-	Card card = Helper.getCardInfoByID(cardId, userId, session);
+	Card card = Helper.getCardInfoByID(cardId);
+	Helper.setFootprint(card, userId);
 	Random dice = new Random(System.nanoTime());
 	List<Comment> comments = Helper.getCommentsInfoByID(cardId, userId);
 
@@ -73,7 +74,8 @@
 						<div class="help-inline"><%=message%></div>
 					</div>
 					<div class="control-group">
-						<input type="submit" class="btn btn-large btn-info" value="Comment">
+						<input type="submit" class="btn btn-large btn-info"
+							value="Comment">
 					</div>
 					<input type="hidden" name="cardId" value="<%=cardId%>"
 						class="btn btn-large">
@@ -83,8 +85,8 @@
 					} else {
 				%>
 				<p>
-					Please, <a href="login.jsp">Login</a> or <a href="signup.jsp">Sign
-						up</a>.
+					Please, <a href="login.jsp?fromUrl=card.jsp?cardId=<%=cardId%>">Login</a>
+					or <a href="signup.jsp">Sign up</a>.
 				</p>
 				<%
 					}
@@ -97,10 +99,12 @@
 					<div>
 						<img src="<%=card.getImagePath()%>" class="image-shot">
 					</div>
+					<% if(card.getView() != 0){ %>
 					<div class="ribon">
 						<span class="ribon-text"> <%=card.getView()%> view
 						</span>
 					</div>
+					<% } %>
 					<div class="caption deco">
 						<%=card.getCaption()%>
 					</div>

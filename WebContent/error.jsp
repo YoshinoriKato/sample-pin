@@ -11,15 +11,16 @@
 	<div id="main">
 		<div class="container">
 			<div class="row">
-				<h1>Error</h1>
-				<div class="herounit">
+				<div class="hero-unit">
+					<h1>Error</h1>
+					<p>
 					<%
 						Exception e = (Exception) session.getAttribute("error");
 
 						if (e != null) {
 							out.print(e.getMessage());
 						}
-					%>
+					%></p>
 				</div>
 			</div>
 		</div>

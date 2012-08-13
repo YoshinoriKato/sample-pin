@@ -70,7 +70,7 @@ public class Initializer2 extends HttpServlet {
 			for (int i = 0; i < FLAGS.length; i++) {
 				String cardId = Base64.encode(String.valueOf(System.nanoTime())
 						.getBytes());
-				cards.add(new Card(cardId, "img/flag/" + FLAGS[i], "",
+				cards.add(new Card(cardId, "", "img/flag/" + FLAGS[i], "",
 						"How ablout this country ?", 0, 0, System
 								.currentTimeMillis()));
 			}

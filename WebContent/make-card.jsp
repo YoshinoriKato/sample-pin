@@ -11,6 +11,7 @@
 	String message = (String) request.getAttribute("message");
 	message = message != null ? message : "";
 	String error = message != null && !message.isEmpty() ? "error" : "";
+	String external = (String) request.getParameter("external");
 %>
 
 <body>
@@ -23,7 +24,7 @@
 						Random r = new Random(System.nanoTime());
 					%>
 					<div class="form-horizontal">
-						<form action="uplaod.do" enctype="multipart/form-data"
+						<form action="make-card.do" enctype="multipart/form-data"
 							method="post" class="form-horizontal">
 							<fieldset>
 								<h3>Make Card</h3>
@@ -40,15 +41,22 @@
 										<span class="help-inline"><%=message%></span>
 									</div>
 								</div>
+								<%
+									if (external != null) {
+								%>
 								<div class="control-group">
 									<label for="url" class="control-label">URL</label>
 									<div class="controls">
 										<input type="url" name="url">
 									</div>
 								</div>
+								<%
+									}
+								%>
 								<div class="control-group">
 									<div class="controls">
-										<input type="submit" value="Make" class="btn btn-large btn-info">
+										<input type="submit" value="Make"
+											class="btn btn-large btn-info">
 									</div>
 								</div>
 							</fieldset>

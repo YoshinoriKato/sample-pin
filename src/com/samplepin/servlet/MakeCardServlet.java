@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.apache.log4j.Logger;
@@ -24,12 +26,13 @@ import org.apache.log4j.Logger;
 import com.google.code.morphia.Datastore;
 import com.samplepin.ACMongo;
 import com.samplepin.Card;
+import com.samplepin.Helper;
 import com.samplepin.User;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 
-@WebServlet(name = "IconUploadServlet", urlPatterns = "/uplaod.do")
+@WebServlet(name = "IconUploadServlet", urlPatterns = "/make-card.do")
 @MultipartConfig(location = "/Developer/uploaded")
-public class CardUploadServlet extends HttpServlet {
+public class MakeCardServlet extends HttpServlet {
 
 	final class Uploader {
 
@@ -105,23 +108,29 @@ public class CardUploadServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		log("upload start.");
-		List<Uploader> uploadQue = new ArrayList<CardUploadServlet.Uploader>();
-		Card card = readRequest(req, uploadQue);
+		HttpSession session = req.getSession();
+		String userId = (String) session.getAttribute("userId");
+		List<Uploader> uploadQue = new ArrayList<MakeCardServlet.Uploader>();
+		Card card = readRequest(req.getParts(), userId, uploadQue);
 		writeFiles(req, uploadQue, card);
+
 		if ((card.getCaption() != null) && !card.getCaption().isEmpty()) {
 			try (ACMongo mongo = new ACMongo()) {
 				Datastore datastore = mongo.createDatastore();
 				datastore.save(card);
 			}
 			log("upload end.");
-
+			Helper.setFootprint(card, userId);
 			resp.sendRedirect("index.jsp");
+			return;
+
 		} else {
 			log("upload failed.");
 			req.setAttribute("message", "Please, write a caption.");
 			RequestDispatcher dispathcer = req
 					.getRequestDispatcher("make-card.jsp");
 			dispathcer.forward(req, resp);
+			return;
 		}
 	}
 
@@ -169,16 +178,18 @@ public class CardUploadServlet extends HttpServlet {
 		log("destination file name: " + fileName);
 	}
 
-	final Card readRequest(HttpServletRequest req, List<Uploader> uploadQue)
-			throws IllegalStateException, IOException, ServletException {
+	final Card readRequest(Collection<Part> parts, String userId,
+			List<Uploader> uploadQue) throws IllegalStateException,
+			IOException, ServletException {
 		String cardId = Base64.encode(String.valueOf(System.nanoTime())
 				.getBytes());
 		Card card = new Card();
 		card.setImagePath("img/no_image.png");
+		card.setUserId(userId);
 		card.setCardId(cardId);
 		card.setCreateDate(System.currentTimeMillis());
 
-		for (Part part : req.getParts()) {
+		for (Part part : parts) {
 			String title = getValueByKeyword(part, "title");
 			String caption = getValueByKeyword(part, "caption");
 			String url = getValueByKeyword(part, "url");
@@ -220,7 +231,7 @@ public class CardUploadServlet extends HttpServlet {
 					acceptFields);
 			req.setAttribute("acceptFields", acceptFields);
 		} else {
-			Logger.getLogger(CardUploadServlet.class).error(
+			Logger.getLogger(MakeCardServlet.class).error(
 					"upload folder does not exist.");
 		}
 	}
@@ -242,7 +253,7 @@ public class CardUploadServlet extends HttpServlet {
 				saveCardInfo(referenceFolder, fileName, card);
 				acceptFields.add(u.fileName);
 			} catch (RuntimeException e) {
-				Logger.getLogger(CardUploadServlet.class).error(
+				Logger.getLogger(MakeCardServlet.class).error(
 						"fail to upload icon file: " + u.fileName, e);
 				throw e;
 			}

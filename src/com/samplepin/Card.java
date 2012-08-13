@@ -21,6 +21,8 @@ public class Card implements Serializable {
 
 	String caption;
 
+	String userId;
+
 	Integer likes;
 
 	Integer view;
@@ -34,11 +36,11 @@ public class Card implements Serializable {
 	String imagePath;
 
 	public Card() {
-		this("", "", "", "", 0, 0, System.currentTimeMillis());
+		this("", "", "", "", "", 0, 0, System.currentTimeMillis());
 	}
 
-	public Card(String cardId, String imagePath, String url, String caption,
-			int likes, int view, long createDate) {
+	public Card(String cardId, String userId, String imagePath, String url,
+			String caption, int likes, int view, long createDate) {
 		super();
 		this.cardId = cardId;
 		this.imagePath = imagePath;
@@ -82,6 +84,10 @@ public class Card implements Serializable {
 		return this.url;
 	}
 
+	public String getUserId() {
+		return this.userId;
+	}
+
 	public Integer getView() {
 		return this.view;
 	}
@@ -116,6 +122,10 @@ public class Card implements Serializable {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public void setView(Integer view) {

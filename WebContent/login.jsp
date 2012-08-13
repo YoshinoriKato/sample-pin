@@ -17,10 +17,10 @@
 	OneTime oneTime = Helper
 			.getOneTimeByOneTimePassword(oneTimePassword);
 
-	String fromUrl = (String) session.getAttribute("fromUrl");
+	String fromUrl = (String) request.getAttribute("fromUrl");
 	fromUrl = fromUrl != null ? fromUrl : "index.jsp";
 
-	String mail = (String) session.getAttribute("mail");
+	String mail = (String) request.getAttribute("mail");
 	mail = mail != null ? mail : "";
 	mail = oneTime != null ? oneTime.getMail() : mail;
 

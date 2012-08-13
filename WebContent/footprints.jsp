@@ -24,23 +24,34 @@
 			<%
 				for (View view : views) {
 					Card card = Helper.getCardInfoByID(view.getCardId());
+					boolean isExternal = card.getUrl() != null && !card.getUrl().isEmpty();
+					String cell = isExternal ? "cell2" : "cell";
+					String star = isExternal ? card.getUrl() : card.getLikes() + " comment";
+					String blank = isExternal ? "target='_blank'" : "";
+					String jsp = isExternal ? "jump.jsp" : "card.jsp";
+					String redirextUrl = isExternal ? "&redirectUrl=" + card.getUrl() : "";
 			%>
 
 			<li>
-				<div class="cell">
+				<div class="<%=cell%>">
 					<div>
-						<a href="card.jsp?cardId=<%=card.getCardId()%>"> <img
-							src="<%=card.getImagePath()%>" class="image-shot"></a>
+						<a href="<%=jsp %>?cardId=<%=card.getCardId()%><%=redirextUrl %>"
+							<%=blank %>> <img src="<%=card.getImagePath()%>"
+							class="image-shot">
+						</a>
 					</div>
+					<% if(card.getView() != 0){ %>
 					<div class="ribon">
 						<span class="ribon-text"> <%=card.getView()%> view
 						</span>
 					</div>
+					<% } %>
 					<div class="caption deco">
 						<%=card.getCaption()%>
 					</div>
 					<div class="star right">
-					<%=card.getLikes()%> comment</div>
+						<%=star%>
+					</div>
 				</div>
 			</li>
 

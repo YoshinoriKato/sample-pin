@@ -17,7 +17,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpSession;
 
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
@@ -101,33 +100,6 @@ public class Helper {
 			Query<Card> query = datastore.createQuery(Card.class).filter(
 					"cardId = ", cardId);
 			Card card = query.get();
-			return card;
-		} catch (UnknownHostException | MongoException e) {
-			e.printStackTrace();
-		}
-		return new Card();
-	}
-
-	public static Card getCardInfoByID(String cardId, String userId,
-			HttpSession session) {
-		try (ACMongo mongo = new ACMongo()) {
-
-			Datastore datastore = mongo.createDatastore();
-			Query<Card> query = datastore.createQuery(Card.class).filter(
-					"cardId = ", cardId);
-			Card card = query.get();
-			if (card != null) {
-				userId = userId != null ? userId : session.getId();
-				Query<View> query2 = datastore.createQuery(View.class)
-						.filter("userId =", userId).filter("cardId = ", cardId);
-				View view = query2.get();
-				if (view == null) {
-					card.setView(card.getView() + 1);
-					datastore.save(card);
-				}
-				view = new View(System.currentTimeMillis(), cardId, userId);
-				datastore.save(view);
-			}
 			return card;
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();
@@ -251,6 +223,30 @@ public class Helper {
 			transport.connect("katoy.acces.co.jp@gmail.com", "kato2003");
 			transport.sendMessage(message, message.getAllRecipients());
 		} catch (UnsupportedEncodingException | MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void setFootprint(Card card, String userId) {
+		try (ACMongo mongo = new ACMongo()) {
+			Datastore datastore = mongo.createDatastore();
+			Query<View> query2 = datastore.createQuery(View.class)
+					.filter("userId = ", userId)
+					.filter("cardId = ", card.getCardId());
+			View view = query2.get();
+
+			if (view == null) {
+				if (!userId.equals(card.getUserId())) {
+					card.setView(card.getView() + 1);
+					datastore.save(card);
+				}
+
+				view = new View(0L, card.getCardId(), userId);
+			}
+
+			view.setVisitedDate(System.currentTimeMillis());
+			datastore.save(view);
+		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();
 		}
 	}

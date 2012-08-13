@@ -6,6 +6,7 @@ import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -25,18 +26,20 @@ public class LoginFilter implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest req, ServletResponse res,
+	public void doFilter(ServletRequest req, ServletResponse resp,
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
 		String url = request.getRequestURL().toString();
 		String userId = (String) request.getSession().getAttribute("userId");
 		this.context.log("Request URL: " + url);
 		if (userId == null) {
-			HttpServletResponse response = (HttpServletResponse) res;
+			HttpServletResponse response = (HttpServletResponse) resp;
 			request.getSession().setAttribute("fromUrl", url);
-			response.sendRedirect("login.jsp");
+			RequestDispatcher dispathcer = req
+					.getRequestDispatcher("login.jsp");
+			dispathcer.forward(req, response);
 		} else {
-			chain.doFilter(req, res);
+			chain.doFilter(req, resp);
 		}
 	}
 
