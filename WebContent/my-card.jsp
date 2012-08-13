@@ -5,12 +5,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Sample-Pin</title>
-<script type="text/javascript" src="jquery-1.7.2.js"></script>
-<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="common.css" rel="stylesheet">
+<jsp:include page="header.jsp"></jsp:include>
+<script type="text/javascript" charset="UTF-8">
+	function previewChange(from, to) {
+		$value = $(from);
+		$changed = $(to).text(value.text());
+	}
+</script>
 </head>
 
 <%
@@ -26,6 +27,15 @@
 	}
 %>
 
+<%
+	String wallPaper = Helper.getWallPaper(user);
+	String fontColor = Helper.getFontColor(user);
+	String backgroundColor = Helper.getBackgroundColor(user);
+	String userName = user != null ? user.getUserName() : "nanashi";
+	String useBackgroundImage = user.getUseBackgroundImage() ? "checked"
+			: "";
+%>
+
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
@@ -38,9 +48,27 @@
 							<fieldset>
 								<h3>My Card</h3>
 								<div class="control-group">
+									<label class="control-label">Preview</label>
+									<div class="controls">
+										<ul id="content">
+											<li><div class="cell"
+													style="<%=wallPaper%> <%=backgroundColor%>">
+													<div class="comment" style="<%=fontColor%>">
+														@<%=userName%></div>
+													<div class="comment deco" style="<%=fontColor%>">
+														<!-- comment -->
+														コメント。
+													</div>
+													<div class="comment right" style="<%=fontColor%>">
+														<%=Helper.formatToDateTimeString(System.currentTimeMillis())%></div>
+												</div></li>
+										</ul>
+									</div>
+								</div>
+								<div class="control-group">
 									<label for="userName" class="control-label">Name</label>
 									<div class="controls">
-										<input type="text" name="userName"
+										<input type="text" name="userName" maxlength="40"
 											value="<%=user.getUserName()%>" class="span8">
 									</div>
 								</div>
@@ -48,29 +76,38 @@
 									<label for="iconPath" class="control-label">Background
 										Image</label>
 									<div class="controls">
-										<img src="<%=user.getBackgroundImage()%>" class="image-shot">
+										<!-- 		<img src="<%=user.getBackgroundImage()%>" class="image-shot"> -->
 										<input type="file" class="span8" name="iconPath" />
 									</div>
 								</div>
 								<div class="control-group">
-									<label for="backgroundColor" class="control-label">Background
-										Coror</label>
+									<label for="useBackgroundImage" class="control-label">Use
+										Background Image</label>
 									<div class="controls">
-										<input type="text" name="backgroundColor"
-											value="<%=user.getBackgroundColor()%>" class="span8">
+										<input type="checkbox" class="span8" name="useBackgroundImage"
+											value="on" <%=useBackgroundImage%> />
 									</div>
 								</div>
 								<div class="control-group">
-									<label for="fontColor" class="control-label">Font Coror</label>
+									<label for="backgroundColor" class="control-label">Background
+										Color</label>
 									<div class="controls">
-										<input type="text" name="fontColor"
-											value="<%=user.getFontColor()%>" class="span8">
+										<input type="color" name="backgroundColor"
+											value="<%=user.getBackgroundColor()%>">
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="fontColor" class="control-label">Font Color</label>
+									<div class="controls">
+										<input type="color" name="fontColor"
+											value="<%=user.getFontColor()%>" id="fontColor"
+											onchange="previewChange('#fontColor', '#prevFontColor')">
 									</div>
 								</div>
 
 								<div class="control-group">
 									<div class="controls">
-										<input type="submit" value="Make" class="btn">
+										<input type="submit" value="Update" class="btn btn-large">
 									</div>
 								</div>
 							</fieldset>

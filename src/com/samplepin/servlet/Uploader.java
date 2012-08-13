@@ -1,4 +1,4 @@
-package com.samplepin;
+package com.samplepin.servlet;
 
 import java.io.IOException;
 

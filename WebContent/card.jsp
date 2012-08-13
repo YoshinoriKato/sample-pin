@@ -6,11 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Sample-Pin</title>
-<script type="text/javascript" src="jquery-1.7.2.js"></script>
-<script type="text/javascript" src="jquery.wookmark.js"></script>
-<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<jsp:include page="header.jsp"></jsp:include>
 <script type="text/javascript">
 	function change(id) {
 		var $clicked = $(id);
@@ -31,11 +27,7 @@
 		$form.append($divText).append($divSubmit).append($hidden);
 	};
 </script>
-<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="common.css" rel="stylesheet">
 </head>
-
-
 
 <%
 	String cardId = request.getParameter("cardId");
@@ -48,7 +40,10 @@
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
-		<div class="center caption">
+		<div class="image-holder">
+			<img src="<%=card.getImagePath()%>" class="image-origin">
+		</div>
+		<div class="center page-menu">
 			<div id="comment-area">
 				<% if(comments.size() >= CommentServlet.COMMENTS_LIMIT) { %>
 				<p>
@@ -62,7 +57,10 @@
 					onclick="change('#comment');" id="comment" />
 
 				<%} else { %>
-				<p>Please, Login.</p>
+				<p>
+					Please, <a href="login.jsp">Login</a> or <a href="signup.jsp">Sign
+						up</a>.
+				</p>
 				<%} %>
 			</div>
 		</div>
@@ -70,7 +68,7 @@
 			<li>
 				<div class="cell">
 					<div>
-						<img src="<%=card.getUrl()%>" class="image-shot">
+						<img src="<%=card.getImagePath()%>" class="image-shot">
 					</div>
 					<div class="ribon">
 						<span class="ribon-text"> <%=card.getView()%> view
@@ -80,10 +78,11 @@
 						<%=card.getCaption()%>
 					</div>
 					<div class="star right">
-						★<%=card.getLikes()%></div>
+						<%=card.getLikes()%>
+						comment
+					</div>
 				</div>
 			</li>
-
 			<%
 				for (Comment comment : comments) {
 					User user = Helper.getUserById(comment.getUserId());
@@ -92,7 +91,6 @@
 					String backgroundColor = Helper.getBackgroundColor(user);
 					String userName = user != null ? user.getUserName() : "nanashi";
 			%>
-
 			<li><div class="cell"
 					style="<%=wallPaper%> <%=backgroundColor %>">
 					<div class="comment" style="<%=fontColor%>">
@@ -104,7 +102,6 @@
 					<div class="comment right" style="<%=fontColor%>">
 						<%=Helper.formatToDateTimeString(comment.getCreateDate())%></div>
 				</div></li>
-
 			<%
 				}
 			%>
@@ -116,13 +113,13 @@
 <script type="text/javascript">
 	$(window).load(function() {
 		$('#content li').wookmark({
-			offset : 12
+			offset : 20
 		});
 		cardId = $("#cardId").text();
 	});
 	$(window).resize(function() {
 		$('#content li').wookmark({
-			offset : 12
+			offset : 20
 		})
 	});
 </script>

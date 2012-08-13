@@ -3,20 +3,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Sample-Pin</title>
-<script type="text/javascript" src="jquery-1.7.2.js"></script>
-<script type="text/javascript" src="jquery.wookmark.js"></script>
-<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="common.css?201208080923" rel="stylesheet">
+<jsp:include page="header.jsp"></jsp:include>
 </head>
 
 <%
-	Exception e = (Exception) request.getAttribute("error");
-	String message = e != null ? e.getMessage() : "";
+	/* 	Exception e = (Exception) session.getAttribute("error");
+	 String message = e != null ? e.getMessage() : "";
+	 */
 
-	String fromUrl = (String) request.getAttribute("fromUrl");
+	String fromUrl = (String) session.getAttribute("fromUrl");
 	fromUrl = fromUrl != null ? fromUrl : "index.jsp";
 %>
 
@@ -25,27 +20,29 @@
 	<div id="main">
 		<div class="container">
 			<div class="row">
-				<h1><%=message%></h1>
 				<div class="cell">
 					<form action="login.do" method="post" class="form-horizontal">
 						<fieldset>
-							Login <input type="hidden" name="redirectUrl"
-								value="<%=fromUrl%>" />
+							<h3>Login</h3>
+							<input type="hidden" name="redirectUrl" value="<%=fromUrl%>" />
 							<div class="control-group">
-								<label for="userId" class="control-label">User ID</label>
+								<label for="mail" class="control-label">Mail</label>
 								<div class="controls">
-									<input type="text" name="userId" class="span6" placeholder="User ID" />
+									<input type="text" name="mail" class="span6 input"
+										placeholder="xxxxxx@xxx.xxx" />
 								</div>
 							</div>
 							<div class="control-group">
 								<label for="password" class="control-label">Password</label>
 								<div class="controls">
-									<input type="password" name="password" class="span6" placeholder="password" />
+									<input type="password" name="password" class="span6"
+										placeholder="password" />
 								</div>
 							</div>
 							<div class="control-group">
 								<div class="controls">
-									<input type="submit" name="submit" value="Login" class="btn btn-large btn-primary" />
+									<input type="submit" name="submit" value="Login"
+										class="btn btn-large btn-primary" />
 								</div>
 							</div>
 						</fieldset>

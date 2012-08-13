@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 import org.bson.types.ObjectId;
 
+import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
 
+@Entity(value = "cards", noClassnameStored = true)
 public class Card implements Serializable {
 	/**
 	 * 
@@ -27,19 +29,25 @@ public class Card implements Serializable {
 
 	Long createDate;
 
+	Boolean isDeleted;
+
+	String imagePath;
+
 	public Card() {
-		this("", "", "", 0, 0, System.currentTimeMillis());
+		this("", "", "", "", 0, 0, System.currentTimeMillis());
 	}
 
-	public Card(String cardId, String url, String caption, int likes, int view,
-			long createDate) {
+	public Card(String cardId, String imagePath, String url, String caption,
+			int likes, int view, long createDate) {
 		super();
 		this.cardId = cardId;
+		this.imagePath = imagePath;
 		this.url = url;
 		this.caption = caption;
 		this.likes = likes;
 		this.view = view;
 		this.createDate = createDate;
+		this.isDeleted = false;
 	}
 
 	public String getCaption() {
@@ -56,6 +64,14 @@ public class Card implements Serializable {
 
 	public ObjectId getId() {
 		return this.id;
+	}
+
+	public String getImagePath() {
+		return this.imagePath;
+	}
+
+	public Boolean getIsDeleted() {
+		return this.isDeleted;
 	}
 
 	public Integer getLikes() {
@@ -84,6 +100,14 @@ public class Card implements Serializable {
 
 	public void setId(ObjectId id) {
 		this.id = id;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 
 	public void setLikes(Integer likes) {

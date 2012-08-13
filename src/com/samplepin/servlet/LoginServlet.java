@@ -2,8 +2,6 @@ package com.samplepin.servlet;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +14,6 @@ import com.google.code.morphia.query.Query;
 import com.mongodb.MongoException;
 import com.samplepin.ACMongo;
 import com.samplepin.User;
-import com.samplepin.View;
 
 @WebServlet(urlPatterns = { "/login.do" })
 public class LoginServlet extends HttpServlet {
@@ -26,30 +23,20 @@ public class LoginServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 5426777241563315344L;
 
-	final boolean acceptPassword(String userId, Integer password)
-			throws UnknownHostException, MongoException {
-
-		try (ACMongo mongo = new ACMongo()) {
-			Datastore datastore = mongo.createDatastore();
-			Query<User> query = datastore.createQuery(User.class).filter(
-					"userId = ", userId);
-			User user = query.get();
-			return password.equals(user.getPassword());
-		}
-	}
-
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		resp.setCharacterEncoding("UTF-8");
 		try {
-			String userId = req.getParameter("userId");
+			String mail = req.getParameter("mail");
 			Integer password = req.getParameter("password").hashCode();
-			if (acceptPassword(userId, password)) {
-				login(req, userId);
+			User user = getUserByMailAndPassword(mail, password);
+			if (user != null) {
+				login(req, user.getUserId());
 				String redirectUrl = req.getParameter("redirectUrl");
 				log("forward: " + redirectUrl);
 				resp.sendRedirect(redirectUrl);
+				return;
 			}
 		} catch (Exception e) {
 			log(e.getMessage());
@@ -58,24 +45,27 @@ public class LoginServlet extends HttpServlet {
 		}
 	}
 
+	final User getUserByMailAndPassword(String mail, Integer password)
+			throws UnknownHostException, MongoException {
+
+		try (ACMongo mongo = new ACMongo()) {
+			Datastore datastore = mongo.createDatastore();
+			Query<User> query = datastore.createQuery(User.class).filter(
+					"mail = ", mail);
+			User user = query.get();
+			if (password.equals(user.getPassword())) {
+				return user;
+			}
+			return null;
+		}
+	}
+
 	final void login(HttpServletRequest req, String userId)
 			throws UnknownHostException, MongoException {
 		HttpSession sessionOld = req.getSession();
 		sessionOld.invalidate();
 		HttpSession sessionNew = req.getSession(true);
-		log(sessionOld.getId() + " -> " + sessionNew.getId());
 		sessionNew.setAttribute("userId", userId);
-
-		try (ACMongo mongo = new ACMongo()) {
-			Datastore datastore = mongo.createDatastore();
-			Query<View> q = datastore.createQuery(View.class).filter("userId",
-					userId);
-			Set<String> visited = new HashSet<>();
-			for (View view : q.asList()) {
-				visited.add(view.getCardId());
-			}
-			sessionNew.setAttribute("visited", visited);
-		}
 	}
 
 }
