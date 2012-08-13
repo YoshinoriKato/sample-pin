@@ -7,31 +7,13 @@
 <html>
 <head>
 <jsp:include page="header.jsp"></jsp:include>
-<script type="text/javascript">
-	function change(id) {
-		var $clicked = $(id);
-		var $textarea = $("#comment-area");
-		var $form = $("<form/>").attr("method", "post").attr("action",
-				"comment.do").addClass("form-horizontal");
-		var $hidden = $("<input/>").attr("type", "hidden").attr("name",
-				"cardId").attr("value", cardId).addClass("btn btn-large");
-		var $input = $("<input/>").attr("type", "submit").addClass(
-				"btn btn-large");
-		var $divText = $("<div/>").addClass("control-group").append(
-				$("<textarea/>").attr("name", "comment").addClass("span8")
-						.attr("rows", "6"));
-		var $divSubmit = $("<div/>").addClass("control-group").append($input);
-		$clicked.attr("onclick", "");
-		$textarea.empty();
-		$textarea.append($form);
-		$form.append($divText).append($divSubmit).append($hidden);
-	};
-</script>
 </head>
 
 <%
 	String cardId = request.getParameter("cardId");
 	String userId = (String) session.getAttribute("userId");
+	userId = (userId != null) ? userId : session.getId();
+	
 	Card card = Helper.getCardInfoByID(cardId);
 	Helper.setFootprint(card, userId);
 	Random dice = new Random(System.nanoTime());
@@ -62,9 +44,6 @@
 				<%
 					} else if (userId != null) {
 				%>
-				<!-- 				<input type="button" value="Comment" class="btn btn-large"
-					onclick="change('#comment');" id="comment" />
- -->
 
 				<form method="post" action="comment.do" class="form-horizontal">
 					<div class="control-group <%=error%>">

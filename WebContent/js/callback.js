@@ -39,3 +39,15 @@ function callback(array) {
 		offset : 20
 	});
 };
+
+
+function pushWall() {
+	$("#cover").css("display", "none");
+};
+
+function pushPhoto() {
+	alert("push");
+	$("#cover").css("display", "block");
+};
+
+

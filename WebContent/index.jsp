@@ -4,6 +4,7 @@
 <%
 	String sorted = request.getParameter("sorted");
 	sorted = sorted == null ? "" : "?sorted=" + sorted;
+	String userId = (String)session.getId();
 %>
 
 
