@@ -7,8 +7,9 @@
 </head>
 
 <%
-	Exception e = (Exception) request.getAttribute("error");
-	String message = e != null ? e.getMessage() : "";
+	String message = (String) request.getAttribute("message");
+	message = message != null ? message : "";
+	String error = message != null && !message.isEmpty() ? "error" : "";
 
 	String fromUrl = (String) request.getAttribute("fromUrl");
 	fromUrl = fromUrl != null ? fromUrl : "index.jsp";
@@ -19,17 +20,16 @@
 	<div id="main">
 		<div class="container">
 			<div class="row">
-				<h1><%=message%></h1>
 				<div class="cell">
 					<form action="signup.do" method="post" class="form-horizontal">
 						<fieldset>
 							<h3>Sign up</h3>
 							<input type="hidden" name="redirectUrl" value="<%=fromUrl%>" />
-							<div class="control-group">
+							<div class="control-group <%=error%>">
 								<label for="mail" class="control-label">Mail Address</label>
 								<div class="controls">
-									<input type="text" name="mail" class="span6 input"
-										placeholder="xxxxxx@xxx.xxx" />
+									<input type="email" name="mail" class="span6 input"
+										placeholder="xxxxxx@xxx.xxx" /><span class="help-inline"><%=message%></span>
 								</div>
 							</div>
 							<div class="control-group">

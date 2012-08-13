@@ -62,7 +62,7 @@ public class Initializer2 extends HttpServlet {
 	 */
 	public static void main(String[] args) {
 		try (ACMongo mongo = new ACMongo()) {
-			mongo.dropDatabase("sample-pin");
+			mongo.dropDatabase(mongo.getDbName());
 
 			Datastore datastore = mongo.createDatastore();
 			List<Card> cards = new ArrayList<>();

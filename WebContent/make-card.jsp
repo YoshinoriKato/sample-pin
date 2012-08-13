@@ -7,6 +7,11 @@
 <jsp:include page="header.jsp"></jsp:include>
 </head>
 
+<%
+	String message = (String) request.getAttribute("message");
+	message = message != null ? message : "";
+	String error = message != null && !message.isEmpty() ? "error" : "";
+%>
 
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
@@ -28,10 +33,11 @@
 										<input type="file" class="span8" name="iconPath" />
 									</div>
 								</div>
-								<div class="control-group">
-									<label for="comment" class="control-label">Comment</label>
+								<div class="control-group <%=error%>">
+									<label for="caption" class="control-label">Caption</label>
 									<div class="controls">
-										<textarea name="comment" class="span8" rows="8"></textarea>
+										<textarea name="caption" class="span8" rows="8"></textarea>
+										<span class="help-inline"><%=message%></span>
 									</div>
 								</div>
 								<div class="control-group">
@@ -42,7 +48,7 @@
 								</div>
 								<div class="control-group">
 									<div class="controls">
-										<input type="submit" value="Make" class="btn btn-large">
+										<input type="submit" value="Make" class="btn btn-large btn-info">
 									</div>
 								</div>
 							</fieldset>

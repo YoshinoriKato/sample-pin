@@ -3,6 +3,8 @@ package com.samplepin.servlet;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,12 +27,13 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws IOException {
+			throws IOException, ServletException {
 		resp.setCharacterEncoding("UTF-8");
 		try {
 			String mail = req.getParameter("mail");
-			Integer password = req.getParameter("password").hashCode();
-			User user = getUserByMailAndPassword(mail, password);
+			String password = req.getParameter("password");
+			Integer hashCode = password.hashCode();
+			User user = getUserByMailAndPassword(mail, hashCode);
 			if (user != null) {
 				login(req, user.getUserId());
 				String redirectUrl = req.getParameter("redirectUrl");
@@ -41,11 +44,14 @@ public class LoginServlet extends HttpServlet {
 		} catch (Exception e) {
 			log(e.getMessage());
 			req.setAttribute("error", e);
-			resp.sendRedirect("login.jsp");
 		}
+		req.setAttribute("message",
+				"Please, write your mail address and password.");
+		RequestDispatcher dispathcer = req.getRequestDispatcher("login.jsp");
+		dispathcer.forward(req, resp);
 	}
 
-	final User getUserByMailAndPassword(String mail, Integer password)
+	final User getUserByMailAndPassword(String mail, int password)
 			throws UnknownHostException, MongoException {
 
 		try (ACMongo mongo = new ACMongo()) {
@@ -53,8 +59,14 @@ public class LoginServlet extends HttpServlet {
 			Query<User> query = datastore.createQuery(User.class).filter(
 					"mail = ", mail);
 			User user = query.get();
-			if (password.equals(user.getPassword())) {
-				return user;
+			if (user != null) {
+				if (password == user.getPassword()) {
+					return user;
+				} else {
+					user.setLoginFaileds(user.getLoginFaileds() + 1);
+					user.setLastUpdate(System.currentTimeMillis());
+					datastore.save(user);
+				}
 			}
 			return null;
 		}

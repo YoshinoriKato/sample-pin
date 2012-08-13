@@ -3,6 +3,8 @@ package com.samplepin.servlet;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,27 +30,34 @@ public class CommentServlet extends HttpServlet {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws IOException {
+			throws IOException, ServletException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
+		String cardId = req.getParameter("cardId");
+		String comment = req.getParameter("comment");
+
 		try {
-			String cardId = req.getParameter("cardId");
-			String comment = req.getParameter("comment");
 			HttpSession session = req.getSession();
 			String userId = (String) session.getAttribute("userId");
 
 			log(userId + " > " + comment);
 
-			if (userId != null) {
+			if ((userId != null) && (comment != null) && !comment.isEmpty()) {
 				saveComment(new Comment(userId, cardId, comment,
 						System.currentTimeMillis()));
+				resp.sendRedirect("card.jsp?cardId=" + cardId);
+				return;
 			}
-			resp.sendRedirect("card.jsp?cardId=" + cardId);
+
 		} catch (Exception e) {
 			log(e.getMessage());
 			req.setAttribute("error", e);
-			resp.sendRedirect("login.jsp");
 		}
+
+		req.setAttribute("message", "Please, write a comment.");
+		RequestDispatcher dispathcer = req
+				.getRequestDispatcher("card.jsp?cardId=" + cardId);
+		dispathcer.forward(req, resp);
 	}
 
 	final void saveComment(Comment comment) throws UnknownHostException,

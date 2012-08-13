@@ -1,3 +1,4 @@
+<%@page import="com.samplepin.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,8 +12,24 @@
 	 String message = e != null ? e.getMessage() : "";
 	 */
 
+	String oneTimePassword = (String) session
+			.getAttribute("oneTimePassword");
+	OneTime oneTime = Helper
+			.getOneTimeByOneTimePassword(oneTimePassword);
+
 	String fromUrl = (String) session.getAttribute("fromUrl");
 	fromUrl = fromUrl != null ? fromUrl : "index.jsp";
+
+	String mail = (String) session.getAttribute("mail");
+	mail = mail != null ? mail : "";
+	mail = oneTime != null ? oneTime.getMail() : mail;
+
+	String password = oneTime != null ? oneTime.getPassword() : "";
+	
+	String message = (String)request.getAttribute("message");
+	message = message != null ? message : "";
+	String error = message != null && !message.isEmpty() ? "error" : "";
+
 %>
 
 <body>
@@ -24,19 +41,21 @@
 					<form action="login.do" method="post" class="form-horizontal">
 						<fieldset>
 							<h3>Login</h3>
-							<input type="hidden" name="redirectUrl" value="<%=fromUrl%>" />
-							<div class="control-group">
+							<input type="hidden" name="oneTimePassword"
+								value="<%=oneTimePassword%>" /> <input type="hidden"
+								name="redirectUrl" value="<%=fromUrl%>" />
+							<div class="control-group <%=error%>">
 								<label for="mail" class="control-label">Mail</label>
 								<div class="controls">
-									<input type="text" name="mail" class="span6 input"
-										placeholder="xxxxxx@xxx.xxx" />
+									<input type="email" name="mail" class="span6 input"
+										placeholder="xxxxxx@xxx.xxx" value="<%=mail%>" /><span class="help-inline"><%=message%></span>
 								</div>
 							</div>
-							<div class="control-group">
+							<div class="control-group <%=error%>">
 								<label for="password" class="control-label">Password</label>
 								<div class="controls">
 									<input type="password" name="password" class="span6"
-										placeholder="password" />
+										placeholder="password" value="<%=password%>" /><span class="help-inline"><%=message%></span>
 								</div>
 							</div>
 							<div class="control-group">

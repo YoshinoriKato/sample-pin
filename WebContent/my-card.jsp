@@ -107,7 +107,7 @@
 
 								<div class="control-group">
 									<div class="controls">
-										<input type="submit" value="Update" class="btn btn-large">
+										<input type="submit" value="Update" class="btn btn-large btn-info">
 									</div>
 								</div>
 							</fieldset>

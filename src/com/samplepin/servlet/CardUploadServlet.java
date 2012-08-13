@@ -10,6 +10,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -97,18 +98,7 @@ public class CardUploadServlet extends HttpServlet {
 	}
 
 	final boolean confirmed(HttpServletRequest req, String password, User user) {
-		// String print = "";
-		// for (int i = 0; i < password.length(); i++) {
-		// print += "*";
-		// }
-		//
-		// if (user.getPassword().equals(password.hashCode())) {
-		// log("passoword : " + print);
 		return true;
-		// }
-		// Logger.getLogger(IconUploadServlet.class).error("passoword : " +
-		// print);
-		// return false;
 	}
 
 	@Override
@@ -118,13 +108,21 @@ public class CardUploadServlet extends HttpServlet {
 		List<Uploader> uploadQue = new ArrayList<CardUploadServlet.Uploader>();
 		Card card = readRequest(req, uploadQue);
 		writeFiles(req, uploadQue, card);
-		try (ACMongo mongo = new ACMongo()) {
-			Datastore datastore = mongo.createDatastore();
-			datastore.save(card);
-		}
-		log("upload end.");
+		if ((card.getCaption() != null) && !card.getCaption().isEmpty()) {
+			try (ACMongo mongo = new ACMongo()) {
+				Datastore datastore = mongo.createDatastore();
+				datastore.save(card);
+			}
+			log("upload end.");
 
-		resp.sendRedirect("index.jsp");
+			resp.sendRedirect("index.jsp");
+		} else {
+			log("upload failed.");
+			req.setAttribute("message", "Please, write a caption.");
+			RequestDispatcher dispathcer = req
+					.getRequestDispatcher("make-card.jsp");
+			dispathcer.forward(req, resp);
+		}
 	}
 
 	final String getFileName(Part part) {
@@ -179,16 +177,17 @@ public class CardUploadServlet extends HttpServlet {
 		card.setImagePath("img/no_image.png");
 		card.setCardId(cardId);
 		card.setCreateDate(System.currentTimeMillis());
+
 		for (Part part : req.getParts()) {
 			String title = getValueByKeyword(part, "title");
-			String comment = getValueByKeyword(part, "comment");
+			String caption = getValueByKeyword(part, "caption");
 			String url = getValueByKeyword(part, "url");
 
 			if (title != null) {
 				card.setCaption(title);
 
-			} else if (comment != null) {
-				card.setCaption(comment);
+			} else if (caption != null) {
+				card.setCaption(caption);
 
 			} else if (url != null) {
 				card.setUrl(url);

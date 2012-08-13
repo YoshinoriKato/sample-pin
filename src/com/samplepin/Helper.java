@@ -17,6 +17,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
@@ -32,7 +33,9 @@ public class Helper {
 
 	static int FIRST_CHAR = 1;
 
-	static SimpleDateFormat sdf = new SimpleDateFormat(
+	static SimpleDateFormat SDF_DATE = new SimpleDateFormat("yyyy-MM-dd");
+
+	static SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss.SSS");
 
 	static Comparator<Comment> LATEST_COMMENT = new Comparator<Comment>() {
@@ -49,12 +52,21 @@ public class Helper {
 		}
 	};
 
+	public static String formatToDateString(Long mills) {
+		Date date = new Date(mills);
+		return SDF_DATE.format(date);
+	}
+
 	public static String formatToDateTimeString(Long mills) {
 		Date date = new Date(mills);
-		return sdf.format(date);
+		return SDF_DATE_TIME.format(date);
 	}
 
 	public static String generatedUserId() {
+		return generatedUserId("");
+	}
+
+	public static String generatedUserId(String prefix) {
 		Random r = new Random(System.nanoTime());
 		StringBuilder builder = new StringBuilder();
 
@@ -70,7 +82,7 @@ public class Helper {
 		for (int i = 0; i < ((DEFAULT_LEN - FIRST_CHAR) + range); i++) {
 			builder.append(array[r.nextInt(len)]);
 		}
-		return builder.toString();
+		return prefix + builder.toString();
 	}
 
 	public static String getBackgroundColor(User user) {
@@ -96,7 +108,8 @@ public class Helper {
 		return new Card();
 	}
 
-	public static Card getCardInfoByID(String cardId, String userId) {
+	public static Card getCardInfoByID(String cardId, String userId,
+			HttpSession session) {
 		try (ACMongo mongo = new ACMongo()) {
 
 			Datastore datastore = mongo.createDatastore();
@@ -104,26 +117,16 @@ public class Helper {
 					"cardId = ", cardId);
 			Card card = query.get();
 			if (card != null) {
-				if (userId != null) {
-					Query<View> query2 = datastore.createQuery(View.class)
-							.filter("userId =", userId)
-							.filter("cardId = ", cardId);
-					View view = query2.get();
-					if (view == null) {
-						card.setView(card.getView() + 1);
-						datastore.save(card);
-
-						view = new View(System.currentTimeMillis(), cardId,
-								userId);
-					} else {
-						view.setVisitedDate(System.currentTimeMillis());
-					}
-
-					datastore.save(view);
-				} else {
+				userId = userId != null ? userId : session.getId();
+				Query<View> query2 = datastore.createQuery(View.class)
+						.filter("userId =", userId).filter("cardId = ", cardId);
+				View view = query2.get();
+				if (view == null) {
 					card.setView(card.getView() + 1);
 					datastore.save(card);
 				}
+				view = new View(System.currentTimeMillis(), cardId, userId);
+				datastore.save(view);
 			}
 			return card;
 		} catch (UnknownHostException | MongoException e) {
@@ -157,14 +160,27 @@ public class Helper {
 		return "";
 	}
 
+	public static OneTime getOneTimeByOneTimePassword(String oneTimePassword) {
+		if (oneTimePassword != null) {
+			try (ACMongo mongo = new ACMongo()) {
+				Datastore datastore = mongo.createDatastore();
+				Query<OneTime> query1 = datastore.createQuery(OneTime.class)
+						.filter("oneTime = ", oneTimePassword);
+				return query1.get();
+			} catch (UnknownHostException | MongoException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+
 	public static User getUserById(String userId) {
 		try (ACMongo mongo = new ACMongo()) {
 
 			Datastore datastore = mongo.createDatastore();
 			Query<User> query = datastore.createQuery(User.class).filter(
 					"userId = ", userId);
-			User card = query.get();
-			return card;
+			return query.get();
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();
 		}
@@ -173,7 +189,6 @@ public class Helper {
 
 	public static List<View> getViewsInfoByID(String userId) {
 		try (ACMongo mongo = new ACMongo()) {
-
 			Datastore datastore = mongo.createDatastore();
 			Query<View> query = datastore.createQuery(View.class).filter(
 					"userId = ", userId);
@@ -208,11 +223,12 @@ public class Helper {
 		builder.append("URL: ").append(LS);
 		builder.append("http://localhost:8080/sample-pin/").append(LS);
 
-		sendMail("katoy.acces.co.jp@gmail.com", builder.toString());
+		sendMail("katoy.acces.co.jp@gmail.com", builder.toString(),
+				"Sign up was successful.");
 		System.out.println("OK?");
 	}
 
-	public static void sendMail(String mail, String text) {
+	public static void sendMail(String mail, String text, String title) {
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "smtp.gmail.com");
 		properties.put("mail.smtp.port", "587");
@@ -228,7 +244,7 @@ public class Helper {
 
 			message.setRecipients(Message.RecipientType.TO, mail);
 			message.setFrom(from);
-			message.setSubject("サインアップ完了", "ISO-2022-JP");
+			message.setSubject(title, "ISO-2022-JP");
 			message.setText(text, "ISO-2022-JP");
 
 			Transport transport = session.getTransport("smtp");

@@ -32,9 +32,13 @@
 <%
 	String cardId = request.getParameter("cardId");
 	String userId = (String) session.getAttribute("userId");
-	Card card = Helper.getCardInfoByID(cardId, userId);
+	Card card = Helper.getCardInfoByID(cardId, userId, session);
 	Random dice = new Random(System.nanoTime());
 	List<Comment> comments = Helper.getCommentsInfoByID(cardId, userId);
+
+	String message = (String) request.getAttribute("message");
+	message = message != null ? message : "";
+	String error = message != null && !message.isEmpty() ? "error" : "";
 %>
 
 <body>
@@ -45,23 +49,46 @@
 		</div>
 		<div class="center page-menu">
 			<div id="comment-area">
-				<% if(comments.size() >= CommentServlet.COMMENTS_LIMIT) { %>
+				<%
+					if (comments.size() >= CommentServlet.COMMENTS_LIMIT) {
+				%>
 				<p>
 					Thanks. This card received
-					<%=CommentServlet.COMMENTS_LIMIT %>
+					<%=CommentServlet.COMMENTS_LIMIT%>
 					comments.
 				</p>
 
-				<%} else if(userId !=null){ %>
-				<input type="button" value="Comment" class="btn btn-large"
+				<%
+					} else if (userId != null) {
+				%>
+				<!-- 				<input type="button" value="Comment" class="btn btn-large"
 					onclick="change('#comment');" id="comment" />
+ -->
 
-				<%} else { %>
+				<form method="post" action="comment.do" class="form-horizontal">
+					<div class="control-group <%=error%>">
+						<div>
+							<textarea name="comment" class="textarea span8" rows="4"></textarea>
+						</div>
+						<div class="help-inline"><%=message%></div>
+					</div>
+					<div class="control-group">
+						<input type="submit" class="btn btn-large btn-info" value="Comment">
+					</div>
+					<input type="hidden" name="cardId" value="<%=cardId%>"
+						class="btn btn-large">
+				</form>
+
+				<%
+					} else {
+				%>
 				<p>
 					Please, <a href="login.jsp">Login</a> or <a href="signup.jsp">Sign
 						up</a>.
 				</p>
-				<%} %>
+				<%
+					}
+				%>
 			</div>
 		</div>
 		<ul id="content">
@@ -92,12 +119,12 @@
 					String userName = user != null ? user.getUserName() : "nanashi";
 			%>
 			<li><div class="cell"
-					style="<%=wallPaper%> <%=backgroundColor %>">
+					style="<%=wallPaper%> <%=backgroundColor%>">
 					<div class="comment" style="<%=fontColor%>">
 						@<%=userName%></div>
 					<div class="comment deco" style="<%=fontColor%>">
 						<!-- comment -->
-						<%=comment.getComment() %>
+						<%=comment.getComment()%>
 					</div>
 					<div class="comment right" style="<%=fontColor%>">
 						<%=Helper.formatToDateTimeString(comment.getCreateDate())%></div>

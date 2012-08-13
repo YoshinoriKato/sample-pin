@@ -6,8 +6,8 @@
 
 @font-face {
 	font-family: 'HuiFontPRegular';
-	src: local('HuiFontP Regular'), /*フォントがローカルにインストールされている時の指定*/  
-		 local('HuiFontP'), url('font/HuiFontP29.ttf') format('truetype');
+	src: local('HuiFontP Regular'), /*フォントがローカルにインストールされている時の指定*/   
+		  local('HuiFontP'), url('font/HuiFontP29.ttf') format('truetype');
 	/* Safari、Chrome、Firefox、Opera */
 }
 
@@ -26,13 +26,10 @@ body {
 }
 
 .image-origin {
-	border: solid 0px white;
-	background-image: url("img/ichimatsu.png?201208122147");
 	margin: 40px;
 }
 
 .image-shot {
-	background-image: url("img/ichimatsu.png?201208122147");
 	border-radius: 3px 25px 3px; /* CSS3草案 */
 	-webkit-border-radius: 3px 25px 3px; /* Safari,Google Chrome用 */
 	-moz-border-radius: 3px 25px 3px;
@@ -43,7 +40,7 @@ body {
 	min-height: 30px;
 }
 
-text,textarea,dropdown {
+.text,.textarea,.dropdown {
 	border: 1px solid #777;
 	padding: 5px;
 	color: #999;
@@ -184,6 +181,14 @@ a .no-hover:HOVER {
 .page-menu {
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+
+#comment-area {
+	background-color: rgba(255, 255, 255, 0.7);
+	width: 100%;
+	padding-top: 30px;
+	padding-bottom: 10px;
+	text-align: center;
 }
 
 .comment {
