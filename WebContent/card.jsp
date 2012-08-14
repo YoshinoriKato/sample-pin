@@ -1,4 +1,4 @@
-<%@page import="com.samplepin.servlet.CommentServlet"%>
+<%@page import="com.samplepin.servlet.*"%>
 <%@page import="java.util.*"%>
 <%@page import="com.samplepin.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -49,7 +49,7 @@
 				<form method="post" action="comment.do" class="form-horizontal">
 					<div class="control-group <%=error%>">
 						<div>
-							<textarea name="comment" class="textarea span8" rows="4"></textarea>
+							<textarea name="comment" class="textarea span6" rows="4"></textarea>
 						</div>
 						<div class="help-inline"><%=message%></div>
 					</div>
@@ -72,6 +72,7 @@
 				%>
 			</div>
 		</div>
+		
 		<ul id="content">
 			<li>
 				<div class="cell">
@@ -118,8 +119,10 @@
 		</ul>
 		<br style="clear: both;" />
 	</div>
+	
 	<div style="display: none;" id="cardId"><%=cardId%></div>
 </body>
+
 <script type="text/javascript">
 	$(window).load(function() {
 		$('#content li').wookmark({

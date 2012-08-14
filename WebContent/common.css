@@ -6,8 +6,8 @@
 
 @font-face {
 	font-family: 'HuiFontPRegular';
-	src: local('HuiFontP Regular'), /*フォントがローカルにインストールされている時の指定*/        
-		       local('HuiFontP'), url('font/HuiFontP29.ttf')
+	src: local('HuiFontP Regular'), /*フォントがローカルにインストールされている時の指定*/          
+		         local('HuiFontP'), url('font/HuiFontP29.ttf')
 		format('truetype');
 	/* Safari、Chrome、Firefox、Opera */
 }
@@ -29,10 +29,13 @@ body {
 
 .image-holder {
 	background-color: rgba(0, 0, 0, 0.6);
-	width: 100%;
+	width: 99%;
 	margin-top: 20px;
 	margin-bottom: 20px;
 	text-align: center;
+	border-radius: 0px 40px 6px 0px; /* CSS3草案 */
+	-webkit-border-radius: 0px 40px 6px 0px; /* Safari,Google Chrome用 */
+	-moz-border-radius: 0px 40px 6px 0px; /* Firefox用 */
 }
 
 .image-origin {
@@ -48,7 +51,7 @@ body {
 	margin-bottom: 10px;
 	min-width: 200px;
 	min-height: 30px;
-	filter: alpha(opacity=80);
+	filter: alpha(opacity =   80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 }
@@ -212,10 +215,14 @@ a .no-hover:HOVER {
 
 #comment-area {
 	background-color: rgba(255, 255, 255, 0.4);
-	width: 100%;
+	width: 99%;
 	padding-top: 30px;
 	padding-bottom: 10px;
 	text-align: center;
+	border-radius: 0px 40px 6px 0px; /* CSS3草案 */
+	-webkit-border-radius: 0px 40px 6px 0px; /* Safari,Google Chrome用 */
+	-moz-border-radius: 0px 40px 6px 0px; /* Firefox用 */
+	margin-right: 10px;
 }
 
 .comment {

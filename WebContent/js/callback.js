@@ -34,6 +34,7 @@ function callback(array) {
 
 		$('#content').append($jqLi);
 	}
+	
 	$('#content li').wookmark({
 		offset : 20
 	});
