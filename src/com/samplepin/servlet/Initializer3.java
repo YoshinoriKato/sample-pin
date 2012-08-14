@@ -71,9 +71,9 @@ public class Initializer3 extends HttpServlet {
 	public static void main(String[] args) {
 		Random dice = new Random(System.nanoTime());
 		long mills = System.currentTimeMillis() - (1000 * 60 * 60 * 24 * 1000);
-		final int MAX_USERS = 10000;
+		final int MAX_USERS = 3000;
 		final int MAX_COMMENTS = 1000;
-		final int MAX_VIEWS = 100000;
+		final int MAX_VIEWS = 10000;
 
 		try (ACMongo mongo = new ACMongo()) {
 			mongo.dropDatabase(mongo.getDbName());
@@ -93,7 +93,7 @@ public class Initializer3 extends HttpServlet {
 				user.setBackgroundColor(Helper.generateColorString());
 				user.setFontColor(Helper.generateColorString());
 				user.setUseBackgroundImage(false);
-				user.setUserName(Helper.generatedUserId());
+				user.setUserName(Helper.generatedUserId().substring(0, 12));
 				datastore.save(user);
 			}
 

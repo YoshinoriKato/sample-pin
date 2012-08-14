@@ -35,6 +35,20 @@ public class Helper {
 	static SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss.SSS");
 
+	public static String escapeHTML(String input) {
+		input = substitute(input, "&", "&amp;");
+		input = substitute(input, "<", "&lt;");
+		input = substitute(input, ">", "&gt;");
+		input = substitute(input, "\"", "&quot;");
+		return input;
+	}
+
+	public static String escapeSQL(String input) {
+		input = substitute(input, "'", "''");
+		input = substitute(input, "\\", "\\\\");
+		return input;
+	}
+
 	public static String formatToDateString(Long mills) {
 		Date date = new Date(mills);
 		return SDF_DATE.format(date);
@@ -240,5 +254,21 @@ public class Helper {
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();
 		}
+	}
+
+	static public String substitute(String input, String pattern,
+			String replacement) {
+		int index = input.indexOf(pattern);
+		if (index == -1) {
+			return input;
+		}
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(input.substring(0, index) + replacement);
+		if ((index + pattern.length()) < input.length()) {
+			String rest = input.substring(index + pattern.length(),
+					input.length());
+			buffer.append(substitute(rest, pattern, replacement));
+		}
+		return buffer.toString();
 	}
 }

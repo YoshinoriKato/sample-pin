@@ -1,6 +1,6 @@
 
 <%
-	String addClass = "btn btn-large btn-cell";
+	String addClass = "btn btn-large btn-info btn-cell";
 %>
 
 <div class="center page-menu">

@@ -195,10 +195,9 @@ public class MakeCardServlet extends HttpServlet {
 			String url = getValueByKeyword(part, "url");
 
 			if (title != null) {
-				card.setCaption(title);
 
 			} else if (caption != null) {
-				card.setCaption(caption);
+				card.setCaption(Helper.escapeHTML(caption));
 
 			} else if (url != null) {
 				card.setUrl(url);

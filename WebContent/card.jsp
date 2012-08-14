@@ -54,7 +54,7 @@
 						<div class="help-inline"><%=message%></div>
 					</div>
 					<div class="control-group">
-						<input type="submit" class="btn btn-large btn-info btn-cell"
+						<input type="submit" class="btn btn-large btn-primary btn-cell"
 							value="Comment">
 					</div>
 					<input type="hidden" name="cardId" value="<%=cardId%>">
