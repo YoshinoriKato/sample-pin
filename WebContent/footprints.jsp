@@ -7,6 +7,11 @@
 <html>
 <head>
 <jsp:include page="header.jsp"></jsp:include>
+<script type="text/javascript" charset="UTF-8">
+	$(window).load(function() {
+		$('#main').fadeIn(1000);
+	});
+</script>
 </head>
 
 
@@ -62,6 +67,7 @@
 		</ul>
 		<br style="clear: both;" />
 	</div>
+	<div id="cover" class="center"></div>
 </body>
 <script type="text/javascript">
 	$(window).load(function() {
@@ -69,6 +75,7 @@
 			offset : 20
 		});
 		cardId = $("#cardId").text();
+		$('#cover').fadeOut(1000);
 	});
 	$(window).resize(function() {
 		$('#content li').wookmark({

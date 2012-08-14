@@ -4,7 +4,7 @@
 <%
 	String sorted = request.getParameter("sorted");
 	sorted = sorted == null ? "" : "?sorted=" + sorted;
-	String userId = (String)session.getId();
+	String userId = (String) session.getId();
 %>
 
 
@@ -16,13 +16,12 @@
 	$(window).resize(function() {
 		$('#content li').wookmark({
 			offset : 20
-		})
+		});
 	});
 
 	$(window).load(function() {
-
 		$sorted = $('#sorted').text();
-
+		$('#main').fadeIn(1000);
 		$.ajax({
 			cache : false,
 			type : 'post',
@@ -34,6 +33,7 @@
 				key : '0381075127472'
 			},
 			success : callback,
+			error: function(XMLHttpRequest, textStatus, errorThrown){alert(textStatus);},
 			dataType : 'json'
 		});
 	});
@@ -44,8 +44,9 @@
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
-	<jsp:include page="button.jsp" flush="true" />
-	<!-- 
+
+		<jsp:include page="button.jsp" flush="true" />
+		<!-- 
 		<div class="center page-menu">
 			<span><a href="index.jsp" class="btn btn-large btn-cell">Latest</a> <a
 				href="index.jsp?sorted=view" class="btn btn-large btn-cell">Viewed Most</a> <a
@@ -59,6 +60,7 @@
 	</div>
 	<div style="display: none" id="sorted"><%=sorted%></div>
 	<div class="center caption">&copy; Sample-Pin</div>
+	<div id="cover" class="center"></div>
 </body>
 
 </html>

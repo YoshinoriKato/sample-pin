@@ -14,10 +14,13 @@
 	$(window).resize(function() {
 		$('#content li').wookmark({
 			offset : 20
-		})
+		});
 	});
 
 	$(window).load(function() {
+		
+		$('#main').fadeIn(1000);
+
 		$.ajax({
 			cache : false,
 			type : 'post',
@@ -46,6 +49,7 @@
 		<br style="clear: both;" />
 	</div>
 	<div class="center caption">&copy; Sample-Pin</div>
+	<div id="cover" class="center"></div>
 </body>
 
 </html>

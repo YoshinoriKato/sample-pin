@@ -7,6 +7,12 @@
 <html>
 <head>
 <jsp:include page="header.jsp"></jsp:include>
+<script type="text/javascript" charset="UTF-8">
+	$(window).load(function() {
+		$('#main').fadeIn(1000);
+		$('#cover').fadeOut(1000);
+	});
+</script>
 </head>
 
 <%
@@ -27,7 +33,7 @@
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
-	<jsp:include page="button.jsp" flush="true" />
+		<jsp:include page="button.jsp" flush="true" />
 		<div class="image-holder">
 			<img src="<%=card.getImagePath()%>" class="image-origin">
 		</div>
@@ -72,7 +78,7 @@
 				%>
 			</div>
 		</div>
-		
+
 		<ul id="content">
 			<li>
 				<div class="cell">
@@ -119,8 +125,9 @@
 		</ul>
 		<br style="clear: both;" />
 	</div>
-	
+
 	<div style="display: none;" id="cardId"><%=cardId%></div>
+	<div id="cover" class="center"></div>
 </body>
 
 <script type="text/javascript">

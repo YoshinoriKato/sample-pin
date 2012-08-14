@@ -6,6 +6,12 @@
 <html>
 <head>
 <jsp:include page="header.jsp"></jsp:include>
+<script type="text/javascript" charset="UTF-8">
+	$(window).load(function() {
+		$('#main').fadeIn(1000);
+		$('#cover').fadeOut(1000);
+	});
+</script>
 </head>
 
 <%
@@ -107,5 +113,6 @@
 			</div>
 		</div>
 	</div>
+	<div id="cover" class="center"></div>
 </body>
 </html>
