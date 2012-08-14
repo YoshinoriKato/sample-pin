@@ -14,7 +14,6 @@ function callback(array) {
 			$jqA.attr("href", "jump.jsp?cardId=" + array[i].cardId
 					+ "&redirectUrl=" + $url).attr("target", "_blank");
 			$divStar.text($url);
-			$divCaption.addClass("star");
 		} else {
 			$jqDiv.addClass("cell");
 			$jqA.attr("href", "card.jsp?cardId=" + array[i].cardId);

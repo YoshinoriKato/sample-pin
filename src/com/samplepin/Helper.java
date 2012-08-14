@@ -127,6 +127,17 @@ public class Helper {
 		return new ArrayList<Comment>();
 	}
 
+	public static List<Country> getCountries() {
+		try (ACMongo mongo = new ACMongo()) {
+			Datastore datastore = mongo.createDatastore();
+			Query<Country> query = datastore.createQuery(Country.class);
+			return query.asList();
+		} catch (UnknownHostException | MongoException e) {
+			e.printStackTrace();
+		}
+		return new ArrayList<Country>();
+	}
+
 	public static String getFontColor(User user) {
 		if (user != null) {
 			String color = user.getFontColor();

@@ -15,7 +15,9 @@ public class User {
 
 	Integer password;
 
-	Long birthDay;
+	String imagePath;
+
+	String birthDay;
 
 	String mail;
 
@@ -35,11 +37,14 @@ public class User {
 
 	Boolean useBackgroundImage;
 
+	Integer code;
+
 	public User() {
 		super();
 		this.userId = "";
 		this.password = 0;
-		this.birthDay = 0L;
+		this.imagePath = "img/no_image.png";
+		this.birthDay = "";
 		this.mail = "";
 		this.loginFaileds = 0;
 		this.lastUpdate = 0L;
@@ -49,6 +54,7 @@ public class User {
 		this.userName = "anonymous";
 		this.backgroundColor = "#cccccc";
 		this.useBackgroundImage = true;
+		this.code = 0;
 	}
 
 	public String getBackgroundColor() {
@@ -59,8 +65,12 @@ public class User {
 		return this.backgroundImage;
 	}
 
-	public Long getBirthDay() {
+	public String getBirthDay() {
 		return this.birthDay;
+	}
+
+	public Integer getCode() {
+		return this.code;
 	}
 
 	public Long getCreateDate() {
@@ -73,6 +83,10 @@ public class User {
 
 	public ObjectId getId() {
 		return this.id;
+	}
+
+	public String getImagePath() {
+		return this.imagePath;
 	}
 
 	public Long getLastUpdate() {
@@ -111,8 +125,12 @@ public class User {
 		this.backgroundImage = backgroundImage;
 	}
 
-	public void setBirthDay(Long birthDay) {
+	public void setBirthDay(String birthDay) {
 		this.birthDay = birthDay;
+	}
+
+	public void setCode(Integer code) {
+		this.code = code;
 	}
 
 	public void setCreateDate(Long createDate) {
@@ -125,6 +143,10 @@ public class User {
 
 	public void setId(ObjectId id) {
 		this.id = id;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 
 	public void setLastUpdate(Long lastUpdate) {
