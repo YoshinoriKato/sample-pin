@@ -70,7 +70,10 @@ public class Initializer3 extends HttpServlet {
 	 */
 	public static void main(String[] args) {
 		Random dice = new Random(System.nanoTime());
-		long mills = System.currentTimeMillis() - (1000 * 60 * 60 * 24 * 500);
+		long mills = System.currentTimeMillis() - (1000 * 60 * 60 * 24 * 1000);
+		final int MAX_USERS = 10000;
+		final int MAX_COMMENTS = 1000;
+		final int MAX_VIEWS = 100000;
 
 		try (ACMongo mongo = new ACMongo()) {
 			mongo.dropDatabase(mongo.getDbName());
@@ -80,13 +83,17 @@ public class Initializer3 extends HttpServlet {
 			Set<String> userIds = new HashSet<>();
 			Set<String> cardIds = new HashSet<>();
 
-			for (int i = 0; i < 1000; i++) {
+			for (int i = 0; i < MAX_USERS; i++) {
 				User user = new User();
 				String userId = Helper.generatedUserId("ID_");
 				user.setUserId(userId);
 				user.setPassword(Helper.generatedUserId().hashCode());
 				user.setMail(Helper.generatedUserId("M_") + "@sample-pin.com");
 				userIds.add(userId);
+				user.setBackgroundColor(Helper.generateColorString());
+				user.setFontColor(Helper.generateColorString());
+				user.setUseBackgroundImage(false);
+				user.setUserName(Helper.generatedUserId());
 				datastore.save(user);
 			}
 
@@ -97,8 +104,8 @@ public class Initializer3 extends HttpServlet {
 				String cardId = Base64.encode(String.valueOf(System.nanoTime())
 						.getBytes());
 				cardIds.add(cardId);
-				int likes = dice.nextInt(1000);
-				int views = dice.nextInt(1000);
+				int likes = dice.nextInt(MAX_COMMENTS);
+				int views = dice.nextInt(MAX_VIEWS);
 				views = views < likes ? likes : views;
 				cards.add(new Card(cardId, "", "img/flag/" + FLAGS[i], "",
 						"How about this country ?", likes, views, mills2));

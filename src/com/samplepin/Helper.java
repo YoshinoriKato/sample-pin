@@ -45,6 +45,14 @@ public class Helper {
 		return SDF_DATE_TIME.format(date);
 	}
 
+	public static String generateColorString() {
+		Random dice = new Random(System.nanoTime());
+		String color = "#" + Integer.toHexString(dice.nextInt(255))
+				+ Integer.toHexString(dice.nextInt(255))
+				+ Integer.toHexString(dice.nextInt(255));
+		return color;
+	}
+
 	public static String generatedUserId() {
 		return generatedUserId("");
 	}
@@ -91,12 +99,12 @@ public class Helper {
 		return new Card();
 	}
 
-	public static List<Comment> getCommentsInfoByID(String cardId, String userId) {
+	public static List<Comment> getCommentsInfoByID(String cardId) {
 		try (ACMongo mongo = new ACMongo()) {
-
 			Datastore datastore = mongo.createDatastore();
 			Query<Comment> query = datastore.createQuery(Comment.class)
-					.filter("cardId = ", cardId).order("-createDate");
+					.filter("cardId = ", cardId).order("-createDate")
+					.limit(100);
 			List<Comment> comments = query.asList();
 			return comments;
 		} catch (UnknownHostException | MongoException e) {

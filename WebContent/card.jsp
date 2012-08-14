@@ -11,13 +11,13 @@
 
 <%
 	String cardId = request.getParameter("cardId");
-	String userId = (String) session.getAttribute("userId");
-	userId = (userId != null) ? userId : session.getId();
+	String userId0 = (String) session.getAttribute("userId");
+	String userId1 = (userId0 != null) ? userId0 : session.getId();
 	
 	Card card = Helper.getCardInfoByID(cardId);
-	Helper.setFootprint(card, userId);
+	Helper.setFootprint(card, userId1);
 	Random dice = new Random(System.nanoTime());
-	List<Comment> comments = Helper.getCommentsInfoByID(cardId, userId);
+	List<Comment> comments = Helper.getCommentsInfoByID(cardId);
 
 	String message = (String) request.getAttribute("message");
 	message = message != null ? message : "";
@@ -27,6 +27,7 @@
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
+	<jsp:include page="button.jsp" flush="true" />
 		<div class="image-holder">
 			<img src="<%=card.getImagePath()%>" class="image-origin">
 		</div>
@@ -42,7 +43,7 @@
 				</p>
 
 				<%
-					} else if (userId != null) {
+					} else if (userId0 != null) {
 				%>
 
 				<form method="post" action="comment.do" class="form-horizontal">
