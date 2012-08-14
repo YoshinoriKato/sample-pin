@@ -44,12 +44,15 @@
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
+	<jsp:include page="button.jsp" flush="true" />
+	<!-- 
 		<div class="center page-menu">
-			<span><a href="index.jsp" class="btn btn-large">Latest</a> <a
-				href="index.jsp?sorted=view" class="btn btn-large">Viewed Most</a> <a
-				href="index.jsp?sorted=comment" class="btn btn-large">Commented
+			<span><a href="index.jsp" class="btn btn-large btn-cell">Latest</a> <a
+				href="index.jsp?sorted=view" class="btn btn-large btn-cell">Viewed Most</a> <a
+				href="index.jsp?sorted=comment" class="btn btn-large btn-cell">Commented
 					Most</a></span>
 		</div>
+	 -->
 		<ul id="content">
 		</ul>
 		<br style="clear: both;" />

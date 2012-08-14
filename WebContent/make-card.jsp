@@ -56,7 +56,7 @@
 								<div class="control-group">
 									<div class="controls">
 										<input type="submit" value="Make"
-											class="btn btn-large btn-info">
+											class="btn btn-large btn-info btn-cell">
 									</div>
 								</div>
 							</fieldset>

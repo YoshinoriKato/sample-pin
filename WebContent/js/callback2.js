@@ -1,4 +1,4 @@
-function callback(array) {
+function callback2(array) {
 	for ( var i = 0; i < array.length; i++) {
 		var $jqLi = $("<li/>");
 		var $jqDiv = $("<div/>").addClass("cell");

@@ -181,8 +181,8 @@ public class MakeCardServlet extends HttpServlet {
 	final Card readRequest(Collection<Part> parts, String userId,
 			List<Uploader> uploadQue) throws IllegalStateException,
 			IOException, ServletException {
-		String cardId = Base64.encode(String.valueOf(System.nanoTime())
-				.getBytes());
+		String cardId = Base64.encode(String
+				.valueOf(System.currentTimeMillis()).getBytes());
 		Card card = new Card();
 		card.setImagePath("img/no_image.png");
 		card.setUserId(userId);

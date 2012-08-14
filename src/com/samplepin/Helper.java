@@ -4,8 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -36,20 +34,6 @@ public class Helper {
 
 	static SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss.SSS");
-
-	static Comparator<Comment> LATEST_COMMENT = new Comparator<Comment>() {
-		@Override
-		public int compare(Comment o1, Comment o2) {
-			return o2.getCreateDate().compareTo(o1.getCreateDate());
-		}
-	};
-
-	static Comparator<View> LATEST_VIEW = new Comparator<View>() {
-		@Override
-		public int compare(View o1, View o2) {
-			return o2.getVisitedDate().compareTo(o1.getVisitedDate());
-		}
-	};
 
 	public static String formatToDateString(Long mills) {
 		Date date = new Date(mills);
@@ -111,10 +95,9 @@ public class Helper {
 		try (ACMongo mongo = new ACMongo()) {
 
 			Datastore datastore = mongo.createDatastore();
-			Query<Comment> query = datastore.createQuery(Comment.class).filter(
-					"cardId = ", cardId);
+			Query<Comment> query = datastore.createQuery(Comment.class)
+					.filter("cardId = ", cardId).order("-createDate");
 			List<Comment> comments = query.asList();
-			Collections.sort(comments, LATEST_COMMENT);
 			return comments;
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();
@@ -162,10 +145,10 @@ public class Helper {
 	public static List<View> getViewsInfoByID(String userId) {
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
-			Query<View> query = datastore.createQuery(View.class).filter(
-					"userId = ", userId);
+			Query<View> query = datastore.createQuery(View.class)
+					.filter("userId = ", userId).limit(100)
+					.order("-visitedDate");
 			List<View> comments = query.asList();
-			Collections.sort(comments, LATEST_VIEW);
 			return comments;
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();
@@ -243,7 +226,7 @@ public class Helper {
 
 				view = new View(0L, card.getCardId(), userId);
 			}
-
+			view.setTimes(view.getTimes() + 1);
 			view.setVisitedDate(System.currentTimeMillis());
 			datastore.save(view);
 		} catch (UnknownHostException | MongoException e) {

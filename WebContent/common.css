@@ -6,8 +6,9 @@
 
 @font-face {
 	font-family: 'HuiFontPRegular';
-	src: local('HuiFontP Regular'), /*フォントがローカルにインストールされている時の指定*/       
-		      local('HuiFontP'), url('font/HuiFontP29.ttf') format('truetype');
+	src: local('HuiFontP Regular'), /*フォントがローカルにインストールされている時の指定*/        
+		       local('HuiFontP'), url('font/HuiFontP29.ttf')
+		format('truetype');
 	/* Safari、Chrome、Firefox、Opera */
 }
 
@@ -15,6 +16,15 @@ body {
 	background-color: #eee;
 	background-image: url("img/ichimatsu.png?201208131742");
 	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+}
+
+.btn-cell {
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 3px 12px 3px; /* CSS3草案 */
+	-webkit-border-radius: 3px 12px 3px; /* Safari,Google Chrome用 */
+	-moz-border-radius: 3px 12px 3px; /* Firefox用 */
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .image-holder {
@@ -38,9 +48,9 @@ body {
 	margin-bottom: 10px;
 	min-width: 200px;
 	min-height: 30px;
-	filter: alpha(opacity =       90);
-	-moz-opacity: 0.90;
-	opacity: 0.90;
+	filter: alpha(opacity=80);
+	-moz-opacity: 0.80;
+	opacity: 0.80;
 }
 
 #cover {

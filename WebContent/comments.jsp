@@ -30,7 +30,7 @@
 				name : 'index.jsp',
 				key : '0381075127472'
 			},
-			success : callback,
+			success : callback2,
 			dataType : 'json'
 		});
 	});

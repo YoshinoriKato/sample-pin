@@ -35,7 +35,7 @@
 							<div class="control-group">
 								<div class="controls">
 									<input type="submit" name="submit" value="Sign up"
-										class="btn btn-large btn-primary" />
+										class="btn btn-large btn-primary btn-cell" />
 								</div>
 							</div>
 						</fieldset>

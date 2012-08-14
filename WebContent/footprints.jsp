@@ -20,6 +20,7 @@
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
+		<jsp:include page="button.jsp" flush="true" />
 		<ul id="content">
 			<%
 				for (View view : views) {
