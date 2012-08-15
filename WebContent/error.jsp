@@ -6,8 +6,9 @@
 <jsp:include page="header.jsp"></jsp:include>
 <script type="text/javascript" charset="UTF-8">
 	$(window).load(function() {
-		$('#main').fadeIn(1000);
-		$('#cover').fadeOut(1000);
+		$('#main').fadeIn(10);
+		$('#cover').fadeOut(10);
+		$('#cover2').fadeIn(10);
 	});
 </script>
 </head>

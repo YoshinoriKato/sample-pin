@@ -53,11 +53,13 @@ public class CardServlet extends HttpServlet {
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();
 			log(e.getMessage());
+			throw e;
 		}
 		writeToJSON(resp, cards);
 	}
 
-	final void writeToJSON(HttpServletResponse resp, List<Card> cards) {
+	final void writeToJSON(HttpServletResponse resp, List<Card> cards)
+			throws IOException {
 		try (OutputStreamWriter osw = new OutputStreamWriter(
 				resp.getOutputStream(), "UTF-8")) {
 			Gson gson = new Gson();
@@ -67,7 +69,7 @@ public class CardServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			log(e.getMessage());
+			throw e;
 		}
-
 	}
 }

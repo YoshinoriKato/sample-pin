@@ -18,7 +18,7 @@
 	});
 
 	$(window).load(function() {
-		
+
 		$('#main').fadeIn(1000);
 
 		$.ajax({
@@ -32,7 +32,10 @@
 				key : '0381075127472'
 			},
 			success : callback,
-			error: function(XMLHttpRequest, textStatus, errorThrown){alert(textStatus);},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				$('#cover').fadeOut(10);
+				$('#cover2').fadeIn(10);
+			},
 			dataType : 'json'
 		});
 	});
@@ -43,7 +46,7 @@
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
 	<div id="main">
-	<jsp:include page="button.jsp" flush="true" />
+		<jsp:include page="button.jsp" flush="true" />
 		<ul id="content">
 		</ul>
 		<br style="clear: both;" />

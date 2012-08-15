@@ -37,8 +37,16 @@
 
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
-	<div id="origin" class="tab-button" onclick="pushPull('#image-holder','#origin')">&nbsp;</div>
-	<div id="write" class="tab-button" onclick="pushPull('#comment-area','#write')">&nbsp;</div>
+	<div id="origin" class="small-tab"
+		onclick="pushPull('#image-holder','#origin')">
+		<span class="vertical-text">Image</span>
+	</div>
+	<div id="write" class="small-tab"
+		onclick="pushPull('#comment-area','#write')">
+		<div class=" ">
+			<span class="vertical-text">Comment</span>
+		</div>
+	</div>
 	<div id="main">
 		<jsp:include page="button.jsp" flush="true" />
 		<div id="image-holder">

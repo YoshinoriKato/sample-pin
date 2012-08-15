@@ -6,9 +6,9 @@
 
 @font-face {
 	font-family: 'HuiFontPRegular';
-	src: local('HuiFontP Regular'), /*フォントがローカルにインストールされている時の指定*/ 
+	src: local('HuiFontP Regular'), /*フォントがローカルにインストールされている時の指定*/           
 		           
-		            local('HuiFontP'), url('font/HuiFontP29.ttf')
+		                      local('HuiFontP'), url('font/HuiFontP29.ttf')
 		format('truetype');
 	/* Safari、Chrome、Firefox、Opera */
 }
@@ -41,7 +41,7 @@ body {
 	margin-bottom: 10px;
 	min-width: 200px;
 	min-height: 30px;
-	filter: alpha(opacity =         80);
+	filter: alpha(opacity =                             80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 }
@@ -56,6 +56,20 @@ body {
 	background-color: rgba(0, 0, 0, 0.0);
 	z-index: 3;
 	font-size: larger;
+}
+
+#cover2 {
+	display: none;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	font-size: larger;
+	width: 100%;
+	height: 50000px;
+	background-color: rgba(0, 0, 0, 0.0);
+	z-index: 5;
+	font-size: larger;
+	position: absolute;
 }
 
 .text,.textarea,.dropdown {
@@ -97,7 +111,7 @@ body {
 	display: block;
 }
 
-.ajax {
+#ajax {
 	border: 1px solid rgba(255, 255, 255, 0.3);
 	background-color: rgba(255, 255, 255, 0.95);
 	border-radius: 6px 40px 6px; /* CSS3草案 */
@@ -112,6 +126,23 @@ body {
 	position: relative;
 	top: 240px;
 	left: 40%;
+}
+
+#error-dialog {
+	border: 1px solid rgba(255, 0, 0, 0.3);
+	background-color: rgba(255, 0, 0, 0.6);
+	border-radius: 6px 40px 6px; /* CSS3草案 */
+	-webkit-border-radius: 6px 40px 6px; /* Safari,Google Chrome用 */
+	-moz-border-radius: 6px 40px 6px; /* Firefox用 */
+	box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
+	width: 20%;
+	text-align: center;
+	padding: 20px;
+	position: relative;
+	top: 140px;
+	left: 40%;
+	z-index: 9;
 }
 
 .cell {
@@ -224,38 +255,37 @@ a .no-hover:HOVER {
 #origin {
 	z-index: 4;
 	background-color: rgba(0, 0, 0, 0.4);
-	position: absolute;
-	width: 70px;
+	position: fixed;
+	width: 40px;
 	height: 240px;
 	top: 120px;
-	left: -10px;
+	left: -15px;
 	border-radius: 0px 40px 6px 0px; /* CSS3草案 */
 	-webkit-border-radius: 0px 40px 6px 0px; /* Safari,Google Chrome用 */
 	-moz-border-radius: 0px 40px 6px 0px; /* Firefox用 */
-	padding-top: 30px;
 	box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
 	-webkit-box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
+	height: 240px;
 }
 
 #write {
 	z-index: 5;
 	background-color: rgba(255, 255, 255, 0.7);
-	position: absolute;
-	width: 70px;
+	position: fixed;
+	width: 40px;
 	height: 240px;
-	top: 340px;
 	left: -10px;
+	top: 390px;
 	border-radius: 0px 40px 6px 0px; /* CSS3草案 */
 	-webkit-border-radius: 0px 40px 6px 0px; /* Safari,Google Chrome用 */
 	-moz-border-radius: 0px 40px 6px 0px; /* Firefox用 */
-	padding-top: 30px;
 	box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.3);
 }
 
 #image-holder {
 	z-index: 4;
-	position: absolute;
+	position: fixed;
 	top: 120px;
 	display: none;
 	width: 99%;
@@ -272,8 +302,8 @@ a .no-hover:HOVER {
 
 #comment-area {
 	z-index: 5;
-	position: absolute;
-	top: 340px;
+	position: fixed;
+	top: 390px;
 	display: none;
 	width: 99%;
 	background-color: rgba(255, 255, 255, 0.7);
@@ -285,6 +315,24 @@ a .no-hover:HOVER {
 	padding-bottom: 10px;
 	box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.3);
+}
+
+#bottom-label {
+	position: fixed;
+	bottom: -5px;
+	right: 20px;
+	border-radius: 3px 25px 0px 0px;
+	-webkit-border-radius: 3px 25px 0px 0px;
+	-moz-border-radius: 3px 25px 0px 0px;
+	background-color: rgba(255, 255, 255, 0.7);
+	box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.3);
+	overflow: hidden;
+	padding: 20px;
+	font-size: large;
+	text-align: center;
+	color: rgba(180, 180, 180, 0.8);
+	text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.8);
 }
 
 .comment {
@@ -306,13 +354,45 @@ a .no-hover:HOVER {
 	text-align: right;
 }
 
-.tab-button {
-	text-align: right;
-	position: relative;
-	right: 30px;
+.small-tab {
+	padding-top: 30px;
+	padding-right: 30px;
+	padding-bottom: 30px;
+	width: 40px;
+}
+
+.vertical-text {
+	position: absolute;
+	z-index: 6;
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	display: block;
+	padding: 8px;
+	width: 200px;
+	height: 30px;
+	text-align: left;
+	top: 105px;
+	right: -75px; font-size : x-large;
+	text-align: center;
+	color: rgba(180, 180, 180, 0.8);
+	text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.8);
 	font-size: x-large;
-	color : rgba(120, 120, 120, 0.8);
-	text-shadow: 0px 0px 0px rgba(255, 255, 255, 0.8);
+}
+
+.hoge {
+	
+}
+
+.tab-button {
+	position: absolute;
+	right: 30px;
+	top: 30px;
+	font-size: x-large;
+	color: rgba(180, 180, 180, 0.8);
+	text-align: right;
+	text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.8);
 }
 
 .star {
