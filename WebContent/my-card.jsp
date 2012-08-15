@@ -113,7 +113,8 @@
 
 								<div class="control-group">
 									<div class="controls">
-										<input type="submit" value="Update" class="btn btn-large btn-primary btn-cell">
+										<input type="submit" value="Update"
+											class="btn btn-large btn-primary btn-cell">
 									</div>
 								</div>
 							</fieldset>

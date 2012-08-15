@@ -37,7 +37,9 @@
 								<div class="control-group">
 									<label for="imagePath" class="control-label">Image</label>
 									<div class="controls">
-										<div><img src="<%=user.getImagePath() %>" class="image-shot"></div>
+										<div>
+											<img src="<%=user.getImagePath() %>" class="image-shot">
+										</div>
 										<input type="file" name="imagePath">
 									</div>
 								</div>
@@ -82,21 +84,24 @@
 								<div class="control-group <%=error%>">
 									<label for="password0" class="control-label">Password</label>
 									<div class="controls">
-										<input type="password" name="password0"><span class="help-inline"><%=message%></span>
+										<input type="password" name="password0"><span
+											class="help-inline"><%=message%></span>
 									</div>
 								</div>
 								<div class="control-group <%=error%>">
 									<label for="password1" class="control-label">New
 										Password</label>
 									<div class="controls">
-										<input type="password" name="password1"><span class="help-inline"><%=message%></span>
+										<input type="password" name="password1"><span
+											class="help-inline"><%=message%></span>
 									</div>
 								</div>
 								<div class="control-group <%=error%>">
 									<label for="password2" class="control-label">New
 										Password(Confirm)</label>
 									<div class="controls">
-										<input type="password" name="password2"><span class="help-inline"><%=message%></span>
+										<input type="password" name="password2"><span
+											class="help-inline"><%=message%></span>
 									</div>
 								</div>
 

@@ -21,13 +21,14 @@
 				<div class="hero-unit">
 					<h1>Error</h1>
 					<p>
-					<%
+						<%
 						Exception e = (Exception) session.getAttribute("error");
 
 						if (e != null) {
 							out.print(e.getMessage());
 						}
-					%></p>
+					%>
+					</p>
 				</div>
 			</div>
 		</div>

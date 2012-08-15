@@ -26,7 +26,7 @@ body {
 	margin-bottom: 10px;
 	min-width: 200px;
 	min-height: 30px;
-	filter: alpha(opacity =       80);
+	filter: alpha(opacity =               80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 }
@@ -371,7 +371,6 @@ body {
 .profile .form-actions {
 	padding-left: 160px;
 }
-
 
 #copyrights {
 	z-index: 10;

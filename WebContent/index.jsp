@@ -20,25 +20,8 @@
 	});
 
 	$(window).load(function() {
-		$sorted = $('#sorted').text();
+		callAjax($('#sorted').text());
 		$('#main').fadeIn(1000);
-		$.ajax({
-			cache : false,
-			type : 'post',
-			scriptCharset : 'UTF-8',
-			contentType : 'text/javascript+json; charset=utf-8',
-			url : 'xxx.do' + $sorted,
-			data : {
-				name : 'index.jsp',
-				key : '0381075127472'
-			},
-			success : callback,
-			error : function(XMLHttpRequest, textStatus, errorThrown) {
-				$('#cover').fadeOut(10);
-				$('#cover2').fadeIn(10);
-			},
-			dataType : 'json'
-		});
 	});
 </script>
 </head>
@@ -47,17 +30,9 @@
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="main">
-
 		<jsp:include page="_button.jsp" flush="true" />
-		<!-- 
-		<div class="center page-menu">
-			<span><a href="index.jsp" class="btn btn-large btn-cell">Latest</a> <a
-				href="index.jsp?sorted=view" class="btn btn-large btn-cell">Viewed Most</a> <a
-				href="index.jsp?sorted=comment" class="btn btn-large btn-cell">Commented
-					Most</a></span>
-		</div>
-	 -->
 		<ul id="content">
+			<!--  ajax -->
 		</ul>
 		<br style="clear: both;" />
 	</div>

@@ -54,14 +54,16 @@
 								<label for="mail" class="control-label">Mail</label>
 								<div class="controls">
 									<input type="email" name="mail" class="span6 input"
-										placeholder="xxxxxx@xxx.xxx" value="<%=mail%>" /><span class="help-inline"><%=message%></span>
+										placeholder="xxxxxx@xxx.xxx" value="<%=mail%>" /><span
+										class="help-inline"><%=message%></span>
 								</div>
 							</div>
 							<div class="control-group <%=error%>">
 								<label for="password" class="control-label">Password</label>
 								<div class="controls">
 									<input type="password" name="password" class="span6"
-										placeholder="password" value="<%=password%>" /><span class="help-inline"><%=message%></span>
+										placeholder="password" value="<%=password%>" /><span
+										class="help-inline"><%=message%></span>
 								</div>
 							</div>
 							<div class="control-group">
