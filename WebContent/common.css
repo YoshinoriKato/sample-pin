@@ -6,9 +6,10 @@
 
 @font-face {
 	font-family: 'HuiFontPRegular';
-	src: local('HuiFontP Regular'), /*フォントがローカルにインストールされている時の指定*/           
+	src: local('HuiFontP Regular'), /*フォントがローカルにインストールされている時の指定*/
 		           
-		                      local('HuiFontP'), url('font/HuiFontP29.ttf')
+		           
+		                       local('HuiFontP'), url('font/HuiFontP29.ttf')
 		format('truetype');
 	/* Safari、Chrome、Firefox、Opera */
 }
@@ -41,7 +42,7 @@ body {
 	margin-bottom: 10px;
 	min-width: 200px;
 	min-height: 30px;
-	filter: alpha(opacity =                             80);
+	filter: alpha(opacity =                               80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 }
@@ -374,8 +375,8 @@ a .no-hover:HOVER {
 	height: 30px;
 	text-align: left;
 	top: 105px;
-	right: -75px; font-size : x-large;
-	text-align: center;
+	right: -75px;
+	font-size: x-large;
 	color: rgba(180, 180, 180, 0.8);
 	text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.8);
 	font-size: x-large;
