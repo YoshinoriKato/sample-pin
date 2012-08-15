@@ -86,10 +86,10 @@
 				<%
 					} else {
 				%>
-				<p>
+				<div class="caption large">
 					Please, <a href="login.jsp?fromUrl=card.jsp?cardId=<%=cardId%>">Login</a>
 					or <a href="signup.jsp">Sign up</a>.
-				</p>
+				</div>
 				<%
 					}
 				%>
@@ -125,7 +125,7 @@
 					String backgroundColor = Helper.getBackgroundColor(user);
 					String userName = user != null ? user.getUserName() : "nanashi";
 			%>
-			<li><div class="cell"
+			<li><div class="cell opacity80"
 					style="<%=wallPaper%> <%=backgroundColor%>">
 					<div class="comment" style="<%=fontColor%>">
 						@<%=userName%></div>

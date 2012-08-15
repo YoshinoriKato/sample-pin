@@ -16,6 +16,7 @@
 <link rel="shortcut icon" href="img/favicon.ico?201208101954">
 <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="common.css?201208141735" rel="stylesheet">
+<link href="custom.css?201208141735" rel="stylesheet">
 
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/jquery.wookmark.js"></script>
