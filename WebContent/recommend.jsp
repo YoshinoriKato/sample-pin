@@ -48,8 +48,7 @@
 		</ul>
 		<br style="clear: both;" />
 	</div>
-	<div class="center caption">&copy; Sample-Pin</div>
-	<div id="cover" class="center"></div>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 
 </html>

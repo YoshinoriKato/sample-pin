@@ -33,7 +33,9 @@
 				key : '0381075127472'
 			},
 			success : callback,
-			error: function(XMLHttpRequest, textStatus, errorThrown){alert(textStatus);},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(textStatus);
+			},
 			dataType : 'json'
 		});
 	});
@@ -59,8 +61,7 @@
 		<br style="clear: both;" />
 	</div>
 	<div style="display: none" id="sorted"><%=sorted%></div>
-	<div class="center caption">&copy; Sample-Pin</div>
-	<div id="cover" class="center"></div>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 
 </html>

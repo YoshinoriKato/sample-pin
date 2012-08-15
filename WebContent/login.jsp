@@ -76,6 +76,6 @@
 			</div>
 		</div>
 	</div>
-	<div id="cover" class="center"></div>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

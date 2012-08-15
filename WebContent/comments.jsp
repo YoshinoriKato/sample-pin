@@ -46,6 +46,7 @@
 		<br style="clear: both;" />
 	</div>
 	<div style="display: none" id="sorted"><%=sorted%></div>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 
 </html>

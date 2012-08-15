@@ -67,7 +67,7 @@
 		</ul>
 		<br style="clear: both;" />
 	</div>
-	<div id="cover" class="center"></div>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
 	$(window).load(function() {

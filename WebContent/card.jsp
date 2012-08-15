@@ -12,6 +12,11 @@
 		$('#main').fadeIn(1000);
 		$('#cover').fadeOut(1000);
 	});
+
+	function pushPull(on, off) {
+		$(off).fadeOut(1000);
+		$(on).fadeIn(1000);
+	};
 </script>
 </head>
 
@@ -32,13 +37,17 @@
 
 <body>
 	<jsp:include page="topbar.jsp" flush="true" />
+	<div id="origin" class="tab-button" onclick="pushPull('#image-holder','#origin')">&nbsp;</div>
+	<div id="write" class="tab-button" onclick="pushPull('#comment-area','#write')">&nbsp;</div>
 	<div id="main">
 		<jsp:include page="button.jsp" flush="true" />
-		<div class="image-holder">
+		<div id="image-holder">
+			<div class="tab-button" onclick="pushPull('#origin','#image-holder')">x</div>
 			<img src="<%=card.getImagePath()%>" class="image-origin">
 		</div>
-		<div class="center page-menu">
-			<div id="comment-area">
+		<div id="comment-area">
+			<div class="tab-button" onclick="pushPull('#write','#comment-area')">x</div>
+			<div class="center page-menu">
 				<%
 					if (comments.size() >= CommentServlet.COMMENTS_LIMIT) {
 				%>
@@ -127,7 +136,7 @@
 	</div>
 
 	<div style="display: none;" id="cardId"><%=cardId%></div>
-	<div id="cover" class="center"></div>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 
 <script type="text/javascript">
