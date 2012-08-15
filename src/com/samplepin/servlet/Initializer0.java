@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.code.morphia.Datastore;
 import com.mongodb.MongoException;
 import com.samplepin.ACMongo;
+import com.samplepin.Card;
 import com.samplepin.Country;
+import com.samplepin.Helper;
+import com.samplepin.User;
 
 @WebServlet(urlPatterns = { "/init0.do" })
 public class Initializer0 extends HttpServlet {
@@ -402,13 +404,18 @@ public class Initializer0 extends HttpServlet {
 	 */
 	public static void main(String[] args) {
 		try (ACMongo mongo = new ACMongo()) {
-			Datastore datastore = mongo.createDatastore();
 			for (String[] params : data) {
 				int i = 0;
-				datastore.save(new Country(params[i++], params[i++], Integer
+				mongo.save(new Country(params[i++], params[i++], Integer
 						.valueOf(params[i++]), params[i++], params[i++],
 						params[i++], params[i++]));
 			}
+			mongo.save(new User(Helper.generatedUserId("ID_"),
+					"master@sample-pin.com", "マスター加藤", "hoge".hashCode()));
+
+			mongo.save(new Card("HELP", "sample-pin", "img/broken.gif", "",
+					"Please, view more cards.", 0, 0, System
+							.currentTimeMillis()));
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();
 		}

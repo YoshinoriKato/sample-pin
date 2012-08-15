@@ -24,5 +24,6 @@
 
 <script type="text/javascript" src="js/callback.js" charset="UTF-8"></script>
 <script type="text/javascript" src="js/cover.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/autoUrlLink.js" charset="UTF-8"></script>
 
 

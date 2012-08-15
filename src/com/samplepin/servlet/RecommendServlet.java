@@ -1,6 +1,7 @@
 package com.samplepin.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -13,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 import com.samplepin.ACMongo;
 import com.samplepin.Card;
@@ -66,9 +66,12 @@ public class RecommendServlet extends HttpServlet {
 		}
 		log("Recommends: " + recommends.size());
 
+		if (recommends.size() == 0) {
+			recommends.add("HELP");
+		}
+
 		try (ACMongo mongo = new ACMongo()) {
-			Datastore datastore = mongo.createDatastore();
-			Query<Card> query = datastore.createQuery(Card.class).filter(
+			Query<Card> query = mongo.createQuery(Card.class).filter(
 					"cardId in ", recommends);
 			List<Card> cards = query.asList();
 			new CardServlet().writeToJSON(resp, cards);
@@ -78,10 +81,9 @@ public class RecommendServlet extends HttpServlet {
 	final Set<String> getOthersByViewsAndUserID(List<View> views, String userId)
 			throws IOException {
 		try (ACMongo mongo = new ACMongo()) {
-			Datastore datastore = mongo.createDatastore();
 			Set<String> others = new HashSet<>();
 			for (View view : views) {
-				Query<View> query = datastore.createQuery(View.class)
+				Query<View> query = mongo.createQuery(View.class)
 						.filter("userId != ", userId)
 						.filter("cardId = ", view.getCardId())
 						.order("-comments").order("-times").limit(10);
@@ -96,23 +98,24 @@ public class RecommendServlet extends HttpServlet {
 
 	final List<View> getOthersViewsByUserIDs(Set<String> userIds)
 			throws IOException {
-		try (ACMongo mongo = new ACMongo()) {
-			Datastore datastore = mongo.createDatastore();
-			Query<View> query = datastore.createQuery(View.class)
-					.filter("userId in ", userIds).order("-comments")
-					.order("-times").limit(1000);
-			List<View> result = query.asList();
-			Collections.sort(result, this.SCORE);
-			return result;
+		List<View> result = new ArrayList<View>();
+		if (!userIds.isEmpty()) {
+			try (ACMongo mongo = new ACMongo()) {
+				Query<View> query = mongo.createQuery(View.class)
+						.filter("userId in ", userIds).order("-comments")
+						.order("-times").limit(1000);
+				result = query.asList();
+				result = result != null ? result : new ArrayList<View>();
+				Collections.sort(result, this.SCORE);
+			}
 		}
+		return result;
 
 	}
 
 	final List<View> getViewsByUserID(String userId) throws IOException {
 		try (ACMongo mongo = new ACMongo()) {
-			Datastore datastore = mongo.createDatastore();
-
-			Query<View> query = datastore.createQuery(View.class)
+			Query<View> query = mongo.createQuery(View.class)
 					.filter("userId = ", userId).order("-visitedDate")
 					.limit(10);
 			List<View> views = query.asList();

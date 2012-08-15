@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -34,6 +36,33 @@ public class Helper {
 
 	static SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss.SSS");
+
+	public static final Pattern convURLLinkPtn = Pattern.compile(
+			"(http://|https://){1}[\\w\\.\\-/:\\#\\?\\=\\&\\;\\%\\~\\+]+",
+			Pattern.CASE_INSENSITIVE);
+
+	public static String convURLLink(String str) {
+		Matcher matcher = convURLLinkPtn.matcher(str);
+		return matcher.replaceAll("<a href=\"$0\" target=\"_blank\">$0</a>");
+	}
+
+	public static <T> Long countByID(Class<T> clazz, String ex, String userId) {
+		try (ACMongo mongo = new ACMongo()) {
+			Query<T> query = mongo.createQuery(clazz).filter(ex, userId);
+			return query.countAll();
+		} catch (UnknownHostException | MongoException e) {
+			e.printStackTrace();
+		}
+		return -1L;
+	}
+
+	public static Long countCardByUserId(String userId) {
+		return countByID(Card.class, "userId = ", userId);
+	}
+
+	public static Long countCommentByUserId(String userId) {
+		return countByID(Comment.class, "userId = ", userId);
+	}
 
 	public static String escapeHTML(String input) {
 		input = substitute(input, "&", "&amp;");
@@ -136,6 +165,20 @@ public class Helper {
 			e.printStackTrace();
 		}
 		return new ArrayList<Country>();
+	}
+
+	public static String getCountryEnName(int code) {
+		try (ACMongo mongo = new ACMongo()) {
+			Query<Country> query = mongo.createQuery(Country.class).filter(
+					"code = ", code);
+			Country country = query.get();
+			if (country != null) {
+				return country.getEnName();
+			}
+		} catch (UnknownHostException | MongoException e) {
+			e.printStackTrace();
+		}
+		return "Unkown";
 	}
 
 	public static String getFontColor(User user) {

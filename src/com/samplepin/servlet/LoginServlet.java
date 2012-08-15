@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 import com.mongodb.MongoException;
 import com.samplepin.ACMongo;
+import com.samplepin.Helper;
 import com.samplepin.User;
 
 @WebServlet(urlPatterns = { "/login.do" })
@@ -24,6 +26,17 @@ public class LoginServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 5426777241563315344L;
+
+	public static String KEY_FIRST = "Dioscuri";
+
+	public static String KEY_SECOND = "Pollux";
+
+	public static void makeCookie(HttpServletResponse resp, String userId) {
+		Cookie cookie0 = new Cookie(KEY_FIRST, Helper.generatedUserId("ID_"));
+		Cookie cookie1 = new Cookie(KEY_SECOND, userId);
+		resp.addCookie(cookie0);
+		resp.addCookie(cookie1);
+	}
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -36,6 +49,7 @@ public class LoginServlet extends HttpServlet {
 			User user = getUserByMailAndPassword(mail, hashCode);
 			if (user != null) {
 				login(req, user.getUserId());
+				makeCookie(resp, user.getUserId());
 				String redirectUrl = req.getParameter("redirectUrl");
 				log("forward: " + redirectUrl);
 				resp.sendRedirect(redirectUrl);

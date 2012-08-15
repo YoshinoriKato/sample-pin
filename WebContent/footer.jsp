@@ -6,7 +6,7 @@
 
 <!-- 共有 -->
 
-<div class="center caption">&copy; Sample-Pin</div>
+<div id="copyrights" class="center caption">&copy; Sample-Pin</div>
 <div id="cover" class="center">
 	<div id="ajax">
 		<img src="img/ajax.gif">

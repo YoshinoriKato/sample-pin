@@ -57,6 +57,14 @@ public class User {
 		this.code = 0;
 	}
 
+	public User(String userId, String mail, String userName, Integer password) {
+		this();
+		this.userId = userId;
+		this.mail = mail;
+		this.userName = userName;
+		this.password = password;
+	}
+
 	public String getBackgroundColor() {
 		return this.backgroundColor;
 	}

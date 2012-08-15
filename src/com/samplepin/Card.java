@@ -43,6 +43,7 @@ public class Card implements Serializable {
 			String caption, int likes, int view, long createDate) {
 		super();
 		this.cardId = cardId;
+		this.userId = userId;
 		this.imagePath = imagePath;
 		this.url = url;
 		this.caption = caption;

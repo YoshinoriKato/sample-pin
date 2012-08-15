@@ -38,11 +38,12 @@ function makeCell(array, i) {
 		$jqA.attr("href", "card.jsp?cardId=" + array[i].cardId);
 		$divStar.text(array[i].likes + " comment");
 	}
-	$divRibon.append($("<span/>").addClass("ribon-text").text(
+	$divRibon.append($("<div/>").addClass("ribon-text").text(
 			array[i].view + " view"));
 	$jqA.append($("<img/>").addClass("image-shot deco").attr("src",
 			array[i].imagePath));
 	$divCaption.text(array[i].caption);
+	$divCaption.autoUrlLink();
 	$divImage.append($jqA);
 
 	if (array[i].view > 0) {

@@ -4,6 +4,7 @@ import java.net.UnknownHostException;
 
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.Morphia;
+import com.google.code.morphia.query.Query;
 import com.mongodb.Mongo;
 import com.mongodb.MongoException;
 
@@ -34,12 +35,28 @@ public class ACMongo extends Mongo implements AutoCloseable {
 		return morphia.createDatastore(this, this.dbName);
 	}
 
+	public <T> Query<T> createQuery(Class<T> clazz) {
+		Datastore datastore = createDatastore();
+		Query<T> query = datastore.createQuery(clazz);
+		return query;
+	}
+
 	public String getDbName() {
 		return this.dbName;
 	}
 
 	public String getHostName() {
 		return this.hostName;
+	}
+
+	public <T> void save(Iterable<T> iterable) {
+		Datastore datastore = createDatastore();
+		datastore.save(iterable);
+	}
+
+	public <T> void save(T t) {
+		Datastore datastore = createDatastore();
+		datastore.save(t);
 	}
 
 }

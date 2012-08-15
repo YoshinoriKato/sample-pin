@@ -109,7 +109,7 @@
 					</div>
 					<% } %>
 					<div class="caption deco">
-						<%=card.getCaption()%>
+						<%=Helper.convURLLink(card.getCaption())%>
 					</div>
 					<div class="star right">
 						<%=card.getLikes()%>
@@ -128,10 +128,12 @@
 			<li><div class="cell opacity80"
 					style="<%=wallPaper%> <%=backgroundColor%>">
 					<div class="comment" style="<%=fontColor%>">
-						@<%=userName%></div>
+						<a href="profile.jsp?userId=<%=comment.getUserId() %>">@<%=userName%>
+						</a>
+					</div>
 					<div class="comment deco" style="<%=fontColor%>">
 						<!-- comment -->
-						<%=comment.getComment()%>
+						<%=Helper.convURLLink(comment.getComment()) %>
 					</div>
 					<div class="comment right" style="<%=fontColor%>">
 						<%=Helper.formatToDateTimeString(comment.getCreateDate())%></div>

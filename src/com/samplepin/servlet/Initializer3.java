@@ -70,13 +70,14 @@ public class Initializer3 extends HttpServlet {
 	 */
 	public static void main(String[] args) {
 		Random dice = new Random(System.nanoTime());
-		long mills = System.currentTimeMillis() - (1000 * 60 * 60 * 24 * 1000);
+		long mills = System.currentTimeMillis() - (1000 * 60 * 60 * 24 * 1500);
 		final int MAX_USERS = 3000;
 		final int MAX_COMMENTS = 1000;
 		final int MAX_VIEWS = 10000;
 
 		try (ACMongo mongo = new ACMongo()) {
 			mongo.dropDatabase(mongo.getDbName());
+			Initializer0.main(null);
 
 			Datastore datastore = mongo.createDatastore();
 			List<Card> cards = new ArrayList<Card>();
@@ -110,7 +111,7 @@ public class Initializer3 extends HttpServlet {
 				cards.add(new Card(cardId, "", "img/flag/" + FLAGS[i], "",
 						"How about this country ?", likes, views, mills2));
 
-				mills2 += 1000 * 60 * 60 * dice.nextInt(10);
+				mills2 += 1000 * 60 * 30 * dice.nextInt(7);
 			}
 			datastore.save(cards);
 

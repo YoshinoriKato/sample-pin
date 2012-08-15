@@ -53,7 +53,7 @@
 					</div>
 					<% } %>
 					<div class="caption deco">
-						<%=card.getCaption()%>
+						<%=Helper.convURLLink(card.getCaption())%>
 					</div>
 					<div class="star right">
 						<%=star%>

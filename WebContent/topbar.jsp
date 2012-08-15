@@ -17,6 +17,7 @@
 	String classLogout = url.contains("logout") ? CLASS_ACTIVE : "";
 	String classSignup = url.contains("signup") ? CLASS_ACTIVE : "";
 	String classAccount = url.contains("account") ? CLASS_ACTIVE : "";
+	String classProfile = url.contains("profile") ? CLASS_ACTIVE : "";
 %>
 
 <script type="text/javascript" charset="utf-8">
@@ -37,14 +38,15 @@
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li <%=classIndex%>><a href="index.jsp">Cards</a></li>
-					<li class="divider-vertical"></li>
 					<%
 						String userId = (String) session.getAttribute("userId");
 						if (userId != null) {
 					%>
 					<li <%=classMakeCard%>><a href="make-card.jsp">Make Card</a></li>
-					<li <%=classMyCard%>><a href="my-card.jsp">My Card</a></li>
-					<li <%=classAccount%>><a href="account.jsp">My Account</a></li>
+					<li class="divider-vertical"></li>
+					<li <%=classProfile%>><a href="profile.jsp">My Profile</a></li>
+					<li <%=classMyCard%>><a href="my-card.jsp">Design My Card</a></li>
+					<li <%=classAccount%>><a href="account.jsp">Setting Account</a></li>
 					<li class="divider-vertical"></li>
 					<li <%=classLogout%>><a href="logout.do">Logout</a></li>
 					<%
