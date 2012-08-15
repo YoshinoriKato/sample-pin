@@ -6,7 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="_header.jsp"></jsp:include>
 <script type="text/javascript" charset="UTF-8">
 	$(window).load(function() {
 		$('#main').fadeIn(1000);
@@ -36,7 +36,7 @@
 %>
 
 <body>
-	<jsp:include page="topbar.jsp" flush="true" />
+	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="origin" class="small-tab"
 		onclick="pushPull('#image-holder','#origin')">
 		<span class="vertical-text">Image</span>
@@ -48,7 +48,7 @@
 		</div>
 	</div>
 	<div id="main">
-		<jsp:include page="button.jsp" flush="true" />
+		<jsp:include page="_button.jsp" flush="true" />
 		<div id="image-holder">
 			<div class="tab-button" onclick="pushPull('#origin','#image-holder')">x</div>
 			<img src="<%=card.getImagePath()%>" class="image-origin">
@@ -146,7 +146,7 @@
 	</div>
 
 	<div style="display: none;" id="cardId"><%=cardId%></div>
-	<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="_footer.jsp"></jsp:include>
 </body>
 
 <script type="text/javascript">

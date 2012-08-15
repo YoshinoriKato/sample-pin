@@ -159,7 +159,8 @@ public class Helper {
 	public static List<Country> getCountries() {
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
-			Query<Country> query = datastore.createQuery(Country.class);
+			Query<Country> query = datastore.createQuery(Country.class).order(
+					"code");
 			return query.asList();
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();

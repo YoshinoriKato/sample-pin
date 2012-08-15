@@ -34,6 +34,8 @@ public class LoginServlet extends HttpServlet {
 	public static void makeCookie(HttpServletResponse resp, String userId) {
 		Cookie cookie0 = new Cookie(KEY_FIRST, Helper.generatedUserId("ID_"));
 		Cookie cookie1 = new Cookie(KEY_SECOND, userId);
+		cookie0.setMaxAge(Integer.MAX_VALUE);
+		cookie1.setMaxAge(Integer.MAX_VALUE);
 		resp.addCookie(cookie0);
 		resp.addCookie(cookie1);
 	}

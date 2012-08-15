@@ -5,13 +5,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<jsp:include page="header.jsp"></jsp:include>
-<script type="text/javascript" charset="UTF-8">
+<jsp:include page="_header.jsp"></jsp:include>
+<script type="text/javascript" charset="utf-8">
+	$(window).resize(function() {
+		$('#content li').wookmark({
+			offset : 20
+		});
+	});
+
 	$(window).load(function() {
+		$sorted = $('#sorted').text();
 		$('#main').fadeIn(1000);
-		$('#cover').fadeOut(1000);
+		$.ajax({
+			cache : false,
+			type : 'post',
+			scriptCharset : 'UTF-8',
+			contentType : 'text/javascript+json; charset=utf-8',
+			url : 'xxx.do?sorted=userId',
+			data : {
+				name : 'index.jsp',
+				key : '0381075127472'
+			},
+			success : callback,
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				$('#cover').fadeOut(10);
+				$('#cover2').fadeIn(10);
+			},
+			dataType : 'json'
+		});
 	});
 </script>
+
 </head>
 
 <%
@@ -26,57 +50,69 @@
 %>
 
 <body>
-	<jsp:include page="topbar.jsp"></jsp:include>
+	<jsp:include page="_topbar.jsp"></jsp:include>
 	<div id="main">
 		<div class="container">
 			<div class="row">
-				<div class="cell">
-					<div class="profile">
-						<h3>Account</h3>
-						<div class="item-group">
-							<div class="item-label">Image</div>
-							<div class="items">
-								<div>
-									<img src="<%=user.getImagePath()%>" class="image-shot">
+				<div class="span6">
+					<div class="cell">
+						<div class="profile">
+							<h3>Account</h3>
+							<div class="item-group">
+								<div class="item-label">Image</div>
+								<div class="items">
+									<div>
+										<img src="<%=user.getImagePath()%>" class="image-shot">
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="item-group">
-							<div class="item-label">Name</div>
-							<div class="items"><%=user.getUserName()%>
+							<div class="item-group">
+								<div class="item-label">Create Account</div>
+								<div class="items"><%=Helper.formatToDateString(user.getCreateDate())%>
+								</div>
 							</div>
-						</div>
-						<div class="item-group">
-							<div class="item-label">Mail</div>
-							<div class="items"><%=user.getMail()%>
+							<div class="item-group">
+								<div class="item-label">Name</div>
+								<div class="items"><%=user.getUserName()%>
+								</div>
 							</div>
-						</div>
-						<div class="item-group">
-							<div class="item-label">Birth Day</div>
-							<div class="items"><%=user.getBirthDay()%>
+							<div class="item-group">
+								<div class="item-label">Make Card</div>
+								<div class="items"><%=Helper.countCardByUserId(userId)%>
+								</div>
 							</div>
-						</div>
-						<div class="item-group">
-							<div class="item-label">Country</div>
-							<div class="items">
-								<%=Helper.getCountryEnName(user.getCode())%>
+							<div class="item-group">
+								<div class="item-label">Comment</div>
+								<div class="items"><%=Helper.countCommentByUserId(userId)%>
+								</div>
 							</div>
-						</div>
-						<div class="item-group">
-							<div class="item-label">Make Card</div>
-							<div class="items"><%=Helper.countCardByUserId(userId)%>
+							<div class="item-group">
+								<div class="item-label">Mail</div>
+								<div class="items"><%=user.getMail()%>
+								</div>
 							</div>
-						</div>
-						<div class="item-group">
-							<div class="item-label">Comment</div>
-							<div class="items"><%=Helper.countCommentByUserId(userId)%>
+							<div class="item-group">
+								<div class="item-label">Birth Day</div>
+								<div class="items"><%=user.getBirthDay()%>
+								</div>
+							</div>
+							<div class="item-group">
+								<div class="item-label">Country</div>
+								<div class="items">
+									<%=Helper.getCountryEnName(user.getCode())%>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<div class="span6">
+					<ul id="content" style="width: 300px;">
+					</ul>
+					<br style="clear: both;" />
+				</div>
 			</div>
 		</div>
 	</div>
-	<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="_footer.jsp"></jsp:include>
 </body>
 </html>

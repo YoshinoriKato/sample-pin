@@ -1,6 +1,6 @@
 eclipse.preferences.version=1
-encoding//WebContent/button.jsp=UTF-8
-encoding//WebContent/common.css=UTF-8
-encoding//WebContent/custom.css=UTF-8
-encoding//WebContent/header.jsp=UTF-8
-encoding//WebContent/topbar.jsp=UTF-8
+encoding//WebContent/_button.jsp=UTF-8
+encoding//WebContent/_header.jsp=UTF-8
+encoding//WebContent/_topbar.jsp=UTF-8
+encoding//WebContent/css/common.css=UTF-8
+encoding//WebContent/css/custom.css=UTF-8

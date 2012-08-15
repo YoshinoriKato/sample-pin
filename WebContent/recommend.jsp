@@ -9,7 +9,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="_header.jsp"></jsp:include>
 <script type="text/javascript" charset="utf-8">
 	$(window).resize(function() {
 		$('#content li').wookmark({
@@ -44,14 +44,14 @@
 
 
 <body>
-	<jsp:include page="topbar.jsp" flush="true" />
+	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="main">
-		<jsp:include page="button.jsp" flush="true" />
+		<jsp:include page="_button.jsp" flush="true" />
 		<ul id="content">
 		</ul>
 		<br style="clear: both;" />
 	</div>
-	<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="_footer.jsp"></jsp:include>
 </body>
 
 </html>

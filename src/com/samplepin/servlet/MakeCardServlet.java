@@ -34,23 +34,6 @@ import com.sun.org.apache.xml.internal.security.utils.Base64;
 @MultipartConfig(location = "/Developer/uploaded")
 public class MakeCardServlet extends HttpServlet {
 
-	final class Uploader {
-
-		final String fileName;
-
-		final Part part;
-
-		public Uploader(Part part, String fileName) {
-			super();
-			this.part = part;
-			this.fileName = fileName;
-		}
-
-		void execute(HttpServletRequest req) throws IOException {
-			this.part.write(this.fileName);
-		}
-	}
-
 	/**
 	 * 
 	 */
@@ -110,7 +93,7 @@ public class MakeCardServlet extends HttpServlet {
 		log("upload start.");
 		HttpSession session = req.getSession();
 		String userId = (String) session.getAttribute("userId");
-		List<Uploader> uploadQue = new ArrayList<MakeCardServlet.Uploader>();
+		List<Uploader> uploadQue = new ArrayList<Uploader>();
 		Card card = readRequest(req.getParts(), userId, uploadQue);
 		writeFiles(req, uploadQue, card);
 

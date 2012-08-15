@@ -1,0 +1,93 @@
+.center {
+	text-align: center;
+}
+
+.right {
+	text-align: right;
+}
+
+/* Font HuiFontP */
+@font-face {
+	font-family: 'HuiFontPRegular';
+	src: url('../font/HuiFontP29.eot');
+}
+
+@font-face {
+	font-family: 'HuiFontPRegular';
+	src: local('HuiFontP Regular'), local('HuiFontP'),
+		url('../font/HuiFontP29.ttf') format('truetype');
+}
+
+.deco {
+	font-family: 'HuiFontPRegular', cursive;
+}
+
+.opacity90 {
+	filter: alpha(opacity = 90);
+	-moz-opacity: 0.90;
+	opacity: 0.90;
+}
+
+.opacity80 {
+	filter: alpha(opacity = 80);
+	-moz-opacity: 0.80;
+	opacity: 0.80;
+}
+
+.opacity70 {
+	filter: alpha(opacity = 70);
+	-moz-opacity: 0.70;
+	opacity: 0.70;
+}
+
+.opacity60 {
+	filter: alpha(opacity = 60);
+	-moz-opacity: 0.60;
+	opacity: 0.60;
+}
+
+.opacity50 {
+	filter: alpha(opacity = 50);
+	-moz-opacity: 0.50;
+	opacity: 0.50;
+}
+
+.opacity40 {
+	filter: alpha(opacity = 40);
+	-moz-opacity: 0.40;
+	opacity: 0.40;
+}
+
+.opacity30 {
+	filter: alpha(opacity = 30);
+	-moz-opacity: 0.30;
+	opacity: 0.30;
+}
+
+.opacity20 {
+	filter: alpha(opacity = 20);
+	-moz-opacity: 0.20;
+	opacity: 0.20;
+}
+
+.opacity10 {
+	filter: alpha(opacity = 10);
+	-moz-opacity: 0.10;
+	opacity: 0.10;
+}
+
+.color-red {
+	background-color: rgba(230, 40, 40, 0.9);
+}
+
+.color-green {
+	background-color: rgba(40, 230, 40, 0.9);
+}
+
+.color-blue {
+	background-color: rgba(40, 40, 230, 0.9);
+}
+
+.large {
+	font-size: large;
+}
