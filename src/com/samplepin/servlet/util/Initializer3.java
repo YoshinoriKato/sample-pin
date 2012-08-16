@@ -86,15 +86,15 @@ public class Initializer3 extends HttpServlet {
 
 			for (int i = 0; i < MAX_USERS; i++) {
 				User user = new User();
-				String userId = Helper.generatedUserId("ID_");
+				String userId = Helper.generatedIdString("ID_");
 				user.setUserId(userId);
-				user.setPassword(Helper.generatedUserId().hashCode());
-				user.setMail(Helper.generatedUserId("M_") + "@sample-pin.com");
+				user.setPassword(Helper.generatedIdString().hashCode());
+				user.setMail(Helper.generatedIdString("M_") + "@sample-pin.com");
 				userIds.add(userId);
 				user.setBackgroundColor(Helper.generateColorString());
 				user.setFontColor(Helper.generateColorString());
 				user.setUseBackgroundImage(false);
-				user.setUserName(Helper.generatedUserId().substring(0, 12));
+				user.setUserName(Helper.generatedIdString().substring(0, 12));
 				datastore.save(user);
 			}
 

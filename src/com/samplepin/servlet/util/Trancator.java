@@ -28,7 +28,7 @@ public class Trancator extends HttpServlet {
 			Datastore datastore = mongo.createDatastore();
 			User user = new User();
 			user.setUserName("Web Master");
-			user.setUserId(Helper.generatedUserId());
+			user.setUserId(Helper.generatedIdString());
 			user.setPassword("".hashCode());
 			user.setMail("katoy@acces.co.jp");
 			datastore.save(user);

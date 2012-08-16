@@ -24,14 +24,6 @@ import com.mongodb.MongoException;
 
 public class Helper {
 
-	static String ID_LETTER = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-	static String PASSWORD_LETTER = ID_LETTER + "0123456789_";
-
-	static int DEFAULT_LEN = 12;
-
-	static int FIRST_CHAR = 1;
-
 	static SimpleDateFormat SDF_DATE = new SimpleDateFormat("yyyy-MM-dd");
 
 	static SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat(
@@ -96,27 +88,12 @@ public class Helper {
 		return color;
 	}
 
-	public static String generatedUserId() {
-		return generatedUserId("");
+	public static String generatedIdString() {
+		return IdGenerator.randomAlphanumeric(24);
 	}
 
-	public static String generatedUserId(String prefix) {
-		Random r = new Random(System.nanoTime());
-		StringBuilder builder = new StringBuilder();
-
-		int len = ID_LETTER.length();
-		char[] array = ID_LETTER.toCharArray();
-		builder.append(array[r.nextInt(len)]);
-
-		len = PASSWORD_LETTER.length();
-		array = PASSWORD_LETTER.toCharArray();
-
-		int range = r.nextInt(24);
-
-		for (int i = 0; i < ((DEFAULT_LEN - FIRST_CHAR) + range); i++) {
-			builder.append(array[r.nextInt(len)]);
-		}
-		return prefix + builder.toString();
+	public static String generatedIdString(String prefix) {
+		return prefix + IdGenerator.randomAlphanumeric(24);
 	}
 
 	public static String getBackgroundColor(User user) {
