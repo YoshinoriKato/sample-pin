@@ -1,5 +1,7 @@
 var $timer;
 
+var $offset = 12;
+
 function callback($array) {
 	var $i = 0;
 	var $len = $array.length;
@@ -7,19 +9,21 @@ function callback($array) {
 
 	$timer = setInterval(function() {
 		makeCell($array[$i]);
-		$('#content li').wookmark({
-			offset : 20
-		});
+		wookmark();
 		$i++;
 		if ($i >= $len) {
 			clearInterval($timer);
-			$('#content li').wookmark({
-				offset : 20
-			});
+			wookmark();
 			$('#content').css('height', $(document).height() + 100);
 			$('#ajax').fadeOut(1000);
 		}
 	}, $interval);
+};
+
+function wookmark() {
+	$('#content li').wookmark({
+		offset : $offset
+	});
 };
 
 function makeCell($card) {

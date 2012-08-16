@@ -23,9 +23,13 @@
 <script type="text/javascript" src="js/jquery.wookmark.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 
-<script type="text/javascript" src="js/callback.js?<%=suffix %>" charset="UTF-8"></script>
-<script type="text/javascript" src="js/autoUrlLink.js?<%=suffix %>" charset="UTF-8"></script>
-<script type="text/javascript" src="js/cover.js?<%=suffix %>" charset="UTF-8"></script>
-<script type="text/javascript" src="js/fade.js?<%=suffix %>" charset="UTF-8"></script>
+<script type="text/javascript" src="js/callback.js?<%=suffix %>"
+	charset="UTF-8"></script>
+<script type="text/javascript" src="js/autoUrlLink.js?<%=suffix %>"
+	charset="UTF-8"></script>
+<script type="text/javascript" src="js/cover.js?<%=suffix %>"
+	charset="UTF-8"></script>
+<script type="text/javascript" src="js/fade.js?<%=suffix %>"
+	charset="UTF-8"></script>
 
 

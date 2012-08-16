@@ -70,7 +70,8 @@
 									<label for="userName" class="control-label">Name</label>
 									<div class="controls">
 										<input type="text" name="userName" maxlength="40"
-											value="<%=Helper.escapeHTML(user.getUserName())%>" class="span8">
+											value="<%=Helper.escapeHTML(user.getUserName())%>"
+											class="span8">
 									</div>
 								</div>
 								<div class="control-group">

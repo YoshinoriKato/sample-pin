@@ -37,7 +37,8 @@
 					</div>
 					<% if(card.getView() != 0){ %>
 					<div class="ribon">
-						<span class="ribon-text color-red"> <%=card.getView()%> view
+						<span class="ribon-text color-red"> <%=card.getView()%>
+							view
 						</span>
 					</div>
 					<% } %>
@@ -146,9 +147,7 @@
 			function() {
 				cardId = $("#cardId").text();
 				pushPull('#main', '#ajax');
-				$('#content li').wookmark({
-					offset : 20
-				});
+				wookmark();
 				$('#image-shot')
 						.attr("onclick", "pushPull('#cover','#origin')");
 				$('#image-close').attr("onclick",
@@ -159,9 +158,7 @@
 						"pushPull('#write','#comment-area')");
 			});
 	$(window).resize(function() {
-		$('#content li').wookmark({
-			offset : 20
-		})
+		wookmark();
 	});
 </script>
 </html>

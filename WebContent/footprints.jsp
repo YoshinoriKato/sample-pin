@@ -45,7 +45,8 @@
 					</div>
 					<% if(card.getView() != 0){ %>
 					<div class="ribon">
-						<span class="ribon-text <%=color%>"> <%=card.getView()%> view
+						<span class="ribon-text <%=color%>"> <%=card.getView()%>
+							view
 						</span>
 					</div>
 					<% } %>
@@ -68,17 +69,13 @@
 </body>
 <script type="text/javascript">
 	$(window).load(function() {
-		$('#content li').wookmark({
-			offset : 20
-		});
+		wookmark();
 		cardId = $("#cardId").text();
 		$('#content').css('height', $(document).height() + 100);
 		$('#ajax').fadeOut(1000);
 	});
 	$(window).resize(function() {
-		$('#content li').wookmark({
-			offset : 20
-		})
+		wookmark();
 	});
 </script>
 </html>

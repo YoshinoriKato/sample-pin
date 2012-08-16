@@ -12,9 +12,7 @@
 <jsp:include page="_header.jsp"></jsp:include>
 <script type="text/javascript" charset="utf-8">
 	$(window).resize(function() {
-		$('#content li').wookmark({
-			offset : 20
-		});
+		wookmark();
 	});
 
 	$(window).load(function() {
