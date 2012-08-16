@@ -7,11 +7,7 @@
 <html>
 <head>
 <jsp:include page="_header.jsp"></jsp:include>
-<script type="text/javascript" charset="UTF-8">
-	$(window).load(function() {
-		$('#main').fadeIn(1000);
-	});
-</script>
+<jsp:include page="_effect.jsp"></jsp:include>
 </head>
 
 
@@ -36,6 +32,7 @@
 					String blank = isExternal ? "target='_blank'" : "";
 					String jsp = isExternal ? "jump.jsp" : "card.jsp";
 					String redirextUrl = isExternal ? "&redirectUrl=" + card.getUrl() : "";
+					String color = isExternal ? "color-blue" : "color-red";
 			%>
 
 			<li>
@@ -48,7 +45,7 @@
 					</div>
 					<% if(card.getView() != 0){ %>
 					<div class="ribon">
-						<span class="ribon-text"> <%=card.getView()%> view
+						<span class="ribon-text <%=color%>"> <%=card.getView()%> view
 						</span>
 					</div>
 					<% } %>
@@ -75,7 +72,8 @@
 			offset : 20
 		});
 		cardId = $("#cardId").text();
-		$('#cover').fadeOut(1000);
+		$('#content').css('height', $(document).height() + 100);
+		$('#ajax').fadeOut(1000);
 	});
 	$(window).resize(function() {
 		$('#content li').wookmark({

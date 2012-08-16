@@ -5,9 +5,11 @@
 <html>
 <head>
 <jsp:include page="_header.jsp"></jsp:include>
+<jsp:include page="_effect.jsp"></jsp:include>
 </head>
 <%
 	String userId = (String) session.getAttribute("userId");
+	userId = (userId != null) ? userId : session.getId();
 	String cardId = request.getParameter("cardId");
 	String redirectUrl = request.getParameter("redirectUrl");
 	response.sendRedirect(redirectUrl);

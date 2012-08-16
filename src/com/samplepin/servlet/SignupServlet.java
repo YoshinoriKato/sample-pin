@@ -33,8 +33,8 @@ public class SignupServlet extends HttpServlet {
 		String mail = req.getParameter("mail");
 
 		if ((mail != null) && validateMail(mail)) {
-			String userId = Helper.generatedUserId("ID_");
-			String password = Helper.generatedUserId();
+			String userId = Helper.generatedIdString("ID_");
+			String password = Helper.generatedIdString();
 
 			User user = new User();
 			user.setUserId(userId);
@@ -81,7 +81,7 @@ public class SignupServlet extends HttpServlet {
 	private String geneOneTime(User user, String password)
 			throws UnknownHostException, MongoException {
 		try (ACMongo mongo = new ACMongo()) {
-			String oneTimePassword = Helper.generatedUserId("O");
+			String oneTimePassword = Helper.generatedIdString("O");
 			OneTime oneTime = new OneTime(user.getMail(), oneTimePassword,
 					password);
 			Datastore datastore = mongo.createDatastore();

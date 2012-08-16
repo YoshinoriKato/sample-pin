@@ -7,20 +7,16 @@
 <!-- 共有 -->
 
 <div id="copyrights" class="center caption">&copy; Sample-Pin</div>
-<div id="cover" class="center">
-	<div id="ajax">
-		<img src="img/ajax.gif">
-		<div class="caption">Working for You.</div>
-	</div>
+<div id="ajax">
+	<img src="img/ajax.gif">
+	<div class="caption">Working for you.</div>
 </div>
-<div id="cover2" class="center">
-	<div id="error-dialog">
-		<img src="img/broken.gif" class="image-shot">
-		<div class="caption">Sorry, Server Error.</div>
-	</div>
+<div id="error-dialog">
+	<img src="img/broken.gif" class="image-shot">
+	<div class="caption">Sorry, server error.</div>
 </div>
 <div id="bottom-label">
-	<a href="#top">Go Top</a>
+	<a href="#top">Go top</a>
 </div>
 <script type="text/javascript" charset="UTF-8">
 	$(function() {

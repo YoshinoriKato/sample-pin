@@ -6,13 +6,7 @@
 <html>
 <head>
 <jsp:include page="_header.jsp"></jsp:include>
-<script type="text/javascript" charset="UTF-8">
-	$(window).load(function() {
-		$('#main').fadeIn(1000);
-		$('#cover').fadeOut(1000);
-	});
-</script>
-
+<jsp:include page="_effect.jsp"></jsp:include>
 </head>
 
 <%
@@ -49,7 +43,7 @@
 						</div>
 						<div class="item-group">
 							<div class="item-label">Name</div>
-							<div class="items"><%=user.getUserName()%>
+							<div class="items"><%=Helper.escapeHTML(user.getUserName())%>
 							</div>
 						</div>
 						<div class="item-group">

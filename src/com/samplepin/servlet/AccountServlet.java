@@ -24,7 +24,6 @@ import org.apache.log4j.Logger;
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 import com.samplepin.ACMongo;
-import com.samplepin.Helper;
 import com.samplepin.User;
 
 @WebServlet(urlPatterns = "/account.do")
@@ -180,7 +179,7 @@ public class AccountServlet extends HttpServlet {
 				String password2 = getValueByKeyword(part, "password2");
 
 				if (userName != null) {
-					user.setUserName(Helper.escapeHTML(userName));
+					user.setUserName(userName);
 
 				} else if (birthDay != null) {
 					user.setBirthDay(birthDay);

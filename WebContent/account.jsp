@@ -6,18 +6,13 @@
 <html>
 <head>
 <jsp:include page="_header.jsp"></jsp:include>
-<script type="text/javascript" charset="UTF-8">
-	$(window).load(function() {
-		$('#main').fadeIn(1000);
-		$('#cover').fadeOut(1000);
-	});
-</script>
+<jsp:include page="_effect.jsp"></jsp:include>
 </head>
 
 <%
 	String userId = (String) session.getAttribute("userId");
 	User user = Helper.getUserById(userId);
-	
+
 	String message = (String) request.getAttribute("message");
 	message = message != null ? message : "";
 	String error = message != null && !message.isEmpty() ? "error" : "";
@@ -38,7 +33,7 @@
 									<label for="imagePath" class="control-label">Image</label>
 									<div class="controls">
 										<div>
-											<img src="<%=user.getImagePath() %>" class="image-shot">
+											<img src="<%=user.getImagePath()%>" class="image-shot">
 										</div>
 										<input type="file" name="imagePath">
 									</div>
@@ -47,7 +42,8 @@
 									<label for="userName" class="control-label">Name</label>
 									<div class="controls">
 										<input type="text" name="userName" maxlength="40"
-											value="<%=user.getUserName()%>" class="span8">
+											value="<%=Helper.escapeHTML(user.getUserName())%>"
+											class="span8">
 									</div>
 								</div>
 								<div class="control-group">

@@ -12,12 +12,7 @@
 		$changed = $(to).text(value.text());
 	}
 </script>
-<script type="text/javascript" charset="UTF-8">
-	$(window).load(function() {
-		$('#main').fadeIn(1000);
-		$('#cover').fadeOut(1000);
-	});
-</script>
+<jsp:include page="_effect.jsp"></jsp:include>
 </head>
 
 <%
@@ -60,8 +55,8 @@
 											<li><div class="cell"
 													style="<%=wallPaper%> <%=backgroundColor%>">
 													<div class="comment" style="<%=fontColor%>">
-														@<%=userName%></div>
-													<div class="comment deco" style="<%=fontColor%>">
+														@<%=Helper.escapeHTML(userName)%></div>
+													<div class="comment caption deco" style="<%=fontColor%>">
 														<!-- comment -->
 														コメント。
 													</div>
@@ -75,7 +70,7 @@
 									<label for="userName" class="control-label">Name</label>
 									<div class="controls">
 										<input type="text" name="userName" maxlength="40"
-											value="<%=user.getUserName()%>" class="span8">
+											value="<%=Helper.escapeHTML(user.getUserName())%>" class="span8">
 									</div>
 								</div>
 								<div class="control-group">

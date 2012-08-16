@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 	public static String KEY_SECOND = "Pollux";
 
 	public static void makeCookie(HttpServletResponse resp, String userId) {
-		Cookie cookie0 = new Cookie(KEY_FIRST, Helper.generatedUserId("ID_"));
+		Cookie cookie0 = new Cookie(KEY_FIRST, Helper.generatedIdString("ID_"));
 		Cookie cookie1 = new Cookie(KEY_SECOND, userId);
 		cookie0.setMaxAge(Integer.MAX_VALUE);
 		cookie1.setMaxAge(Integer.MAX_VALUE);

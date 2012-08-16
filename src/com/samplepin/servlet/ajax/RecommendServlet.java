@@ -55,26 +55,13 @@ public class RecommendServlet extends HttpServlet {
 			ids.add(view.getCardId());
 		}
 
-		Set<String> recommends = new HashSet<>();
-		for (View view : othersViews) {
-			if (!ids.contains(view.getCardId())) {
-				recommends.add(view.getCardId());
-				if (recommends.size() >= 100) {
-					break;
-				}
-			}
-		}
+		Set<String> recommends = getRecommends(othersViews, ids);
 		log("Recommends: " + recommends.size());
 
 		if (recommends.size() == 0) {
-			recommends.add("HELP");
-		}
-
-		try (ACMongo mongo = new ACMongo()) {
-			Query<Card> query = mongo.createQuery(Card.class).filter(
-					"cardId in ", recommends);
-			List<Card> cards = query.asList();
-			new AjaxCardServlet().writeToJSON(resp, cards);
+			writeToAjax(resp);
+		} else {
+			writeToAjax(resp, recommends);
 		}
 	}
 
@@ -113,6 +100,19 @@ public class RecommendServlet extends HttpServlet {
 
 	}
 
+	final Set<String> getRecommends(List<View> othersViews, Set<String> ids) {
+		Set<String> recommends = new HashSet<>();
+		for (View view : othersViews) {
+			if (!ids.contains(view.getCardId())) {
+				recommends.add(view.getCardId());
+				if (recommends.size() >= 100) {
+					break;
+				}
+			}
+		}
+		return recommends;
+	}
+
 	final List<View> getViewsByUserID(String userId) throws IOException {
 		try (ACMongo mongo = new ACMongo()) {
 			Query<View> query = mongo.createQuery(View.class)
@@ -121,6 +121,25 @@ public class RecommendServlet extends HttpServlet {
 			List<View> views = query.asList();
 			Collections.sort(views, this.SCORE);
 			return views;
+		}
+	}
+
+	final void writeToAjax(HttpServletResponse resp) throws IOException {
+		try (ACMongo mongo = new ACMongo()) {
+			Query<Card> query = mongo.createQuery(Card.class).order(
+					"-createDate");
+			List<Card> cards = query.asList();
+			new AjaxCardServlet().writeToJSON(resp, cards);
+		}
+	}
+
+	final void writeToAjax(HttpServletResponse resp, Set<String> recommends)
+			throws IOException {
+		try (ACMongo mongo = new ACMongo()) {
+			Query<Card> query = mongo.createQuery(Card.class).filter(
+					"cardId in ", recommends);
+			List<Card> cards = query.asList();
+			new AjaxCardServlet().writeToJSON(resp, cards);
 		}
 	}
 }

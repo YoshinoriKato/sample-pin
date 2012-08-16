@@ -7,8 +7,8 @@
 <script type="text/javascript" charset="UTF-8">
 	$(window).load(function() {
 		$('#main').fadeIn(10);
-		$('#cover').fadeOut(10);
-		$('#cover2').fadeIn(10);
+		$('#ajax').fadeOut(10);
+		$('#error-dialog').fadeIn(10);
 	});
 </script>
 </head>

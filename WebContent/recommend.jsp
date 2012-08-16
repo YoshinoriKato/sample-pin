@@ -33,8 +33,8 @@
 			},
 			success : callback,
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
-				$('#cover').fadeOut(10);
-				$('#cover2').fadeIn(10);
+				$('#ajax').fadeOut(10);
+				$('#error-dialog').fadeIn(10);
 			},
 			dataType : 'json'
 		});

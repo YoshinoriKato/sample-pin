@@ -18,7 +18,7 @@ public class KeyValueHandler {
 
 	public static String getRegisteredKeyByValue(String value)
 			throws UnknownHostException, MongoException {
-		String key = Helper.generatedUserId("KEY_");
+		String key = Helper.generatedIdString("KEY_");
 		while (!putKeyAndValue(key, value)) {
 		}
 		return key;
