@@ -3,6 +3,7 @@ var $timer;
 function callback($array) {
 	var $i = 0;
 	var $len = $array.length;
+	var $interval = 3;
 
 	$timer = setInterval(function() {
 		makeCell($array[$i]);
@@ -12,9 +13,12 @@ function callback($array) {
 		$i++;
 		if ($i >= $len) {
 			clearInterval($timer);
-			$('#cover').fadeOut(1000);
+			$('#content li').wookmark({
+				offset : 20
+			});
+			$('#ajax').fadeOut(1000);
 		}
-	}, 10);
+	}, $interval);
 };
 
 function makeCell($card) {
@@ -68,8 +72,8 @@ function callAjax($sorted) {
 		},
 		success : callback,
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			$('#cover').fadeOut(10);
-			$('#cover2').fadeIn(10);
+			$('#ajax').fadeOut(10);
+			$('#error-dialog').fadeIn(10);
 		},
 		dataType : 'json'
 	});

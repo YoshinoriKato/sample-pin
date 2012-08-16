@@ -5,6 +5,7 @@
 <html>
 <head>
 <jsp:include page="_header.jsp"></jsp:include>
+<jsp:include page="_effect.jsp"></jsp:include>
 </head>
 <%
 	String userId = (String) session.getAttribute("userId");

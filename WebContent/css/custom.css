@@ -1,65 +1,95 @@
+#default {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
+	/* shape ----------------------------------------------------------------*/
+	
+}
+
 body {
+	/* effect ---------------------------------------------------------------*/
 	background-color: #eee;
 	background-image: url("../img/ichimatsu.png?201208131742");
 	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+	/* layout ---------------------------------------------------------------*/
+	/* shape ----------------------------------------------------------------*/
 }
 
 .btn-cell {
+	/* effect ---------------------------------------------------------------*/
 	border: 1px solid rgba(0, 0, 0, 0.2);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	/* layout ---------------------------------------------------------------*/
 	border-radius: 3px 12px 3px;
 	-webkit-border-radius: 3px 12px 3px;
 	-moz-border-radius: 3px 12px 3px;
-	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	/* shape ----------------------------------------------------------------*/
 }
 
-.image-origin {
-	margin: 10px;
+#image-origin {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
+	/* shape ----------------------------------------------------------------*/
+	max-height: 80%;
 }
 
 .image-shot {
+	/* effect ---------------------------------------------------------------*/
+	cursor: pointer;
+	color: rgba(80, 80, 80, 0.4);
+	filter: alpha(opacity =     80);
+	-moz-opacity: 0.80;
+	opacity: 0.80;
+	/* layout ---------------------------------------------------------------*/
+	margin-top: 10px;
+	margin-bottom: 10px;
+	/* shape ----------------------------------------------------------------*/
 	border-radius: 3px 25px 3px;
 	-webkit-border-radius: 3px 25px 3px;
 	-moz-border-radius: 3px 25px 3px;
-	color: rgba(80, 80, 80, 0.4);
-	margin-top: 10px;
-	margin-bottom: 10px;
 	min-width: 200px;
 	min-height: 30px;
-	filter: alpha(opacity =               80);
-	-moz-opacity: 0.80;
-	opacity: 0.80;
+	max-width: 100%;
 }
 
 #cover {
-	position: absolute;
-	top: 0px;
-	left: 0px;
+	/* effect ---------------------------------------------------------------*/
+	background-color: rgba(0, 0, 0, 0.4);
 	font-size: larger;
-	width: 100%;
-	height: 50000px;
-	background-color: rgba(0, 0, 0, 0.0);
+	display: none;
+	/* layout ---------------------------------------------------------------*/
+	position: fixed;
+	top: 10%;
+	left: 10%;
 	z-index: 3;
-	font-size: larger;
+	padding: 30px;
+	/* shape ----------------------------------------------------------------*/
+	width: 80%;
+	max-height: 80%;
+	border-radius: 6px 40px 6px;
+	-webkit-border-radius: 6px 40px 6px;
+	-moz-border-radius: 6px 40px 6px;
+	width: 80%
 }
 
 #cover2 {
+	/* effect ---------------------------------------------------------------*/
+	background-color: rgba(0, 0, 0, 0.0);
 	display: none;
+	font-size: larger;
+	/* layout ---------------------------------------------------------------*/
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	font-size: larger;
+	z-index: 5;
+	/* shape ----------------------------------------------------------------*/
 	width: 100%;
 	height: 1000px;
-	background-color: rgba(0, 0, 0, 0.0);
-	z-index: 5;
-	font-size: larger;
-	position: absolute;
 }
 
 .text,.textarea,.dropdown {
+	/* effect ---------------------------------------------------------------*/
 	border: 1px solid #777;
-	padding: 5px;
 	color: #999;
 	background: #fff;
 	/* Webkit */
@@ -71,312 +101,415 @@ body {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffeeeeee,
 		endColorstr=#ffffffff );
 	zoom: 1;
+	/* layout ---------------------------------------------------------------*/
+	padding: 5px;
+	/* shape ----------------------------------------------------------------*/
 }
 
 .pic {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
+	/* shape ----------------------------------------------------------------*/
 	width: 200px;
 	height: 200px;
 }
 
 #content {
-	width: 100%;
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
 	position: relative;
+	/* shape ----------------------------------------------------------------*/
+	width: 100%;
 }
 
 #content li {
-	width: 240px;
+	/* effect ---------------------------------------------------------------*/
 	display: block;
+	/* layout ---------------------------------------------------------------*/
+	/* shape ----------------------------------------------------------------*/
+	width: 240px;
 }
 
 #ajax {
+	/* effect ---------------------------------------------------------------*/
 	border: 1px solid rgba(255, 255, 255, 0.3);
 	background-color: rgba(255, 255, 255, 0.95);
-	border-radius: 6px 40px 6px;
-	-webkit-border-radius: 6px 40px 6px;
-	-moz-border-radius: 6px 40px 6px;
 	box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
-	margin-bottom: 10px;
-	width: 20%;
 	text-align: center;
-	padding: 30px;
+	/* layout ---------------------------------------------------------------*/
 	position: fixed;
 	top: 240px;
 	left: 40%;
-}
-
-#error-dialog {
-	border: 1px solid rgba(255, 0, 0, 0.3);
-	background-color: rgba(255, 0, 0, 0.6);
+	padding: 30px;
+	margin-bottom: 10px;
+	z-index: 10;
+	/* shape ----------------------------------------------------------------*/
 	border-radius: 6px 40px 6px;
 	-webkit-border-radius: 6px 40px 6px;
 	-moz-border-radius: 6px 40px 6px;
+	width: 20%;
+	position: fixed;
+	border-radius: 6px 40px 6px
+}
+
+#error-dialog {
+	/* effect ---------------------------------------------------------------*/
+	border: 1px solid rgba(255, 0, 0, 0.3);
+	background-color: rgba(255, 0, 0, 0.6);
 	box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
-	width: 20%;
 	text-align: center;
+	display: none;
+	/* layout ---------------------------------------------------------------*/
 	padding: 20px;
 	position: fixed;
 	top: 140px;
 	left: 40%;
 	z-index: 9;
+	/* shape ----------------------------------------------------------------*/
+	border-radius: 6px 40px 6px;
+	-webkit-border-radius: 6px 40px 6px;
+	-moz-border-radius: 6px 40px 6px;
+	width: 20%;
+	padding: 20px
 }
 
 .cell {
+	/* effect ---------------------------------------------------------------*/
 	border: 1px solid rgba(255, 255, 255, 0.3);
 	background-color: rgba(255, 255, 255, 0.5);
+	box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+	/* layout ---------------------------------------------------------------*/
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 20px;
 	padding-right: 20px;
+	margin-bottom: 20px;
+	/* shape ----------------------------------------------------------------*/
 	border-radius: 6px 40px 6px;
 	-webkit-border-radius: 6px 40px 6px;
 	-moz-border-radius: 6px 40px 6px;
-	box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
-	margin-bottom: 20px;
 }
 
 .cell2 {
+	/* effect ---------------------------------------------------------------*/
 	border: 1px solid rgba(255, 255, 255, 0.2);
 	background-color: rgba(255, 255, 255, 0.2);
+	box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+	/* layout ---------------------------------------------------------------*/
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 20px;
 	padding-right: 20px;
+	margin-bottom: 20px;
+	/* shape ----------------------------------------------------------------*/
 	border-radius: 6px 40px 6px;
 	-webkit-border-radius: 6px 40px 6px;
 	-moz-border-radius: 6px 40px 6px;
-	box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
-	margin-bottom: 20px;
 }
 
 .ribon {
+	/* effect ---------------------------------------------------------------*/
+	overflow: hidden;
+	/* layout ---------------------------------------------------------------*/
 	position: absolute;
 	z-index: 2;
 	top: 0px;
 	left: 0px;
+	/* shape ----------------------------------------------------------------*/
 	width: 90px;
 	height: 90px;
-	overflow: hidden;
 }
 
 .ribon-text {
+	/* effect ---------------------------------------------------------------*/
+	color: #ffffff;
+	background-color: rgba(230, 40, 40, 0.9);
 	text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.6);
+	text-align: center;
+	font-size: 11px;
+	font-weight: bold;
+	overflow: hidden;
+	/* layout ---------------------------------------------------------------*/
 	position: absolute;
 	z-index: 2;
 	top: 19px;
 	left: -33px;
-	width: 125px;
-	height: 22px;
 	padding-top: 8px;
-	text-align: center;
-	font-size: 11px;
-	font-weight: bold;
-	color: #ffffff;
-	background-color: rgba(230, 40, 40, 0.9);
-	overflow: hidden;
 	-webkit-transform: rotate(-45deg);
 	-moz-transform: rotate(-45deg);
 	-o-transform: rotate(-45deg);
 	-ms-transform: rotate(-45deg);
+	/* shape ----------------------------------------------------------------*/
+	width: 125px;
+	height: 22px;
 }
 
 #main {
-	margin-top: 60px;
+	/* effect ---------------------------------------------------------------*/
 	display: none;
+	/* layout ---------------------------------------------------------------*/
+	margin-top: 60px;
+	/* shape ----------------------------------------------------------------*/
 }
 
 .caption {
+	/* effect ---------------------------------------------------------------*/
+	color: rgba(60, 60, 60, 0.7);
+	/* layout ---------------------------------------------------------------*/
 	margin-top: 10px;
 	margin-bottom: 10px;
-	color: rgba(60, 60, 60, 0.7);
+	/* shape ----------------------------------------------------------------*/
 }
 
 .page-menu {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
 	margin-top: 20px;
 	margin-bottom: 20px;
+	/* shape ----------------------------------------------------------------*/
 }
 
 #origin {
-	z-index: 4;
+	/* effect ---------------------------------------------------------------*/
 	background-color: rgba(0, 0, 0, 0.6);
+	color: rgba(255, 255, 255, 0.6);
+	box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
+	text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
+	/* layout ---------------------------------------------------------------*/
+	z-index: 4;
 	position: fixed;
-	width: 40px;
-	height: 240px;
 	top: 120px;
 	left: -15px;
+	/* shape ----------------------------------------------------------------*/
+	width: 40px;
+	height: 240px;
 	border-radius: 0px 40px 6px 0px;
 	-webkit-border-radius: 0px 40px 6px 0px;
 	-moz-border-radius: 0px 40px 6px 0px;
-	box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
-	-webkit-box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
 	height: 240px;
-	color: rgba(255, 255, 255, 0.6);
-	text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
 }
 
 #write {
-	z-index: 5;
+	/* effect ---------------------------------------------------------------*/
+	cursor: pointer;
 	background-color: rgba(255, 255, 255, 0.6);
+	color: rgba(0, 0, 0, 0.6);
+	box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.3);
+	text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.3);
+	/* layout ---------------------------------------------------------------*/
+	z-index: 5;
 	position: fixed;
-	width: 40px;
-	height: 240px;
 	left: -10px;
-	top: 390px;
+	top: 25%;
+	/* shape ----------------------------------------------------------------*/
+	width: 40px;
+	height: 80%;
 	border-radius: 0px 40px 6px 0px;
 	-webkit-border-radius: 0px 40px 6px 0px;
 	-moz-border-radius: 0px 40px 6px 0px;
-	box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.3);
-	color: rgba(0, 0, 0, 0.6);
-	text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.3);
 }
 
 #image-holder {
+	/* effect ---------------------------------------------------------------*/
+	background-color: rgba(0, 0, 0, 0.6);
+	text-align: center;
+	box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
+	/* layout ---------------------------------------------------------------*/
 	z-index: 4;
 	position: fixed;
 	top: 120px;
-	display: none;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	/* shape ----------------------------------------------------------------*/
 	width: 99%;
-	background-color: rgba(0, 0, 0, 0.6);
-	text-align: center;
 	border-radius: 0px 40px 6px 0px;
 	-webkit-border-radius: 0px 40px 6px 0px;
 	-moz-border-radius: 0px 40px 6px 0px;
-	padding-top: 30px;
-	padding-bottom: 30px;
-	box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
-	-webkit-box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
 }
 
 #comment-area {
-	z-index: 5;
-	position: fixed;
-	top: 390px;
-	display: none;
-	width: 99%;
+	/* effect ---------------------------------------------------------------*/
 	background-color: rgba(255, 255, 255, 0.6);
 	text-align: center;
+	box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.3);
+	display: none;
+	/* layout ---------------------------------------------------------------*/
+	z-index: 5;
+	position: fixed;
+	top: 25%;
+	padding-top: 30px;
+	padding-bottom: 10px;
+	/* shape ----------------------------------------------------------------*/
+	width: 99%;
 	border-radius: 0px 40px 6px 0px;
 	-webkit-border-radius: 0px 40px 6px 0px;
 	-moz-border-radius: 0px 40px 6px 0px;
-	padding-top: 30px;
-	padding-bottom: 10px;
-	box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.3);
+	z-index: 5
 }
 
 #bottom-label {
-	position: fixed;
-	bottom: -5px;
-	right: 20px;
-	border-radius: 3px 25px 0px 0px;
-	-webkit-border-radius: 3px 25px 0px 0px;
-	-moz-border-radius: 3px 25px 0px 0px;
+	/* effect ---------------------------------------------------------------*/
 	background-color: rgba(255, 255, 255, 0.7);
 	box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.3);
 	overflow: hidden;
-	padding: 20px;
 	font-size: large;
-	text-align: center;
 	color: rgba(180, 180, 180, 0.8);
 	text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.8);
+	/* layout ---------------------------------------------------------------*/
+	text-align: center;
+	position: fixed;
+	bottom: -5px;
+	right: 20px;
+	padding: 20px;
+	/* shape ----------------------------------------------------------------*/
+	border-radius: 3px 25px 0px 0px;
+	-webkit-border-radius: 3px 25px 0px 0px;
+	-moz-border-radius: 3px 25px 0px 0px;
 }
 
 .comment {
+	/* effect ---------------------------------------------------------------*/
+	color: rgba(60, 60, 60, 0.7);
+	/* layout ---------------------------------------------------------------*/
 	margin-top: 10px;
 	margin-bottom: 10px;
-	color: rgba(60, 60, 60, 0.7);
+	/* shape ----------------------------------------------------------------*/
 }
 
 .small-tab {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
 	padding-top: 30px;
 	padding-right: 30px;
 	padding-bottom: 30px;
+	/* shape ----------------------------------------------------------------*/
 	width: 40px;
 }
 
 .vertical-text {
+	/* effect ---------------------------------------------------------------*/
+	display: block;
+	font-size: x-large;
+	/* layout ---------------------------------------------------------------*/
 	position: absolute;
 	z-index: 6;
 	-webkit-transform: rotate(90deg);
 	-moz-transform: rotate(90deg);
 	-o-transform: rotate(90deg);
 	-ms-transform: rotate(90deg);
-	display: block;
 	padding: 8px;
-	width: 200px;
-	height: 30px;
 	text-align: left;
 	top: 105px;
 	right: -75px;
-	font-size: x-large;
+	/* shape ----------------------------------------------------------------*/
+	width: 200px;
+	height: 30px;
 }
 
 .tab-button {
+	/* effect ---------------------------------------------------------------*/
+	cursor: pointer;
+	font-size: x-large;
+	color: rgba(180, 180, 180, 0.8);
+	text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.8);
+	/* layout ---------------------------------------------------------------*/
 	position: absolute;
 	right: 30px;
 	top: 30px;
-	font-size: x-large;
-	color: rgba(180, 180, 180, 0.8);
 	text-align: right;
-	text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.8);
+	/* shape ----------------------------------------------------------------*/
 }
 
 .star {
+	/* effect ---------------------------------------------------------------*/
 	color: rgba(130, 130, 130, 0.4);
+	/* layout ---------------------------------------------------------------*/
+	/* shape ----------------------------------------------------------------*/
 }
 
 .profile .item-group {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
 	margin-bottom: 18px;
 	*zoom: 1;
+	/* shape ----------------------------------------------------------------*/
 }
 
 .profile .item-group:before,.profile .item-group:after {
+	/* effect ---------------------------------------------------------------*/
 	display: table;
 	content: "";
+	/* layout ---------------------------------------------------------------*/
+	/* shape ----------------------------------------------------------------*/
 }
 
 .profile .item-group:after {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
 	clear: both;
+	/* shape ----------------------------------------------------------------*/
 }
 
 .profile .item-label {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
 	float: left;
-	width: 140px;
 	text-align: right;
+	/* shape ----------------------------------------------------------------*/
+	width: 140px;
 }
 
 .profile .items {
+	/* effect ---------------------------------------------------------------*/
 	*display: inline-block;
+	color: rgba(0, 0, 0, 0.60);
+	font-weight: bold;
+	/* layout ---------------------------------------------------------------*/
 	*padding-left: 20px;
 	margin-left: 160px;
 	*margin-left: 0;
-	color: rgba(0, 0, 0, 0.60);
-	font-weight: bold;
+	/* shape ----------------------------------------------------------------*/
 }
 
 .profile .items:first-child {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
 	*padding-left: 160px;
+	/* shape ----------------------------------------------------------------*/
 }
 
 .profile .help-block {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
 	margin-top: 9px;
 	margin-bottom: 0;
+	/* shape ----------------------------------------------------------------*/
 }
 
 .profile .form-actions {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
 	padding-left: 160px;
+	/* shape ----------------------------------------------------------------*/
 }
 
 #copyrights {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
 	z-index: 10;
 	position: fixed;
 	bottom: 12px;
 	text-align: center;
+	/* shape ----------------------------------------------------------------*/
 	width: 20%;
 	left: 40%;
 }

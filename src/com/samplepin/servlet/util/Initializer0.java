@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mongodb.MongoException;
 import com.samplepin.ACMongo;
-import com.samplepin.Card;
 import com.samplepin.Country;
 import com.samplepin.Helper;
 import com.samplepin.User;
@@ -412,10 +411,6 @@ public class Initializer0 extends HttpServlet {
 			}
 			mongo.save(new User(Helper.generatedUserId("ID_"),
 					"master@sample-pin.com", "マスター加藤", "hoge".hashCode()));
-
-			mongo.save(new Card("HELP", "sample-pin", "img/broken.gif", "",
-					"Please, view more cards.", 0, 0, System
-							.currentTimeMillis()));
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();
 		}

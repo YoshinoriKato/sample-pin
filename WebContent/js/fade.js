@@ -1,7 +1,11 @@
 
 
 function pushPull(on, off) {
-	$(off).fadeOut(1000);
-	$(on).fadeIn(1000);
+	pushPull(on, off, 1000);
+};
+
+function pushPull(on, off, duration) {
+	$(off).fadeOut(duration);
+	$(on).fadeIn(duration);
 };
 

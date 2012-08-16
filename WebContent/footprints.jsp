@@ -7,11 +7,7 @@
 <html>
 <head>
 <jsp:include page="_header.jsp"></jsp:include>
-<script type="text/javascript" charset="UTF-8">
-	$(window).load(function() {
-		$('#main').fadeIn(1000);
-	});
-</script>
+<jsp:include page="_effect.jsp"></jsp:include>
 </head>
 
 
@@ -75,7 +71,7 @@
 			offset : 20
 		});
 		cardId = $("#cardId").text();
-		$('#cover').fadeOut(1000);
+		$('#ajax').fadeOut(1000);
 	});
 	$(window).resize(function() {
 		$('#content li').wookmark({

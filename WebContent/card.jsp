@@ -26,70 +26,15 @@
 
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
-	<div id="origin" class="small-tab"
-		onclick="pushPull('#image-holder','#origin')">
-		<span class="vertical-text">Image</span>
-	</div>
-	<div id="write" class="small-tab"
-		onclick="pushPull('#comment-area','#write')">
-		<div class=" ">
-			<span class="vertical-text">Comment</span>
-		</div>
-	</div>
 	<div id="main">
 		<jsp:include page="_button.jsp" flush="true" />
-		<div id="image-holder">
-			<div class="tab-button" onclick="pushPull('#origin','#image-holder')">x</div>
-			<img src="<%=card.getImagePath()%>" class="image-origin">
-		</div>
-		<div id="comment-area">
-			<div class="tab-button" onclick="pushPull('#write','#comment-area')">x</div>
-			<div class="center page-menu">
-				<%
-					if (comments.size() >= CommentServlet.COMMENTS_LIMIT) {
-				%>
-				<p>
-					Thanks. This card received
-					<%=CommentServlet.COMMENTS_LIMIT%>
-					comments.
-				</p>
-
-				<%
-					} else if (userId0 != null) {
-				%>
-
-				<form method="post" action="comment.do" class="form-horizontal">
-					<div class="control-group <%=error%>">
-						<div>
-							<textarea name="comment" class="textarea span6" rows="4"></textarea>
-						</div>
-						<div class="help-inline"><%=message%></div>
-					</div>
-					<div class="control-group">
-						<input type="submit" class="btn btn-large btn-primary btn-cell"
-							value="Comment">
-					</div>
-					<input type="hidden" name="cardId" value="<%=cardId%>">
-				</form>
-
-				<%
-					} else {
-				%>
-				<div class="caption large">
-					Please, <a href="login.jsp?fromUrl=card.jsp?cardId=<%=cardId%>">Login</a>
-					or <a href="signup.jsp">Sign up</a>.
-				</div>
-				<%
-					}
-				%>
-			</div>
-		</div>
 
 		<ul id="content">
 			<li>
 				<div class="cell">
 					<div>
-						<img src="<%=card.getImagePath()%>" class="image-shot">
+						<img src="<%=card.getImagePath()%>" class="image-shot"
+							id="image-shot">
 					</div>
 					<% if(card.getView() != 0){ %>
 					<div class="ribon">
@@ -135,17 +80,84 @@
 	</div>
 
 	<div style="display: none;" id="cardId"><%=cardId%></div>
+
+	<div id="cover" class="center">
+		<div class="middle">
+			<div id="image-close" class="tab-button">x</div>
+			<div>
+				<img src="<%=card.getImagePath()%>" id="image-origin">
+			</div>
+		</div>
+	</div>
+
+	<div id="write" class="small-tab">
+		<div class=" ">
+			<span class="vertical-text">Comment</span>
+		</div>
+	</div>
+	<div id="comment-area">
+		<div id="comment-close" class="tab-button">x</div>
+		<div class="center page-menu">
+			<%
+					if (comments.size() >= CommentServlet.COMMENTS_LIMIT) {
+				%>
+			<p>
+				Thanks. This card received
+				<%=CommentServlet.COMMENTS_LIMIT%>
+				comments.
+			</p>
+
+			<%
+					} else if (userId0 != null) {
+				%>
+
+			<form method="post" action="comment.do" class="form-horizontal">
+				<div class="control-group <%=error%>">
+					<div>
+						<textarea name="comment" class="textarea span6" rows="4"></textarea>
+					</div>
+					<div class="help-inline"><%=message%></div>
+				</div>
+				<div class="control-group">
+					<input type="submit" class="btn btn-large btn-primary btn-cell"
+						value="Comment">
+				</div>
+				<input type="hidden" name="cardId" value="<%=cardId%>">
+			</form>
+
+			<%
+					} else {
+				%>
+			<div class="caption large">
+				Please, <a href="login.jsp?fromUrl=card.jsp?cardId=<%=cardId%>">Login</a>
+				or <a href="signup.jsp">Sign up</a>.
+			</div>
+			<%
+					}
+				%>
+		</div>
+	</div>
+
 	<jsp:include page="_footer.jsp"></jsp:include>
 </body>
 
 <script type="text/javascript">
-	$(window).load(function() {
-		$('#content li').wookmark({
-			offset : 20
-		});
-		cardId = $("#cardId").text();
-		pushPull('#main', '#cover');
-	});
+	$(window).load(
+			function() {
+				cardId = $("#cardId").text();
+				pushPull('#main', '#ajax');
+				$('#content li').wookmark({
+					offset : 20
+				});
+				$('#image-shot')
+						.attr("onclick", "pushPull('#cover','#origin')");
+				$('#image-close').attr("onclick",
+						"pushPull('#origin','#cover')");
+				$('#write').attr("onclick",
+						"pushPull('#comment-area','#write')");
+				$('#comment-close').attr("onclick",
+						"pushPull('#write','#comment-area')");
+			});
 	$(window).resize(function() {
 		$('#content li').wookmark({
 			offset : 20
