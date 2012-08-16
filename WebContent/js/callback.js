@@ -16,6 +16,7 @@ function callback($array) {
 			$('#content li').wookmark({
 				offset : 20
 			});
+			$('#content').css('height', $(document).height() + 100);
 			$('#ajax').fadeOut(1000);
 		}
 	}, $interval);

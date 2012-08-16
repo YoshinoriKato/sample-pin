@@ -72,6 +72,7 @@
 			offset : 20
 		});
 		cardId = $("#cardId").text();
+		$('#content').css('height', $(document).height() + 100);
 		$('#ajax').fadeOut(1000);
 	});
 	$(window).resize(function() {
