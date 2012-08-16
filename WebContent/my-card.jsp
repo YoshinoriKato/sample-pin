@@ -56,7 +56,7 @@
 													style="<%=wallPaper%> <%=backgroundColor%>">
 													<div class="comment" style="<%=fontColor%>">
 														@<%=Helper.escapeHTML(userName)%></div>
-													<div class="comment deco" style="<%=fontColor%>">
+													<div class="comment caption deco" style="<%=fontColor%>">
 														<!-- comment -->
 														コメント。
 													</div>

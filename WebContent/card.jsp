@@ -31,14 +31,13 @@
 
 		<ul id="content">
 			<li>
-				<div class="cell">
+				<div class="cell link" id="image-shot">
 					<div>
-						<img src="<%=card.getImagePath()%>" class="image-shot"
-							id="image-shot">
+						<img src="<%=card.getImagePath()%>" class="image-shot">
 					</div>
 					<% if(card.getView() != 0){ %>
 					<div class="ribon">
-						<span class="ribon-text"> <%=card.getView()%> view
+						<span class="ribon-text color-red"> <%=card.getView()%> view
 						</span>
 					</div>
 					<% } %>
@@ -51,7 +50,7 @@
 					</div>
 				</div>
 			</li>
-			
+
 			<%
 				for (Comment comment : comments) {
 					User user = Helper.getUserById(comment.getUserId());
@@ -66,7 +65,7 @@
 						<a href="profile.jsp?userId=<%=comment.getUserId() %>">@<%=Helper.escapeHTML(userName)%>
 						</a>
 					</div>
-					<div class="comment deco" style="<%=fontColor%>">
+					<div class="comment caption deco" style="<%=fontColor%>">
 						<!-- comment -->
 						<%=Helper.convURLLink(Helper.escapeHTML(comment.getComment())) %>
 					</div>

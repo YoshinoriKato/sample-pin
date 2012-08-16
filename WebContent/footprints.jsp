@@ -32,6 +32,7 @@
 					String blank = isExternal ? "target='_blank'" : "";
 					String jsp = isExternal ? "jump.jsp" : "card.jsp";
 					String redirextUrl = isExternal ? "&redirectUrl=" + card.getUrl() : "";
+					String color = isExternal ? "color-blue" : "color-red";
 			%>
 
 			<li>
@@ -44,7 +45,7 @@
 					</div>
 					<% if(card.getView() != 0){ %>
 					<div class="ribon">
-						<span class="ribon-text"> <%=card.getView()%> view
+						<span class="ribon-text <%=color%>"> <%=card.getView()%> view
 						</span>
 					</div>
 					<% } %>

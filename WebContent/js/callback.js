@@ -22,39 +22,40 @@ function callback($array) {
 };
 
 function makeCell($card) {
-	
+
 	var $url = $card.url;
-	var $jqLi = $("<li/>");
-	var $jqDiv = $("<div/>");
-	var $jqA = $("<a/>").addClass("no-hover");
-	var $divRibon = $("<div/>").addClass("ribon");
-	var $divImage = $("<div/>");
-	var $divCaption = $("<div/>").addClass("caption deco");
-	var $divFooter = $("<div/>").addClass("star right");
-	var $divRibonText = $("<div/>").addClass("ribon-text").text(
-			$card.view + " view");
-	var $jqImg = $("<img/>").addClass("image-shot deco").attr("src",
+	var $jqLi = $('<li/>');
+	var $jqDiv = $('<div/>');
+	var $jqA = $('<a/>').addClass('no-hover');
+	var $divRibon = $('<div/>').addClass('ribon');
+	var $divImage = $('<div/>');
+	var $divCaption = $('<div/>').addClass('caption deco');
+	var $divFooter = $('<div/>').addClass('star right');
+	var $divRibonText = $('<div/>').text($card.view + ' view');
+	var $jqImg = $('<img/>').addClass('image-shot deco').attr('src',
 			$card.imagePath);
 
-	if ($url != null && $url != "") {
-		$jqDiv.addClass("cell2");
-		$jqA.attr("href",
-				"jump.jsp?cardId=" + $card.cardId + "&redirectUrl=" + $url)
-				.attr("target", "_blank");
+	if ($url != null && $url != '') {
+		$divRibonText.addClass('ribon-text color-blue');
+		$jqDiv.addClass('cell2');
+		$jqA.attr('href',
+				'jump.jsp?cardId=' + $card.cardId + '&redirectUrl=' + $url)
+				.attr('target', '_blank');
 		$divFooter.text($url);
 	} else {
-		$jqDiv.addClass("cell");
-		$jqA.attr("href", "card.jsp?cardId=" + $card.cardId);
-		$divFooter.text($card.likes + " comment");
+		$divRibonText.addClass('ribon-text color-red');
+		$jqDiv.addClass('cell');
+		$jqA.attr('href', 'card.jsp?cardId=' + $card.cardId);
+		$divFooter.text($card.likes + ' comment');
 	}
 
 	$('#content').append($jqLi);
-	$jqLi.append($jqDiv);
+	$jqLi.append($jqA.append($jqDiv));
 	if ($card.view > 0) {
 		$jqDiv.append($divRibon.append($divRibonText));
 	}
 	$jqDiv.append($divImage).append($divCaption).append($divFooter);
-	$divImage.append($jqA.append($jqImg));
+	$divImage.append($jqImg);
 	$divCaption.text($card.caption).autoUrlLink();
 }
 

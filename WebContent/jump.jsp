@@ -9,6 +9,7 @@
 </head>
 <%
 	String userId = (String) session.getAttribute("userId");
+	userId = (userId != null) ? userId : session.getId();
 	String cardId = request.getParameter("cardId");
 	String redirectUrl = request.getParameter("redirectUrl");
 	response.sendRedirect(redirectUrl);
