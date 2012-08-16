@@ -26,7 +26,7 @@
 	});
 </script>
 
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-fixed-top opacity90">
 	<div class="navbar-inner">
 		<div class="container">
 			<button type="button" class="btn btn-navbar" data-toggle="collapse"

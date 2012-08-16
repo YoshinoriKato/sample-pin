@@ -55,7 +55,7 @@
 											<li><div class="cell"
 													style="<%=wallPaper%> <%=backgroundColor%>">
 													<div class="comment" style="<%=fontColor%>">
-														@<%=userName%></div>
+														@<%=Helper.escapeHTML(userName)%></div>
 													<div class="comment deco" style="<%=fontColor%>">
 														<!-- comment -->
 														コメント。
@@ -70,7 +70,7 @@
 									<label for="userName" class="control-label">Name</label>
 									<div class="controls">
 										<input type="text" name="userName" maxlength="40"
-											value="<%=user.getUserName()%>" class="span8">
+											value="<%=Helper.escapeHTML(user.getUserName())%>" class="span8">
 									</div>
 								</div>
 								<div class="control-group">

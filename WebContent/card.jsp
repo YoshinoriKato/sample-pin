@@ -43,7 +43,7 @@
 					</div>
 					<% } %>
 					<div class="caption deco">
-						<%=Helper.convURLLink(card.getCaption())%>
+						<%=Helper.convURLLink(Helper.escapeHTML(card.getCaption()))%>
 					</div>
 					<div class="star right">
 						<%=card.getLikes()%>
@@ -51,6 +51,7 @@
 					</div>
 				</div>
 			</li>
+			
 			<%
 				for (Comment comment : comments) {
 					User user = Helper.getUserById(comment.getUserId());
@@ -62,12 +63,12 @@
 			<li><div class="cell opacity80"
 					style="<%=wallPaper%> <%=backgroundColor%>">
 					<div class="comment" style="<%=fontColor%>">
-						<a href="profile.jsp?userId=<%=comment.getUserId() %>">@<%=userName%>
+						<a href="profile.jsp?userId=<%=comment.getUserId() %>">@<%=Helper.escapeHTML(userName)%>
 						</a>
 					</div>
 					<div class="comment deco" style="<%=fontColor%>">
 						<!-- comment -->
-						<%=Helper.convURLLink(comment.getComment()) %>
+						<%=Helper.convURLLink(Helper.escapeHTML(comment.getComment())) %>
 					</div>
 					<div class="comment right" style="<%=fontColor%>">
 						<%=Helper.formatToDateTimeString(comment.getCreateDate())%></div>

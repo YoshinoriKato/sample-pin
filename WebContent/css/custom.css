@@ -28,6 +28,8 @@ body {
 
 #image-origin {
 	/* effect ---------------------------------------------------------------*/
+	background-color: #eee;
+	background-image: url("../img/ichimatsu.png?201208131742");
 	/* layout ---------------------------------------------------------------*/
 	/* shape ----------------------------------------------------------------*/
 	max-height: 80%;
@@ -37,11 +39,11 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	cursor: pointer;
 	color: rgba(80, 80, 80, 0.4);
+	background-color: rgba(0, 0, 0, 0.05);
 	filter: alpha(opacity =     80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/
-	margin-top: 10px;
 	margin-bottom: 10px;
 	/* shape ----------------------------------------------------------------*/
 	border-radius: 3px 25px 3px;
@@ -50,6 +52,7 @@ body {
 	min-width: 200px;
 	min-height: 30px;
 	max-width: 100%;
+	border-radius: 3px 25px 3px
 }
 
 #cover {
@@ -57,6 +60,8 @@ body {
 	background-color: rgba(0, 0, 0, 0.4);
 	font-size: larger;
 	display: none;
+	box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
 	/* layout ---------------------------------------------------------------*/
 	position: fixed;
 	top: 10%;
@@ -69,7 +74,8 @@ body {
 	border-radius: 6px 40px 6px;
 	-webkit-border-radius: 6px 40px 6px;
 	-moz-border-radius: 6px 40px 6px;
-	width: 80%
+	width: 80%;
+	-webkit-box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
 }
 
 #cover2 {
@@ -182,10 +188,7 @@ body {
 	box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
 	/* layout ---------------------------------------------------------------*/
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding: 20px;
 	margin-bottom: 20px;
 	/* shape ----------------------------------------------------------------*/
 	border-radius: 6px 40px 6px;

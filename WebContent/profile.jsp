@@ -43,7 +43,7 @@
 						</div>
 						<div class="item-group">
 							<div class="item-label">Name</div>
-							<div class="items"><%=user.getUserName()%>
+							<div class="items"><%=Helper.escapeHTML(user.getUserName())%>
 							</div>
 						</div>
 						<div class="item-group">

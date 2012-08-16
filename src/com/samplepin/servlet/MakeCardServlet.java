@@ -180,7 +180,7 @@ public class MakeCardServlet extends HttpServlet {
 			if (title != null) {
 
 			} else if (caption != null) {
-				card.setCaption(Helper.escapeHTML(caption));
+				card.setCaption(caption);
 
 			} else if (url != null) {
 				card.setUrl(url);

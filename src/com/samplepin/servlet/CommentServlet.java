@@ -17,7 +17,6 @@ import com.mongodb.MongoException;
 import com.samplepin.ACMongo;
 import com.samplepin.Card;
 import com.samplepin.Comment;
-import com.samplepin.Helper;
 
 @WebServlet(urlPatterns = { "/comment.do" })
 public class CommentServlet extends HttpServlet {
@@ -36,7 +35,6 @@ public class CommentServlet extends HttpServlet {
 		resp.setCharacterEncoding("UTF-8");
 		String cardId = req.getParameter("cardId");
 		String comment = req.getParameter("comment");
-		comment = Helper.escapeHTML(comment);
 
 		try {
 			HttpSession session = req.getSession();
