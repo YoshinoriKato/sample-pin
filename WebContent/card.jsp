@@ -58,7 +58,7 @@
 	<jsp:include page="_button.jsp" flush="true" />
 	<div id="main">
 		<ul id="content">
-			<li>
+			<li class="card">
 				<div class="cell link" id="image-shot">
 					<div>
 						<img src="<%=card.getImagePath()%>" class="image-shot">

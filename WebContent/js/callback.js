@@ -45,7 +45,7 @@ function makeCell($card) {
 
 	// components
 	var $url = $card.url;
-	var $jqLi = $('<li/>');
+	var $jqLi = $('<li/>').addClass('card');
 	var $jqDiv = $('<div/>').attr('id', $card.cardId);
 	var $jqA = $('<a/>').addClass('no-hover');
 	var $divRibon = $('<div/>').addClass('ribon');
