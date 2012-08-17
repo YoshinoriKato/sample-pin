@@ -21,6 +21,8 @@ public class View {
 
 	Integer comments;
 
+	Boolean isDeleted;
+
 	public View() {
 		this(System.currentTimeMillis(), "", "");
 	}
@@ -32,6 +34,7 @@ public class View {
 		this.userId = userId;
 		this.times = 0;
 		this.comments = 0;
+		this.isDeleted = false;
 	}
 
 	public String getCardId() {
@@ -44,6 +47,10 @@ public class View {
 
 	public ObjectId getId() {
 		return this.id;
+	}
+
+	public Boolean getIsDeleted() {
+		return this.isDeleted;
 	}
 
 	public Integer getTimes() {
@@ -72,6 +79,10 @@ public class View {
 
 	public void setId(ObjectId id) {
 		this.id = id;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 
 	public void setTimes(Integer times) {

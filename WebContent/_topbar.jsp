@@ -16,6 +16,7 @@
 	
 	String classMakeCard = url.contains("/make-card.jsp") ? CLASS_ACTIVE
 			: "";
+	classMakeCard = url.contains("/confirm-make-card.jsp") ? CLASS_ACTIVE : classMakeCard;
 	String classMyCard = url.contains("/my-card.jsp") ? CLASS_ACTIVE : "";
 	String classLogin = url.contains("/login.jsp") ? CLASS_ACTIVE : "";
 	String classLogout = url.contains("/logout.jsp") ? CLASS_ACTIVE : "";

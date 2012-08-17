@@ -38,7 +38,8 @@ public class AjaxCardServlet extends HttpServlet {
 
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
-			Query<Card> query = datastore.createQuery(Card.class).limit(200);
+			Query<Card> query = datastore.createQuery(Card.class)
+					.filter("isDeleted", false).limit(200);
 			if (sorted == null) {
 				query.order("-createDate");
 			} else if ("view".equals(sorted)) {

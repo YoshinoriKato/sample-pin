@@ -30,7 +30,7 @@ function makeCell($card) {
 
 	var $url = $card.url;
 	var $jqLi = $('<li/>');
-	var $jqDiv = $('<div/>');
+	var $jqDiv = $('<div/>').attr('id', $card.cardId);
 	var $jqA = $('<a/>').addClass('no-hover');
 	var $divRibon = $('<div/>').addClass('ribon');
 	var $divImage = $('<div/>');

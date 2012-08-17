@@ -40,7 +40,8 @@ public class Helper {
 
 	public static <T> Long countByID(Class<T> clazz, String ex, String userId) {
 		try (ACMongo mongo = new ACMongo()) {
-			Query<T> query = mongo.createQuery(clazz).filter(ex, userId);
+			Query<T> query = mongo.createQuery(clazz).filter(ex, userId)
+					.filter("isDeleted", false);
 			return query.countAll();
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();
@@ -109,8 +110,9 @@ public class Helper {
 	public static Card getCardInfoByID(String cardId) {
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
-			Query<Card> query = datastore.createQuery(Card.class).filter(
-					"cardId = ", cardId);
+			Query<Card> query = datastore.createQuery(Card.class)
+					.filter("cardId = ", cardId).filter("isDeleted", false)
+					;
 			Card card = query.get();
 			return card;
 		} catch (UnknownHostException | MongoException e) {
@@ -269,7 +271,8 @@ public class Helper {
 			Datastore datastore = mongo.createDatastore();
 			Query<View> query2 = datastore.createQuery(View.class)
 					.filter("userId = ", userId)
-					.filter("cardId = ", card.getCardId());
+					.filter("cardId = ", card.getCardId())
+					.filter("isDeleted", false);
 			View view = query2.get();
 
 			if (view == null) {

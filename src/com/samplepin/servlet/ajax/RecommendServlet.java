@@ -73,7 +73,8 @@ public class RecommendServlet extends HttpServlet {
 				Query<View> query = mongo.createQuery(View.class)
 						.filter("userId != ", userId)
 						.filter("cardId = ", view.getCardId())
-						.order("-comments").order("-times").limit(10);
+						.filter("isDeleted", false).order("-comments")
+						.order("-times").limit(10);
 				List<View> result = query.asList();
 				for (View view2 : result) {
 					others.add(view2.getUserId());
@@ -89,7 +90,8 @@ public class RecommendServlet extends HttpServlet {
 		if (!userIds.isEmpty()) {
 			try (ACMongo mongo = new ACMongo()) {
 				Query<View> query = mongo.createQuery(View.class)
-						.filter("userId in ", userIds).order("-comments")
+						.filter("userId in ", userIds)
+						.filter("isDeleted", false).order("-comments")
 						.order("-times").limit(1000);
 				result = query.asList();
 				result = result != null ? result : new ArrayList<View>();
@@ -116,8 +118,8 @@ public class RecommendServlet extends HttpServlet {
 	final List<View> getViewsByUserID(String userId) throws IOException {
 		try (ACMongo mongo = new ACMongo()) {
 			Query<View> query = mongo.createQuery(View.class)
-					.filter("userId = ", userId).order("-visitedDate")
-					.limit(10);
+					.filter("userId = ", userId).filter("isDeleted", false)
+					.order("-visitedDate").limit(10);
 			List<View> views = query.asList();
 			Collections.sort(views, this.SCORE);
 			return views;
@@ -126,8 +128,8 @@ public class RecommendServlet extends HttpServlet {
 
 	final void writeToAjax(HttpServletResponse resp) throws IOException {
 		try (ACMongo mongo = new ACMongo()) {
-			Query<Card> query = mongo.createQuery(Card.class).order(
-					"-createDate");
+			Query<Card> query = mongo.createQuery(Card.class)
+					.filter("isDeleted", false).order("-createDate");
 			List<Card> cards = query.asList();
 			new AjaxCardServlet().writeToJSON(resp, cards);
 		}
@@ -136,8 +138,9 @@ public class RecommendServlet extends HttpServlet {
 	final void writeToAjax(HttpServletResponse resp, Set<String> recommends)
 			throws IOException {
 		try (ACMongo mongo = new ACMongo()) {
-			Query<Card> query = mongo.createQuery(Card.class).filter(
-					"cardId in ", recommends);
+			Query<Card> query = mongo.createQuery(Card.class)
+					.filter("cardId in ", recommends)
+					.filter("isDeleted", false);
 			List<Card> cards = query.asList();
 			new AjaxCardServlet().writeToJSON(resp, cards);
 		}

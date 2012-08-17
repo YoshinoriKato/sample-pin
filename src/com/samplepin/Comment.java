@@ -19,6 +19,8 @@ public class Comment {
 
 	Long createDate;
 
+	Boolean isDeleted;
+
 	public Comment() {
 		super();
 	}
@@ -29,6 +31,7 @@ public class Comment {
 		this.cardId = cardId;
 		this.comment = comment;
 		this.createDate = createDate;
+		this.isDeleted = false;
 	}
 
 	public String getCardId() {
@@ -45,6 +48,10 @@ public class Comment {
 
 	public ObjectId getId() {
 		return this.id;
+	}
+
+	public Boolean getIsDeleted() {
+		return this.isDeleted;
 	}
 
 	public String getUserId() {
@@ -65,6 +72,10 @@ public class Comment {
 
 	public void setId(ObjectId id) {
 		this.id = id;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 
 	public void setUserId(String userId) {

@@ -68,16 +68,19 @@ public class CommentServlet extends HttpServlet {
 			Query<Comment> query0 = datastore.createQuery(Comment.class)
 					.filter("cardId = ", comment.getCardId())
 					.filter("userId = ", comment.getUserId())
-					.filter("comment = ", comment.getComment());
+					.filter("comment = ", comment.getComment())
+					.filter("isDeleted", false);
 			Query<Comment> query1 = datastore.createQuery(Comment.class)
-					.filter("cardId = ", comment.getCardId());
+					.filter("cardId = ", comment.getCardId())
+					.filter("isDeleted", false);
 
 			if ((query0.countAll() == 0)
 					&& (query1.countAll() < COMMENTS_LIMIT)) {
 				datastore.save(comment);
 
-				Query<Card> query2 = datastore.createQuery(Card.class).filter(
-						"cardId", comment.getCardId());
+				Query<Card> query2 = datastore.createQuery(Card.class)
+						.filter("cardId", comment.getCardId())
+						.filter("isDeleted", false);
 				Card card = query2.get();
 				card.setLikes(card.getLikes() + 1);
 				datastore.save(card);
