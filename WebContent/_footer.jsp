@@ -35,7 +35,7 @@
 <%if (url.contains("/index.jsp")) {%>
 	if ($(document).height() - $(window).height() - 60 < $(
 									this).scrollTop()) {
-								callAjax($('#sorted').text(), 5, $counter);
+								callAjax($('#sorted').text(), 10, $counter);
 							}
 							<%}%>
 	});

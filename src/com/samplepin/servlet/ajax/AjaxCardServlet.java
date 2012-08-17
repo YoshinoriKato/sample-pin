@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -41,8 +42,8 @@ public class AjaxCardServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/javascript+json; charset=UTF-8");
-		String name = req.getParameter("name");
-		String key = req.getParameter("key");
+		// String name = req.getParameter("name");
+		// String key = req.getParameter("key");
 		String sorted = req.getParameter("sorted");
 		String offset = req.getParameter("offset");
 		String limit = req.getParameter("limit");
@@ -83,20 +84,28 @@ public class AjaxCardServlet extends HttpServlet {
 			} else if ("footprints".equals(sorted)) {
 				List<View> views = Helper.getViewsInfoByID(userId);
 				List<String> cardIds = new ArrayList<>();
-				for (View view : views) {
-					cardIds.add(view.getCardId());
+				if (valid(views)) {
+					for (View view : views) {
+						cardIds.add(view.getCardId());
+					}
+					query.filter("cardId in ", cardIds);
+				} else {
+					writeToJSON(resp, cards, callback);
+					return;
 				}
-				query.filter("cardId in ", cardIds);
-
 			} else if ("recommend".equals(sorted)) {
 				Set<String> recommends = new RecommendEngine()
 						.getRecommendCards(userId);
-				query.filter("cardId in ", recommends);
-				query.order("-createDate");
-
+				if (valid(recommends)) {
+					query.filter("cardId in ", recommends);
+					query.order("-createDate");
+				} else {
+					writeToJSON(resp, cards, callback);
+					return;
+				}
 			} else if ("mine".equals(sorted)) {
-				query.order("-createDate");
 				query.filter("userId = ", userId);
+				query.order("-createDate");
 
 			} else {
 				query.order("-createDate");
@@ -120,6 +129,10 @@ public class AjaxCardServlet extends HttpServlet {
 			throw e;
 		}
 		writeToJSON(resp, cards, callback);
+	}
+
+	final <T> boolean valid(Collection<T> value) {
+		return (value != null) && !value.isEmpty();
 	}
 
 	final boolean valid(String value) {

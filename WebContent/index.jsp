@@ -18,7 +18,7 @@
 	});
 
 	$(window).load(function() {
-		callAjax($('#sorted').text(), 20);
+		callAjax($('#sorted').text(), 40);
 		$('#main').fadeIn(1000);
 	});
 </script>

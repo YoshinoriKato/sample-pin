@@ -6,11 +6,23 @@ var $counter = 0;
 
 var $block = false;
 
+function teaDown() {
+	$('#content').css('height', $(document).height() - 120);
+	$('#read-cards').text('read ' + $counter + ' cards');
+	wookmark();
+	$('#ajax').fadeOut(1000);
+	$block = false;
+}
+
 function callback($array) {
 	var $i = 0;
 	var $len = $array.length;
 	var $interval = 3;
 	$counter += $len;
+	if ($len == 0) {
+		teaDown();
+		return;
+	}
 
 	$timer = setInterval(function() {
 		makeCell($array[$i]);
@@ -18,11 +30,7 @@ function callback($array) {
 		$i++;
 		if ($i >= $len) {
 			clearInterval($timer);
-			wookmark();
-			$('#content').css('height', $(document).height() - 100);
-			$('#read-cards').text('read ' + $counter + ' cards');
-			$('#ajax').fadeOut(1000);
-			$block = false;
+			teaDown();
 		}
 	}, $interval);
 };
