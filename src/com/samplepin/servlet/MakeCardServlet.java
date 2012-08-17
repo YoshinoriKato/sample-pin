@@ -23,10 +23,7 @@ import javax.servlet.http.Part;
 
 import org.apache.log4j.Logger;
 
-import com.google.code.morphia.Datastore;
-import com.samplepin.ACMongo;
 import com.samplepin.Card;
-import com.samplepin.Helper;
 import com.samplepin.User;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 
@@ -98,15 +95,20 @@ public class MakeCardServlet extends HttpServlet {
 		writeFiles(req, uploadQue, card);
 
 		if ((card.getCaption() != null) && !card.getCaption().isEmpty()) {
-			try (ACMongo mongo = new ACMongo()) {
-				Datastore datastore = mongo.createDatastore();
-				datastore.save(card);
-			}
-			log("upload end.");
-			Helper.setFootprint(card, userId);
-			resp.sendRedirect("index.jsp");
-			return;
+			// try (ACMongo mongo = new ACMongo()) {
+			// Datastore datastore = mongo.createDatastore();
+			// datastore.save(card);
+			// }
+			// log("upload end.");
+			// Helper.setFootprint(card, userId);
+			// resp.sendRedirect("index.jsp");
+			// return;
 
+			req.setAttribute("confirm", card);
+			RequestDispatcher dispathcer = req
+					.getRequestDispatcher("confirm-make-card.jsp");
+			dispathcer.forward(req, resp);
+			return;
 		} else {
 			log("upload failed.");
 			req.setAttribute("message", "Please, write a caption.");

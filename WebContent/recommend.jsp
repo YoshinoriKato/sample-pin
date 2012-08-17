@@ -43,8 +43,8 @@
 
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
+	<jsp:include page="_button.jsp" flush="true" />
 	<div id="main">
-		<jsp:include page="_button.jsp" flush="true" />
 		<ul id="content">
 		</ul>
 		<br style="clear: both;" />

@@ -13,7 +13,7 @@
 </div>
 <div id="error-dialog">
 	<img src="img/broken.gif" class="image-shot">
-	<div class="caption">Sorry, server error.</div>
+	<div class="caption large">Sorry, server error.</div>
 </div>
 <div id="bottom-label">
 	<a href="#top">Go top</a>

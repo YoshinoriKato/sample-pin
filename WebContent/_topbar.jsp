@@ -5,19 +5,23 @@
 	pageEncoding="UTF-8"%>
 
 <!-- メニュー -->
-
+<%!final String CLASS_ACTIVE = "class=\"active\""; %>
 <%
 	String url = request.getRequestURI();
-	final String CLASS_ACTIVE = "class=\"active\"";
-	String classIndex = url.contains("index") ? CLASS_ACTIVE : "";
-	String classMakeCard = url.contains("make-card") ? CLASS_ACTIVE
+
+	String classIndex = url.contains("/index.jsp") ? CLASS_ACTIVE : "";
+	classIndex = url.contains("/footprints.jsp") ? CLASS_ACTIVE : classIndex;
+	classIndex = url.contains("/recommend.jsp") ? CLASS_ACTIVE : classIndex;
+	classIndex = url.contains("/card.jsp") ? CLASS_ACTIVE : classIndex;
+	
+	String classMakeCard = url.contains("/make-card.jsp") ? CLASS_ACTIVE
 			: "";
-	String classMyCard = url.contains("my-card") ? CLASS_ACTIVE : "";
-	String classLogin = url.contains("login") ? CLASS_ACTIVE : "";
-	String classLogout = url.contains("logout") ? CLASS_ACTIVE : "";
-	String classSignup = url.contains("signup") ? CLASS_ACTIVE : "";
-	String classAccount = url.contains("account") ? CLASS_ACTIVE : "";
-	String classProfile = url.contains("profile") ? CLASS_ACTIVE : "";
+	String classMyCard = url.contains("/my-card.jsp") ? CLASS_ACTIVE : "";
+	String classLogin = url.contains("/login.jsp") ? CLASS_ACTIVE : "";
+	String classLogout = url.contains("/logout.jsp") ? CLASS_ACTIVE : "";
+	String classSignup = url.contains("/signup.jsp") ? CLASS_ACTIVE : "";
+	String classAccount = url.contains("/account.jsp") ? CLASS_ACTIVE : "";
+	String classProfile = url.contains("/profile.jsp") ? CLASS_ACTIVE : "";
 %>
 
 <script type="text/javascript" charset="utf-8">

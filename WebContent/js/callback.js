@@ -14,7 +14,7 @@ function callback($array) {
 		if ($i >= $len) {
 			clearInterval($timer);
 			wookmark();
-			$('#content').css('height', $(document).height() + 100);
+			$('#content').css('height', $(document).height());
 			$('#ajax').fadeOut(1000);
 		}
 	}, $interval);

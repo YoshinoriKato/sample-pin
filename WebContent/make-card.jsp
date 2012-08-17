@@ -21,9 +21,6 @@
 		<div class="container">
 			<div class="row">
 				<div class="cell">
-					<%
-						Random r = new Random(System.nanoTime());
-					%>
 					<div class="form-horizontal">
 						<form action="make-card.do" enctype="multipart/form-data"
 							method="post" class="form-horizontal">
