@@ -81,7 +81,7 @@ function makeCell($card) {
 	$divCaption.text($card.caption).autoUrlLink();
 }
 
-function callAjax($sorted, $limit, $offset) {
+function callAjax($sorted, $limit, $offset, $userId) {
 	if (!$block) {
 		$block = true;
 		$.ajax({
@@ -94,7 +94,8 @@ function callAjax($sorted, $limit, $offset) {
 				key : '0381075127472',
 				sorted : $sorted,
 				offset : $offset,
-				limit : $limit
+				limit : $limit,
+				userId : $userId
 			},
 			success : callback,
 			error : function(XMLHttpRequest, textStatus, errorThrown) {

@@ -108,7 +108,8 @@ public class Initializer3 extends HttpServlet {
 				int likes = dice.nextInt(MAX_COMMENTS);
 				int views = dice.nextInt(MAX_VIEWS);
 				views = views < likes ? likes : views;
-				cards.add(new Card(cardId, "", "img/flag/" + FLAGS[i], "",
+				String userId = userIdList.get(dice.nextInt(userIdList.size()));
+				cards.add(new Card(cardId, userId, "img/flag/" + FLAGS[i], "",
 						"How about this country ?", likes, views, mills2));
 
 				mills2 += 1000 * 60 * 30 * (dice.nextInt(7) + 1);

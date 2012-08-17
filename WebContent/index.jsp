@@ -4,7 +4,8 @@
 <%
 	String sorted = request.getParameter("sorted");
 	sorted = sorted == null ? "" : sorted;
-	String userId = (String) session.getId();
+	String userId = request.getParameter("userId");
+	userId = (userId != null) ? userId : "";
 %>
 
 
@@ -18,7 +19,7 @@
 	});
 
 	$(window).load(function() {
-		callAjax($('#sorted').text(), 40);
+		callAjax($('#sorted').text(), 40, '', $('#userId').text());
 		$('#main').fadeIn(1000);
 	});
 </script>
@@ -36,6 +37,7 @@
 	</div>
 	<div class="center caption star large" id="read-cards"></div>
 	<div style="display: none" id="sorted"><%=sorted%></div>
+	<div style="display: none" id="userId"><%=userId%></div>
 	<jsp:include page="_footer.jsp"></jsp:include>
 </body>
 

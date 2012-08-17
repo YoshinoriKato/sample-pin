@@ -123,12 +123,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- 
-	<div id="write" class="small-tab">
-		<div class=" ">
-			<span class="vertical-text">Comment</span>
-		</div>
-	</div> -->
+
 	<div id="comment-area">
 		<div id="comment-close" class="tab-button">x</div>
 		<div class="center page-menu">

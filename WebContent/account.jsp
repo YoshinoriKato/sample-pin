@@ -61,6 +61,12 @@
 									</div>
 								</div>
 								<div class="control-group">
+									<label for="comment" class="control-label">Birth Day</label>
+									<div class="controls">
+										<textarea class="textarea span8" name="comment" rows="4"><%=Helper.escapeHTML(user.getComment())%></textarea>
+									</div>
+								</div>
+								<div class="control-group">
 									<label for="country" class="control-label">Country</label>
 									<div class="controls">
 										<select id="country" name="country" multiple="multiple">

@@ -173,6 +173,7 @@ public class AccountServlet extends HttpServlet {
 				String birthDay = getValueByKeyword(part, "birthDay");
 				String mail = getValueByKeyword(part, "mail");
 				String country = getValueByKeyword(part, "country");
+				String comment = getValueByKeyword(part, "comment");
 
 				String password0 = getValueByKeyword(part, "password0");
 				String password1 = getValueByKeyword(part, "password1");
@@ -189,6 +190,9 @@ public class AccountServlet extends HttpServlet {
 
 				} else if (country != null) {
 					user.setCode(Integer.valueOf(country));
+
+				} else if (comment != null) {
+					user.setComment(comment);
 
 				} else if (password0 != null) {
 					oldPassword = password0;

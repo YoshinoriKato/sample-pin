@@ -47,8 +47,14 @@
 							</div>
 						</div>
 						<div class="item-group">
+							<div class="item-label">Comment</div>
+							<div class="items"><%=Helper.escapeHTML(user.getComment())%>
+							</div>
+						</div>
+						<div class="item-group">
 							<div class="item-label">Make Card</div>
-							<div class="items"><%=Helper.countCardByUserId(userId)%>
+							<div class="items">
+								<a href="index.jsp?userId=<%=user.getUserId()%>"><%=Helper.countCardByUserId(userId)%></a>
 							</div>
 						</div>
 						<div class="item-group">

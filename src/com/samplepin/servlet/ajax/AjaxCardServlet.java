@@ -44,6 +44,7 @@ public class AjaxCardServlet extends HttpServlet {
 		resp.setContentType("text/javascript+json; charset=UTF-8");
 		// String name = req.getParameter("name");
 		// String key = req.getParameter("key");
+		String otherUserId = req.getParameter("userId");
 		String sorted = req.getParameter("sorted");
 		String offset = req.getParameter("offset");
 		String limit = req.getParameter("limit");
@@ -70,10 +71,7 @@ public class AjaxCardServlet extends HttpServlet {
 			}
 
 			// sort
-			if (!valid(sorted)) {
-				query.order("-createDate");
-
-			} else if ("view".equals(sorted)) {
+			if ("view".equals(sorted)) {
 				query.order("-view");
 				query.order("-createDate");
 
@@ -105,6 +103,10 @@ public class AjaxCardServlet extends HttpServlet {
 				}
 			} else if ("mine".equals(sorted)) {
 				query.filter("userId = ", userId);
+				query.order("-createDate");
+
+			} else if (valid(otherUserId)) {
+				query.filter("userId = ", otherUserId);
 				query.order("-createDate");
 
 			} else {

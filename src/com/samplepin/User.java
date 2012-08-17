@@ -39,6 +39,8 @@ public class User {
 
 	Integer code;
 
+	String comment;
+
 	public User() {
 		super();
 		this.userId = "";
@@ -55,6 +57,7 @@ public class User {
 		this.backgroundColor = "#cccccc";
 		this.useBackgroundImage = true;
 		this.code = 0;
+		this.comment = "";
 	}
 
 	public User(String userId, String mail, String userName, Integer password) {
@@ -79,6 +82,10 @@ public class User {
 
 	public Integer getCode() {
 		return this.code;
+	}
+
+	public String getComment() {
+		return this.comment;
 	}
 
 	public Long getCreateDate() {
@@ -139,6 +146,10 @@ public class User {
 
 	public void setCode(Integer code) {
 		this.code = code;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 	public void setCreateDate(Long createDate) {
