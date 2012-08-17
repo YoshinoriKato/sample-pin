@@ -2,10 +2,15 @@ var $timer;
 
 var $offset = 12;
 
+var $counter = 0;
+
+var $block = false;
+
 function callback($array) {
 	var $i = 0;
 	var $len = $array.length;
 	var $interval = 3;
+	$counter += $len;
 
 	$timer = setInterval(function() {
 		makeCell($array[$i]);
@@ -14,8 +19,10 @@ function callback($array) {
 		if ($i >= $len) {
 			clearInterval($timer);
 			wookmark();
-			$('#content').css('height', $(document).height());
+			$('#content').css('height', $(document).height() - 100);
+			$('#read-cards').text('read ' + $counter + ' cards');
 			$('#ajax').fadeOut(1000);
+			$block = false;
 		}
 	}, $interval);
 };
@@ -28,6 +35,7 @@ function wookmark() {
 
 function makeCell($card) {
 
+	// components
 	var $url = $card.url;
 	var $jqLi = $('<li/>');
 	var $jqDiv = $('<div/>').attr('id', $card.cardId);
@@ -54,6 +62,7 @@ function makeCell($card) {
 		$divFooter.text($card.likes + ' comment');
 	}
 
+	// construct
 	$('#content').append($jqLi);
 	$jqLi.append($jqA.append($jqDiv));
 	if ($card.view > 0) {
@@ -64,23 +73,28 @@ function makeCell($card) {
 	$divCaption.text($card.caption).autoUrlLink();
 }
 
-function callAjax($sorted) {
-	$.ajax({
-		cache : false,
-		type : 'post',
-		scriptCharset : 'UTF-8',
-		contentType : 'text/javascript+json; charset=utf-8',
-		url : 'xxx.do' + $sorted,
-		data : {
-			name : 'index.jsp',
-			key : '0381075127472',
-			sorted : $sorted
-		},
-		success : callback,
-		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			$('#ajax').fadeOut(10);
-			$('#error-dialog').fadeIn(10);
-		},
-		dataType : 'json'
-	});
+function callAjax($sorted, $limit, $offset) {
+	if (!$block) {
+		$block = true;
+		$.ajax({
+			cache : false,
+			type : 'post',
+			scriptCharset : 'UTF-8',
+			url : 'xxx.do',
+			data : {
+				name : 'index.jsp',
+				key : '0381075127472',
+				sorted : $sorted,
+				offset : $offset,
+				limit : $limit
+			},
+			success : callback,
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				$('#ajax').fadeOut(10);
+				$('#error-dialog').fadeIn(10);
+				$block = false;
+			},
+			dataType : 'jsonp'
+		});
+	}
 };

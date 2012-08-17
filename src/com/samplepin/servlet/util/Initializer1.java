@@ -11,12 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.code.morphia.Datastore;
 import com.mongodb.MongoException;
 import com.samplepin.ACMongo;
 import com.samplepin.Card;
 import com.samplepin.Comment;
-import com.samplepin.User;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 @WebServlet(urlPatterns = { "/init1.do" })
@@ -52,12 +50,8 @@ public class Initializer1 extends HttpServlet {
 	public static void main(String[] args) {
 		try (ACMongo mongo = new ACMongo()) {
 			mongo.dropDatabase("sample-pin");
+			Initializer0.main(null);
 
-			Datastore datastore = mongo.createDatastore();
-			User user = new User();
-			user.setUserId("yoshinori");
-			user.setPassword("hoge".hashCode());
-			datastore.save(user);
 
 			List<Card> cards = new ArrayList<>();
 			List<Comment> comments = new ArrayList<>();
@@ -83,8 +77,8 @@ public class Initializer1 extends HttpServlet {
 							++mills));
 				}
 			}
-			datastore.save(cards);
-			datastore.save(comments);
+			mongo.save(cards);
+			mongo.save(comments);
 
 			System.out.println("bye.");
 		} catch (UnknownHostException | MongoException e) {

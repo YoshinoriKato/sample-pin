@@ -111,7 +111,7 @@ public class Initializer3 extends HttpServlet {
 				cards.add(new Card(cardId, "", "img/flag/" + FLAGS[i], "",
 						"How about this country ?", likes, views, mills2));
 
-				mills2 += 1000 * 60 * 30 * dice.nextInt(7);
+				mills2 += 1000 * 60 * 30 * (dice.nextInt(7) + 1);
 			}
 			datastore.save(cards);
 
@@ -133,7 +133,7 @@ public class Initializer3 extends HttpServlet {
 					view.setComments(view.getComments() + 1);
 					view.setTimes(view.getTimes() + 1);
 					view.setVisitedDate(mills3);
-					mills3 += 1000 * 60 * dice.nextInt(10);
+					mills3 += 1000 * 60 * (dice.nextInt(10) + 1);
 				}
 
 				mills3 = card.getCreateDate();
@@ -148,7 +148,7 @@ public class Initializer3 extends HttpServlet {
 					if (view.getVisitedDate() < mills3) {
 						view.setVisitedDate(mills3);
 					}
-					mills3 += 1000 * 60 * dice.nextInt(10);
+					mills3 += 1000 * 60 * (dice.nextInt(10) + 1);
 				}
 			}
 			datastore.save(views.values());

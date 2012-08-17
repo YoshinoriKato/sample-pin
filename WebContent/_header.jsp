@@ -3,7 +3,7 @@
 <%@page import="com.samplepin.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%! String suffix = "201208170927"; %>
+<%! String suffix = "201208171404"; %>
 <!-- 共有 -->
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

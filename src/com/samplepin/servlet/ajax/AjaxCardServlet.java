@@ -5,6 +5,7 @@ import java.io.OutputStreamWriter;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,8 @@ import com.google.gson.Gson;
 import com.mongodb.MongoException;
 import com.samplepin.ACMongo;
 import com.samplepin.Card;
+import com.samplepin.Helper;
+import com.samplepin.View;
 
 @WebServlet(urlPatterns = { "/xxx.do" })
 public class AjaxCardServlet extends HttpServlet {
@@ -27,32 +30,87 @@ public class AjaxCardServlet extends HttpServlet {
 	private static final long serialVersionUID = 7818349586239857211L;
 
 	@Override
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		doPost(req, resp);
+	}
+
+	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/javascript+json; charset=UTF-8");
+		String name = req.getParameter("name");
+		String key = req.getParameter("key");
 		String sorted = req.getParameter("sorted");
+		String offset = req.getParameter("offset");
+		String limit = req.getParameter("limit");
+		String callback = req.getParameter("callback");
+		String old = req.getParameter("old");
+		String young = req.getParameter("young");
+		String userId = (String) req.getSession().getAttribute("userId");
 
 		List<Card> cards = new ArrayList<>();
 
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
-			Query<Card> query = datastore.createQuery(Card.class)
-					.filter("isDeleted", false).limit(200);
-			if (sorted == null) {
+
+			// filter
+			Query<Card> query = datastore.createQuery(Card.class).filter(
+					"isDeleted", false);
+
+			if (valid(old)) {
+				query.filter("createDate < ", Long.valueOf(old));
+			}
+
+			if (valid(young)) {
+				query.filter("createDate > ", Long.valueOf(young));
+			}
+
+			// sort
+			if (!valid(sorted)) {
 				query.order("-createDate");
+
 			} else if ("view".equals(sorted)) {
 				query.order("-view");
+				query.order("-createDate");
+
 			} else if ("comment".equals(sorted)) {
 				query.order("-likes");
-			} else if ("userId".equals(sorted)) {
-				String userId = (String) req.getSession()
-						.getAttribute("userId");
+				query.order("-createDate");
+
+			} else if ("footprints".equals(sorted)) {
+				List<View> views = Helper.getViewsInfoByID(userId);
+				List<String> cardIds = new ArrayList<>();
+				for (View view : views) {
+					cardIds.add(view.getCardId());
+				}
+				query.filter("cardId in ", cardIds);
+
+			} else if ("recommend".equals(sorted)) {
+				Set<String> recommends = new RecommendEngine()
+						.getRecommendCards(userId);
+				query.filter("cardId in ", recommends);
+				query.order("-createDate");
+
+			} else if ("mine".equals(sorted)) {
 				query.order("-createDate");
 				query.filter("userId = ", userId);
+
 			} else {
 				query.order("-createDate");
+			}
+
+			// option
+			if (valid(limit)) {
+				query.limit(Integer.valueOf(limit));
+			} else {
+				query.limit(1000);
+			}
+
+			if (valid(offset)) {
+				query.offset(Integer.valueOf(offset));
 			}
 
 			cards = query.asList();
@@ -61,7 +119,7 @@ public class AjaxCardServlet extends HttpServlet {
 			log(e.getMessage());
 			throw e;
 		}
-		writeToJSON(resp, cards);
+		writeToJSON(resp, cards, callback);
 	}
 
 	final void writeToJSON(HttpServletResponse resp, List<Card> cards)
@@ -78,4 +136,24 @@ public class AjaxCardServlet extends HttpServlet {
 			throw e;
 		}
 	}
+
+	final boolean valid(String value) {
+		return value != null && !value.isEmpty();
+	}
+
+	final void writeToJSON(HttpServletResponse resp, List<Card> cards,
+			String callback) throws IOException {
+		try (OutputStreamWriter osw = new OutputStreamWriter(
+				resp.getOutputStream(), "UTF-8")) {
+			Gson gson = new Gson();
+			String out = gson.toJson(cards);
+			osw.write(callback + "(" + out + ")");
+			osw.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+			log(e.getMessage());
+			throw e;
+		}
+	}
+
 }

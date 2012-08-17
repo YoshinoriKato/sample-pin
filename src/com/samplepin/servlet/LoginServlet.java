@@ -94,6 +94,7 @@ public class LoginServlet extends HttpServlet {
 		sessionOld.invalidate();
 		HttpSession sessionNew = req.getSession(true);
 		sessionNew.setAttribute("userId", userId);
+		sessionNew.setMaxInactiveInterval(-1);//無制限
 	}
 
 }

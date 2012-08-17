@@ -18,17 +18,27 @@
 <div id="bottom-label">
 	<a href="#top">Go top</a>
 </div>
+<%
+	String url = request.getRequestURI();
+%>
 <script type="text/javascript" charset="UTF-8">
 	$(function() {
 		$('#bottom-label').hide();
-		$(window).scroll(function() {
-			$('#pos').text($(this).scrollTop());
-			if ($(this).scrollTop() > 60) {
-				$('#bottom-label').fadeIn();
-			} else {
-				$('#bottom-label').fadeOut();
-			}
-		});
+		$(window)
+				.scroll(
+						function() {
+							if ($(this).scrollTop() > 60) {
+								$('#bottom-label').fadeIn();
+							} else {
+								$('#bottom-label').fadeOut();
+							}
+<%if (url.contains("/index.jsp")) {%>
+	if ($(document).height() - $(window).height() - 60 < $(
+									this).scrollTop()) {
+								callAjax($('#sorted').text(), 5, $counter);
+							}
+							<%}%>
+	});
 		$('#bottom-label a').click(function() {
 			$('body').animate({
 				scrollTop : 0

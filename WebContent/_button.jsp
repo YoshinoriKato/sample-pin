@@ -28,8 +28,8 @@
 	<%
 		if (session.getAttribute("userId") != null) {
 	%>
-	<a href="footprints.jsp" class="<%=addClass%>">My Footprints</a> <a
-		href="recommend.jsp" class="<%=addClass%>">Recommend</a>
+	<a href="index.jsp?sorted=footprints" class="<%=addClass%>">My Footprints</a> <a
+		href="index.jsp?sorted=recommend" class="<%=addClass%>">Recommend</a>
 	<%
 		}
 

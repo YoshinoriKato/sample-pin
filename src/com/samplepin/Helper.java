@@ -29,9 +29,20 @@ public class Helper {
 	static SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss.SSS");
 
+	static SimpleDateFormat SDF_DATE_HOUR = new SimpleDateFormat(
+			"yyyy-MM-dd 'at around' HH");
+
 	public static final Pattern convURLLinkPtn = Pattern.compile(
 			"(http://|https://){1}[\\w\\.\\-/:\\#\\?\\=\\&\\;\\%\\~\\+]+",
 			Pattern.CASE_INSENSITIVE);
+
+	static final Long TIME_MILLI = 1000L;
+
+	static final Long TIME_SECONDS = 60L;
+
+	static final Long TIME_MINUTES = 60L;
+
+	static final Long TIME_HOURS = 24L;
 
 	public static String convURLLink(String str) {
 		Matcher matcher = convURLLinkPtn.matcher(str);
@@ -69,6 +80,25 @@ public class Helper {
 		input = substitute(input, "'", "''");
 		input = substitute(input, "\\", "\\\\");
 		return input;
+	}
+
+	public static String formatToAboutTimeString(long mills) {
+		Long current = System.currentTimeMillis();
+		Long gap = current - mills;
+		if (gap <= TIME_MILLI) {
+			return "1秒前";
+		} else if (gap <= (TIME_SECONDS * TIME_MILLI)) {
+			long seconds = gap / TIME_MILLI;
+			return seconds + "秒前";
+		} else if (gap <= (TIME_MINUTES * TIME_SECONDS * TIME_MILLI)) {
+			long minutes = gap / (TIME_SECONDS * TIME_MILLI);
+			return minutes + "分前";
+		} else if (gap <= (2 * TIME_HOURS * TIME_MINUTES * TIME_SECONDS * TIME_MILLI)) {
+			long hours = gap / (TIME_MINUTES * TIME_SECONDS * TIME_MILLI);
+			return hours + "時間前";
+		}
+		Date date = new Date(mills);
+		return SDF_DATE_HOUR.format(date);
 	}
 
 	public static String formatToDateString(Long mills) {
@@ -111,8 +141,7 @@ public class Helper {
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
 			Query<Card> query = datastore.createQuery(Card.class)
-					.filter("cardId = ", cardId).filter("isDeleted", false)
-					;
+					.filter("cardId = ", cardId).filter("isDeleted", false);
 			Card card = query.get();
 			return card;
 		} catch (UnknownHostException | MongoException e) {
@@ -202,8 +231,8 @@ public class Helper {
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
 			Query<View> query = datastore.createQuery(View.class)
-					.filter("userId = ", userId).limit(100)
-					.order("-visitedDate");
+					.filter("userId = ", userId).filter("isDeleted = ", false)
+					.limit(100).order("-visitedDate");
 			List<View> comments = query.asList();
 			return comments;
 		} catch (UnknownHostException | MongoException e) {

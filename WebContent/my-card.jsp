@@ -61,7 +61,7 @@
 														コメント。
 													</div>
 													<div class="comment right" style="<%=fontColor%>">
-														<%=Helper.formatToDateTimeString(System.currentTimeMillis())%></div>
+														<%=Helper.formatToAboutTimeString(System.currentTimeMillis())%></div>
 												</div></li>
 										</ul>
 									</div>

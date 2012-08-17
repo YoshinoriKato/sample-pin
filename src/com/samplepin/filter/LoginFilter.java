@@ -22,7 +22,8 @@ import com.samplepin.ACMongo;
 import com.samplepin.User;
 import com.samplepin.servlet.LoginServlet;
 
-@WebFilter(urlPatterns = { "/make-card.jsp", "/my-card.jsp", "/account.jsp" }, dispatcherTypes = DispatcherType.REQUEST)
+@WebFilter(urlPatterns = { "/footprints.jsp", "/recommend.jsp",
+		"/make-card.jsp", "/my-card.jsp", "/account.jsp" }, dispatcherTypes = DispatcherType.REQUEST)
 public class LoginFilter implements Filter {
 
 	private ServletContext context;

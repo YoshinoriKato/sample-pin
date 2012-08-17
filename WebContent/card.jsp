@@ -104,7 +104,7 @@
 						.getComment()))%>
 					</div>
 					<div class="comment right" style="<%=fontColor%>">
-						<%=Helper.formatToDateTimeString(comment.getCreateDate())%></div>
+						<%=Helper.formatToAboutTimeString(comment.getCreateDate())%></div>
 				</div></li>
 			<%
 				}
