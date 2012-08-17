@@ -52,7 +52,6 @@ public class Initializer1 extends HttpServlet {
 			mongo.dropDatabase("sample-pin");
 			Initializer0.main(null);
 
-
 			List<Card> cards = new ArrayList<>();
 			List<Comment> comments = new ArrayList<>();
 			Random dice = new Random(System.nanoTime());

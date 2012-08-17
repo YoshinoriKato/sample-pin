@@ -1,6 +1,7 @@
 package com.samplepin.servlet.ajax;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -9,7 +10,10 @@ import java.util.List;
 import java.util.Set;
 
 import com.google.code.morphia.query.Query;
+import com.google.gson.Gson;
+import com.mongodb.MongoException;
 import com.samplepin.ACMongo;
+import com.samplepin.Recommend;
 import com.samplepin.View;
 
 class RecommendEngine {
@@ -21,6 +25,24 @@ class RecommendEngine {
 		}
 
 	};
+
+	@SuppressWarnings("unchecked")
+	final Set<String> getCache(String userId) throws UnknownHostException,
+			MongoException {
+		try (ACMongo mongo = new ACMongo()) {
+			Query<Recommend> query = mongo
+					.createQuery(Recommend.class)
+					.filter("userId = ", userId)
+					.filter("createDate < ",
+							System.currentTimeMillis() - (1000 * 60 * 60));
+			Recommend recommend = query.get();
+			if (recommend == null) {
+				return null;
+			}
+			Gson gson = new Gson();
+			return gson.fromJson(recommend.getRecommendJSON(), Set.class);
+		}
+	}
 
 	final Set<String> getOthersByViewsAndUserID(List<View> views, String userId)
 			throws IOException {
@@ -59,7 +81,11 @@ class RecommendEngine {
 
 	}
 
-	Set<String> getRecommendCards(String userId) throws IOException {
+	final Set<String> getRecommendCards(String userId) throws IOException {
+		Set<String> recommends = getCache(userId);
+		if (recommends != null) {
+			return recommends;
+		}
 		List<View> views = getViewsByUserID(userId);
 		Set<String> others = getOthersByViewsAndUserID(views, userId);
 		List<View> othersViews = getOthersViewsByUserIDs(others);
@@ -67,7 +93,11 @@ class RecommendEngine {
 		for (View view : views) {
 			ids.add(view.getCardId());
 		}
-		Set<String> recommends = getRecommends(othersViews, ids);
+		recommends = getRecommends(othersViews, ids);
+		try (ACMongo mongo = new ACMongo()) {
+			Gson gson = new Gson();
+			mongo.save(new Recommend(userId, gson.toJson(recommends)));
+		}
 		return recommends;
 	}
 

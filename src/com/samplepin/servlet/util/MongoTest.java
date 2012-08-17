@@ -14,10 +14,6 @@ public class MongoTest {
 
 	static class Hoge {
 
-		Hoge() {
-
-		}
-
 		@Id
 		ObjectId id;
 
@@ -25,25 +21,29 @@ public class MongoTest {
 
 		String name;
 
+		Hoge() {
+
+		}
+
+		public Hoge(Long key, String name) {
+			super();
+			this.key = key;
+			this.name = name;
+		}
+
 		public Long getKey() {
-			return key;
+			return this.key;
+		}
+
+		public String getName() {
+			return this.name;
 		}
 
 		public void setKey(Long key) {
 			this.key = key;
 		}
 
-		public String getName() {
-			return name;
-		}
-
 		public void setName(String name) {
-			this.name = name;
-		}
-
-		public Hoge(Long key, String name) {
-			super();
-			this.key = key;
 			this.name = name;
 		}
 

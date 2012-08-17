@@ -122,6 +122,10 @@ public class AjaxCardServlet extends HttpServlet {
 		writeToJSON(resp, cards, callback);
 	}
 
+	final boolean valid(String value) {
+		return (value != null) && !value.isEmpty();
+	}
+
 	final void writeToJSON(HttpServletResponse resp, List<Card> cards)
 			throws IOException {
 		try (OutputStreamWriter osw = new OutputStreamWriter(
@@ -135,10 +139,6 @@ public class AjaxCardServlet extends HttpServlet {
 			log(e.getMessage());
 			throw e;
 		}
-	}
-
-	final boolean valid(String value) {
-		return value != null && !value.isEmpty();
 	}
 
 	final void writeToJSON(HttpServletResponse resp, List<Card> cards,
