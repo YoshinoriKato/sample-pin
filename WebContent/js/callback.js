@@ -7,9 +7,6 @@ var $counter = 0;
 var $block = false;
 
 function teaDown() {
-	$('#content').css('height', $(document).height() - 120);
-	$('#read-cards').text('read ' + $counter + ' cards');
-	wookmark();
 	$('#ajax').fadeOut(1000);
 	$block = false;
 }
@@ -30,6 +27,9 @@ function callback($array) {
 		$i++;
 		if ($i >= $len) {
 			clearInterval($timer);
+			$('#content').css('height', $(document).height() - 120);
+			$('#read-cards').text('read ' + $counter + ' cards');
+			wookmark();
 			teaDown();
 		}
 	}, $interval);
