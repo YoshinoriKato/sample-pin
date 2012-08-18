@@ -26,12 +26,8 @@ public class IdGenerator {
 		Random r = new Random(seed);
 		StringBuilder builder = new StringBuilder();
 
-		int len = ALPABET.length();
-		char[] array = ALPABET.toCharArray();
-		builder.append(array[r.nextInt(len)]);
-
-		len = PASSWORD_LETTER.length();
-		array = PASSWORD_LETTER.toCharArray();
+		int len = range.length();
+		char[] array = range.toCharArray();
 
 		for (int i = 0; i < length; i++) {
 			builder.append(array[r.nextInt(len)]);

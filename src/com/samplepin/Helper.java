@@ -128,11 +128,11 @@ public class Helper {
 	}
 
 	public static String generatedIdString() {
-		return IdGenerator.randomAlphanumeric(24);
+		return IdGenerator.randomAlphanumeric(32);
 	}
 
 	public static String generatedIdString(String prefix) {
-		return prefix + IdGenerator.randomAlphanumeric(24);
+		return prefix + IdGenerator.randomAlphanumeric(32);
 	}
 
 	public static String getBackgroundColor(User user) {

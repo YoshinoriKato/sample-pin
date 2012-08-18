@@ -4,8 +4,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%
+	String url = request.getRequestURI();
+%>
+
 <!-- 共有 -->
 
+<div style="display: none" id="page"><%=url%></div>
 <div id="copyrights" class="center caption">&copy; Sample-Pin</div>
 <div id="ajax">
 	<img src="img/ajax.gif">
@@ -17,10 +22,13 @@
 	<div class="caption large">Sorry, server error.</div>
 </div>
 <a href="#top"><div id="bottom-label">Go top</div></a>
-<%
-	String url = request.getRequestURI();
-%>
+
 <script type="text/javascript" charset="UTF-8">
+	$(window).load(function() {	
+		$('#comment-close').attr("onclick",
+		"pushPull('#null','#error-dialog')");
+	});
+
 	$(function() {
 		$('#bottom-label').hide();
 		$(window)
@@ -31,25 +39,27 @@
 							} else {
 								$('#bottom-label').fadeOut();
 							}
-<%if (url.contains("/index.jsp") || url.contains("/card-comment.jsp")) {%>
-	if ($(document).height() - $(window).height() - 60 < $(
-									this).scrollTop()) {
+<%
+		if (url.contains("/index.jsp") || url.contains("/card-comment.jsp")) {
+%>
+
+		if ($(document).height() - $(window).height() - 60 < $(this).scrollTop()) {
 								callAjax($('#sorted').text(), 10, $counter, $(
 										'#userId').text(), $('#cardId').text(),
 										$('#type').text());
 							}
-<%}%>
-	});
+							
+<%
+	}
+%>
+		});
 		$('#bottom-label a').click(function() {
 			$('body').animate({
 				scrollTop : 0
 			}, 500);
 			return false;
 		});
-	});
 
-	$('#comment-close').click(function() {
-		pushPull('#error-dialog', 'XXX');
 	});
 </script>
 
