@@ -168,7 +168,7 @@ public class MyCardServlet extends HttpServlet {
 					user.setFontColor(fontColor);
 
 				} else if (textShadowColor != null) {
-					user.setBackgroundColor(textShadowColor);
+					user.setTextShadowColor(textShadowColor);
 
 				} else if (backgroundColor != null) {
 					user.setBackgroundColor(backgroundColor);

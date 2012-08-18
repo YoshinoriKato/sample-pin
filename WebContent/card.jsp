@@ -95,7 +95,7 @@
 						<a href="profile.jsp?userId=<%=comment.getUserId()%>"><img
 							src="<%=user.getImagePath()%>" class="image-icon"></a>
 						<%=Helper.convURLLink(Helper.escapeHTML(comment
-						.getComment()))%>
+						.getCaption()))%>
 						<br style="clear: both;">
 					</div>
 					<div class="comment caption2 star right">

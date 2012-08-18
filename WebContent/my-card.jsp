@@ -43,84 +43,87 @@
 		<div class="container">
 			<div class="row">
 				<div class="cell">
-					<div class="form-horizontal">
-						<form action="my-card.do" enctype="multipart/form-data"
-							method="post" class="form-horizontal">
-							<fieldset>
-								<h3>My Card</h3>
-								<div class="control-group">
-									<label class="control-label">Preview</label>
-									<div class="controls">
-										<ul id="content">
-											<li class="card"><div class="cell opacity80"
-													style="<%=wallPaper%> <%=backgroundColor%>">
-													<div class="comment caption2 deco" style="<%=fontColor%>">
-														<!-- comment -->
-														<img src="<%=user.getImagePath()%>" class="image-icon">
-														<%=Helper.convURLLink(Helper.escapeHTML("Hello, world."))%>
-														<br style="clear: both;">
-													</div>
-													<div class="comment right" style="<%=fontColor%>">
-														<%=Helper.formatToAboutTimeString(System.currentTimeMillis())%></div>
-												</div></li>
-										</ul>
+					<div calss="padding20">
+						<div class="form-horizontal">
+							<form action="my-card.do" enctype="multipart/form-data"
+								method="post" class="form-horizontal">
+								<fieldset>
+									<h3>My Card</h3>
+									<div class="control-group">
+										<label class="control-label">Preview</label>
+										<div class="controls">
+											<ul id="content">
+												<li class="card"><div class="cell opacity80"
+														style="<%=wallPaper%> <%=backgroundColor%>">
+														<div class="comment caption2 deco" style="<%=fontColor%>">
+															<!-- comment -->
+															<img src="<%=user.getImagePath()%>" class="image-icon">
+															<%=Helper.convURLLink(Helper.escapeHTML("Hello, world."))%>
+															<br style="clear: both;">
+														</div>
+														<div class="comment right" style="<%=fontColor%>">
+															<%=Helper.formatToAboutTimeString(System.currentTimeMillis())%></div>
+													</div></li>
+											</ul>
+										</div>
 									</div>
-								</div>
-								<div class="control-group">
-									<label for="userName" class="control-label">Name</label>
-									<div class="controls">
-										<input type="text" name="userName" maxlength="40"
-											value="<%=Helper.escapeHTML(user.getUserName())%>"
-											class="text span8">
+									<div class="control-group">
+										<label for="userName" class="control-label">Name</label>
+										<div class="controls">
+											<input type="text" name="userName" maxlength="40"
+												value="<%=Helper.escapeHTML(user.getUserName())%>"
+												class="text span8">
+										</div>
 									</div>
-								</div>
-								<div class="control-group">
-									<label for="iconPath" class="control-label">Background
-										Image</label>
-									<div class="controls">
-										<input type="file" class="span8" name="iconPath" />
+									<div class="control-group">
+										<label for="iconPath" class="control-label">Background
+											Image</label>
+										<div class="controls">
+											<input type="file" class="span8" name="iconPath" />
+										</div>
 									</div>
-								</div>
-								<div class="control-group">
-									<label for="useBackgroundImage" class="control-label">Use
-										Background Image</label>
-									<div class="controls">
-										<input type="checkbox" class="span8" name="useBackgroundImage"
-											value="on" <%=useBackgroundImage%> />
+									<div class="control-group">
+										<label for="useBackgroundImage" class="control-label">Use
+											Background Image</label>
+										<div class="controls">
+											<input type="checkbox" class="span8"
+												name="useBackgroundImage" value="on" <%=useBackgroundImage%> />
+										</div>
 									</div>
-								</div>
-								<div class="control-group">
-									<label for="backgroundColor" class="control-label">Background
-										Color</label>
-									<div class="controls">
-										<input type="color" name="backgroundColor" class="text"
-											value="<%=user.getBackgroundColor()%>">
+									<div class="control-group">
+										<label for="backgroundColor" class="control-label">Background
+											Color</label>
+										<div class="controls">
+											<input type="color" name="backgroundColor" class="text"
+												value="<%=user.getBackgroundColor()%>">
+										</div>
 									</div>
-								</div>
-								<div class="control-group">
-									<label for="fontColor" class="control-label">Font Color</label>
-									<div class="controls">
-										<input type="color" name="fontColor" class="text"
-											value="<%=user.getFontColor()%>" id="fontColor">
+									<div class="control-group">
+										<label for="fontColor" class="control-label">Font
+											Color</label>
+										<div class="controls">
+											<input type="color" name="fontColor" class="text"
+												value="<%=user.getFontColor()%>" id="fontColor">
+										</div>
 									</div>
-								</div>
-								<div class="control-group">
-									<label for="textShadowColor" class="control-label">Text
-										Shadow Color</label>
-									<div class="controls">
-										<input type="color" name="textShadowColor" class="text"
-											value="<%=user.getTextShadowColor()%>" id="textShadowColor">
+									<div class="control-group">
+										<label for="textShadowColor" class="control-label">Text
+											Shadow Color</label>
+										<div class="controls">
+											<input type="color" name="textShadowColor" class="text"
+												value="<%=user.getTextShadowColor()%>" id="textShadowColor">
+										</div>
 									</div>
-								</div>
 
-								<div class="control-group">
-									<div class="controls">
-										<input type="submit" value="Update"
-											class="btn btn-large btn-primary btn-cell">
+									<div class="control-group">
+										<div class="controls">
+											<input type="submit" value="Update"
+												class="btn btn-large btn-primary btn-cell">
+										</div>
 									</div>
-								</div>
-							</fieldset>
-						</form>
+								</fieldset>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>

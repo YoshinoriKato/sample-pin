@@ -45,7 +45,8 @@ public class CommentServlet extends HttpServlet {
 			if ((userId != null) && (comment != null) && !comment.isEmpty()) {
 				saveComment(new Comment(userId, cardId, comment,
 						System.currentTimeMillis()));
-				resp.sendRedirect("card.jsp?cardId=" + cardId);
+				resp.sendRedirect("card-comment.jsp?cardId=" + cardId
+						+ "&type=comment");
 				return;
 			}
 
@@ -56,7 +57,8 @@ public class CommentServlet extends HttpServlet {
 
 		req.setAttribute("message", "Please, write a comment.");
 		RequestDispatcher dispathcer = req
-				.getRequestDispatcher("card.jsp?cardId=" + cardId);
+				.getRequestDispatcher("card-comment.jsp?cardId=" + cardId
+						+ "&type=comment");
 		dispathcer.forward(req, resp);
 	}
 
@@ -68,7 +70,7 @@ public class CommentServlet extends HttpServlet {
 			Query<Comment> query0 = datastore.createQuery(Comment.class)
 					.filter("cardId = ", comment.getCardId())
 					.filter("userId = ", comment.getUserId())
-					.filter("comment = ", comment.getComment())
+					.filter("caption = ", comment.getCaption())
 					.filter("isDeleted", false);
 			Query<Comment> query1 = datastore.createQuery(Comment.class)
 					.filter("cardId = ", comment.getCardId())

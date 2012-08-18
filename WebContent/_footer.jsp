@@ -15,9 +15,7 @@
 	<img src="img/broken.gif" class="image-shot">
 	<div class="caption large">Sorry, server error.</div>
 </div>
-<div id="bottom-label">
-	<a href="#top">Go top</a>
-</div>
+<a href="#top"><div id="bottom-label">Go top</div></a>
 <%
 	String url = request.getRequestURI();
 %>
@@ -32,12 +30,14 @@
 							} else {
 								$('#bottom-label').fadeOut();
 							}
-<%if (url.contains("/index.jsp")) {%>
+<%if (url.contains("/index.jsp")||url.contains("/card-comment.jsp")) {%>
 	if ($(document).height() - $(window).height() - 60 < $(
 									this).scrollTop()) {
-								callAjax($('#sorted').text(), 10, $counter, $('#userId').text());
+								callAjax($('#sorted').text(), 10, $counter, $(
+										'#userId').text(), $('#cardId').text(),
+										$('#type').text());
 							}
-							<%}%>
+<%}%>
 	});
 		$('#bottom-label a').click(function() {
 			$('body').animate({

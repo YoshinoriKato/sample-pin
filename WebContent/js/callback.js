@@ -11,8 +11,10 @@ function teaDown() {
 	$block = false;
 }
 
-function callback($array) {
+function callback($data) {
 	var $i = 0;
+	var $array = $data.array;
+	var $type = $data.type;
 	var $len = $array.length;
 	var $interval = 3;
 	$counter += $len;
@@ -22,7 +24,12 @@ function callback($array) {
 	}
 
 	$timer = setInterval(function() {
-		makeCell($array[$i]);
+		$one = $array[$i];
+		if ($type == 'comment') {
+			makeComment($one);
+		} else {
+			makeCard($one);
+		}
 		wookmark();
 		$i++;
 		if ($i >= $len) {
@@ -41,7 +48,7 @@ function wookmark() {
 	});
 };
 
-function makeCell($card) {
+function makeCard($card) {
 
 	// components
 	var $url = $card.url;
@@ -66,7 +73,8 @@ function makeCell($card) {
 	} else {
 		$divRibonText.addClass('ribon-text color-red');
 		$jqDiv.addClass('cell');
-		$jqA.attr('href', 'card.jsp?cardId=' + $card.cardId);
+		$jqA.attr('href', 'card-comment.jsp?cardId=' + $card.cardId
+				+ '&type=comment');
 		$divFooter.text($card.likes + ' comment');
 	}
 
@@ -85,26 +93,32 @@ function makeComment($comment) {
 
 	// components
 	var $jqLi = $('<li/>').addClass('card');
-	var $jqDiv = $('<div/>').attr('id', $comment.cardId);
+	var $jqDiv = $('<div/>')
+			.attr('id', $comment.cardId + '+' + $comment.userId);
 	var $jqA = $('<a/>').addClass('no-hover');
-	
-	var $divName = $('<div/>');
-	var $divCaption = $('<div/>').addClass('caption deco');
-	var $divFooter = $('<div/>').addClass('star right');
+
+	var $divNumber = $('<div/>').addClass('star comment');
+	var $divCaption = $('<div/>').addClass('caption comment deco');
+	var $divFooter = $('<div/>').addClass('star comment right');
+	var $jqImg = $('<img/>').addClass('image-icon').attr('src',
+			$comment.imagePath);
 
 	$jqDiv.addClass('cell');
-	$jqA.attr('href', 'card.jsp?cardId=' + $comment.cardId);
-	$divFooter.text($comment.likes + ' comment');
-	$divCaption.text($comment.comment).autoUrlLink();
+	$jqA.attr('href', 'profile.jsp?userId=' + $comment.userId);
+	$divNumber.text($comment.cardId);
+	$divCaption.append($comment.caption).autoUrlLink();
+	$divFooter.text($comment.createDate).aboutTimestamp();
+	$divFooter.css('clear', 'both');
 
 	// construct
 	$('#content').append($jqLi);
 	$jqLi.append($jqDiv);
-	$jqDiv.append($divName).append($divCaption).append($divFooter);
-	$divName.append();
+	$jqDiv.append($divNumber).append($divCaption).append($divFooter);
+	$divNumber.append($jqA);
+	$jqA.append($jqImg);
 }
 
-function callAjax($sorted, $limit, $offset, $userId) {
+function callAjax($sorted, $limit, $offset, $userId, $cardId, $type) {
 	if (!$block) {
 		$block = true;
 		$.ajax({
@@ -118,7 +132,9 @@ function callAjax($sorted, $limit, $offset, $userId) {
 				sorted : $sorted,
 				offset : $offset,
 				limit : $limit,
-				userId : $userId
+				userId : $userId,
+				cardId : $cardId,
+				type : $type
 			},
 			success : callback,
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
@@ -130,3 +146,4 @@ function callAjax($sorted, $limit, $offset, $userId) {
 		});
 	}
 };
+

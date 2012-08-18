@@ -26,7 +26,7 @@
 	<div id="main">
 		<div class="container">
 			<div class="row">
-				<div class="cell">
+				<div class="cell padding20">
 					<div class="form-horizontal">
 						<form action="confirm-make-card.do" method="post"
 							class="form-horizontal">

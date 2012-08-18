@@ -39,11 +39,11 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(80, 80, 80, 0.4);
 	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =     80);
+	filter: alpha(opacity =         80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/
-	margin-bottom: 10px;
+	margin-bottom: 3px;
 	/* shape ----------------------------------------------------------------*/
 	border-radius: 3px 20px 3px;
 	-webkit-border-radius: 3px 20px 3px;
@@ -56,11 +56,13 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(80, 80, 80, 0.4);
 	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =     80);
+	filter: alpha(opacity =         80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	float: left;
 	/* layout ---------------------------------------------------------------*/
+	margin-top: 2px;
+	margin-left: 2px;
 	margin-right: 0.5em;
 	/* shape ----------------------------------------------------------------*/
 	border-radius: 1px 10px 1px;
@@ -357,7 +359,7 @@ body {
 
 #bottom-label {
 	/* effect ---------------------------------------------------------------*/
-	background-color: rgba(255, 255, 255, 0.7);
+	background-color: rgba(0, 0, 0, 0.7);
 	box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.3);
 	overflow: hidden;
@@ -370,10 +372,11 @@ body {
 	bottom: -5px;
 	right: 20px;
 	padding: 20px;
+	z-index: 20;
 	/* shape ----------------------------------------------------------------*/
 	border-radius: 3px 25px 0px 0px;
-	-webkit-border-radius: 3px 25px 0px 0px;
-	-moz-border-radius: 3px 25px 0px 0px;
+	-webkit-border-radius: 3px 20px 0px 0px;
+	-moz-border-radius: 3px 20px 0px 0px;
 }
 
 .comment {

@@ -22,31 +22,34 @@ public class Comment implements Serializable, Deleteable, Createable {
 
 	String						cardId;
 
-	String						comment;
+	String						caption;
 
 	Long						createDate;
 
 	Boolean						isDeleted;
 
+	String						imagePath;
+
 	public Comment() {
 		super();
 	}
 
-	public Comment(String userId, String cardId, String comment, Long createDate) {
+	public Comment(String userId, String cardId, String caption, Long createDate) {
 		super();
 		this.userId = userId;
 		this.cardId = cardId;
-		this.comment = comment;
+		this.caption = caption;
 		this.createDate = createDate;
 		this.isDeleted = false;
+		this.imagePath = "";
+	}
+
+	public String getCaption() {
+		return this.caption;
 	}
 
 	public String getCardId() {
 		return this.cardId;
-	}
-
-	public String getComment() {
-		return this.comment;
 	}
 
 	@Override
@@ -58,6 +61,10 @@ public class Comment implements Serializable, Deleteable, Createable {
 		return this.id;
 	}
 
+	public String getImagePath() {
+		return this.imagePath;
+	}
+
 	@Override
 	public Boolean getIsDeleted() {
 		return this.isDeleted;
@@ -67,12 +74,12 @@ public class Comment implements Serializable, Deleteable, Createable {
 		return this.userId;
 	}
 
-	public void setCardId(String cardId) {
-		this.cardId = cardId;
+	public void setCaption(String caption) {
+		this.caption = caption;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setCardId(String cardId) {
+		this.cardId = cardId;
 	}
 
 	@Override
@@ -82,6 +89,10 @@ public class Comment implements Serializable, Deleteable, Createable {
 
 	public void setId(ObjectId id) {
 		this.id = id;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 
 	@Override
