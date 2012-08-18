@@ -20,8 +20,7 @@ public class IdGenerator {
 
 	static int				FIRST_CHAR		= 1;
 
-	static final AtomicLong	SEED			= new AtomicLong(
-													System.currentTimeMillis());
+	static final AtomicLong	SEED			= new AtomicLong(System.nanoTime());
 
 	public static String generatedIdString(long seed, String range, int length) {
 		Random r = new Random(seed);

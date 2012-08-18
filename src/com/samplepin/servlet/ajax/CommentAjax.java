@@ -66,8 +66,10 @@ public class CommentAjax extends CardAjax {
 
 		for (Comment comment : cards) {
 			User user = Helper.getUserById(comment.getUserId());
-			comment.setImagePath(user.getImagePath());
-			comment.setCardId(user.getUserName());
+			if (user != null) {
+				comment.setImagePath(user.getImagePath());
+				comment.setCardId(user.getUserName());
+			}
 		}
 
 		data.put("array", cards.toArray(new Comment[0]));

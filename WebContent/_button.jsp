@@ -21,16 +21,15 @@
 	<%
 		}
 	%>
-	<a href="index.jsp" class="<%=addClass%>">Latest</a> <a
-		href="index.jsp?sorted=view" class="<%=addClass%>">Viewed Most</a> <a
-		href="index.jsp?sorted=comment" class="<%=addClass%>">Commented
-		Most</a>
+	<a href="index.jsp" class="<%=addClass%>">Latest</a>
+	<a href="index.jsp?sorted=view" class="<%=addClass%>">Views</a>
+	<a href="index.jsp?sorted=comment" class="<%=addClass%>">Comments</a>
 	<%
 		if (session.getAttribute("userId") != null) {
 	%>
-	<a href="index.jsp?sorted=mine" class="<%=addClass%>">My Cards</a> <a
-		href="index.jsp?sorted=footprints" class="<%=addClass%>">My
-		Footprints</a> <a href="index.jsp?sorted=recommend" class="<%=addClass%>">Recommend</a>
+	<a href="index.jsp?sorted=mine" class="<%=addClass%>">Mine</a>
+	<a href="index.jsp?sorted=footprints" class="<%=addClass%>">Footprints</a>
+	<a href="index.jsp?sorted=recommend" class="<%=addClass%>">Recommend</a>
 	<%
 		}
 

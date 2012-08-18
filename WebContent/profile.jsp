@@ -22,6 +22,7 @@
 
 <body>
 	<jsp:include page="_topbar.jsp"></jsp:include>
+	<div id="title">Profile</div>
 	<div id="main">
 		<div class="container">
 			<div class="row">

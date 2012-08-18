@@ -12,6 +12,7 @@
 	<div class="caption">Working for you.</div>
 </div>
 <div id="error-dialog">
+	<div id="error-close" class="tab-button">x</div>
 	<img src="img/broken.gif" class="image-shot">
 	<div class="caption large">Sorry, server error.</div>
 </div>
@@ -30,7 +31,7 @@
 							} else {
 								$('#bottom-label').fadeOut();
 							}
-<%if (url.contains("/index.jsp")||url.contains("/card-comment.jsp")) {%>
+<%if (url.contains("/index.jsp") || url.contains("/card-comment.jsp")) {%>
 	if ($(document).height() - $(window).height() - 60 < $(
 									this).scrollTop()) {
 								callAjax($('#sorted').text(), 10, $counter, $(
@@ -45,6 +46,10 @@
 			}, 500);
 			return false;
 		});
+	});
+
+	$('#comment-close').click(function() {
+		pushPull('#error-dialog', 'XXX');
 	});
 </script>
 

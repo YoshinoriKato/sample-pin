@@ -39,6 +39,7 @@
 
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
+	<div id="title">My Card</div>
 	<div id="main">
 		<div class="container">
 			<div class="row">

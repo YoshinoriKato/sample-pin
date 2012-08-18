@@ -14,11 +14,10 @@
 	String type = request.getParameter("type");
 	type = (type != null) ? type : "";
 	Card card = Helper.getCardInfoByID(cardId);
-	
+
 	String message = (String) request.getAttribute("message");
 	message = message != null ? message : "";
 	String error = message != null && !message.isEmpty() ? "error" : "";
-
 %>
 
 
@@ -58,6 +57,7 @@
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<jsp:include page="_button.jsp" flush="true" />
+	<div id="title">Card & Comments</div>
 	<div id="main">
 		<ul id="content">
 			<li class="card">

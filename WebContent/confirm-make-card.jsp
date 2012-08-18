@@ -23,6 +23,7 @@
 
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
+	<div id="title">Make Card</div>
 	<div id="main">
 		<div class="container">
 			<div class="row">

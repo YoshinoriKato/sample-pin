@@ -21,6 +21,7 @@
 
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
+	<div id="title">Discard</div>
 	<div id="main">
 		<div class="container">
 			<div class="row">

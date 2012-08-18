@@ -29,12 +29,13 @@
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<jsp:include page="_button.jsp" flush="true" />
+	<div id="title">Cards</div>
 	<div id="main">
 		<ul id="content">
 			<!--  ajax -->
 		</ul>
 		<br style="clear: both;" />
-	</div>
+	</div></div></div>
 	<div class="center caption star large" id="read-cards"></div>
 	<div style="display: none" id="sorted"><%=sorted%></div>
 	<div style="display: none" id="userId"><%=userId%></div>

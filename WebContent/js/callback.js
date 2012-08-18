@@ -92,7 +92,7 @@ function makeCard($card) {
 function makeComment($comment) {
 
 	// components
-	var $jqLi = $('<li/>').addClass('card');
+	var $jqLi = $('<li/>').addClass('card opacity80');
 	var $jqDiv = $('<div/>')
 			.attr('id', $comment.cardId + '+' + $comment.userId);
 	var $jqA = $('<a/>').addClass('no-hover');
@@ -106,7 +106,7 @@ function makeComment($comment) {
 	$jqDiv.addClass('cell');
 	$jqA.attr('href', 'profile.jsp?userId=' + $comment.userId);
 	$divNumber.text($comment.cardId);
-	$divCaption.append($comment.caption).autoUrlLink();
+	$divCaption.append($comment.caption).autoUrlLink().escapeReturn();
 	$divFooter.text($comment.createDate).aboutTimestamp();
 	$divFooter.css('clear', 'both');
 

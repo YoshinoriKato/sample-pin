@@ -23,7 +23,6 @@ import com.samplepin.Comment;
 import com.samplepin.Helper;
 import com.samplepin.User;
 import com.samplepin.View;
-import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 @WebServlet(urlPatterns = { "/init3.do" })
 public class Initializer3 extends HttpServlet {
@@ -155,7 +154,7 @@ public class Initializer3 extends HttpServlet {
 	 */
 	public static void main(String[] args) {
 		Random dice = new Random(System.nanoTime());
-		long mills = System.currentTimeMillis() - (1000 * 60 * 60 * 24 * 1500);
+		long mills = System.currentTimeMillis() - (1000 * 60 * 60 * 24 * 2000);
 		final int MAX_USERS = 200;
 		final int MAX_COMMENTS = 1000;
 		final int MAX_VIEWS = 10000;
@@ -186,8 +185,7 @@ public class Initializer3 extends HttpServlet {
 
 			long mills2 = mills;
 			for (int i = 0; i < FLAGS.length; i++) {
-				String cardId = Base64.encode(String.valueOf(System.nanoTime())
-						.getBytes());
+				String cardId = Helper.generatedIdString("C_");
 				cardIds.add(cardId);
 				int likes = dice.nextInt(MAX_COMMENTS);
 				int views = dice.nextInt(MAX_VIEWS);
