@@ -25,11 +25,15 @@ audio
 
 
 
+
+
 :not
 
 
 
+
  
+
 
 
 
@@ -40,7 +44,9 @@ controls
 
 
 
+
  
+
 
 
 
@@ -52,7 +58,10 @@ display
 
 
 
+
+
 :
+
 
 
 
@@ -60,7 +69,10 @@ display
 
 
 
+
 none
+
+
 
 
 
@@ -2170,7 +2182,7 @@ table .span24 {
 	border-left: 4px solid transparent;
 	content: "";
 	opacity: .3;
-	filter: alpha(opacity =         30)
+	filter: alpha(opacity =           30)
 }
 
 .dropdown .caret {
@@ -2180,7 +2192,7 @@ table .span24 {
 
 .dropdown:hover .caret,.open .caret {
 	opacity: 1;
-	filter: alpha(opacity =         100)
+	filter: alpha(opacity =           100)
 }
 
 .dropdown-menu {
@@ -2344,7 +2356,7 @@ table .span24 {
 	color: #000;
 	text-shadow: 0 1px 0 #fff;
 	opacity: .2;
-	filter: alpha(opacity =         20)
+	filter: alpha(opacity =           20)
 }
 
 .close:hover {
@@ -2352,7 +2364,7 @@ table .span24 {
 	text-decoration: none;
 	cursor: pointer;
 	opacity: .4;
-	filter: alpha(opacity =         40)
+	filter: alpha(opacity =           40)
 }
 
 button.close {
@@ -2458,7 +2470,7 @@ button.close {
 	background-color: #e6e6e6;
 	background-image: none;
 	opacity: .65;
-	filter: alpha(opacity =         65);
+	filter: alpha(opacity =           65);
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none
@@ -2872,7 +2884,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 
 .btn:hover .caret,.open.btn-group .caret {
 	opacity: 1;
-	filter: alpha(opacity =         100)
+	filter: alpha(opacity =           100)
 }
 
 .btn-mini .caret {
@@ -2900,7 +2912,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 	border-top-color: #fff;
 	border-bottom-color: #fff;
 	opacity: .75;
-	filter: alpha(opacity =         75)
+	filter: alpha(opacity =           75)
 }
 
 .alert {
@@ -3187,7 +3199,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 	border-top-color: #fff;
 	border-bottom-color: #fff;
 	opacity: 1;
-	filter: alpha(opacity =         100)
+	filter: alpha(opacity =           100)
 }
 
 .tabs-stacked .open>a:hover {
@@ -3669,7 +3681,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 
 .navbar .nav li.dropdown.active .caret {
 	opacity: 1;
-	filter: alpha(opacity =         100)
+	filter: alpha(opacity =           100)
 }
 
 .navbar .nav li.dropdown.open>.dropdown-toggle,.navbar .nav li.dropdown.active>.dropdown-toggle,.navbar .nav li.dropdown.open.active>.dropdown-toggle
@@ -3889,7 +3901,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 
 .modal-backdrop,.modal-backdrop.fade.in {
 	opacity: .8;
-	filter: alpha(opacity =         80)
+	filter: alpha(opacity =           80)
 }
 
 .modal {
@@ -3987,13 +3999,13 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 	padding: 5px;
 	font-size: 11px;
 	opacity: 0;
-	filter: alpha(opacity =         0);
+	filter: alpha(opacity =           0);
 	visibility: visible
 }
 
 .tooltip.in {
 	opacity: .8;
-	filter: alpha(opacity =         80)
+	filter: alpha(opacity =           80)
 }
 
 .tooltip.top {
@@ -4706,7 +4718,7 @@ to {
 	-moz-border-radius: 23px;
 	border-radius: 23px;
 	opacity: .5;
-	filter: alpha(opacity =         50)
+	filter: alpha(opacity =           50)
 }
 
 .carousel-control.right {
@@ -4718,7 +4730,7 @@ to {
 	color: #fff;
 	text-decoration: none;
 	opacity: .9;
-	filter: alpha(opacity =         90)
+	filter: alpha(opacity =           90)
 }
 
 .carousel-caption {

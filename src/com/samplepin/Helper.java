@@ -24,25 +24,27 @@ import com.mongodb.MongoException;
 
 public class Helper {
 
-	static SimpleDateFormat SDF_DATE = new SimpleDateFormat("yyyy-MM-dd");
+	static SimpleDateFormat		SDF_DATE		= new SimpleDateFormat(
+														"yyyy-MM-dd");
 
-	static SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat(
-			"yyyy-MM-dd HH:mm:ss.SSS");
+	static SimpleDateFormat		SDF_DATE_TIME	= new SimpleDateFormat(
+														"yyyy-MM-dd HH:mm:ss.SSS");
 
-	static SimpleDateFormat SDF_DATE_HOUR = new SimpleDateFormat(
-			"yyyy-MM-dd 'at around' HH");
+	static SimpleDateFormat		SDF_DATE_HOUR	= new SimpleDateFormat(
+														"yyyy-MM-dd 'at around' HH");
 
-	public static final Pattern convURLLinkPtn = Pattern.compile(
-			"(http://|https://){1}[\\w\\.\\-/:\\#\\?\\=\\&\\;\\%\\~\\+]+",
-			Pattern.CASE_INSENSITIVE);
+	public static final Pattern	convURLLinkPtn	= Pattern
+														.compile(
+																"(http://|https://){1}[\\w\\.\\-/:\\#\\?\\=\\&\\;\\%\\~\\+]+",
+																Pattern.CASE_INSENSITIVE);
 
-	static final Long TIME_MILLI = 1000L;
+	static final Long			MILLS_SECOND	= 1000L;
 
-	static final Long TIME_SECONDS = 60L;
+	static final Long			MILLS_MINUTE	= 60L * MILLS_SECOND;
 
-	static final Long TIME_MINUTES = 60L;
+	static final Long			MILLS_HOUR		= 60L * MILLS_MINUTE;
 
-	static final Long TIME_HOURS = 24L;
+	static final Long			MILLS_DAY		= 24L * MILLS_HOUR;
 
 	public static String convURLLink(String str) {
 		Matcher matcher = convURLLinkPtn.matcher(str);
@@ -85,16 +87,16 @@ public class Helper {
 	public static String formatToAboutTimeString(long mills) {
 		Long current = System.currentTimeMillis();
 		Long gap = current - mills;
-		if (gap <= TIME_MILLI) {
+		if (gap <= MILLS_SECOND) {
 			return "1秒前";
-		} else if (gap <= (TIME_SECONDS * TIME_MILLI)) {
-			long seconds = gap / TIME_MILLI;
+		} else if (gap <= (MILLS_MINUTE)) {
+			long seconds = gap / MILLS_SECOND;
 			return seconds + "秒前";
-		} else if (gap <= (TIME_MINUTES * TIME_SECONDS * TIME_MILLI)) {
-			long minutes = gap / (TIME_SECONDS * TIME_MILLI);
+		} else if (gap <= (MILLS_HOUR)) {
+			long minutes = gap / (MILLS_MINUTE);
 			return minutes + "分前";
-		} else if (gap <= (2 * TIME_HOURS * TIME_MINUTES * TIME_SECONDS * TIME_MILLI)) {
-			long hours = gap / (TIME_MINUTES * TIME_SECONDS * TIME_MILLI);
+		} else if (gap <= (2 * MILLS_DAY)) {
+			long hours = gap / (MILLS_HOUR);
 			return hours + "時間前";
 		}
 		Date date = new Date(mills);
@@ -155,7 +157,7 @@ public class Helper {
 			Datastore datastore = mongo.createDatastore();
 			Query<Comment> query = datastore.createQuery(Comment.class)
 					.filter("cardId = ", cardId).order("-createDate")
-					.limit(100);
+					.limit(1000);
 			List<Comment> comments = query.asList();
 			return comments;
 		} catch (UnknownHostException | MongoException e) {

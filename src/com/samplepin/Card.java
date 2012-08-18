@@ -8,32 +8,32 @@ import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
 
 @Entity(value = "cards", noClassnameStored = true)
-public class Card implements Serializable {
+public class Card implements Serializable, Deleteable, Createable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2686047770755644944L;
+	private static final long	serialVersionUID	= 2686047770755644944L;
 
 	@Id
-	ObjectId id;
+	ObjectId					id;
 
-	String url;
+	String						url;
 
-	String caption;
+	String						caption;
 
-	String userId;
+	String						userId;
 
-	Integer likes;
+	Integer						likes;
 
-	Integer view;
+	Integer						view;
 
-	String cardId;
+	String						cardId;
 
-	Long createDate;
+	Long						createDate;
 
-	Boolean isDeleted;
+	Boolean						isDeleted;
 
-	String imagePath;
+	String						imagePath;
 
 	public Card() {
 		this("", "", "", "", "", 0, 0, System.currentTimeMillis());
@@ -61,6 +61,7 @@ public class Card implements Serializable {
 		return this.cardId;
 	}
 
+	@Override
 	public Long getCreateDate() {
 		return this.createDate;
 	}
@@ -73,6 +74,7 @@ public class Card implements Serializable {
 		return this.imagePath;
 	}
 
+	@Override
 	public Boolean getIsDeleted() {
 		return this.isDeleted;
 	}
@@ -101,6 +103,7 @@ public class Card implements Serializable {
 		this.cardId = cardId;
 	}
 
+	@Override
 	public void setCreateDate(Long createDate) {
 		this.createDate = createDate;
 	}
@@ -113,6 +116,7 @@ public class Card implements Serializable {
 		this.imagePath = imagePath;
 	}
 
+	@Override
 	public void setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}

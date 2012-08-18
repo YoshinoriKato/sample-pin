@@ -1,27 +1,36 @@
 package com.samplepin;
 
+import java.io.Serializable;
+
 import org.bson.types.ObjectId;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
 
 @Entity(value = "views", noClassnameStored = true)
-public class View {
+public class View implements Serializable, Deleteable, Createable {
+
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 3644966756588336335L;
 
 	@Id
-	ObjectId id;
+	ObjectId					id;
 
-	Long visitedDate;
+	Long						visitedDate;
 
-	String cardId;
+	Long						createDate;
 
-	String userId;
+	String						cardId;
 
-	Integer times;
+	String						userId;
 
-	Integer comments;
+	Integer						times;
 
-	Boolean isDeleted;
+	Integer						comments;
+
+	Boolean						isDeleted;
 
 	public View() {
 		this(System.currentTimeMillis(), "", "");
@@ -29,6 +38,7 @@ public class View {
 
 	public View(Long visitedDate, String cardId, String userId) {
 		super();
+		this.createDate = System.currentTimeMillis();
 		this.visitedDate = visitedDate;
 		this.cardId = cardId;
 		this.userId = userId;
@@ -45,10 +55,16 @@ public class View {
 		return this.comments;
 	}
 
+	@Override
+	public Long getCreateDate() {
+		return this.createDate;
+	}
+
 	public ObjectId getId() {
 		return this.id;
 	}
 
+	@Override
 	public Boolean getIsDeleted() {
 		return this.isDeleted;
 	}
@@ -77,10 +93,16 @@ public class View {
 		this.comments = comments;
 	}
 
+	@Override
+	public void setCreateDate(Long createDate) {
+		this.createDate = createDate;
+	}
+
 	public void setId(ObjectId id) {
 		this.id = id;
 	}
 
+	@Override
 	public void setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}

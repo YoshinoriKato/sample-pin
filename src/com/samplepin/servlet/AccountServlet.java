@@ -33,7 +33,7 @@ public class AccountServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7182329627922034835L;
+	private static final long	serialVersionUID	= -7182329627922034835L;
 
 	public static void copyStream(InputStream in, OutputStream os,
 			int bufferSize) throws IOException {
@@ -133,10 +133,6 @@ public class AccountServlet extends HttpServlet {
 		}
 	}
 
-	final boolean isValid(String password) {
-		return (password != null) && !password.isEmpty();
-	}
-
 	final String makePrefix() {
 		return Long.toHexString(System.currentTimeMillis()) + "_"
 				+ Long.toHexString(System.nanoTime()) + "_";
@@ -179,28 +175,28 @@ public class AccountServlet extends HttpServlet {
 				String password1 = getValueByKeyword(part, "password1");
 				String password2 = getValueByKeyword(part, "password2");
 
-				if (userName != null) {
+				if (valid(userName)) {
 					user.setUserName(userName);
 
-				} else if (birthDay != null) {
+				} else if (valid(birthDay)) {
 					user.setBirthDay(birthDay);
 
-				} else if (mail != null) {
+				} else if (valid(mail)) {
 					user.setMail(mail);
 
-				} else if (country != null) {
+				} else if (valid(country)) {
 					user.setCode(Integer.valueOf(country));
 
-				} else if (comment != null) {
+				} else if (valid(comment)) {
 					user.setComment(comment);
 
-				} else if (password0 != null) {
+				} else if (valid(password0)) {
 					oldPassword = password0;
 
-				} else if (password1 != null) {
+				} else if (valid(password1)) {
 					newPassword0 = password1;
 
-				} else if (password2 != null) {
+				} else if (valid(password2)) {
 					newPassword1 = password2;
 
 				} else {
@@ -211,8 +207,8 @@ public class AccountServlet extends HttpServlet {
 				}
 			}
 
-			if (isValid(oldPassword)) {
-				if (isValid(newPassword0) && isValid(newPassword1)) {
+			if (valid(oldPassword)) {
+				if (valid(newPassword0) && valid(newPassword1)) {
 					if (newPassword0.hashCode() == newPassword1.hashCode()) {
 						if (oldPassword.hashCode() == user.getPassword()) {
 							user.setPassword(newPassword0.hashCode());
@@ -235,6 +231,10 @@ public class AccountServlet extends HttpServlet {
 		File referenceFile = new File(referenceFolder, fileName);
 		user.setImagePath(referenceFile.getPath());
 		log("update user icon: " + referenceFile.getPath());
+	}
+
+	final boolean valid(String password) {
+		return (password != null) && !password.isEmpty();
 	}
 
 	final void writeFiles(HttpServletRequest req, List<Uploader> uploadQue,

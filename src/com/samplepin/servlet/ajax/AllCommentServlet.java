@@ -26,14 +26,19 @@ public class AllCommentServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7818349586239857211L;
+	private static final long			serialVersionUID	= 7818349586239857211L;
 
-	private static Comparator<Comment> LATEST = new Comparator<Comment>() {
-		@Override
-		public int compare(Comment o1, Comment o2) {
-			return o2.getCreateDate().compareTo(o1.getCreateDate());
-		}
-	};
+	private static Comparator<Comment>	LATEST				= new Comparator<Comment>() {
+																@Override
+																public int compare(
+																		Comment o1,
+																		Comment o2) {
+																	return o2
+																			.getCreateDate()
+																			.compareTo(
+																					o1.getCreateDate());
+																}
+															};
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)

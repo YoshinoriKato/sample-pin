@@ -28,7 +28,7 @@ public class AjaxCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7818349586239857211L;
+	private static final long	serialVersionUID	= 7818349586239857211L;
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)

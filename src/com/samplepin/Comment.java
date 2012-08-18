@@ -1,25 +1,32 @@
 package com.samplepin;
 
+import java.io.Serializable;
+
 import org.bson.types.ObjectId;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
 
 @Entity(value = "comments", noClassnameStored = true)
-public class Comment {
+public class Comment implements Serializable, Deleteable, Createable {
+
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 2819722174698713202L;
 
 	@Id
-	ObjectId id;
+	ObjectId					id;
 
-	String userId;
+	String						userId;
 
-	String cardId;
+	String						cardId;
 
-	String comment;
+	String						comment;
 
-	Long createDate;
+	Long						createDate;
 
-	Boolean isDeleted;
+	Boolean						isDeleted;
 
 	public Comment() {
 		super();
@@ -42,6 +49,7 @@ public class Comment {
 		return this.comment;
 	}
 
+	@Override
 	public Long getCreateDate() {
 		return this.createDate;
 	}
@@ -50,6 +58,7 @@ public class Comment {
 		return this.id;
 	}
 
+	@Override
 	public Boolean getIsDeleted() {
 		return this.isDeleted;
 	}
@@ -66,6 +75,7 @@ public class Comment {
 		this.comment = comment;
 	}
 
+	@Override
 	public void setCreateDate(Long createDate) {
 		this.createDate = createDate;
 	}
@@ -74,6 +84,7 @@ public class Comment {
 		this.id = id;
 	}
 
+	@Override
 	public void setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}

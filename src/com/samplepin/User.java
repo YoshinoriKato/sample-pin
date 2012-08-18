@@ -1,45 +1,56 @@
 package com.samplepin;
 
+import java.io.Serializable;
+
 import org.bson.types.ObjectId;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
 
 @Entity(value = "users", noClassnameStored = true)
-public class User {
+public class User implements Serializable, Deleteable, Createable {
+
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 2561029945069027198L;
 
 	@Id
-	ObjectId id;
+	ObjectId					id;
 
-	String userId;
+	String						userId;
 
-	Integer password;
+	Integer						password;
 
-	String imagePath;
+	String						imagePath;
 
-	String birthDay;
+	String						birthDay;
 
-	String mail;
+	String						mail;
 
-	Integer loginFaileds;
+	Integer						loginFaileds;
 
-	Long lastUpdate;
+	Long						lastUpdate;
 
-	Long createDate;
+	Long						createDate;
 
-	String fontColor;
+	String						fontColor;
 
-	String backgroundImage;
+	String						backgroundImage;
 
-	String userName;
+	String						userName;
 
-	String backgroundColor;
+	String						backgroundColor;
 
-	Boolean useBackgroundImage;
+	String						textShadowColor;
 
-	Integer code;
+	Boolean						useBackgroundImage;
 
-	String comment;
+	Integer						code;
+
+	String						comment;
+
+	Boolean						isDeleted;
 
 	public User() {
 		super();
@@ -88,6 +99,7 @@ public class User {
 		return this.comment;
 	}
 
+	@Override
 	public Long getCreateDate() {
 		return this.createDate;
 	}
@@ -104,6 +116,11 @@ public class User {
 		return this.imagePath;
 	}
 
+	@Override
+	public Boolean getIsDeleted() {
+		return this.isDeleted;
+	}
+
 	public Long getLastUpdate() {
 		return this.lastUpdate;
 	}
@@ -118,6 +135,10 @@ public class User {
 
 	public Integer getPassword() {
 		return this.password;
+	}
+
+	public String getTextShadowColor() {
+		return this.textShadowColor;
 	}
 
 	public Boolean getUseBackgroundImage() {
@@ -152,6 +173,7 @@ public class User {
 		this.comment = comment;
 	}
 
+	@Override
 	public void setCreateDate(Long createDate) {
 		this.createDate = createDate;
 	}
@@ -168,6 +190,11 @@ public class User {
 		this.imagePath = imagePath;
 	}
 
+	@Override
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
 	public void setLastUpdate(Long lastUpdate) {
 		this.lastUpdate = lastUpdate;
 	}
@@ -182,6 +209,10 @@ public class User {
 
 	public void setPassword(Integer password) {
 		this.password = password;
+	}
+
+	public void setTextShadowColor(String textShadowColor) {
+		this.textShadowColor = textShadowColor;
 	}
 
 	public void setUseBackgroundImage(Boolean useBackgroundImage) {

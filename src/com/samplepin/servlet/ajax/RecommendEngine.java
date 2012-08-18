@@ -1,7 +1,6 @@
 package com.samplepin.servlet.ajax;
 
 import java.io.IOException;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -11,24 +10,22 @@ import java.util.Set;
 
 import com.google.code.morphia.query.Query;
 import com.google.gson.Gson;
-import com.mongodb.MongoException;
 import com.samplepin.ACMongo;
 import com.samplepin.Recommend;
 import com.samplepin.View;
 
 class RecommendEngine {
-	Comparator<View> SCORE = new Comparator<View>() {
+	Comparator<View>	SCORE	= new Comparator<View>() {
 
-		@Override
-		public int compare(View o1, View o2) {
-			return o1.score().compareTo(o2.score());
-		}
+									@Override
+									public int compare(View o1, View o2) {
+										return o1.score().compareTo(o2.score());
+									}
 
-	};
+								};
 
 	@SuppressWarnings("unchecked")
-	final Set<String> getCache(String userId) throws UnknownHostException,
-			MongoException {
+	final Set<String> getCache(String userId) {
 		try (ACMongo mongo = new ACMongo()) {
 			Query<Recommend> query = mongo
 					.createQuery(Recommend.class)
@@ -41,13 +38,17 @@ class RecommendEngine {
 			}
 			Gson gson = new Gson();
 			return gson.fromJson(recommend.getRecommendJSON(), Set.class);
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		return null;
 	}
 
 	final Set<String> getOthersByViewsAndUserID(List<View> views, String userId)
 			throws IOException {
+		Set<String> others = new HashSet<>();
 		try (ACMongo mongo = new ACMongo()) {
-			Set<String> others = new HashSet<>();
 			for (View view : views) {
 				Query<View> query = mongo.createQuery(View.class)
 						.filter("userId != ", userId)
@@ -59,8 +60,10 @@ class RecommendEngine {
 					others.add(view2.getUserId());
 				}
 			}
-			return others;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		return others;
 	}
 
 	final List<View> getOthersViewsByUserIDs(Set<String> userIds)
@@ -75,10 +78,11 @@ class RecommendEngine {
 				result = query.asList();
 				result = result != null ? result : new ArrayList<View>();
 				Collections.sort(result, this.SCORE);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		return result;
-
 	}
 
 	final Set<String> getRecommendCards(String userId) throws IOException {
@@ -93,7 +97,7 @@ class RecommendEngine {
 		for (View view : views) {
 			ids.add(view.getCardId());
 		}
-		recommends = getRecommends(othersViews, ids);
+		recommends = getViewYetCards(othersViews, ids);
 		try (ACMongo mongo = new ACMongo()) {
 			Gson gson = new Gson();
 			mongo.save(new Recommend(userId, gson.toJson(recommends)));
@@ -101,7 +105,19 @@ class RecommendEngine {
 		return recommends;
 	}
 
-	final Set<String> getRecommends(List<View> othersViews, Set<String> ids) {
+	final List<View> getViewsByUserID(String userId) throws IOException {
+		List<View> views = new ArrayList<>();
+		try (ACMongo mongo = new ACMongo()) {
+			Query<View> query = mongo.createQuery(View.class)
+					.filter("userId = ", userId).filter("isDeleted", false)
+					.order("-visitedDate").limit(10);
+			views = query.asList();
+			Collections.sort(views, this.SCORE);
+		}
+		return views;
+	}
+
+	final Set<String> getViewYetCards(List<View> othersViews, Set<String> ids) {
 		Set<String> recommends = new HashSet<>();
 		for (View view : othersViews) {
 			if (!ids.contains(view.getCardId())) {
@@ -112,16 +128,5 @@ class RecommendEngine {
 			}
 		}
 		return recommends;
-	}
-
-	final List<View> getViewsByUserID(String userId) throws IOException {
-		try (ACMongo mongo = new ACMongo()) {
-			Query<View> query = mongo.createQuery(View.class)
-					.filter("userId = ", userId).filter("isDeleted", false)
-					.order("-visitedDate").limit(10);
-			List<View> views = query.asList();
-			Collections.sort(views, this.SCORE);
-			return views;
-		}
 	}
 }

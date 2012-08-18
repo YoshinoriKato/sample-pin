@@ -52,13 +52,13 @@
 									<label class="control-label">Preview</label>
 									<div class="controls">
 										<ul id="content">
-											<li><div class="cell"
+											<li class="card"><div class="cell opacity80"
 													style="<%=wallPaper%> <%=backgroundColor%>">
-													<div class="comment" style="<%=fontColor%>">
-														@<%=Helper.escapeHTML(userName)%></div>
-													<div class="comment caption deco" style="<%=fontColor%>">
+													<div class="comment caption2 deco" style="<%=fontColor%>">
 														<!-- comment -->
-														コメント。
+														<img src="<%=user.getImagePath()%>" class="image-icon">
+														<%=Helper.convURLLink(Helper.escapeHTML("Hello, world."))%>
+														<br style="clear: both;">
 													</div>
 													<div class="comment right" style="<%=fontColor%>">
 														<%=Helper.formatToAboutTimeString(System.currentTimeMillis())%></div>
@@ -71,14 +71,13 @@
 									<div class="controls">
 										<input type="text" name="userName" maxlength="40"
 											value="<%=Helper.escapeHTML(user.getUserName())%>"
-											class="span8">
+											class="text span8">
 									</div>
 								</div>
 								<div class="control-group">
 									<label for="iconPath" class="control-label">Background
 										Image</label>
 									<div class="controls">
-										<!-- 		<img src="<%=user.getBackgroundImage()%>" class="image-shot"> -->
 										<input type="file" class="span8" name="iconPath" />
 									</div>
 								</div>
@@ -94,16 +93,23 @@
 									<label for="backgroundColor" class="control-label">Background
 										Color</label>
 									<div class="controls">
-										<input type="color" name="backgroundColor"
+										<input type="color" name="backgroundColor" class="text"
 											value="<%=user.getBackgroundColor()%>">
 									</div>
 								</div>
 								<div class="control-group">
 									<label for="fontColor" class="control-label">Font Color</label>
 									<div class="controls">
-										<input type="color" name="fontColor"
-											value="<%=user.getFontColor()%>" id="fontColor"
-											onchange="previewChange('#fontColor', '#prevFontColor')">
+										<input type="color" name="fontColor" class="text"
+											value="<%=user.getFontColor()%>" id="fontColor">
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="textShadowColor" class="control-label">Text
+										Shadow Color</label>
+									<div class="controls">
+										<input type="color" name="textShadowColor" class="text"
+											value="<%=user.getTextShadowColor()%>" id="textShadowColor">
 									</div>
 								</div>
 

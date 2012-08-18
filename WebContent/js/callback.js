@@ -81,6 +81,29 @@ function makeCell($card) {
 	$divCaption.text($card.caption).autoUrlLink();
 }
 
+function makeComment($comment) {
+
+	// components
+	var $jqLi = $('<li/>').addClass('card');
+	var $jqDiv = $('<div/>').attr('id', $comment.cardId);
+	var $jqA = $('<a/>').addClass('no-hover');
+	
+	var $divName = $('<div/>');
+	var $divCaption = $('<div/>').addClass('caption deco');
+	var $divFooter = $('<div/>').addClass('star right');
+
+	$jqDiv.addClass('cell');
+	$jqA.attr('href', 'card.jsp?cardId=' + $comment.cardId);
+	$divFooter.text($comment.likes + ' comment');
+	$divCaption.text($comment.comment).autoUrlLink();
+
+	// construct
+	$('#content').append($jqLi);
+	$jqLi.append($jqDiv);
+	$jqDiv.append($divName).append($divCaption).append($divFooter);
+	$divName.append();
+}
+
 function callAjax($sorted, $limit, $offset, $userId) {
 	if (!$block) {
 		$block = true;

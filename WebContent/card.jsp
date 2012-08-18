@@ -8,13 +8,6 @@
 <head>
 <jsp:include page="_header.jsp"></jsp:include>
 <script type="text/javascript">
-	function checkLength() {
-		if ($('#comment-text').val().length > 0) {
-			$('#submit-button').removeAttr('disabled');
-		} else {
-			$('#submit-button').attr('disabled', 'disabled');
-		}
-	};
 	$(window).load(
 			function() {
 				$timer = setInterval(function() {
@@ -85,6 +78,7 @@
 			</li>
 
 			<%
+				int i = comments.size();
 				for (Comment comment : comments) {
 					User user = Helper.getUserById(comment.getUserId());
 					String wallPaper = Helper.getWallPaper(user);
@@ -92,21 +86,24 @@
 					String backgroundColor = Helper.getBackgroundColor(user);
 					String userName = user != null ? user.getUserName() : "nanashi";
 			%>
-			<li><div class="cell opacity80"
-					style="<%=wallPaper%> <%=backgroundColor%>">
-					<div class="comment" style="<%=fontColor%>">
-						<a href="profile.jsp?userId=<%=comment.getUserId()%>">@<%=Helper.escapeHTML(userName)%>
-						</a>
-					</div>
-					<div class="comment caption deco" style="<%=fontColor%>">
+			<li class="card"><div class="cell"
+					>
+					<div class="comment caption2 star">
+						No.<%=i %></div>
+					<div class="comment caption2 deco">
 						<!-- comment -->
+						<a href="profile.jsp?userId=<%=comment.getUserId()%>"><img
+							src="<%=user.getImagePath()%>" class="image-icon"></a>
 						<%=Helper.convURLLink(Helper.escapeHTML(comment
 						.getComment()))%>
+						<br style="clear: both;">
 					</div>
-					<div class="comment right" style="<%=fontColor%>">
-						<%=Helper.formatToAboutTimeString(comment.getCreateDate())%></div>
+					<div class="comment caption2 star right">
+						<%=Helper.formatToAboutTimeString(comment
+						.getCreateDate())%></div>
 				</div></li>
 			<%
+				i--;
 				}
 			%>
 		</ul>

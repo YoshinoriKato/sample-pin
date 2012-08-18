@@ -43,13 +43,13 @@
 									<div class="controls">
 										<input type="text" name="userName" maxlength="40"
 											value="<%=Helper.escapeHTML(user.getUserName())%>"
-											class="span8">
+											class="text span8">
 									</div>
 								</div>
 								<div class="control-group">
 									<label for="mail" class="control-label">Mail</label>
 									<div class="controls">
-										<input type="email" class="span8" name="mail"
+										<input type="email" class="text span8" name="mail"
 											value="<%=user.getMail()%>" />
 									</div>
 								</div>
@@ -61,7 +61,7 @@
 									</div>
 								</div>
 								<div class="control-group">
-									<label for="comment" class="control-label">Birth Day</label>
+									<label for="comment" class="control-label">Comment</label>
 									<div class="controls">
 										<textarea class="textarea span8" name="comment" rows="4"><%=Helper.escapeHTML(user.getComment())%></textarea>
 									</div>
@@ -69,7 +69,7 @@
 								<div class="control-group">
 									<label for="country" class="control-label">Country</label>
 									<div class="controls">
-										<select id="country" name="country" multiple="multiple">
+										<select id="country" name="country" multiple="multiple" class="text">
 											<%
 												List<Country> countries = Helper.getCountries();
 												for (Country country : countries) {
@@ -86,7 +86,7 @@
 								<div class="control-group <%=error%>">
 									<label for="password0" class="control-label">Password</label>
 									<div class="controls">
-										<input type="password" name="password0"><span
+										<input type="password" name="password0" class="text"><span
 											class="help-inline"><%=message%></span>
 									</div>
 								</div>
@@ -94,7 +94,7 @@
 									<label for="password1" class="control-label">New
 										Password</label>
 									<div class="controls">
-										<input type="password" name="password1"><span
+										<input type="password" name="password1" class="text"><span
 											class="help-inline"><%=message%></span>
 									</div>
 								</div>
@@ -102,7 +102,7 @@
 									<label for="password2" class="control-label">New
 										Password(Confirm)</label>
 									<div class="controls">
-										<input type="password" name="password2"><span
+										<input type="password" name="password2" class="text"><span
 											class="help-inline"><%=message%></span>
 									</div>
 								</div>

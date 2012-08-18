@@ -6,16 +6,16 @@ import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
 
 @Entity(value = "recommends", noClassnameStored = true)
-public class Recommend {
+public class Recommend implements Createable {
 
 	@Id
-	ObjectId id;
+	ObjectId	id;
 
-	String userId;
+	String		userId;
 
-	Long createDate;
+	Long		createDate;
 
-	String recommendJSON;
+	String		recommendJSON;
 
 	public Recommend(String userId, String recommendJSON) {
 		super();
@@ -24,6 +24,7 @@ public class Recommend {
 		this.recommendJSON = recommendJSON;
 	}
 
+	@Override
 	public Long getCreateDate() {
 		return this.createDate;
 	}
@@ -40,6 +41,7 @@ public class Recommend {
 		return this.userId;
 	}
 
+	@Override
 	public void setCreateDate(Long createDate) {
 		this.createDate = createDate;
 	}

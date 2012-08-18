@@ -6,6 +6,13 @@
 <head>
 <jsp:include page="_header.jsp"></jsp:include>
 <jsp:include page="_effect.jsp"></jsp:include>
+<script type="text/javascript">
+	$(window).load(function() {
+		$timer = setInterval(function() {
+			checkLength();
+		}, 500);
+	});
+</script>
 </head>
 
 <%
@@ -35,7 +42,8 @@
 								<div class="control-group <%=error%>">
 									<label for="caption" class="control-label">Caption</label>
 									<div class="controls">
-										<textarea name="caption" class="span8" rows="8"></textarea>
+										<textarea name="caption" id="comment-text"
+											class="textarea span8" rows="8"></textarea>
 										<span class="help-inline"><%=message%></span>
 									</div>
 								</div>
@@ -53,7 +61,7 @@
 								%>
 								<div class="control-group">
 									<div class="controls">
-										<input type="submit" value="Make"
+										<input type="submit" value="Make" id="submit-button"
 											class="btn btn-large btn-primary btn-cell">
 									</div>
 								</div>

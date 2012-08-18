@@ -9,7 +9,7 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	background-color: #eee;
 	background-image: url("../img/ichimatsu.png?201208131742");
-	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
 	/* layout ---------------------------------------------------------------*/
 	/* shape ----------------------------------------------------------------*/
 }
@@ -39,24 +39,39 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(80, 80, 80, 0.4);
 	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =                                 80);
+	filter: alpha(opacity =     80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/
 	margin-bottom: 10px;
 	/* shape ----------------------------------------------------------------*/
-	border-radius: 3px 35px 3px;
-	-webkit-border-radius: 3px 35px 3px;
-	-moz-border-radius: 3px 35px 3px;
+	border-radius: 3px 27px 3px;
+	-webkit-border-radius: 3px 27px 3px;
+	-moz-border-radius: 3px 27px 3px;
 	min-width: 200px;
 	min-height: 10px;
-	border-radius: 3px 25px 3px
+}
+
+.image-icon {
+	/* effect ---------------------------------------------------------------*/
+	color: rgba(80, 80, 80, 0.4);
+	background-color: rgba(0, 0, 0, 0.05);
+	filter: alpha(opacity =     80);
+	-moz-opacity: 0.80;
+	opacity: 0.80;
+	float: left;
+	/* layout ---------------------------------------------------------------*/
+	margin-right: 0.5em;
+	/* shape ----------------------------------------------------------------*/
+	border-radius: 1px 10px 1px;
+	-webkit-border-radius: 1px 10px 1px;
+	-moz-border-radius: 1px 10px 1px;
+	width: 50px;
 }
 
 .card {
 	/* effect ---------------------------------------------------------------*/
 	/* layout ---------------------------------------------------------------*/
-	position: inherit;
 	/* shape ----------------------------------------------------------------*/
 	width: 220px;
 }
@@ -80,7 +95,6 @@ body {
 	border-radius: 5px 35px 5px;
 	-webkit-border-radius: 5px 35px 5px;
 	-moz-border-radius: 5px 35px 5px;
-	width: 80%;
 }
 
 .text,.textarea,.dropdown {
@@ -157,16 +171,15 @@ body {
 	/* layout ---------------------------------------------------------------*/
 	padding: 10px;
 	position: fixed;
-	top: 10%;
-	left: 30%;
+	top: 20%;
+	left: 35%;
 	z-index: 9;
 	/* shape ----------------------------------------------------------------*/
 	border-radius: 5px 35px 5px;
 	-webkit-border-radius: 5px 35px 5px;
 	-moz-border-radius: 5px 35px 5px;
-	width: 40%;
-	width: 40%;
-	min-width: 240px;
+	width: 30%;
+	min-width: 220px;
 }
 
 .cell {
@@ -256,6 +269,14 @@ body {
 	color: rgba(60, 60, 60, 0.7);
 	/* layout ---------------------------------------------------------------*/
 	margin: 10px;
+	/* shape ----------------------------------------------------------------*/
+}
+
+.caption2 {
+	/* effect ---------------------------------------------------------------*/
+	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.1);
+	/* layout ---------------------------------------------------------------*/
+	margin: 3px;
 	/* shape ----------------------------------------------------------------*/
 }
 

@@ -3,7 +3,7 @@
 <%@page import="com.samplepin.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%! String suffix = "201208171740"; %>
+<%! String suffix = "201208181337"; %>
 <!-- 共有 -->
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -29,7 +29,7 @@
 	charset="UTF-8"></script>
 <script type="text/javascript" src="js/cover.js?<%=suffix %>"
 	charset="UTF-8"></script>
-<script type="text/javascript" src="js/fade.js?<%=suffix %>"
+<script type="text/javascript" src="js/util.js?<%=suffix %>"
 	charset="UTF-8"></script>
 
 

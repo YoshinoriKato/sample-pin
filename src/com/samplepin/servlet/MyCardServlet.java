@@ -32,7 +32,7 @@ public class MyCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7182329627922034835L;
+	private static final long	serialVersionUID	= -7182329627922034835L;
 
 	public static void copyStream(InputStream in, OutputStream os,
 			int bufferSize) throws IOException {
@@ -154,17 +154,21 @@ public class MyCardServlet extends HttpServlet {
 			for (Part part : req.getParts()) {
 				String userName = getValueByKeyword(part, "userName");
 				String fontColor = getValueByKeyword(part, "fontColor");
+				String textShadowColor = getValueByKeyword(part,
+						"textShadowColor");
 				String backgroundColor = getValueByKeyword(part,
 						"backgroundColor");
 				String useBackgroundImage = getValueByKeyword(part,
 						"useBackgroundImage");
-				;
 
 				if (userName != null) {
 					user.setUserName(userName);
 
 				} else if (fontColor != null) {
 					user.setFontColor(fontColor);
+
+				} else if (textShadowColor != null) {
+					user.setBackgroundColor(textShadowColor);
 
 				} else if (backgroundColor != null) {
 					user.setBackgroundColor(backgroundColor);
