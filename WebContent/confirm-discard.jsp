@@ -36,29 +36,30 @@
 								<div class="control-group">
 									<label class="control-label">Preview</label>
 									<div class="controls">
-										<div class="cell link" id="image-shot"
-											style="width: 220px; position: relative;">
-											<div>
-												<img src="<%=card.getImagePath()%>" class="image-shot">
-											</div>
-											<%
-												if (card.getView() != 0) {
-											%>
-											<div class="ribon">
-												<span class="ribon-text color-red"> <%=card.getView()%>
-													view
-												</span>
-											</div>
-											<%
-												}
-											%>
-											<div class="caption deco">
-												<%=Helper.convURLLink(Helper.escapeHTML(card
+										<div class="card">
+											<div class="cell link" id="image-shot">
+												<div>
+													<img src="<%=card.getImagePath()%>" class="image-shot">
+												</div>
+												<%
+													if (card.getView() != 0) {
+												%>
+												<div class="ribon">
+													<span class="ribon-text color-red"> <%=card.getView()%>
+														view
+													</span>
+												</div>
+												<%
+													}
+												%>
+												<div class="caption deco">
+													<%=Helper.convURLLink(Helper.escapeHTML(card
 						.getCaption()))%>
-											</div>
-											<div class="star right">
-												<%=card.getLikes()%>
-												comment
+												</div>
+												<div class="star right">
+													<%=card.getLikes()%>
+													comment
+												</div>
 											</div>
 										</div>
 									</div>

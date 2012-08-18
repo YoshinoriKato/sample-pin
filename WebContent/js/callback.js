@@ -1,6 +1,6 @@
 var $timer;
 
-var $offset = 12;
+var $offset = 8;
 
 var $counter = 0;
 
@@ -78,7 +78,7 @@ function makeCell($card) {
 	}
 	$jqDiv.append($divImage).append($divCaption).append($divFooter);
 	$divImage.append($jqImg);
-	$divCaption.text($card.caption).autoUrlLink();
+	$divCaption.text($card.caption).autoUrlLink().escapeReturn();
 }
 
 function makeComment($comment) {

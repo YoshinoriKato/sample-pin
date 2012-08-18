@@ -45,9 +45,9 @@ body {
 	/* layout ---------------------------------------------------------------*/
 	margin-bottom: 10px;
 	/* shape ----------------------------------------------------------------*/
-	border-radius: 3px 27px 3px;
-	-webkit-border-radius: 3px 27px 3px;
-	-moz-border-radius: 3px 27px 3px;
+	border-radius: 3px 20px 3px;
+	-webkit-border-radius: 3px 20px 3px;
+	-moz-border-radius: 3px 20px 3px;
 	min-width: 200px;
 	min-height: 10px;
 }
@@ -73,7 +73,7 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	/* layout ---------------------------------------------------------------*/
 	/* shape ----------------------------------------------------------------*/
-	width: 220px;
+	width: 210px;
 }
 
 #cover {
@@ -92,9 +92,9 @@ body {
 	/* shape ----------------------------------------------------------------*/
 	width: 80%;
 	max-height: 80%;
-	border-radius: 5px 35px 5px;
-	-webkit-border-radius: 5px 35px 5px;
-	-moz-border-radius: 5px 35px 5px;
+	border-radius: 5px 25px 5px;
+	-webkit-border-radius: 5px 25px 5px;
+	-moz-border-radius: 5px 25px 5px;
 }
 
 .text,.textarea,.dropdown {
@@ -130,7 +130,7 @@ body {
 	/* layout ---------------------------------------------------------------*/
 	position: relative;
 	/* shape ----------------------------------------------------------------*/
-	width: 220px;
+	width: 210px;
 }
 
 #content li a:HOVER {
@@ -152,9 +152,9 @@ body {
 	margin-bottom: 10px;
 	z-index: 10;
 	/* shape ----------------------------------------------------------------*/
-	border-radius: 5px 35px 5px;
-	-webkit-border-radius: 5px 35px 5px;
-	-moz-border-radius: 5px 35px 5px;
+	border-radius: 5px 25px 5px;
+	-webkit-border-radius: 5px 25px 5px;
+	-moz-border-radius: 5px 25px 5px;
 	width: 20%;
 	position: fixed;
 	border-radius: 6px 40px 6px
@@ -175,9 +175,9 @@ body {
 	left: 35%;
 	z-index: 9;
 	/* shape ----------------------------------------------------------------*/
-	border-radius: 5px 35px 5px;
-	-webkit-border-radius: 5px 35px 5px;
-	-moz-border-radius: 5px 35px 5px;
+	border-radius: 5px 25px 5px;
+	-webkit-border-radius: 5px 25px 5px;
+	-moz-border-radius: 5px 25px 5px;
 	width: 30%;
 	min-width: 220px;
 }
@@ -189,14 +189,14 @@ body {
 	box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
 	/* layout ---------------------------------------------------------------*/
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 9px;
-	padding-right: 11px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 4px;
+	padding-right: 6px;
 	/* shape ----------------------------------------------------------------*/
-	border-radius: 5px 35px 5px;
-	-webkit-border-radius: 5px 35px 5px;
-	-moz-border-radius: 5px 35px 5px;
+	border-radius: 5px 25px 5px;
+	-webkit-border-radius: 5px 25px 5px;
+	-moz-border-radius: 5px 25px 5px;
 }
 
 .cell2 {
@@ -206,14 +206,14 @@ body {
 	box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
 	/* layout ---------------------------------------------------------------*/
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 9px;
-	padding-right: 11px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 4px;
+	padding-right: 6px;
 	/* shape ----------------------------------------------------------------*/
-	border-radius: 5px 35px 5px;
-	-webkit-border-radius: 5px 35px 5px;
-	-moz-border-radius: 5px 35px 5px;
+	border-radius: 5px 25px 5px;
+	-webkit-border-radius: 5px 25px 5px;
+	-moz-border-radius: 5px 25px 5px;
 	padding-bottom: 10px;
 	padding-left: 9px;
 	padding-right: 11px;
@@ -268,7 +268,7 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(60, 60, 60, 0.7);
 	/* layout ---------------------------------------------------------------*/
-	margin: 10px;
+	margin: 5px;
 	/* shape ----------------------------------------------------------------*/
 }
 
@@ -346,12 +346,12 @@ body {
 	padding-bottom: 10px;
 	/* shape ----------------------------------------------------------------*/
 	width: 70%;
-	border-radius: 5px 35px 5px;
-	-webkit-border-radius: 5px 35px 5px;
-	-moz-border-radius: 5px 35px 5px;
+	border-radius: 5px 25px 5px;
+	-webkit-border-radius: 5px 25px 5px;
+	-moz-border-radius: 5px 25px 5px;
 	z-index: 5;
-	-webkit-border-radius: 5px 35px 5px;
-	-moz-border-radius: 5px 35px 5px;
+	-webkit-border-radius: 5px 25px 5px;
+	-moz-border-radius: 5px 25px 5px;
 	padding-top: 30px;
 }
 

@@ -7,12 +7,18 @@ function checkLength() {
 	}
 };
 
-function pushPull(on, off) {
-	pushPull(on, off, 1000);
+function pushPull($on, $off) {
+	pushPull($on, $off, 1000);
 };
 
-function pushPull(on, off, duration) {
-	$(off).fadeOut(duration);
-	$(on).fadeIn(duration);
+function pushPull($on, $off, $duration) {
+	$($off).fadeOut($duration);
+	$($on).fadeIn($duration);
 };
 
+$.fn.escapeReturn = function($text) {
+	return this.each(function() {
+		var srcText = this.innerHTML;
+		this.innerHTML = srcText.replace(/(\r\n|\n\r|\r|\n)/g,'<br />');
+	});
+};

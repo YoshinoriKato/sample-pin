@@ -71,10 +71,16 @@ public class Helper {
 	}
 
 	public static String escapeHTML(String input) {
+		// tag
 		input = substitute(input, "&", "&amp;");
 		input = substitute(input, "<", "&lt;");
 		input = substitute(input, ">", "&gt;");
 		input = substitute(input, "\"", "&quot;");
+		// line separator
+		input = substitute(input, "\r\n", "<br />");
+		input = substitute(input, "\n\r", "<br />");
+		input = substitute(input, "\r", "<br />");
+		input = substitute(input, "\n", "<br />");
 		return input;
 	}
 
