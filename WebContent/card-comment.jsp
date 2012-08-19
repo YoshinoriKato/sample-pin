@@ -53,13 +53,19 @@
 </script>
 </head>
 
+<%
+	String title = (card != null) ? "Card & Comments" : "Comments";
+%>
 
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<jsp:include page="_button.jsp" flush="true" />
-	<div id="title">Card & Comments</div>
+	<div id="title"><%=title%></div>
 	<div id="main">
 		<ul id="content">
+			<%
+				if (card != null) {
+			%>
 			<li class="card">
 				<div class="cell link" id="image-shot">
 					<div>
@@ -77,7 +83,8 @@
 						}
 					%>
 					<div class="caption deco">
-						<%=Helper.convURLLink(Helper.escapeHTML(card.getCaption()))%>
+						<%=Helper.convURLLink(Helper.escapeHTML(card
+						.getCaption()))%>
 					</div>
 					<div class="star right">
 						<%=card.getLikes()%>
@@ -85,7 +92,9 @@
 					</div>
 				</div>
 			</li>
-
+			<%
+				}
+			%>
 			<!--  ajax -->
 		</ul>
 		<br style="clear: both;" />
@@ -95,6 +104,9 @@
 	<div style="display: none" id="userId"><%=userId%></div>
 	<div style="display: none" id="cardId"><%=cardId%></div>
 	<div style="display: none" id="type"><%=type%></div>
+	<%
+		if (card != null) {
+	%>
 	<div id="cover" class="center">
 		<div class="middle">
 			<div id="image-close" class="tab-button">x</div>
@@ -139,6 +151,9 @@
 			%>
 		</div>
 	</div>
+	<%
+		}
+	%>
 	<jsp:include page="_footer.jsp"></jsp:include>
 </body>
 

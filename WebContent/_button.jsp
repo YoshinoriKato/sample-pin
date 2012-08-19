@@ -7,7 +7,7 @@
 <%
 	String addClass = "btn btn-large btn-info btn-cell";
 	String url = request.getRequestURI();
-	boolean inCardPage = url.contains("/card-comment.jsp");
+	boolean inCardPage = url.contains("/card-comment.jsp") && url.contains("cardId=");
 	String cardId = request.getParameter("cardId");
 	Card card = cardId != null ? Helper.getCardInfoByID(cardId) : null;
 	String userId = (String) session.getAttribute("userId");

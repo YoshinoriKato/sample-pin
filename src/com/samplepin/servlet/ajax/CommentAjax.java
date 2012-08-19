@@ -33,8 +33,16 @@ public class CommentAjax extends CardAjax {
 			Datastore datastore = mongo.createDatastore();
 
 			// filter
-			Query<Comment> query = datastore.createQuery(Comment.class)
-					.filter("isDeleted", false).filter("cardId", cardId);
+			Query<Comment> query = datastore.createQuery(Comment.class).filter(
+					"isDeleted", false);
+
+			if (valid(cardId)) {
+				query.filter("cardId = ", cardId);
+			}
+
+			if (valid(userId)) {
+				query.filter("userId = ", userId);
+			}
 
 			if (valid(old)) {
 				query.filter("createDate < ", Long.valueOf(old));

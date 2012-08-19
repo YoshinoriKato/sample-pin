@@ -1,8 +1,10 @@
 function checkLength() {
-	if ($('#comment-text').val().length > 0) {
-		$('#submit-button').removeAttr('disabled');
-	} else {
-		$('#submit-button').attr('disabled', 'disabled');
+	if ($('#comment-text').val() != null) {
+		if ($('#comment-text').val().length > 0) {
+			$('#submit-button').removeAttr('disabled');
+		} else {
+			$('#submit-button').attr('disabled', 'disabled');
+		}
 	}
 };
 

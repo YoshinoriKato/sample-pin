@@ -37,7 +37,9 @@ public class AjaxCardServlet extends HttpServlet {
 		String old = req.getParameter("old");
 		String young = req.getParameter("young");
 		String type = req.getParameter("type");
-		String userId = (String) req.getSession().getAttribute("userId");
+		String userId = req.getParameter("userId");
+		userId = (userId != null) ? userId : (String) req.getSession()
+				.getAttribute("userId");
 		String cardId = req.getParameter("cardId");
 
 		if ("comment".equals(type)) {

@@ -60,7 +60,7 @@
 						</div>
 						<div class="item-group">
 							<div class="item-label">Comment</div>
-							<div class="items"><%=Helper.countCommentByUserId(userId)%>
+							<div class="items"><a href="card-comment.jsp?userId=<%=user.getUserId()%>&type=comment"><%=Helper.countCommentByUserId(userId)%></a>
 							</div>
 						</div>
 						<div class="item-group">
