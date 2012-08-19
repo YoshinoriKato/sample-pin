@@ -9,6 +9,8 @@ public class Card extends Comment {
 	 */
 	private static final long	serialVersionUID	= 2686047770755644944L;
 
+	String						parentId;
+
 	String						url;
 
 	Integer						likes;
@@ -16,12 +18,14 @@ public class Card extends Comment {
 	Integer						view;
 
 	public Card() {
-		this("", "", "", "", "", 0, 0, System.currentTimeMillis());
+		this("self", "", "", "", "", "", 0, 0, System.currentTimeMillis());
 	}
 
-	public Card(String cardId, String userId, String imagePath, String url,
-			String caption, int likes, int view, long createDate) {
+	public Card(String parentId, String cardId, String userId,
+			String imagePath, String url, String caption, int likes, int view,
+			long createDate) {
 		super();
+		this.parentId = parentId;
 		this.cardId = cardId;
 		this.userId = userId;
 		this.imagePath = imagePath;

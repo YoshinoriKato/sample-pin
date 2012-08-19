@@ -12,6 +12,7 @@ import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 import com.mongodb.MongoException;
 import com.samplepin.ACMongo;
+import com.samplepin.Card;
 import com.samplepin.Comment;
 import com.samplepin.Helper;
 import com.samplepin.User;
@@ -75,7 +76,14 @@ public class CommentAjax extends CardAjax {
 		for (Comment comment : cards) {
 			User user = Helper.getUserById(comment.getUserId());
 			if (user != null) {
-				comment.setUserIcon(user.getImagePath());
+				if (valid(otherUserId)) {
+					Card card = Helper.getCardInfoByID(comment.getCardId());
+					if (card != null) {
+						comment.setCardIcon(card.getImagePath());
+					}
+				} else {
+					comment.setUserIcon(user.getImagePath());
+				}
 				comment.setUserName(user.getUserName());
 			}
 		}

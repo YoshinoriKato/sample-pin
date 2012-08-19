@@ -39,9 +39,6 @@
 									<div class="controls">
 										<div class="card">
 											<div class="cell link" id="image-shot">
-												<div>
-													<img src="<%=card.getImagePath()%>" class="image-shot">
-												</div>
 												<%
 													if (card.getView() != 0) {
 												%>
@@ -53,6 +50,9 @@
 												<%
 													}
 												%>
+												<div>
+													<img src="<%=card.getImagePath()%>" class="image-shot">
+												</div>
 												<div class="caption deco">
 													<%=Helper.convURLLink(Helper.escapeHTML(card
 						.getCaption()))%>

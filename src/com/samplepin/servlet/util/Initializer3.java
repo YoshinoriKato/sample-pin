@@ -196,9 +196,9 @@ public class Initializer3 extends HttpServlet {
 						dice.nextInt(caption.length() - cap_min) + cap_min);
 				String song2 = song.substring(0,
 						dice.nextInt(song.length() - cap_min) + cap_min);
-				cards.add(new Card(cardId, userId, "img/flag/" + FLAGS[i], "",
-						((dice.nextInt() % 2) == 0) ? caption2 : song2, likes,
-						views, mills2));
+				cards.add(new Card("self", cardId, userId, "img/flag/"
+						+ FLAGS[i], "", ((dice.nextInt() % 2) == 0) ? caption2
+						: song2, likes, views, mills2));
 
 				mills2 += 1000 * 60 * 30 * (dice.nextInt(7) + 1);
 			}

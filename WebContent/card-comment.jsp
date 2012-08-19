@@ -6,25 +6,27 @@
 <%
 	String sorted = request.getParameter("sorted");
 	sorted = sorted == null ? "" : sorted;
-	
+
 	String otherUserId = request.getParameter("userId");
 	otherUserId = (otherUserId != null) ? otherUserId : "";
-	
+
 	String userId = (String) session.getAttribute("userId");
 	userId = (userId != null) ? userId : session.getId();
 
 	String cardId = request.getParameter("cardId");
 	cardId = (cardId != null) ? cardId : "";
-	
+
 	String type = request.getParameter("type");
 	type = (type != null) ? type : "card";
-	
+
 	Card card = Helper.getCardInfoByID(cardId);
-	Helper.setFootprint(card, userId);
+	if (card != null && userId != null && !userId.isEmpty()) {
+		Helper.setFootprint(card, userId);
+	}
 
 	String message = (String) request.getAttribute("message");
 	message = message != null ? message : "";
-	
+
 	String error = message != null && !message.isEmpty() ? "error" : "";
 %>
 
@@ -57,7 +59,7 @@
 				callAjax($('#sorted').text(), 40, '', $('#userId').text(), $(
 						'#cardId').text(), $('#type').text());
 				$('#main').fadeIn(1000);
-			});
+		});
 </script>
 </head>
 
@@ -72,9 +74,6 @@
 			%>
 			<li class="card">
 				<div class="cell link" id="image-shot">
-					<div>
-						<img src="<%=card.getImagePath()%>" class="image-shot">
-					</div>
 					<%
 						if (card.getView() != 0) {
 					%>
@@ -86,6 +85,14 @@
 					<%
 						}
 					%>
+					<div>
+						<img src="<%=card.getImagePath()%>" class="image-shot">
+					</div>
+					<div class="star comment">
+						<%=card.getUserName()%><a class="no-hover"
+							href="profile.jsp?userId=<%=card.getUserId()%>"><img
+							class="image-icon" src="<%=card.getUserIcon()%>"></a>
+					</div>
 					<div class="caption deco">
 						<%=Helper.convURLLink(Helper.escapeHTML(card
 						.getCaption()))%>
@@ -103,7 +110,7 @@
 		</ul>
 		<br style="clear: both;" />
 	</div>
-	
+
 	<!-- read cards -->
 	<div class="center caption star large" id="read-cards"></div>
 
@@ -112,7 +119,7 @@
 	<div style="display: none" id="userId"><%=otherUserId%></div>
 	<div style="display: none" id="cardId"><%=cardId%></div>
 	<div style="display: none" id="type"><%=type%></div>
-	
+
 	<%
 		if (card != null) {
 	%>

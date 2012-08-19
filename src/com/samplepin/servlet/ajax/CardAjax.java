@@ -32,6 +32,9 @@ public class CardAjax {
 		Map<String, Object> data = new HashMap<>();
 		type = valid(type) ? type : "card";
 		data.put("type", type);
+		boolean alreadyRead = false;
+		int _offset = valid(offset) ? Integer.valueOf(offset) : 0;
+		int _limit = valid(limit) ? Integer.valueOf(limit) : 0;
 
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
@@ -56,18 +59,15 @@ public class CardAjax {
 				query.order("-likes, -createDate");
 
 			} else if ("footprints".equals(sorted)) {
-				List<View> views = Helper.getViewsInfoByID(userId);
-				List<String> cardIds = new ArrayList<>();
+				List<View> views = Helper.getViewsInfoByID(userId, _offset,
+						_limit);
 				if (valid(views)) {
 					for (View view : views) {
-						cardIds.add(view.getCardId());
+						cards.add(Helper.getCardInfoByID(view.getCardId()));
 					}
-					query.filter("cardId in ", cardIds);
-				} else {
-					data.put("array", cards.toArray(new Card[0]));
-					writeToJSON(os, data, callback);
-					return;
+					alreadyRead = true;
 				}
+				alreadyRead = true;
 			} else if ("recommend".equals(sorted)) {
 				Set<String> recommends = new RecommendEngine()
 						.getRecommendCards(userId);
@@ -75,9 +75,7 @@ public class CardAjax {
 					query.filter("cardId in ", recommends);
 					query.order("-createDate");
 				} else {
-					data.put("array", cards.toArray(new Card[0]));
-					writeToJSON(os, data, callback);
-					return;
+					alreadyRead = true;
 				}
 			} else if ("mine".equals(sorted)) {
 				query.filter("userId = ", userId);
@@ -92,17 +90,20 @@ public class CardAjax {
 			}
 
 			// option
-			if (valid(limit)) {
-				query.limit(Integer.valueOf(limit));
+			if (_limit != 0) {
+				query.limit(_limit);
 			} else {
 				query.limit(1000);
 			}
 
-			if (valid(offset)) {
-				query.offset(Integer.valueOf(offset));
+			if (_offset != 0) {
+				query.offset(_offset);
 			}
 
-			cards = query.asList();
+			if (!alreadyRead) {
+				cards = query.asList();
+			}
+
 			for (Card card : cards) {
 				User user = Helper.getUserById(card.getUserId());
 				if (user != null) {

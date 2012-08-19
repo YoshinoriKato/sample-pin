@@ -39,6 +39,9 @@ public class Comment implements Serializable, Deleteable, Createable {
 	String						userIcon;
 
 	@Transient
+	String						cardIcon;
+
+	@Transient
 	String						userName;
 
 	public Comment() {
@@ -57,6 +60,10 @@ public class Comment implements Serializable, Deleteable, Createable {
 
 	public String getCaption() {
 		return this.caption;
+	}
+
+	public String getCardIcon() {
+		return this.cardIcon;
 	}
 
 	public String getCardId() {
@@ -95,6 +102,10 @@ public class Comment implements Serializable, Deleteable, Createable {
 
 	public void setCaption(String caption) {
 		this.caption = caption;
+	}
+
+	public void setCardIcon(String cardIcon) {
+		this.cardIcon = cardIcon;
 	}
 
 	public void setCardId(String cardId) {

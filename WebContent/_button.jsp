@@ -7,8 +7,9 @@
 <%
 	String addClass = "btn btn-large btn-info btn-cell opacity80";
 	String url = request.getRequestURI();
-	boolean inCardPage = url.contains("/card-comment.jsp") && url.contains("cardId=");
 	String cardId = request.getParameter("cardId");
+	boolean inCardPage = url.contains("/card-comment.jsp")
+			&& (cardId != null && !cardId.isEmpty());
 	Card card = cardId != null ? Helper.getCardInfoByID(cardId) : null;
 	String userId = (String) session.getAttribute("userId");
 %>
@@ -21,14 +22,14 @@
 	<%
 		}
 	%>
-	<a href="index.jsp" class="<%=addClass%>">Latest</a>
-	<a href="index.jsp?sorted=view" class="<%=addClass%>">Views</a>
-	<a href="index.jsp?sorted=comment" class="<%=addClass%>">Comments</a>
+	<a href="index.jsp" class="<%=addClass%>">Latest</a> <a
+		href="index.jsp?sorted=view" class="<%=addClass%>">Views</a> <a
+		href="index.jsp?sorted=comment" class="<%=addClass%>">Comments</a>
 	<%
 		if (session.getAttribute("userId") != null) {
 	%>
-	<a href="index.jsp?sorted=mine" class="<%=addClass%>">Mine</a>
-	<a href="index.jsp?sorted=footprints" class="<%=addClass%>">Footprints</a>
+	<a href="index.jsp?sorted=mine" class="<%=addClass%>">Mine</a> <a
+		href="index.jsp?sorted=footprints" class="<%=addClass%>">Footprints</a>
 	<a href="index.jsp?sorted=recommend" class="<%=addClass%>">Recommend</a>
 	<%
 		}

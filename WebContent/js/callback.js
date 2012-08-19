@@ -64,8 +64,8 @@ function makeCard($card) {
 	var $divRibonText = $('<div/>').text($card.view + ' view');
 	var $jqImg = $('<img/>').addClass('image-shot deco').attr('src',
 			$card.imagePath);
-	var $jqIcon = $('<img/>').addClass('image-icon').attr('src',
-			$card.userIcon);
+	var $jqIcon = $('<img/>').addClass('image-icon')
+			.attr('src', $card.userIcon);
 
 	if ($url != null && $url != '') {
 		$divRibonText.addClass('ribon-text color-blue');
@@ -90,7 +90,8 @@ function makeCard($card) {
 	if ($card.view > 0) {
 		$jqDiv.append($divRibon.append($divRibonText));
 	}
-	$jqDiv.append($divImage).append($divName).append($divCaption).append($divFooter);
+	$jqDiv.append($divImage).append($divName).append($divCaption).append(
+			$divFooter);
 	$divImage.append($jqImg);
 	$divCaption.text($card.caption).autoUrlLink().escapeReturn();
 	$divName.append($jqA2);
@@ -108,11 +109,17 @@ function makeComment($comment) {
 	var $divName = $('<div/>').addClass('star comment');
 	var $divCaption = $('<div/>').addClass('caption comment deco');
 	var $divFooter = $('<div/>').addClass('star comment right');
-	var $jqIcon = $('<img/>').addClass('image-icon').attr('src',
-			$comment.userIcon);
+	var $jqIcon = $('<img/>').addClass('image-icon');
 
 	$jqDiv.addClass('cell');
-	$jqA.attr('href', 'profile.jsp?userId=' + $comment.userId);
+	if ($comment.userIcon != null && $comment.userIcon != '') {
+		$jqIcon.attr('src', $comment.userIcon);
+		$jqA.attr('href', 'profile.jsp?userId=' + $comment.userId);
+	} else {
+		$jqIcon.attr('src', $comment.cardIcon);
+		$jqA.attr('href', 'card-comment.jsp?cardId=' + $comment.cardId
+				+ '&type=comment');
+	}
 	$divName.text($comment.userName);
 	$divCaption.append($comment.caption).autoUrlLink().escapeReturn();
 	$divFooter.text($comment.createDate).aboutTimestamp();

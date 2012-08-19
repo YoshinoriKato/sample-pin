@@ -56,7 +56,7 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(80, 80, 80, 0.4);
 	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =             80);
+	filter: alpha(opacity = 80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	float: left;
@@ -65,15 +65,16 @@ body {
 	margin-left: 2px;
 	margin-right: 0.5em;
 	/* shape ----------------------------------------------------------------*/
-	border-radius: 1px 10px 1px;
-	-webkit-border-radius: 1px 10px 1px;
-	-moz-border-radius: 1px 10px 1px;
-	width: 50px;
+	border-radius: 1px 6px 1px;
+	-webkit-border-radius: 1px 6px 1px;
+	-moz-border-radius: 1px 6px 1px;
+	width: 40px;
 }
 
 .card {
 	/* effect ---------------------------------------------------------------*/
 	/* layout ---------------------------------------------------------------*/
+	position: relative;
 	/* shape ----------------------------------------------------------------*/
 	width: 210px;
 }

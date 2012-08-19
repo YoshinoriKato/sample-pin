@@ -151,6 +151,11 @@ public class Helper {
 			Query<Card> query = datastore.createQuery(Card.class)
 					.filter("cardId = ", cardId).filter("isDeleted", false);
 			Card card = query.get();
+			if (card != null) {
+				User user = Helper.getUserById(card.getUserId());
+				card.setUserName(user.getUserName());
+				card.setUserIcon(user.getImagePath());
+			}
 			return card;
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();
@@ -236,11 +241,22 @@ public class Helper {
 	}
 
 	public static List<View> getViewsInfoByID(String userId) {
+		return getViewsInfoByID(userId, 100, 0);
+	}
+
+	public static List<View> getViewsInfoByID(String userId, int offset,
+			int limit) {
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
 			Query<View> query = datastore.createQuery(View.class)
-					.filter("userId = ", userId).filter("isDeleted = ", false)
-					.limit(100).order("-visitedDate");
+					.filter("userId = ", userId).filter("isDeleted = ", false);
+			if (offset != 0) {
+				query.offset(offset);
+			}
+			if (limit != 0) {
+				query.limit(limit);
+			}
+			query.order("-visitedDate");
 			List<View> comments = query.asList();
 			return comments;
 		} catch (UnknownHostException | MongoException e) {

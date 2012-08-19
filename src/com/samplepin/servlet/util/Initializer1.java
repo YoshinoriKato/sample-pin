@@ -69,7 +69,7 @@ public class Initializer1 extends HttpServlet {
 				int like = dice.nextInt(10);
 				int view = dice.nextInt(100);
 				view = view < like ? like : view;
-				cards.add(new Card(cardId, "", "img/"
+				cards.add(new Card("self", cardId, "", "img/"
 						+ images[dice.nextInt(images.length)], "", caption2,
 						like, view, System.currentTimeMillis()));
 
