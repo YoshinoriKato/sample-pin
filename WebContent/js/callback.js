@@ -54,39 +54,47 @@ function makeCard($card) {
 	var $url = $card.url;
 	var $jqLi = $('<li/>').addClass('card');
 	var $jqDiv = $('<div/>').attr('id', $card.cardId);
-	var $jqA = $('<a/>').addClass('no-hover');
+	var $jqA1 = $('<a/>').addClass('no-hover');
+	var $jqA2 = $('<a/>').addClass('no-hover');
 	var $divRibon = $('<div/>').addClass('ribon');
 	var $divImage = $('<div/>');
 	var $divCaption = $('<div/>').addClass('caption deco');
+	var $divName = $('<div/>').addClass('star comment');
 	var $divFooter = $('<div/>').addClass('star right');
 	var $divRibonText = $('<div/>').text($card.view + ' view');
 	var $jqImg = $('<img/>').addClass('image-shot deco').attr('src',
 			$card.imagePath);
+	var $jqIcon = $('<img/>').addClass('image-icon').attr('src',
+			$card.userIcon);
 
 	if ($url != null && $url != '') {
 		$divRibonText.addClass('ribon-text color-blue');
 		$jqDiv.addClass('cell2');
-		$jqA.attr('href',
+		$jqA1.attr('href',
 				'jump.jsp?cardId=' + $card.cardId + '&redirectUrl=' + $url)
 				.attr('target', '_blank');
 		$divFooter.text($url);
 	} else {
+		$divName.text($card.userName);
 		$divRibonText.addClass('ribon-text color-red');
 		$jqDiv.addClass('cell');
-		$jqA.attr('href', 'card-comment.jsp?cardId=' + $card.cardId
+		$jqA1.attr('href', 'card-comment.jsp?cardId=' + $card.cardId
 				+ '&type=comment');
-		$divFooter.text($card.likes + ' comment');
+		$jqA2.attr('href', 'profile.jsp?userId=' + $card.userId);
+		$divFooter.text($card.likes + ' comment').css('clear', 'both');
 	}
 
 	// construct
 	$('#content').append($jqLi);
-	$jqLi.append($jqA.append($jqDiv));
+	$jqLi.append($jqA1.append($jqDiv));
 	if ($card.view > 0) {
 		$jqDiv.append($divRibon.append($divRibonText));
 	}
-	$jqDiv.append($divImage).append($divCaption).append($divFooter);
+	$jqDiv.append($divImage).append($divName).append($divCaption).append($divFooter);
 	$divImage.append($jqImg);
 	$divCaption.text($card.caption).autoUrlLink().escapeReturn();
+	$divName.append($jqA2);
+	$jqA2.append($jqIcon);
 }
 
 function makeComment($comment) {
@@ -97,15 +105,15 @@ function makeComment($comment) {
 			.attr('id', $comment.cardId + '+' + $comment.userId);
 	var $jqA = $('<a/>').addClass('no-hover');
 
-	var $divNumber = $('<div/>').addClass('star comment');
+	var $divName = $('<div/>').addClass('star comment');
 	var $divCaption = $('<div/>').addClass('caption comment deco');
 	var $divFooter = $('<div/>').addClass('star comment right');
-	var $jqImg = $('<img/>').addClass('image-icon').attr('src',
-			$comment.imagePath);
+	var $jqIcon = $('<img/>').addClass('image-icon').attr('src',
+			$comment.userIcon);
 
 	$jqDiv.addClass('cell');
 	$jqA.attr('href', 'profile.jsp?userId=' + $comment.userId);
-	$divNumber.text($comment.cardId);
+	$divName.text($comment.userName);
 	$divCaption.append($comment.caption).autoUrlLink().escapeReturn();
 	$divFooter.text($comment.createDate).aboutTimestamp();
 	$divFooter.css('clear', 'both');
@@ -113,9 +121,9 @@ function makeComment($comment) {
 	// construct
 	$('#content').append($jqLi);
 	$jqLi.append($jqDiv);
-	$jqDiv.append($divNumber).append($divCaption).append($divFooter);
-	$divNumber.append($jqA);
-	$jqA.append($jqImg);
+	$jqDiv.append($divName).append($divCaption).append($divFooter);
+	$divName.append($jqA);
+	$jqA.append($jqIcon);
 }
 
 function callAjax($sorted, $limit, $offset, $userId, $cardId, $type) {

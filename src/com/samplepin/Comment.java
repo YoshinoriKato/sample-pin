@@ -6,6 +6,8 @@ import org.bson.types.ObjectId;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
+import com.google.code.morphia.annotations.Indexed;
+import com.google.code.morphia.annotations.Transient;
 
 @Entity(value = "comments", noClassnameStored = true)
 public class Comment implements Serializable, Deleteable, Createable {
@@ -20,15 +22,24 @@ public class Comment implements Serializable, Deleteable, Createable {
 
 	String						userId;
 
+	@Indexed
 	String						cardId;
 
 	String						caption;
 
+	@Indexed
 	Long						createDate;
 
+	@Indexed
 	Boolean						isDeleted;
 
 	String						imagePath;
+
+	@Transient
+	String						userIcon;
+
+	@Transient
+	String						userName;
 
 	public Comment() {
 		super();
@@ -70,8 +81,16 @@ public class Comment implements Serializable, Deleteable, Createable {
 		return this.isDeleted;
 	}
 
+	public String getUserIcon() {
+		return this.userIcon;
+	}
+
 	public String getUserId() {
 		return this.userId;
+	}
+
+	public String getUserName() {
+		return this.userName;
 	}
 
 	public void setCaption(String caption) {
@@ -100,8 +119,16 @@ public class Comment implements Serializable, Deleteable, Createable {
 		this.isDeleted = isDeleted;
 	}
 
+	public void setUserIcon(String userIcon) {
+		this.userIcon = userIcon;
+	}
+
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 }

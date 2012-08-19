@@ -52,8 +52,7 @@
 					<!-- 
 					<li <%=classProfile%>><a href="profile.jsp">My Profile</a></li>
 					<li <%=classMyCard%>><a href="my-card.jsp">Design My Card</a></li> -->
-					<li <%=classAccount%>><a href="account.jsp">Setting
-							Account</a></li>
+					<li <%=classAccount%>><a href="account.jsp">Account</a></li>
 					<li class="divider-vertical"></li>
 					<li <%=classLogout%>><a href="logout.do">Logout</a></li>
 					<%

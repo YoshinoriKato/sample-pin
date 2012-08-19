@@ -6,6 +6,7 @@ import org.bson.types.ObjectId;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
+import com.google.code.morphia.annotations.Indexed;
 
 @Entity(value = "views", noClassnameStored = true)
 public class View implements Serializable, Deleteable, Createable {
@@ -22,14 +23,17 @@ public class View implements Serializable, Deleteable, Createable {
 
 	Long						createDate;
 
+	@Indexed
 	String						cardId;
 
+	@Indexed
 	String						userId;
 
 	Integer						times;
 
 	Integer						comments;
 
+	@Indexed
 	Boolean						isDeleted;
 
 	public View() {

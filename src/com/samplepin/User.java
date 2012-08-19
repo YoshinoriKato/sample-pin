@@ -6,6 +6,7 @@ import org.bson.types.ObjectId;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
+import com.google.code.morphia.annotations.Indexed;
 
 @Entity(value = "users", noClassnameStored = true)
 public class User implements Serializable, Deleteable, Createable {
@@ -18,6 +19,7 @@ public class User implements Serializable, Deleteable, Createable {
 	@Id
 	ObjectId					id;
 
+	@Indexed
 	String						userId;
 
 	Integer						password;
@@ -50,6 +52,7 @@ public class User implements Serializable, Deleteable, Createable {
 
 	String						comment;
 
+	@Indexed
 	Boolean						isDeleted;
 
 	public User() {

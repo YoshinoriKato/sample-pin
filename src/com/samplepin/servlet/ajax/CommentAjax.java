@@ -40,8 +40,8 @@ public class CommentAjax extends CardAjax {
 				query.filter("cardId = ", cardId);
 			}
 
-			if (valid(userId)) {
-				query.filter("userId = ", userId);
+			if (valid(otherUserId)) {
+				query.filter("userId = ", otherUserId);
 			}
 
 			if (valid(old)) {
@@ -75,8 +75,8 @@ public class CommentAjax extends CardAjax {
 		for (Comment comment : cards) {
 			User user = Helper.getUserById(comment.getUserId());
 			if (user != null) {
-				comment.setImagePath(user.getImagePath());
-				comment.setCardId(user.getUserName());
+				comment.setUserIcon(user.getImagePath());
+				comment.setUserName(user.getUserName());
 			}
 		}
 

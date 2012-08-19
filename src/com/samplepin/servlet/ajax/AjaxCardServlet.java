@@ -29,6 +29,7 @@ public class AjaxCardServlet extends HttpServlet {
 		resp.setContentType("text/javascript+json; charset=UTF-8");
 		// String name = req.getParameter("name");
 		// String key = req.getParameter("key");
+		String type = req.getParameter("type");
 		String otherUserId = req.getParameter("userId");
 		String sorted = req.getParameter("sorted");
 		String offset = req.getParameter("offset");
@@ -36,10 +37,7 @@ public class AjaxCardServlet extends HttpServlet {
 		String callback = req.getParameter("callback");
 		String old = req.getParameter("old");
 		String young = req.getParameter("young");
-		String type = req.getParameter("type");
-		String userId = req.getParameter("userId");
-		userId = (userId != null) ? userId : (String) req.getSession()
-				.getAttribute("userId");
+		String userId = (String) req.getSession().getAttribute("userId");
 		String cardId = req.getParameter("cardId");
 
 		if ("comment".equals(type)) {

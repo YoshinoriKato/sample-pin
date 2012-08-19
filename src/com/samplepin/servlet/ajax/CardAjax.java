@@ -18,6 +18,7 @@ import com.mongodb.MongoException;
 import com.samplepin.ACMongo;
 import com.samplepin.Card;
 import com.samplepin.Helper;
+import com.samplepin.User;
 import com.samplepin.View;
 
 public class CardAjax {
@@ -102,6 +103,14 @@ public class CardAjax {
 			}
 
 			cards = query.asList();
+			for (Card card : cards) {
+				User user = Helper.getUserById(card.getUserId());
+				if (user != null) {
+					card.setUserIcon(user.getImagePath());
+					card.setUserName(user.getUserName());
+				}
+			}
+
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();
 			throw e;

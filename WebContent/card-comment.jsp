@@ -6,17 +6,25 @@
 <%
 	String sorted = request.getParameter("sorted");
 	sorted = sorted == null ? "" : sorted;
-	String userId = request.getParameter("userId");
-	String userId0 = (userId != null) ? userId : session.getId();
-	userId = (userId != null) ? userId : "";
+	
+	String otherUserId = request.getParameter("userId");
+	otherUserId = (otherUserId != null) ? otherUserId : "";
+	
+	String userId = (String) session.getAttribute("userId");
+	userId = (userId != null) ? userId : session.getId();
+
 	String cardId = request.getParameter("cardId");
 	cardId = (cardId != null) ? cardId : "";
+	
 	String type = request.getParameter("type");
-	type = (type != null) ? type : "";
+	type = (type != null) ? type : "card";
+	
 	Card card = Helper.getCardInfoByID(cardId);
+	Helper.setFootprint(card, userId);
 
 	String message = (String) request.getAttribute("message");
 	message = message != null ? message : "";
+	
 	String error = message != null && !message.isEmpty() ? "error" : "";
 %>
 
@@ -53,14 +61,10 @@
 </script>
 </head>
 
-<%
-	String title = (card != null) ? "Card & Comments" : "Comments";
-%>
-
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<jsp:include page="_button.jsp" flush="true" />
-	<div id="title"><%=title%></div>
+	<div id="title">Comments</div>
 	<div id="main">
 		<ul id="content">
 			<%
@@ -99,14 +103,20 @@
 		</ul>
 		<br style="clear: both;" />
 	</div>
+	
+	<!-- read cards -->
 	<div class="center caption star large" id="read-cards"></div>
+
+	<!-- parameters -->
 	<div style="display: none" id="sorted"><%=sorted%></div>
-	<div style="display: none" id="userId"><%=userId%></div>
+	<div style="display: none" id="userId"><%=otherUserId%></div>
 	<div style="display: none" id="cardId"><%=cardId%></div>
 	<div style="display: none" id="type"><%=type%></div>
+	
 	<%
 		if (card != null) {
 	%>
+	<!-- image -->
 	<div id="cover" class="center">
 		<div class="middle">
 			<div id="image-close" class="tab-button">x</div>
@@ -116,11 +126,12 @@
 		</div>
 	</div>
 
+	<!-- comment form -->
 	<div id="comment-area">
 		<div id="comment-close" class="tab-button">x</div>
 		<div class="center page-menu">
 			<%
-				if (userId0 != null) {
+				if (userId != null) {
 			%>
 
 			<form method="post" action="comment.do" class="form-horizontal">

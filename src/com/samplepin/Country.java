@@ -10,12 +10,19 @@ public class Country {
 
 	@Id
 	ObjectId	id;
+
 	String		jpName;
+
 	String		enName;
+
 	Integer		code;
+
 	String		short3;
+
 	String		short2;
+
 	String		area;
+
 	String		isoCode;
 
 	public Country() {

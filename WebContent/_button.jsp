@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 
 <%
-	String addClass = "btn btn-large btn-info btn-cell";
+	String addClass = "btn btn-large btn-info btn-cell opacity80";
 	String url = request.getRequestURI();
 	boolean inCardPage = url.contains("/card-comment.jsp") && url.contains("cardId=");
 	String cardId = request.getParameter("cardId");
