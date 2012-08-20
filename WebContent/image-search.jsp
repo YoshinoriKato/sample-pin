@@ -34,8 +34,11 @@
 			for ( var i = 0; i < $results.length; i++) {
 				var $li = $('<li/>').addClass('card');
 				var $cell = $('<div/>').addClass('cell');
-				var $a = $('<a/>').attr('href',
-						'upload.do?url=' + $results[i].url);
+				var $a = $('<a/>').attr(
+						'href',
+						'upload.do?url=' + $results[i].url + '&keywords='
+								+ $('#search-box').val() + '&site='
+								+ $results[i].originalContextUrl);
 				var $title = $('<div/>').addClass('caption').append(
 						$results[i].title);
 				var $image = $('<img/>').attr('src', $results[i].tbUrl)
@@ -60,7 +63,8 @@
 		<form class="form-search" action="javascript:searchGoogle()">
 			<input type="search" id="search-box" value="" placeholder="Keyword"
 				class="input-medium span6"> <input type="submit"
-				value="Search" id="search-action" class="btn btn-large btn-primary btn-cell">
+				value="Search" id="search-action"
+				class="btn btn-large btn-primary btn-cell">
 		</form>
 	</div>
 	<div id="main">

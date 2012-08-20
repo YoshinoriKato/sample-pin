@@ -13,14 +13,18 @@ function checkLength($key) {
 
 function recoveryText($key) {
 	var $storage = sessionStorage;
-	$('#comment-text').val($storage.getItem($key));
+	$text = $('#comment-text').val();
+	if ($text && $text != '') {
+		$('#comment-text').val($text + $storage.getItem($key));
+	}else{
+		$('#comment-text').val($storage.getItem($key));
+	}
 }
 
 function removeText($key) {
 	var $storage = sessionStorage;
 	$storage.removeItem($key);
 }
-
 
 function pushPull($on, $off) {
 	pushPull($on, $off, 1000);

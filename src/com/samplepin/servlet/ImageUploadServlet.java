@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +25,8 @@ public class ImageUploadServlet extends HttpServlet {
 			throws IOException {
 		try {
 			String url = req.getParameter("url");
+			String keywords = req.getParameter("keywords");
+			String site = req.getParameter("site");
 			URL u = new URL(url);
 			MakeCardServlet make = new MakeCardServlet();
 			InputStream is = u.openStream();
@@ -41,7 +44,9 @@ public class ImageUploadServlet extends HttpServlet {
 			MakeCardServlet.copyStream(is, new FileOutputStream(realPathFile),
 					1024);
 			resp.sendRedirect("make-card.jsp?imagePath="
-					+ referenceFile.getPath());
+					+ URLEncoder.encode(referenceFile.getPath(), "UTF-8")
+					+ "&keywords=" + URLEncoder.encode(keywords, "UTF-8")
+					+ "&site=" + URLEncoder.encode(site, "UTF-8"));
 			return;
 		} catch (IOException e) {
 			e.printStackTrace();

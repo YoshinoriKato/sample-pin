@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -8,7 +9,6 @@
 <jsp:include page="_effect.jsp"></jsp:include>
 <script type="text/javascript">
 	$(window).load(function() {
-		recoveryText('make-card');
 		$timer = setInterval(function() {
 			checkLength('make-card');
 		}, 500);
@@ -17,8 +17,21 @@
 </head>
 
 <%
+	final String LS = System.getProperty("line.separator");
+
 	String message = (String) request.getAttribute("message");
 	String imagePath = request.getParameter("imagePath");
+	imagePath = imagePath != null ? URLDecoder.decode(imagePath, "UTF-8")
+			: imagePath;
+	String keywords = request.getParameter("keywords");
+	keywords = keywords != null ? URLDecoder.decode(keywords, "UTF-8")
+			: keywords;
+	keywords = (keywords != null) ? "Keywords: " + keywords + LS : "";
+	String site = request.getParameter("site");
+	site = site != null ? URLDecoder.decode(site, "UTF-8")
+			: site;
+	site = (site != null) ? "URL: " + site + LS : "";
+
 	message = message != null ? message : "";
 	String error = message != null && !message.isEmpty() ? "error" : "";
 	String external = (String) request.getParameter("external");
@@ -44,10 +57,12 @@
 										%>
 										<img alt="" src="<%=imagePath%>" class="image-shot">
 										<%
-											}
+											} else {
 										%>
-										<input type="file" class="span8" name="iconPath" /> <span
-											class="help-inline"><a href="image-search.jsp">Search
+										<input type="file" class="span8" name="iconPath" />
+										<%
+											}
+										%><span class="help-inline"><a href="image-search.jsp">Search
 												Images</a></span>
 									</div>
 								</div>
@@ -55,7 +70,7 @@
 									<label for="caption" class="control-label">Caption</label>
 									<div class="controls">
 										<textarea name="caption" id="comment-text"
-											class="textarea span8" rows="8"></textarea>
+											class="textarea span8" rows="8"><%=keywords%><%=site%></textarea>
 										<span class="help-inline"><%=message%></span>
 									</div>
 								</div>
