@@ -25,7 +25,7 @@
 
 <script type="text/javascript" charset="UTF-8">
 	$(window).load(function() {	
-		$('#comment-close').attr("onclick",
+		$('#error-close').attr("onclick",
 		"pushPull('#null','#error-dialog')");
 	});
 
