@@ -34,11 +34,16 @@
 			for ( var i = 0; i < $results.length; i++) {
 				var $li = $('<li/>').addClass('card');
 				var $cell = $('<div/>').addClass('cell');
-				var $a = $('<a/>').attr(
-						'href',
-						'upload.do?url=' + $results[i].url + '&keywords='
-								+ $('#search-box').val() + '&site='
-								+ $results[i].originalContextUrl);
+				var $a = $('<a/>')
+						.attr(
+								'href',
+								'upload.do?url='
+										+ encodeURIComponent($results[i].url)
+										+ '&keywords='
+										+ encodeURIComponent($('#search-box')
+												.val())
+										+ '&site='
+										+ encodeURIComponent($results[i].originalContextUrl));
 				var $title = $('<div/>').addClass('caption').append(
 						$results[i].title);
 				var $image = $('<img/>').attr('src', $results[i].tbUrl)
