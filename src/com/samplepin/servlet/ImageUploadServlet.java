@@ -30,8 +30,11 @@ public class ImageUploadServlet extends HttpServlet {
 			String fullPath = req.getServletContext().getRealPath(
 					"../icon-keeper");
 			File referenceFolder = new File("../../icon-keeper");
-			String fileName = make.makePrefix()
-					+ url.substring(url.lastIndexOf("/") + 1);
+			int begin = url.lastIndexOf("/") + 1;
+			begin = begin > 0 ? begin : 0;
+			int end = url.lastIndexOf("?");
+			end = end > 0 ? end : url.length();
+			String fileName = make.makePrefix() + url.substring(begin, end);
 			File realFolder = new File(fullPath);
 			File realPathFile = new File(realFolder, fileName);
 			File referenceFile = new File(referenceFolder, fileName);
