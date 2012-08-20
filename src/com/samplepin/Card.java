@@ -7,15 +7,15 @@ public class Card extends Comment {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 2686047770755644944L;
+	private static final long serialVersionUID = 2686047770755644944L;
 
-	String						parentId;
+	String parentId;
 
-	String						url;
+	String url;
 
-	Integer						likes;
+	Integer likes;
 
-	Integer						view;
+	Integer view;
 
 	public Card() {
 		this("self", "", "", "", "", "", 0, 0, System.currentTimeMillis());

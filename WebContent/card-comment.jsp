@@ -42,12 +42,10 @@
 
 	$(window).load(
 			function() {
-				$timer = setInterval(function() {
-					checkLength();
-				}, 500);
 				cardId = $("#cardId").text();
 				pushPull('#main', '#ajax');
 				wookmark();
+				$key = $('#cardId').text();
 				$('#image-shot')
 						.attr("onclick", "pushPull('#cover','#origin')");
 				$('#image-close').attr("onclick",
@@ -58,8 +56,19 @@
 						"pushPull('#write','#comment-area')");
 				callAjax($('#sorted').text(), 40, '', $('#userId').text(), $(
 						'#cardId').text(), $('#type').text());
+				recoveryText($key);
+				$('#comment-form').submit(function() {
+					if ($('#comment-text').innerHTML != '') {
+						removeText($key);
+						return true;
+					}
+					return false;
+				});
+				$timer = setInterval(function() {
+					checkLength($key);
+				}, 500);
 				$('#main').fadeIn(1000);
-		});
+			});
 </script>
 </head>
 
@@ -141,7 +150,8 @@
 				if (userId != null) {
 			%>
 
-			<form method="post" action="comment.do" class="form-horizontal">
+			<form id="comment-form" method="post" action="comment.do"
+				class="form-horizontal">
 				<div class="control-group <%=error%>">
 					<div>
 						<textarea id="comment-text" name="comment" class="textarea span6"

@@ -24,8 +24,8 @@ import javax.servlet.http.Part;
 import org.apache.log4j.Logger;
 
 import com.samplepin.Card;
+import com.samplepin.Helper;
 import com.samplepin.User;
-import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 @WebServlet(name = "IconUploadServlet", urlPatterns = "/make-card.do")
 @MultipartConfig(location = "/Developer/uploaded")
@@ -34,7 +34,7 @@ public class MakeCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -7182329627922034835L;
+	private static final long serialVersionUID = -7182329627922034835L;
 
 	public static void copyStream(InputStream in, OutputStream os,
 			int bufferSize) throws IOException {
@@ -47,18 +47,10 @@ public class MakeCardServlet extends HttpServlet {
 			os.flush();
 		} finally {
 			if (in != null) {
-				try {
-					in.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				in.close();
 			}
 			if (os != null) {
-				try {
-					os.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				os.close();
 			}
 		}
 	}
@@ -92,18 +84,10 @@ public class MakeCardServlet extends HttpServlet {
 		String userId = (String) session.getAttribute("userId");
 		List<Uploader> uploadQue = new ArrayList<Uploader>();
 		Card card = readRequest(req.getParts(), userId, uploadQue);
-		writeFiles(req, uploadQue, card);
-
+		if (card.getImagePath() != null) {
+			writeFiles(req, uploadQue, card);
+		}
 		if ((card.getCaption() != null) && !card.getCaption().isEmpty()) {
-			// try (ACMongo mongo = new ACMongo()) {
-			// Datastore datastore = mongo.createDatastore();
-			// datastore.save(card);
-			// }
-			// log("upload end.");
-			// Helper.setFootprint(card, userId);
-			// resp.sendRedirect("index.jsp");
-			// return;
-
 			req.setAttribute("confirm", card);
 			RequestDispatcher dispathcer = req
 					.getRequestDispatcher("confirm-make-card.jsp");
@@ -148,8 +132,7 @@ public class MakeCardServlet extends HttpServlet {
 	}
 
 	final String makePrefix() {
-		return Long.toHexString(System.currentTimeMillis()) + "_"
-				+ Long.toHexString(System.nanoTime()) + "_";
+		return Long.toHexString(System.nanoTime()) + "_";
 	}
 
 	final void readFile(String path, Part part, List<Uploader> uploadQue) {
@@ -166,8 +149,7 @@ public class MakeCardServlet extends HttpServlet {
 	final Card readRequest(Collection<Part> parts, String userId,
 			List<Uploader> uploadQue) throws IllegalStateException,
 			IOException, ServletException {
-		String cardId = Base64.encode(String
-				.valueOf(System.currentTimeMillis()).getBytes());
+		String cardId = Helper.generatedIdString("C_");
 		Card card = new Card();
 		card.setImagePath("img/no_image.png");
 		card.setUserId(userId);
@@ -178,11 +160,15 @@ public class MakeCardServlet extends HttpServlet {
 			String title = getValueByKeyword(part, "title");
 			String caption = getValueByKeyword(part, "caption");
 			String url = getValueByKeyword(part, "url");
+			String imagePath = getValueByKeyword(part, "imagePath");
 
 			if (title != null) {
 
 			} else if (caption != null) {
 				card.setCaption(caption);
+
+			} else if (imagePath != null) {
+				card.setImagePath(imagePath);
 
 			} else if (url != null) {
 				card.setUrl(url);

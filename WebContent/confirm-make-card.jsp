@@ -29,7 +29,7 @@
 			<div class="row">
 				<div class="cell padding20">
 					<div class="form-horizontal">
-						<form action="confirm-make-card.do" method="post"
+						<form id="comment-form" action="confirm-make-card.do" method="post"
 							class="form-horizontal">
 							<fieldset>
 								<h3>Confirm Card</h3>
@@ -83,9 +83,13 @@
 
 <script type="text/javascript">
 	$(window).load(function() {
-		cardId = $("#cardId").text();
+		$cardId = $("#cardId").text();
 		pushPull('#main', '#ajax');
 		wookmark();
+		$('#comment-form').submit(function() {
+			removeText('make-card');
+			return true;
+		});
 	});
 	$(window).resize(function() {
 		wookmark();

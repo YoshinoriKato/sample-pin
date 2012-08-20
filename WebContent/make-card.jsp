@@ -8,8 +8,9 @@
 <jsp:include page="_effect.jsp"></jsp:include>
 <script type="text/javascript">
 	$(window).load(function() {
+		recoveryText('make-card');
 		$timer = setInterval(function() {
-			checkLength();
+			checkLength('make-card');
 		}, 500);
 	});
 </script>
@@ -17,6 +18,7 @@
 
 <%
 	String message = (String) request.getAttribute("message");
+	String imagePath = request.getParameter("imagePath");
 	message = message != null ? message : "";
 	String error = message != null && !message.isEmpty() ? "error" : "";
 	String external = (String) request.getParameter("external");
@@ -37,7 +39,16 @@
 								<div class="control-group">
 									<label for="iconPath" class="control-label">Image</label>
 									<div class="controls">
-										<input type="file" class="span8" name="iconPath" />
+										<%
+											if (imagePath != null) {
+										%>
+										<img alt="" src="<%=imagePath%>" class="image-shot">
+										<%
+											}
+										%>
+										<input type="file" class="span8" name="iconPath" /> <span
+											class="help-inline"><a href="image-search.jsp">Search
+												Images</a></span>
 									</div>
 								</div>
 								<div class="control-group <%=error%>">
@@ -66,6 +77,7 @@
 											class="btn btn-large btn-primary btn-cell">
 									</div>
 								</div>
+								<input type="hidden" name="imagePath" value="<%=imagePath%>">
 							</fieldset>
 						</form>
 					</div>

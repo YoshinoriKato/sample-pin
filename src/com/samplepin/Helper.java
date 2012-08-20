@@ -24,27 +24,25 @@ import com.mongodb.MongoException;
 
 public class Helper {
 
-	static SimpleDateFormat		SDF_DATE		= new SimpleDateFormat(
-														"yyyy-MM-dd");
+	static SimpleDateFormat SDF_DATE = new SimpleDateFormat("yyyy-MM-dd");
 
-	static SimpleDateFormat		SDF_DATE_TIME	= new SimpleDateFormat(
-														"yyyy-MM-dd HH:mm:ss.SSS");
+	static SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat(
+			"yyyy-MM-dd HH:mm:ss.SSS");
 
-	static SimpleDateFormat		SDF_DATE_HOUR	= new SimpleDateFormat(
-														"yyyy-MM-dd 'at around' HH");
+	static SimpleDateFormat SDF_DATE_HOUR = new SimpleDateFormat(
+			"yyyy-MM-dd 'at around' HH");
 
-	public static final Pattern	convURLLinkPtn	= Pattern
-														.compile(
-																"(http://|https://){1}[\\w\\.\\-/:\\#\\?\\=\\&\\;\\%\\~\\+]+",
-																Pattern.CASE_INSENSITIVE);
+	public static final Pattern convURLLinkPtn = Pattern.compile(
+			"(http://|https://){1}[\\w\\.\\-/:\\#\\?\\=\\&\\;\\%\\~\\+]+",
+			Pattern.CASE_INSENSITIVE);
 
-	static final Long			MILLS_SECOND	= 1000L;
+	static final Long MILLS_SECOND = 1000L;
 
-	static final Long			MILLS_MINUTE	= 60L * MILLS_SECOND;
+	static final Long MILLS_MINUTE = 60L * MILLS_SECOND;
 
-	static final Long			MILLS_HOUR		= 60L * MILLS_MINUTE;
+	static final Long MILLS_HOUR = 60L * MILLS_MINUTE;
 
-	static final Long			MILLS_DAY		= 24L * MILLS_HOUR;
+	static final Long MILLS_DAY = 24L * MILLS_HOUR;
 
 	public static String convURLLink(String str) {
 		Matcher matcher = convURLLinkPtn.matcher(str);
@@ -153,8 +151,10 @@ public class Helper {
 			Card card = query.get();
 			if (card != null) {
 				User user = Helper.getUserById(card.getUserId());
-				card.setUserName(user.getUserName());
-				card.setUserIcon(user.getImagePath());
+				if (user != null) {
+					card.setUserName(user.getUserName());
+					card.setUserIcon(user.getImagePath());
+				}
 			}
 			return card;
 		} catch (UnknownHostException | MongoException e) {

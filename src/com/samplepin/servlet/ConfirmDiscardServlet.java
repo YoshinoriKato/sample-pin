@@ -20,7 +20,7 @@ public class ConfirmDiscardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 6534228482284422460L;
+	private static final long serialVersionUID = 6534228482284422460L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
