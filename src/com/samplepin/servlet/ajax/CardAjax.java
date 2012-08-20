@@ -63,7 +63,10 @@ public class CardAjax {
 						_limit);
 				if (valid(views)) {
 					for (View view : views) {
-						cards.add(Helper.getCardInfoByID(view.getCardId()));
+						Card card = Helper.getCardInfoByID(view.getCardId());
+						if (card != null) {
+							cards.add(card);
+						}
 					}
 					alreadyRead = true;
 				}

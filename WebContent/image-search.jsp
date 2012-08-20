@@ -25,19 +25,19 @@
 		imageSearch.execute($('#search-box').val());
 	};
 	function OnLoad() {
-		$('#search-action').attr("onclick", "searchGoogle()");
 	};
-	function SearchComplete(searcher) { // 結果オブジェクトを取得する
+	function SearchComplete(searcher) {
 		var $results = searcher.results;
 		if ($results && (0 < $results.length)) {
-			var $content = $('#content'); // 情報を取得する
+			var $content = $('#content');
 			$content.empty();
-			for ( var i = 0; i < $results.length; i++) { // 画像のファイル名 
+			for ( var i = 0; i < $results.length; i++) {
 				var $li = $('<li/>').addClass('card');
 				var $cell = $('<div/>').addClass('cell');
-				var $a  = $('<a/>').attr('href', 'upload.do?url=' + $results[i].url);
+				var $a = $('<a/>').attr('href',
+						'upload.do?url=' + $results[i].url);
 				var $title = $('<div/>').addClass('caption').append(
-						$results[i].title); // サムネイル画像のURL
+						$results[i].title);
 				var $image = $('<img/>').attr('src', $results[i].tbUrl)
 						.addClass('image-shot');
 				$content.append($li);
@@ -48,7 +48,6 @@
 			wookmark();
 		}
 	}
-
 	google.load('search', '1');
 	google.setOnLoadCallback(OnLoad);
 </script>
@@ -58,10 +57,10 @@
 <body>
 	<jsp:include page="_topbar.jsp"></jsp:include>
 	<div id="float-bottun" class="page-menu opacity80">
-		<form class="form-search">
+		<form class="form-search" action="javascript:searchGoogle()">
 			<input type="search" id="search-box" value="" placeholder="Keyword"
-				class="input-medium search-query"> <input type="button"
-				value="PUSH" id="search-action" class="btn">
+				class="input-medium span6"> <input type="submit"
+				value="Search" id="search-action" class="btn btn-large btn-primary btn-cell">
 		</form>
 	</div>
 	<div id="main">
