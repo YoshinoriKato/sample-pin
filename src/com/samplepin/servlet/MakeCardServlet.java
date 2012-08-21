@@ -1,5 +1,7 @@
 package com.samplepin.servlet;
 
+import static com.samplepin.Helper.valid;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -87,8 +89,10 @@ public class MakeCardServlet extends HttpServlet {
 		String userId = (String) session.getAttribute("userId");
 		List<Uploader> uploadQue = new ArrayList<Uploader>();
 		Card card = readRequest(req.getParts(), userId, uploadQue);
-		if (card.getImagePath() == null) {
+
+		if ("img/no_image.png".equals(card.getImagePath())) {
 			writeFiles(req, uploadQue, card);
+
 		} else {
 			String fullPath = req.getServletContext().getRealPath(
 					"../icon-keeper");
@@ -108,6 +112,11 @@ public class MakeCardServlet extends HttpServlet {
 			if (Helper.valid(card.getSite())) {
 				builder.append("URL: ").append(card.getSite());
 			}
+			User user = Helper.getUserById(userId);
+			if (user != null) {
+				card.setUserName(user.getUserName());
+				card.setUserIcon(user.getImagePath());
+			}
 			card.setCaption(builder.toString());
 
 			req.setAttribute("confirm", card);
@@ -116,7 +125,6 @@ public class MakeCardServlet extends HttpServlet {
 			dispathcer.forward(req, resp);
 			return;
 		} else {
-			log("upload failed.");
 			req.setAttribute("message", "Please, write a caption.");
 			RequestDispatcher dispathcer = req
 					.getRequestDispatcher("make-card.jsp");
@@ -188,19 +196,19 @@ public class MakeCardServlet extends HttpServlet {
 
 			if (title != null) {
 
-			} else if (caption != null) {
+			} else if (valid(caption)) {
 				card.setCaption(caption);
 
-			} else if (imagePath != null) {
+			} else if (valid(imagePath)) {
 				card.setImagePath(imagePath);
 
-			} else if (url != null) {
+			} else if (valid(url)) {
 				card.setUrl(url);
 
-			} else if (keywords != null) {
+			} else if (valid(keywords)) {
 				card.setKeywords(keywords);
 
-			} else if (site != null) {
+			} else if (valid(site)) {
 				card.setSite(site);
 
 			} else {
@@ -222,9 +230,16 @@ public class MakeCardServlet extends HttpServlet {
 
 	final void setImageSize(File realFolder, String fileName, Card card)
 			throws IOException {
-		BufferedImage image = ImageIO.read(new File(realFolder, fileName));
-		card.setWidth(image.getWidth());
-		card.setHeight(image.getHeight());
+		File imageFile = new File(realFolder, fileName);
+		if (imageFile.exists()) {
+			BufferedImage image = ImageIO.read(imageFile);
+			card.setWidth(image.getWidth());
+			card.setHeight(image.getHeight());
+		} else {
+			// no_image.png
+			card.setWidth(400);
+			card.setHeight(400);
+		}
 	}
 
 	final void writeFiles(HttpServletRequest req, List<Uploader> uploadQue,

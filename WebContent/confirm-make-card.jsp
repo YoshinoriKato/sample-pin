@@ -53,6 +53,10 @@
 												<%
 													}
 												%>
+												<div class="caption star">
+													<img class="image-icon"
+														src="<%=card.getUserIcon()%>">
+												</div>
 												<div class="caption deco">
 													<%=Helper.convURLLink(Helper.escapeHTML(card.getCaption()))%>
 												</div>

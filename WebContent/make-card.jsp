@@ -1,3 +1,4 @@
+<%@page import="com.samplepin.Helper"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -21,7 +22,7 @@
 	String message = (String) request.getAttribute("message");
 	String imagePath = request.getParameter("imagePath");
 	imagePath = imagePath != null ? URLDecoder.decode(imagePath,
-			"UTF-8") : imagePath;
+			"UTF-8") : "";
 	String keywords = request.getParameter("keywords");
 	keywords = keywords != null ? URLDecoder.decode(keywords, "UTF-8")
 			: keywords;
@@ -64,7 +65,7 @@
 								<div class="control-group">
 									<div class="controls">
 										<%
-											if (imagePath != null) {
+											if (Helper.valid(imagePath)) {
 										%>
 										<img alt="" src="<%=imagePath%>" class="image-shot">
 										<%
@@ -77,7 +78,7 @@
 									</div>
 								</div>
 								<%
-									if (imagePath != null) {
+									if (Helper.valid(imagePath)) {
 								%>
 								<div class="control-group">
 									<label for="keywords" class="control-label">Keywords</label>
