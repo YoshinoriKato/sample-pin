@@ -359,4 +359,8 @@ public class Helper {
 		}
 		return buffer.toString();
 	}
+
+	public static final boolean valid(String val) {
+		return (val != null) && !val.isEmpty();
+	}
 }

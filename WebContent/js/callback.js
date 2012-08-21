@@ -52,6 +52,11 @@ function makeCard($card) {
 
 	// components
 	var $url = $card.url;
+	var $height = $card.height;
+	var $width = $card.width;
+	var $rate = $width / 200;
+	$height = Math.round($height / $rate);
+	$width = 200;
 	var $jqLi = $('<li/>').addClass('card');
 	var $jqDiv = $('<div/>').attr('id', $card.cardId);
 	var $jqA1 = $('<a/>').addClass('no-hover');
@@ -63,7 +68,7 @@ function makeCard($card) {
 	var $divFooter = $('<div/>').addClass('star right');
 	var $divRibonText = $('<div/>').text($card.view + ' view');
 	var $jqImg = $('<img/>').addClass('image-shot deco').attr('src',
-			$card.imagePath);
+			$card.imagePath).attr('width', $width).attr('height', $height);
 	var $jqIcon = $('<img/>').addClass('image-icon')
 			.attr('src', $card.userIcon);
 

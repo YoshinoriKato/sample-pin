@@ -1,6 +1,7 @@
 package com.samplepin;
 
 import com.google.code.morphia.annotations.Entity;
+import com.google.code.morphia.annotations.Transient;
 
 @Entity(value = "cards", noClassnameStored = true)
 public class Card extends Comment {
@@ -20,6 +21,12 @@ public class Card extends Comment {
 	Integer width;
 
 	Integer height;
+
+	@Transient
+	String keywords;
+
+	@Transient
+	String site;
 
 	public Card() {
 		this("self", "", "", "", "", "", 0, 0, System.currentTimeMillis());
@@ -45,12 +52,20 @@ public class Card extends Comment {
 		return this.height;
 	}
 
+	public String getKeywords() {
+		return this.keywords;
+	}
+
 	public Integer getLikes() {
 		return this.likes;
 	}
 
 	public String getParentId() {
 		return this.parentId;
+	}
+
+	public String getSite() {
+		return this.site;
 	}
 
 	public String getUrl() {
@@ -69,12 +84,20 @@ public class Card extends Comment {
 		this.height = height;
 	}
 
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
+
 	public void setLikes(Integer likes) {
 		this.likes = likes;
 	}
 
 	public void setParentId(String parentId) {
 		this.parentId = parentId;
+	}
+
+	public void setSite(String site) {
+		this.site = site;
 	}
 
 	public void setUrl(String url) {

@@ -13,12 +13,7 @@ function checkLength($key) {
 
 function recoveryText($key) {
 	var $storage = sessionStorage;
-	$text = $('#comment-text').val();
-	if ($text && $text != '') {
-		$('#comment-text').val($text + $storage.getItem($key));
-	}else{
-		$('#comment-text').val($storage.getItem($key));
-	}
+	$('#comment-text').val($storage.getItem($key));
 }
 
 function removeText($key) {

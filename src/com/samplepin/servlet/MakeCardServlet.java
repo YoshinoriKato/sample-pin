@@ -37,6 +37,8 @@ public class MakeCardServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = -7182329627922034835L;
 
+	static final String LS = System.getProperty("line.separator");
+
 	public static void copyStream(InputStream in, OutputStream os,
 			int bufferSize) throws IOException {
 		int len = -1;
@@ -95,7 +97,19 @@ public class MakeCardServlet extends HttpServlet {
 					card.getImagePath().lastIndexOf("/") + 1);
 			setImageSize(realFolder, fileName, card);
 		}
+
 		if ((card.getCaption() != null) && !card.getCaption().isEmpty()) {
+			StringBuilder builder = new StringBuilder();
+			builder.append(card.getCaption()).append(LS).append(LS);
+			if (Helper.valid(card.getKeywords())) {
+				builder.append("Keywords: ").append(card.getKeywords())
+						.append(LS);
+			}
+			if (Helper.valid(card.getSite())) {
+				builder.append("URL: ").append(card.getSite());
+			}
+			card.setCaption(builder.toString());
+
 			req.setAttribute("confirm", card);
 			RequestDispatcher dispathcer = req
 					.getRequestDispatcher("confirm-make-card.jsp");
@@ -168,6 +182,8 @@ public class MakeCardServlet extends HttpServlet {
 			String title = getValueByKeyword(part, "title");
 			String caption = getValueByKeyword(part, "caption");
 			String url = getValueByKeyword(part, "url");
+			String keywords = getValueByKeyword(part, "keywords");
+			String site = getValueByKeyword(part, "site");
 			String imagePath = getValueByKeyword(part, "imagePath");
 
 			if (title != null) {
@@ -180,6 +196,12 @@ public class MakeCardServlet extends HttpServlet {
 
 			} else if (url != null) {
 				card.setUrl(url);
+
+			} else if (keywords != null) {
+				card.setKeywords(keywords);
+
+			} else if (site != null) {
+				card.setSite(site);
 
 			} else {
 				String path = getFileName(part);

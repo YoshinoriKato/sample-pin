@@ -9,6 +9,7 @@
 <jsp:include page="_effect.jsp"></jsp:include>
 <script type="text/javascript">
 	$(window).load(function() {
+		recoveryText('make-card');
 		$timer = setInterval(function() {
 			checkLength('make-card');
 		}, 500);
@@ -17,20 +18,17 @@
 </head>
 
 <%
-	final String LS = System.getProperty("line.separator");
-
 	String message = (String) request.getAttribute("message");
 	String imagePath = request.getParameter("imagePath");
-	imagePath = imagePath != null ? URLDecoder.decode(imagePath, "UTF-8")
-			: imagePath;
+	imagePath = imagePath != null ? URLDecoder.decode(imagePath,
+			"UTF-8") : imagePath;
 	String keywords = request.getParameter("keywords");
 	keywords = keywords != null ? URLDecoder.decode(keywords, "UTF-8")
 			: keywords;
-	keywords = (keywords != null) ? "Keywords: " + keywords + LS : "";
+	keywords = (keywords != null) ? keywords : "";
 	String site = request.getParameter("site");
-	site = site != null ? URLDecoder.decode(site, "UTF-8")
-			: site;
-	site = (site != null) ? "URL: " + site + LS : "";
+	site = site != null ? URLDecoder.decode(site, "UTF-8") : site;
+	site = (site != null) ? site : "";
 
 	message = message != null ? message : "";
 	String error = message != null && !message.isEmpty() ? "error" : "";
@@ -66,11 +64,31 @@
 												Images</a></span>
 									</div>
 								</div>
+								<%
+									if (imagePath != null) {
+								%>
+								<div class="control-group">
+									<label for="keywords" class="control-label">Keywords</label>
+									<div class="controls">
+										<input type="text" name="keywords" value="<%=keywords%>"
+											class="span6" readonly="readonly">
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="site" class="control-label">URL</label>
+									<div class="controls">
+										<input type="text" name="site" value="<%=site%>" class="span6"
+											readonly="readonly">
+									</div>
+								</div>
+								<%
+									}
+								%>
 								<div class="control-group <%=error%>">
 									<label for="caption" class="control-label">Caption</label>
 									<div class="controls">
 										<textarea name="caption" id="comment-text"
-											class="textarea span8" rows="8"><%=keywords%><%=site%></textarea>
+											class="textarea span8" rows="8"></textarea>
 										<span class="help-inline"><%=message%></span>
 									</div>
 								</div>

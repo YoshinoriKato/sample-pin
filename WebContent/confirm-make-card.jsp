@@ -10,6 +10,7 @@
 </head>
 
 <%
+	final String LS = System.getProperty("line.separator");
 	String cardId = request.getParameter("cardId");
 
 	Card card = (Card) request.getAttribute("confirm");
@@ -29,8 +30,8 @@
 			<div class="row">
 				<div class="cell padding20">
 					<div class="form-horizontal">
-						<form id="comment-form" action="confirm-make-card.do" method="post"
-							class="form-horizontal">
+						<form id="comment-form" action="confirm-make-card.do"
+							method="post" class="form-horizontal">
 							<fieldset>
 								<h3>Confirm Card</h3>
 								<div class="control-group">
