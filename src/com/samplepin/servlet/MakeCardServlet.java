@@ -103,21 +103,11 @@ public class MakeCardServlet extends HttpServlet {
 		}
 
 		if ((card.getCaption() != null) && !card.getCaption().isEmpty()) {
-			StringBuilder builder = new StringBuilder();
-			builder.append(card.getCaption()).append(LS).append(LS);
-			if (Helper.valid(card.getKeywords())) {
-				builder.append("Keywords: ").append(card.getKeywords())
-						.append(LS);
-			}
-			if (Helper.valid(card.getSite())) {
-				builder.append("URL: ").append(card.getSite());
-			}
 			User user = Helper.getUserById(userId);
 			if (user != null) {
 				card.setUserName(user.getUserName());
 				card.setUserIcon(user.getImagePath());
 			}
-			card.setCaption(builder.toString());
 
 			req.setAttribute("confirm", card);
 			RequestDispatcher dispathcer = req
