@@ -25,6 +25,9 @@
 <script type="text/javascript" src="js/dateformat.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 
+<!-- Google -->
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
 <script type="text/javascript" src="js/callback.js?<%=suffix%>"
 	charset="UTF-8"></script>
 <script type="text/javascript" src="js/aboutTimestamp.js?<%=suffix%>"
@@ -32,6 +35,8 @@
 <script type="text/javascript" src="js/autoUrlLink.js?<%=suffix%>"
 	charset="UTF-8"></script>
 <script type="text/javascript" src="js/escapeReturn.js?<%=suffix%>"
+	charset="UTF-8"></script>
+<script type="text/javascript" src="js/searchImages.js?<%=suffix%>"
 	charset="UTF-8"></script>
 <script type="text/javascript" src="js/util.js?<%=suffix%>"
 	charset="UTF-8"></script>

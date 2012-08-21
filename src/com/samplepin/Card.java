@@ -17,6 +17,10 @@ public class Card extends Comment {
 
 	Integer view;
 
+	Integer width;
+
+	Integer height;
+
 	public Card() {
 		this("self", "", "", "", "", "", 0, 0, System.currentTimeMillis());
 	}
@@ -37,8 +41,16 @@ public class Card extends Comment {
 		this.isDeleted = false;
 	}
 
+	public Integer getHeight() {
+		return this.height;
+	}
+
 	public Integer getLikes() {
 		return this.likes;
+	}
+
+	public String getParentId() {
+		return this.parentId;
 	}
 
 	public String getUrl() {
@@ -49,8 +61,20 @@ public class Card extends Comment {
 		return this.view;
 	}
 
+	public Integer getWidth() {
+		return this.width;
+	}
+
+	public void setHeight(Integer height) {
+		this.height = height;
+	}
+
 	public void setLikes(Integer likes) {
 		this.likes = likes;
+	}
+
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
 	}
 
 	public void setUrl(String url) {
@@ -59,6 +83,10 @@ public class Card extends Comment {
 
 	public void setView(Integer view) {
 		this.view = view;
+	}
+
+	public void setWidth(Integer width) {
+		this.width = width;
 	}
 
 }

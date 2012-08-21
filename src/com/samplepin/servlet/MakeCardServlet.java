@@ -1,16 +1,17 @@
 package com.samplepin.servlet;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -84,8 +85,15 @@ public class MakeCardServlet extends HttpServlet {
 		String userId = (String) session.getAttribute("userId");
 		List<Uploader> uploadQue = new ArrayList<Uploader>();
 		Card card = readRequest(req.getParts(), userId, uploadQue);
-		if (card.getImagePath() != null) {
+		if (card.getImagePath() == null) {
 			writeFiles(req, uploadQue, card);
+		} else {
+			String fullPath = req.getServletContext().getRealPath(
+					"../icon-keeper");
+			File realFolder = new File(fullPath);
+			String fileName = card.getImagePath().substring(
+					card.getImagePath().lastIndexOf("/") + 1);
+			setImageSize(realFolder, fileName, card);
 		}
 		if ((card.getCaption() != null) && !card.getCaption().isEmpty()) {
 			req.setAttribute("confirm", card);
@@ -183,11 +191,18 @@ public class MakeCardServlet extends HttpServlet {
 		return card;
 	}
 
-	final void saveCardInfo(File referenceFolder, String fileName, Card card)
-			throws RuntimeException, UnknownHostException {
+	final void saveCardInfo(File realFolder, File referenceFolder,
+			String fileName, Card card) throws RuntimeException, IOException {
 		File referenceFile = new File(referenceFolder, fileName);
 		card.setImagePath(referenceFile.getPath());
-		log("update user icon: " + referenceFile.getPath());
+		setImageSize(realFolder, fileName, card);
+	}
+
+	final void setImageSize(File realFolder, String fileName, Card card)
+			throws IOException {
+		BufferedImage image = ImageIO.read(new File(realFolder, fileName));
+		card.setWidth(image.getWidth());
+		card.setHeight(image.getHeight());
 	}
 
 	final void writeFiles(HttpServletRequest req, List<Uploader> uploadQue,
@@ -220,7 +235,7 @@ public class MakeCardServlet extends HttpServlet {
 			try {
 				String fileName = makePrefix() + u.fileName;
 				writeIconFile(realFolder, fileName, u.part.getInputStream());
-				saveCardInfo(referenceFolder, fileName, card);
+				saveCardInfo(realFolder, referenceFolder, fileName, card);
 				acceptFields.add(u.fileName);
 			} catch (RuntimeException e) {
 				Logger.getLogger(MakeCardServlet.class).error(

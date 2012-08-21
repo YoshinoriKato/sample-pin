@@ -10,6 +10,7 @@
 		$('#ajax').fadeOut(1000);
 	});
 </script>
+<!-- 
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript" charset="UTF-8">
 	function searchGoogle() {
@@ -59,7 +60,7 @@
 	google.load('search', '1');
 	google.setOnLoadCallback(OnLoad);
 </script>
-
+ -->
 </head>
 
 <body>
