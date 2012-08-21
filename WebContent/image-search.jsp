@@ -72,6 +72,7 @@
 				class="btn btn-large btn-primary btn-cell">
 		</form>
 	</div>
+	<div id="title">Search Images</div>
 	<div id="main">
 		<ul id="content">
 			<!--  ajax -->

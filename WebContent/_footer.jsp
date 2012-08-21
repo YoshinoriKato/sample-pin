@@ -28,6 +28,8 @@
 		$('#error-close').attr("onclick",
 		"pushPull('#null','#error-dialog')");
 	});
+	
+	var $scroll = 240;
 
 	$(function() {
 		$('#bottom-label').hide();
@@ -43,7 +45,7 @@
 		if (url.contains("/index.jsp") || url.contains("/card-comment.jsp")) {
 %>
 
-		if ($(document).height() - $(window).height() - 60 < $(this).scrollTop()) {
+		if (($(window).height() * 0.4) < ($(document).height() - $(this).scrollTop())) {
 								callAjax($('#sorted').text(), 10, $counter, $(
 										'#userId').text(), $('#cardId').text(),
 										$('#type').text());

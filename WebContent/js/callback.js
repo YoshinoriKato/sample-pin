@@ -1,6 +1,6 @@
 var $timer;
 
-var $offset = 8;
+var $offset = 14;
 
 var $counter = 0;
 
