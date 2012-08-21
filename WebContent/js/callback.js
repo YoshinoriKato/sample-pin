@@ -68,7 +68,11 @@ function makeCard($card) {
 	var $divFooter = $('<div/>').addClass('star right');
 	var $divRibonText = $('<div/>').text($card.view + ' view');
 	var $jqImg = $('<img/>').addClass('image-shot deco').attr('src',
-			$card.imagePath).attr('width', $width).attr('height', $height);
+			$card.imagePath);
+	if ($width)
+		$jqImg.attr('width', $width);
+	if ($height)
+		$jqImg.attr('height', $height);
 	var $jqIcon = $('<img/>').addClass('image-icon')
 			.attr('src', $card.userIcon);
 

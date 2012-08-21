@@ -30,16 +30,30 @@ public class Utility0 extends HttpServlet {
 			Query<Card> query = mongo.createQuery(Card.class);
 			for (Card card : query.asList()) {
 				String path = card.getImagePath();
+
+				if (path.toLowerCase().endsWith(".jpg")) {
+					log(path);
+				}
+
 				String fileName = path.substring(path.lastIndexOf("/") + 1);
 				File referenceFile = new File(fullPath, fileName);
+
+				if (!referenceFile.exists()) {
+					fullPath = req.getServletContext().getRealPath(
+							"../../icon-keeper");
+					referenceFile = new File(fullPath, fileName);
+				}
+
 				if (!referenceFile.exists()) {
 					fullPath = req.getServletContext().getRealPath("img");
 					referenceFile = new File(fullPath, fileName);
 				}
+
 				if (!referenceFile.exists()) {
 					fullPath = req.getServletContext().getRealPath("img/flag");
 					referenceFile = new File(fullPath, fileName);
 				}
+
 				if (referenceFile.exists()) {
 					BufferedImage image = ImageIO.read(referenceFile);
 					card.setWidth(image.getWidth());

@@ -1,6 +1,7 @@
 package com.samplepin.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.google.code.morphia.query.Query;
 import com.samplepin.ACMongo;
 import com.samplepin.Card;
+import com.samplepin.Comment;
 
 @WebServlet(urlPatterns = "/confirm-discard.do")
 public class ConfirmDiscardServlet extends HttpServlet {
@@ -38,6 +40,13 @@ public class ConfirmDiscardServlet extends HttpServlet {
 				if (card != null) {
 					card.setIsDeleted(true);
 					mongo.save(card);
+					Query<Comment> query2 = mongo.createQuery(Comment.class)
+							.filter("cardId", card.getCardId());
+					List<Comment> comments = query2.asList();
+					for (Comment comment : comments) {
+						comment.setIsDeleted(true);
+					}
+					mongo.save(comments);
 				}
 			}
 			log("discard end.");
