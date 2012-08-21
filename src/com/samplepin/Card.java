@@ -1,7 +1,6 @@
 package com.samplepin;
 
 import com.google.code.morphia.annotations.Entity;
-import com.google.code.morphia.annotations.Transient;
 
 @Entity(value = "cards", noClassnameStored = true)
 public class Card extends Comment {
@@ -22,10 +21,8 @@ public class Card extends Comment {
 
 	Integer height;
 
-	@Transient
 	String keywords;
 
-	@Transient
 	String site;
 
 	public Card() {

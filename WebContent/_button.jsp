@@ -22,9 +22,13 @@
 	<%
 		}
 	%>
-	<a href="index.jsp" class="<%=addClass%>">Latest</a> <a
-		href="index.jsp?sorted=view" class="<%=addClass%>">Views</a> <a
-		href="index.jsp?sorted=comment" class="<%=addClass%>">Comments</a>
+	<a href="index.jsp" class="<%=addClass%>">Latest</a>
+
+	<!-- 
+	<a href="index.jsp?sorted=view" class="<%=addClass%>">Views</a>
+	<a href="index.jsp?sorted=comment" class="<%=addClass%>">Comments</a>
+	 -->
+	
 	<%
 		if (session.getAttribute("userId") != null) {
 	%>

@@ -26,8 +26,10 @@ import javax.servlet.http.Part;
 
 import org.apache.log4j.Logger;
 
+import com.samplepin.ACMongo;
 import com.samplepin.Card;
 import com.samplepin.Helper;
+import com.samplepin.KeyAndImage;
 import com.samplepin.User;
 
 @WebServlet(name = "IconUploadServlet", urlPatterns = "/make-card.do")
@@ -77,10 +79,6 @@ public class MakeCardServlet extends HttpServlet {
 		return false;
 	}
 
-	final boolean confirmed(HttpServletRequest req, String password, User user) {
-		return true;
-	}
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -94,6 +92,8 @@ public class MakeCardServlet extends HttpServlet {
 			writeFiles(req, uploadQue, card);
 
 		} else {
+			registerKeyAndImagePath(card);
+
 			String fullPath = req.getServletContext().getRealPath(
 					"../icon-keeper");
 			File realFolder = new File(fullPath);
@@ -219,6 +219,19 @@ public class MakeCardServlet extends HttpServlet {
 			}
 		}
 		return card;
+	}
+
+	final void registerKeyAndImagePath(Card card) throws IOException {
+		try (ACMongo mongo = new ACMongo()) {
+			if (valid(card.getKeywords())) {
+				// space, zenkaku-space, tab
+				for (String key : card.getKeywords().split("( |　|	)")) {
+					KeyAndImage keyAndImage = new KeyAndImage(key,
+							card.getImagePath());
+					mongo.save(keyAndImage);
+				}
+			}
+		}
 	}
 
 	final void saveCardInfo(File realFolder, File referenceFolder,

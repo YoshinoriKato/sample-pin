@@ -19,6 +19,10 @@
 			: CLASS_NEGATIVE;
 	classMakeCard = url.contains("/confirm-make-card.jsp") ? CLASS_ACTIVE : classMakeCard;
 	String classMyCard = url.contains("/my-card.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
+	
+	String classTag = url.contains("/tag.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
+	String classMakeTag = url.contains("/make-tag.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
+	
 	String classLogin = url.contains("/login.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
 	String classLogout = url.contains("/logout.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
 	String classSignup = url.contains("/signup.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
@@ -49,12 +53,19 @@
 						if (userId != null) {
 					%>
 					<li <%=classMakeCard%>><a href="make-card.jsp">Make Card</a></li>
-					<li class="divider-vertical"></li>
+
 					<!-- 
 					<li <%=classProfile%>><a href="profile.jsp">My Profile</a></li>
-					<li <%=classMyCard%>><a href="my-card.jsp">Design My Card</a></li> -->
-					<li <%=classAccount%>><a href="account.jsp">Account</a></li>
+					<li <%=classMyCard%>><a href="my-card.jsp">Design My Card</a></li>
+
 					<li class="divider-vertical"></li>
+
+					<li <%=classTag%>><a href="tag.jsp">Tag</a></li>
+					<li <%=classMakeTag%>><a href="make-tag.jsp">Make Tag</a></li>
+					 -->
+
+					<li class="divider-vertical"></li>
+					<li <%=classAccount%>><a href="account.jsp">Account</a></li>
 					<li <%=classLogout%>><a href="logout.do">Logout</a></li>
 					<%
 						} else {
