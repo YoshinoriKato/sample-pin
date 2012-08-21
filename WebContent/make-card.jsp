@@ -51,7 +51,7 @@
 									<label for="iconPath" class="control-label">Image</label>
 									<div class="controls">
 										<input type="search" id="search-box" value=""
-											placeholder="Keyword" class="input-medium span6"> <input
+											placeholder="Keyword" class="input-medium span6 text"> <input
 											type="submit" value="Search" id="search-action"
 											class="btn btn-large btn-primary btn-cell">
 									</div>
@@ -84,13 +84,13 @@
 									<label for="keywords" class="control-label">Keywords</label>
 									<div class="controls">
 										<input type="text" name="keywords" value="<%=keywords%>"
-											class="span6" readonly="readonly">
+											class="span6 text" readonly="readonly">
 									</div>
 								</div>
 								<div class="control-group">
 									<label for="site" class="control-label">URL</label>
 									<div class="controls">
-										<input type="text" name="site" value="<%=site%>" class="span6"
+										<input type="text" name="site" value="<%=site%>" class="span6 text"
 											readonly="readonly">
 									</div>
 								</div>
@@ -111,7 +111,7 @@
 								<div class="control-group">
 									<label for="url" class="control-label">URL</label>
 									<div class="controls">
-										<input type="url" name="url">
+										<input type="url" name="url" class="text">
 									</div>
 								</div>
 								<%
