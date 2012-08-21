@@ -43,12 +43,25 @@
 			<div class="row">
 				<div class="cell">
 					<div class="form-horizontal">
-						<form action="make-card.do" enctype="multipart/form-data"
-							method="post" class="form-horizontal">
+						<form class="form-search" action="javascript:searchGoogle()">
 							<fieldset>
 								<h3>Make Card</h3>
 								<div class="control-group">
 									<label for="iconPath" class="control-label">Image</label>
+									<div class="controls">
+										<input type="search" id="search-box" value=""
+											placeholder="Keyword" class="input-medium span6"> <input
+											type="submit" value="Search" id="search-action"
+											class="btn btn-large btn-primary btn-cell">
+									</div>
+								</div>
+							</fieldset>
+						</form>
+						<ul id="search-result"></ul>
+						<form action="make-card.do" enctype="multipart/form-data"
+							method="post" class="form-horizontal">
+							<fieldset>
+								<div class="control-group">
 									<div class="controls">
 										<%
 											if (imagePath != null) {
@@ -60,8 +73,7 @@
 										<input type="file" class="span8" name="iconPath" />
 										<%
 											}
-										%><span class="help-inline"><a href="image-search.jsp">Search
-												Images</a></span>
+										%>
 									</div>
 								</div>
 								<%
