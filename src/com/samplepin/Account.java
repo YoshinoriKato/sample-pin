@@ -7,13 +7,13 @@ import com.google.code.morphia.annotations.Id;
 public class Account {
 
 	@Id
-	ObjectId id;
+	ObjectId	id;
 
-	String sns;
+	String		sns;
 
-	String appKey;
+	String		appKey;
 
-	String secretKey;
+	String		secretKey;
 
 	public Account() {
 		super();

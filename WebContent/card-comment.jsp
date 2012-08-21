@@ -106,6 +106,22 @@
 						<%=Helper.convURLLink(Helper.escapeHTML(card
 						.getCaption()))%>
 					</div>
+					<br class="clear-both" />
+					<%
+						if (Helper.valid(card.getKeywords())) {
+					%>
+					<div class="star break-word">
+						Keywords:<%=card.getKeywords()%></div>
+					<%
+						}
+					%>
+					<%
+						if (Helper.valid(card.getSite())) {
+					%><div class="star break-word">
+						URL:<%=card.getSite()%></div>
+					<%
+						}
+					%>
 					<div class="star right">
 						<%=card.getLikes()%>
 						comment

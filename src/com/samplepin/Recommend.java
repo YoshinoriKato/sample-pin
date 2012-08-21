@@ -9,13 +9,13 @@ import com.google.code.morphia.annotations.Id;
 public class Recommend implements Createable {
 
 	@Id
-	ObjectId id;
+	ObjectId	id;
 
-	String userId;
+	String		userId;
 
-	Long createDate;
+	Long		createDate;
 
-	String recommendJSON;
+	String		recommendJSON;
 
 	public Recommend(String userId, String recommendJSON) {
 		super();
