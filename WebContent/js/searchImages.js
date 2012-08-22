@@ -15,7 +15,7 @@ function searchGoogle() {
 function OnLoad() {
 };
 
-var $max_height = 320;
+var $max_height = 200;
 
 function SearchComplete(searcher) {
 	var $results = searcher.results;
@@ -29,13 +29,8 @@ function SearchComplete(searcher) {
 		$('#search-result li').wookmark({
 			offset : 12
 		});
-		
-		var len = $content.length;
-		for(i = 0; i < len; i++){
-			$li = $content.get(i);
-			$max_height = $max_height < $li.height ? $li.height : $max_height;
-		}
-		$content.height($max_height + 20);
+
+		$content.height($max_height);
 	}
 }
 
@@ -47,12 +42,16 @@ function makeImageCell($content, $result) {
 			'upload.do?url=' + encodeURIComponent($result.url) + '&keywords='
 					+ encodeURIComponent($($serachBox).val()) + '&site='
 					+ encodeURIComponent($result.originalContextUrl));
-	var $title = $('<div/>').addClass('caption').append($result.title);
+	var $size = $('<div/>').addClass('caption star').append($result.width + 'x' + $result.height);
+	var $title = $('<div/>').addClass('caption star').append($result.title);
 	var $image = $('<img/>').attr('src', $result.tbUrl).addClass('image-thumb');
 	$content.append($li);
 	$li.append($cell);
-	$cell.append($a).append($title);
+	$cell.append($a).append($size).append($title);
 	$a.append($image);
+	
+	$view_height = Math.round($result.height / ($result.width / 160)) + 200; 
+	$max_height = ($max_height >= $view_height) ? $max_height : $view_height;
 }
 
 function makeImageCell0($content, $result) {

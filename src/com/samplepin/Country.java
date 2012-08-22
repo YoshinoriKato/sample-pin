@@ -9,21 +9,21 @@ import com.google.code.morphia.annotations.Id;
 public class Country {
 
 	@Id
-	ObjectId	id;
+	ObjectId id;
 
-	String		jpName;
+	String jpName;
 
-	String		enName;
+	String enName;
 
-	Integer		code;
+	Integer code;
 
-	String		short3;
+	String short3;
 
-	String		short2;
+	String short2;
 
-	String		area;
+	String area;
 
-	String		isoCode;
+	String isoCode;
 
 	public Country() {
 		super();

@@ -39,9 +39,7 @@ public class MakeCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -7182329627922034835L;
-
-	static final String			LS					= System.getProperty("line.separator");
+	private static final long serialVersionUID = -7182329627922034835L;
 
 	public static void copyStream(InputStream in, OutputStream os,
 			int bufferSize) throws IOException {
@@ -215,7 +213,8 @@ public class MakeCardServlet extends HttpServlet {
 		try (ACMongo mongo = new ACMongo()) {
 			if (valid(card.getKeywords())) {
 				// space, zenkaku-space, tab
-				for (String key : card.getKeywords().split("( |　|	)")) {
+				for (String key : card.getKeywords()
+						.split("( |	|　|\r\n|\n|\r)")) {
 					KeyAndImage keyAndImage = new KeyAndImage(key,
 							card.getImagePath());
 					mongo.save(keyAndImage);
