@@ -17,6 +17,8 @@ import com.mongodb.MongoException;
 import com.samplepin.ACMongo;
 import com.samplepin.Card;
 import com.samplepin.Comment;
+import com.samplepin.Helper;
+import com.samplepin.servlet.oauth.TwitterService;
 
 @WebServlet(urlPatterns = { "/comment.do" })
 public class CommentServlet extends HttpServlet {
@@ -45,6 +47,14 @@ public class CommentServlet extends HttpServlet {
 			if ((userId != null) && (comment != null) && !comment.isEmpty()) {
 				saveComment(new Comment(userId, cardId, comment,
 						System.currentTimeMillis()));
+
+				new TwitterService()
+						.tweet(userId,
+								comment
+										+ Helper.LS
+										+ Helper.LS
+										+ "http://219.94.246.60/sample-pin/card-comment.jsp?cardId="
+										+ cardId + "&type=comment");
 
 				resp.sendRedirect("card-comment.jsp?cardId=" + cardId
 						+ "&type=comment");

@@ -36,6 +36,9 @@ public class TwitterService {
 			TwitterAccount twitterAccount = mongo
 					.createQuery(TwitterAccount.class).filter("userId", userId)
 					.get();
+			if (twitterAccount == null) {
+				return null;
+			}
 			return new AccessToken(twitterAccount.getAccessToken(),
 					twitterAccount.getTokenSecret());
 		}
@@ -149,7 +152,9 @@ public class TwitterService {
 	public void tweet(String userId, String message) throws TwitterException,
 			UnknownHostException, MongoException {
 		Twitter twitter = getTwitter(loadAccessToken(userId));
-		twitter.updateStatus(message);
+		if (twitter != null) {
+			twitter.updateStatus(message);
+		}
 	}
 
 }

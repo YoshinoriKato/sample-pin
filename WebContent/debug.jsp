@@ -10,7 +10,9 @@
 <jsp:include page="_header.jsp" flush="true" />
 </head>
 <body>
-	<h1>JSP Info</h1>
+	<h1>
+		JSP Info
+		<%=request.getServletPath()%></h1>
 	<hr>
 	<h2>Request</h2>
 	<ol>
