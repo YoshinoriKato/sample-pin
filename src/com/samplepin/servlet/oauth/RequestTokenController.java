@@ -79,7 +79,8 @@ public class RequestTokenController extends HttpServlet {
 				TwitterAccount twitterAccount = mongo
 						.createQuery(TwitterAccount.class)
 						.filter("user_id = ", accessToken.getUserId()).get();
-				new LoginServlet().login(request, twitterAccount.getUserId());
+				LoginServlet.login(request, twitterAccount.getUserId());
+				LoginServlet.makeCookie(response, twitterAccount.getUserId());
 			}
 
 			response.sendRedirect("index.jsp");

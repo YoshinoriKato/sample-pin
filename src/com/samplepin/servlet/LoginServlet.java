@@ -31,6 +31,15 @@ public class LoginServlet extends HttpServlet {
 
 	public static String KEY_SECOND = "Pollux";
 
+	public static final void login(HttpServletRequest req, String userId)
+			throws UnknownHostException, MongoException {
+		HttpSession sessionOld = req.getSession();
+		sessionOld.invalidate();
+		HttpSession sessionNew = req.getSession(true);
+		sessionNew.setAttribute("userId", userId);
+		sessionNew.setMaxInactiveInterval(-1);// 無制限
+	}
+
 	public static void makeCookie(HttpServletResponse resp, String userId) {
 		Cookie cookie0 = new Cookie(KEY_FIRST, Helper.generatedIdString("ID_"));
 		Cookie cookie1 = new Cookie(KEY_SECOND, userId);
@@ -86,15 +95,6 @@ public class LoginServlet extends HttpServlet {
 			}
 			return null;
 		}
-	}
-
-	public final void login(HttpServletRequest req, String userId)
-			throws UnknownHostException, MongoException {
-		HttpSession sessionOld = req.getSession();
-		sessionOld.invalidate();
-		HttpSession sessionNew = req.getSession(true);
-		sessionNew.setAttribute("userId", userId);
-		sessionNew.setMaxInactiveInterval(-1);// 無制限
 	}
 
 }
