@@ -20,15 +20,15 @@ import com.samplepin.User;
 
 public class TwitterService {
 
-	public static final String consumerKey = "joSnhvS8KCTy5ODs91vDzA";
+	public static final String	consumerKey				= "joSnhvS8KCTy5ODs91vDzA";
 
-	public static final String consumerSecret = "eRPqHoM3axEiFpJTmtIZTXwRb3KGxAB1AN0qXOPyOE";
+	public static final String	consumerSecret			= "eRPqHoM3axEiFpJTmtIZTXwRb3KGxAB1AN0qXOPyOE";
 
-	private static final String accessToken = "549106982-88C08uNpiRHyLTmmBCJ0Ei80WJPctI9Lrn2Zpn80";
+	private static final String	accessToken				= "549106982-88C08uNpiRHyLTmmBCJ0Ei80WJPctI9Lrn2Zpn80";
 
-	private static final String oauthAccessTokenSecret_ = "BKcGv4rLSX7GKf9nhVq1440eaWSeYDOr1kb1j0921I";
+	private static final String	oauthAccessTokenSecret_	= "BKcGv4rLSX7GKf9nhVq1440eaWSeYDOr1kb1j0921I";
 
-	public static final String callbackUrl = "http://219.94.246.60/sample-pin/oauth-twitter.jsp";
+	public static final String	callbackUrl				= "http://219.94.246.60/sample-pin/oauth-twitter.jsp";
 
 	private static AccessToken loadAccessToken(String userId)
 			throws UnknownHostException, MongoException {

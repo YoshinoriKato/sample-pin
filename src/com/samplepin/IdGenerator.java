@@ -8,19 +8,19 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class IdGenerator {
 
-	static String ALPABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	static String			ALPABET			= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-	static String NUMBER = "0123456789_";
+	static String			NUMBER			= "0123456789_";
 
-	static String MARK = "#$@";
+	static String			MARK			= "#$@";
 
-	static String PASSWORD_LETTER = ALPABET + NUMBER + MARK;
+	static String			PASSWORD_LETTER	= ALPABET + NUMBER + MARK;
 
-	static int DEFAULT_LEN = 12;
+	static int				DEFAULT_LEN		= 12;
 
-	static int FIRST_CHAR = 1;
+	static int				FIRST_CHAR		= 1;
 
-	static final AtomicLong SEED = new AtomicLong(System.nanoTime());
+	static final AtomicLong	SEED			= new AtomicLong(System.nanoTime());
 
 	public static String generatedIdString(long seed, String range, int length) {
 		Random r = new Random(seed);

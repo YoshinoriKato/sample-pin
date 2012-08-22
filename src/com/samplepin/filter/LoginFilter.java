@@ -26,7 +26,7 @@ import com.samplepin.servlet.LoginServlet;
 		"/my-card.jsp", "/account.jsp", "/S" }, dispatcherTypes = DispatcherType.REQUEST)
 public class LoginFilter implements Filter {
 
-	private ServletContext context;
+	private ServletContext	context;
 
 	@Override
 	public void destroy() {
@@ -72,8 +72,10 @@ public class LoginFilter implements Filter {
 			for (Cookie cookie : cookies) {
 				if (LoginServlet.KEY_FIRST.equals(cookie.getName())) {
 					welcome = cookie.getValue();
+
 				} else if (LoginServlet.KEY_SECOND.equals(cookie.getName())) {
 					userId = cookie.getValue();
+
 				}
 				if (((welcome != null) && (welcome.length() > 11))
 						&& (userId != null)) {
