@@ -39,9 +39,9 @@ public class MakeCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7182329627922034835L;
+	private static final long	serialVersionUID	= -7182329627922034835L;
 
-	static final String LS = System.getProperty("line.separator");
+	static final String			LS					= System.getProperty("line.separator");
 
 	public static void copyStream(InputStream in, OutputStream os,
 			int bufferSize) throws IOException {

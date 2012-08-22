@@ -26,7 +26,7 @@ import com.samplepin.servlet.LoginServlet;
 		"/my-card.jsp", "/account.jsp" }, dispatcherTypes = DispatcherType.REQUEST)
 public class LoginFilter implements Filter {
 
-	private ServletContext context;
+	private ServletContext	context;
 
 	@Override
 	public void destroy() {

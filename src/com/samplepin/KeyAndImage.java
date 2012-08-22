@@ -9,15 +9,15 @@ import com.google.code.morphia.annotations.Id;
 public class KeyAndImage implements Createable, Deleteable {
 
 	@Id
-	ObjectId id;
+	ObjectId	id;
 
-	String key;
+	String		key;
 
-	String imagePath;
+	String		imagePath;
 
-	Long createDate;
+	Long		createDate;
 
-	Boolean isDeleted;
+	Boolean		isDeleted;
 
 	public KeyAndImage() {
 		super();

@@ -15,14 +15,14 @@ import com.samplepin.Recommend;
 import com.samplepin.View;
 
 class RecommendEngine {
-	Comparator<View> SCORE = new Comparator<View>() {
+	Comparator<View>	SCORE	= new Comparator<View>() {
 
-		@Override
-		public int compare(View o1, View o2) {
-			return o1.score().compareTo(o2.score());
-		}
+									@Override
+									public int compare(View o1, View o2) {
+										return o1.score().compareTo(o2.score());
+									}
 
-	};
+								};
 
 	@SuppressWarnings("unchecked")
 	final Set<String> getCache(String userId) {
