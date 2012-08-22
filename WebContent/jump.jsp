@@ -13,11 +13,10 @@
 	userId = (userId != null) ? userId : session.getId();
 	String cardId = request.getParameter("cardId");
 	String redirectUrl = request.getParameter("redirectUrl");
-	redirectUrl = URLDecoder.decode(redirectUrl,"UTF-8");
-	response.sendRedirect(redirectUrl);
+	redirectUrl = URLDecoder.decode(redirectUrl, "UTF-8");
 	Card card = Helper.getCardInfoByID(cardId);
-	card.setView(card.getView()+1);
 	Helper.setFootprint(card, userId);
+	response.sendRedirect(redirectUrl);
 %>
 <body>
 	<jsp:include page="_topbar.jsp"></jsp:include>
