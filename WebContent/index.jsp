@@ -6,6 +6,10 @@
 	sorted = sorted == null ? "" : sorted;
 	String userId = request.getParameter("userId");
 	userId = (userId != null) ? userId : "";
+	String title = "Cards";
+	title = ("recommend".equals(sorted)) ? "Recommend" : title;
+	title = ("footprints".equals(sorted)) ? "Footprints" : title;
+	title = ("mine".equals(sorted)) ? "My Cards" : title;
 %>
 
 
@@ -29,7 +33,7 @@
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<jsp:include page="_button.jsp" flush="true" />
-	<div id="title">Cards</div>
+	<div id="title"><%=title %></div>
 	<div id="main">
 		<ul id="content">
 			<!--  ajax -->
