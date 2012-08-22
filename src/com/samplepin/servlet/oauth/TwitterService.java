@@ -94,7 +94,6 @@ public class TwitterService {
 				twitterAccount.setUser_id(accessToken.getUserId());
 				twitterAccount.setScreen_name(accessToken.getScreenName());
 
-
 			} else {
 				twitterAccount = new TwitterAccount(userId, 0L,
 						accessToken.getToken(), accessToken.getTokenSecret(),

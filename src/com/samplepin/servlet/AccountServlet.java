@@ -220,6 +220,10 @@ public class AccountServlet extends HttpServlet {
 						return user;
 					}
 				}
+			} else {
+				if (userId.startsWith("TW_")) {
+					return user;
+				}
 			}
 
 			return null;

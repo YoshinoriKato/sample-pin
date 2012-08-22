@@ -70,7 +70,8 @@
 								<div class="control-group">
 									<label for="country" class="control-label">Country</label>
 									<div class="controls">
-										<select id="country" name="country" multiple="multiple" class="text">
+										<select id="country" name="country" multiple="multiple"
+											class="text">
 											<%
 												List<Country> countries = Helper.getCountries();
 												for (Country country : countries) {
@@ -84,6 +85,9 @@
 										</select>
 									</div>
 								</div>
+								<%
+									if (userId.startsWith("ID_")) {
+								%>
 								<div class="control-group <%=error%>">
 									<label for="password0" class="control-label">Password</label>
 									<div class="controls">
@@ -107,7 +111,9 @@
 											class="help-inline"><%=message%></span>
 									</div>
 								</div>
-
+								<%
+									}
+								%>
 								<div class="control-group">
 									<div class="controls">
 										<input type="submit" value="Update"

@@ -70,6 +70,16 @@
 							</div>
 						</fieldset>
 					</form>
+					<hr>
+					<div class="form-horizontal">
+						<div class="control-group">
+							<label for="mail" class="control-label">Twitter Account</label>
+							<div class="controls">
+								<a href="oauth-twitter.jsp"
+									class="btn btn-large btn-primary btn-cell"><img src="img/bird_gray_48.png"></a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
