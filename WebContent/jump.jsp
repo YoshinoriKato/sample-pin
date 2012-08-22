@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@page import="com.samplepin.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -12,8 +13,10 @@
 	userId = (userId != null) ? userId : session.getId();
 	String cardId = request.getParameter("cardId");
 	String redirectUrl = request.getParameter("redirectUrl");
+	redirectUrl = URLDecoder.decode(redirectUrl,"UTF-8");
 	response.sendRedirect(redirectUrl);
 	Card card = Helper.getCardInfoByID(cardId);
+	card.setView(card.getView()+1);
 	Helper.setFootprint(card, userId);
 %>
 <body>
@@ -22,7 +25,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="hero-unit deco">
-					<h1>Jump</h1>
+					<h1>Jump to other site.</h1>
 					<p>
 						<a href="<%=redirectUrl%>" target="_blank"><%=redirectUrl%></a>
 					</p>

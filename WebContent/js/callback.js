@@ -61,8 +61,12 @@ function makeCard($card) {
 	var $jqDiv = $('<div/>').attr('id', $card.cardId);
 	var $jqA1 = $('<a/>').addClass('no-hover');
 	var $jqA2 = $('<a/>').addClass('no-hover');
-	var $jqA3 = $('<a/>').addClass('no-hover').attr('href', $card.site).attr(
-			'target', '_blank').text('URL:' + $card.site);
+	var $jqA3 = $('<a/>').addClass('no-hover');
+	$jqA3.attr(
+			'href',
+			'jump.jsp?cardId=' + $card.cardId + '&redirectUrl='
+					+ encodeURIComponent($card.site)).attr('target', '_blank')
+			.text('URL:' + $card.site);
 	var $divRibon = $('<div/>').addClass('ribon');
 	var $divImage = $('<div/>');
 	var $divCaption = $('<div/>').addClass('caption deco');
@@ -105,7 +109,8 @@ function makeCard($card) {
 	if ($card.view > 0) {
 		$jqDiv.append($divRibon.append($divRibonText));
 	}
-	$jqDiv.append($divImage).append($divName).append($divCaption).append($divBr);
+	$jqDiv.append($divImage).append($divName).append($divCaption)
+			.append($divBr);
 	if ($card.keywords) {
 		$jqDiv.append($divKey);
 	}
