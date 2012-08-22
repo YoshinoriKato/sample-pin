@@ -42,7 +42,7 @@ public class Utility6 extends HttpServlet {
 						requestToken, verifier);
 				request.getSession().removeAttribute("requestToken");
 				String token = accessToken.getToken();
-//				String tokenSecret = accessToken.getTokenSecret();
+				// String tokenSecret = accessToken.getTokenSecret();
 
 				// 永続化する
 				request.setAttribute("AT", token);
@@ -59,8 +59,8 @@ public class Utility6 extends HttpServlet {
 				builder.setOAuthAccessTokenSecret("");
 				Configuration conf = builder.build();
 				twitter = new TwitterFactory(conf).getInstance();
-//				twitter4j.User user = 
-						twitter.verifyCredentials(); //
+				// twitter4j.User user =
+				twitter.verifyCredentials(); //
 				// 認証済みならUserが取得できる。認証されてない場合例外がスローされる。
 			} catch (TwitterException e1) {
 				// コンシューマーキーとアクセスキーを設定

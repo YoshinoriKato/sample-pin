@@ -48,13 +48,8 @@ public class CommentServlet extends HttpServlet {
 				saveComment(new Comment(userId, cardId, comment,
 						System.currentTimeMillis()));
 
-				new TwitterService()
-						.tweet(userId,
-								comment
-										+ Helper.LS
-										+ Helper.LS
-										+ "http://219.94.246.60/sample-pin/card-comment.jsp?cardId="
-										+ cardId + "&type=comment");
+				new TwitterService().tweet(userId, comment + Helper.LS
+						+ Helper.LS + new ShortCutServlet().toShortCut(cardId));
 
 				resp.sendRedirect("card-comment.jsp?cardId=" + cardId
 						+ "&type=comment");

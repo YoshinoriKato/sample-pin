@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import twitter4j.TwitterException;
-
 import com.google.code.morphia.Datastore;
 import com.samplepin.ACMongo;
 import com.samplepin.Card;
@@ -39,15 +37,14 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 				datastore.save(card);
 
 				try {
-					new TwitterService()
-							.tweet(userId,
-									card.getCaption()
-											+ Helper.LS
-											+ Helper.LS
-											+ "http://219.94.246.60/sample-pin/card-comment.jsp?cardId="
-											+ card.getCardId()
-											+ "&type=comment");
-				} catch (TwitterException e) {
+					new TwitterService().tweet(
+							userId,
+							card.getCaption()
+									+ Helper.LS
+									+ Helper.LS
+									+ new ShortCutServlet().toShortCut(card
+											.getCardId()));
+				} catch (Exception e) {
 					e.printStackTrace();
 					throw new ServletException(e);
 				}
