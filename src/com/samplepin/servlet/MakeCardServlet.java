@@ -173,6 +173,7 @@ public class MakeCardServlet extends HttpServlet {
 		card.setUserId(userId);
 		card.setCardId(cardId);
 		card.setCreateDate(System.currentTimeMillis());
+		card.setUpdateDate(card.getCreateDate());
 
 		for (Part part : parts) {
 			String title = getValueByKeyword(part, "title");

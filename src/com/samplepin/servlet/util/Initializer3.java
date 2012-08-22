@@ -189,6 +189,8 @@ public class Initializer3 extends HttpServlet {
 							((dice.nextInt() % 2) == 0) ? caption2 : song2,
 							mills3);
 					datastore.save(comment);
+					card.setUpdateDate(comment.getCreateDate());
+					mongo.save(card);
 
 					View view = views.get(userId + "&" + card.getCardId());
 					view = view != null ? view : new View(mills3,

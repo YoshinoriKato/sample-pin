@@ -45,6 +45,7 @@ public class CommentServlet extends HttpServlet {
 			if ((userId != null) && (comment != null) && !comment.isEmpty()) {
 				saveComment(new Comment(userId, cardId, comment,
 						System.currentTimeMillis()));
+
 				resp.sendRedirect("card-comment.jsp?cardId=" + cardId
 						+ "&type=comment");
 				return;
@@ -85,6 +86,7 @@ public class CommentServlet extends HttpServlet {
 						.filter("isDeleted", false);
 				Card card = query2.get();
 				card.setLikes(card.getLikes() + 1);
+				card.setUpdateDate(System.currentTimeMillis());
 				datastore.save(card);
 			}
 		}

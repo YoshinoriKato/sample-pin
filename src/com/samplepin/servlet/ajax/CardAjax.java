@@ -44,19 +44,19 @@ public class CardAjax {
 					"isDeleted", false);
 
 			if (valid(old)) {
-				query.filter("createDate < ", Long.valueOf(old));
+				query.filter("updateDate < ", Long.valueOf(old));
 			}
 
 			if (valid(young)) {
-				query.filter("createDate > ", Long.valueOf(young));
+				query.filter("updateDate > ", Long.valueOf(young));
 			}
 
 			// sort
 			if ("view".equals(sorted)) {
-				query.order("-view, -createDate");
+				query.order("-view, -updateDate");
 
 			} else if ("comment".equals(sorted)) {
-				query.order("-likes, -createDate");
+				query.order("-likes, -updateDate");
 
 			} else if ("footprints".equals(sorted)) {
 				List<View> views = Helper.getViewsInfoByID(userId, _offset,
@@ -76,20 +76,20 @@ public class CardAjax {
 						.getRecommendCards(userId);
 				if (valid(recommends)) {
 					query.filter("cardId in ", recommends);
-					query.order("-createDate");
+					query.order("-updateDate");
 				} else {
 					alreadyRead = true;
 				}
 			} else if ("mine".equals(sorted)) {
 				query.filter("userId = ", userId);
-				query.order("-createDate");
+				query.order("-updateDate");
 
 			} else if (valid(otherUserId)) {
 				query.filter("userId = ", otherUserId);
-				query.order("-createDate");
+				query.order("-updateDate");
 
 			} else {
-				query.order("-createDate");
+				query.order("-updateDate");
 			}
 
 			// option

@@ -3,7 +3,7 @@ package com.samplepin;
 import com.google.code.morphia.annotations.Entity;
 
 @Entity(value = "cards", noClassnameStored = true)
-public class Card extends Comment {
+public class Card extends Comment implements Updateable {
 	/**
 	 * 
 	 */
@@ -25,6 +25,8 @@ public class Card extends Comment {
 
 	String site;
 
+	Long updateDate;
+
 	public Card() {
 		this("self", "", "", "", "", "", 0, 0, System.currentTimeMillis());
 	}
@@ -42,6 +44,7 @@ public class Card extends Comment {
 		this.likes = likes;
 		this.view = view;
 		this.createDate = createDate;
+		this.updateDate = createDate;
 		this.isDeleted = false;
 	}
 
@@ -63,6 +66,11 @@ public class Card extends Comment {
 
 	public String getSite() {
 		return this.site;
+	}
+
+	@Override
+	public Long getUpdateDate() {
+		return this.updateDate;
 	}
 
 	public String getUrl() {
@@ -95,6 +103,11 @@ public class Card extends Comment {
 
 	public void setSite(String site) {
 		this.site = site;
+	}
+
+	@Override
+	public void setUpdateDate(Long updateDate) {
+		this.updateDate = updateDate;
 	}
 
 	public void setUrl(String url) {
