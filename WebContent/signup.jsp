@@ -42,6 +42,7 @@
 							</div>
 						</fieldset>
 					</form>
+					<a href="oauth-twitter.jsp">Twitter認証</a>
 				</div>
 			</div>
 		</div>

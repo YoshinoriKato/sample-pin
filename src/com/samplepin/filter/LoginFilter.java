@@ -70,9 +70,9 @@ public class LoginFilter implements Filter {
 		String welcome = null;
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
-				if (LoginServlet.KEY_SECOND.equals(cookie.getName())) {
+				if (LoginServlet.KEY_FIRST.equals(cookie.getName())) {
 					welcome = cookie.getValue();
-				} else if (LoginServlet.KEY_FIRST.equals(cookie.getName())) {
+				} else if (LoginServlet.KEY_SECOND.equals(cookie.getName())) {
 					userId = cookie.getValue();
 				}
 				if (((welcome != null) && (welcome.length() > 11))

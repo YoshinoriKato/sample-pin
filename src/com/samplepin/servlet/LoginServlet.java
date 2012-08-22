@@ -88,7 +88,7 @@ public class LoginServlet extends HttpServlet {
 		}
 	}
 
-	final void login(HttpServletRequest req, String userId)
+	public final void login(HttpServletRequest req, String userId)
 			throws UnknownHostException, MongoException {
 		HttpSession sessionOld = req.getSession();
 		sessionOld.invalidate();

@@ -2,6 +2,7 @@ package com.samplepin;
 
 import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +18,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
@@ -68,6 +70,15 @@ public class Helper {
 
 	public static Long countCommentByUserId(String userId) {
 		return countByID(Comment.class, "userId = ", userId);
+	}
+
+	public static String decryptToString(String accessToken) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static String encrypt(String value) throws NoSuchAlgorithmException {
+		return IdGenerator.randowMD5(value);
 	}
 
 	public static String escapeHTML(String input) {
@@ -229,6 +240,10 @@ public class Helper {
 		return null;
 	}
 
+	public static User getUserById(HttpSession session) {
+		return getUserById((String) session.getAttribute("userId"));
+	}
+
 	public static User getUserById(String userId) {
 		try (ACMongo mongo = new ACMongo()) {
 
@@ -360,6 +375,10 @@ public class Helper {
 			buffer.append(substitute(rest, pattern, replacement));
 		}
 		return buffer.toString();
+	}
+
+	public static final boolean valid(Object val) {
+		return (val != null);
 	}
 
 	public static final boolean valid(String val) {
