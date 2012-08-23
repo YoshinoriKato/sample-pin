@@ -38,7 +38,7 @@ public class CommentServlet extends HttpServlet {
 		String cardId = req.getParameter("cardId");
 		String comment = req.getParameter("comment");
 
-		try {
+		try (ACMongo mongo = new ACMongo()) {
 			HttpSession session = req.getSession();
 			String userId = (String) session.getAttribute("userId");
 
@@ -50,6 +50,8 @@ public class CommentServlet extends HttpServlet {
 
 				new TwitterService().tweet(userId, comment + Helper.LS
 						+ Helper.LS + new ShortCutServlet().toShortCut(cardId));
+
+				ConfirmMakeCardServlet.register(mongo, req, cardId, comment);
 
 				resp.sendRedirect("card-comment.jsp?cardId=" + cardId
 						+ "&type=comment");
