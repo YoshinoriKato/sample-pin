@@ -1,7 +1,9 @@
 package com.samplepin.servlet.util;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +28,8 @@ public class Utility7 extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1609644801230608871L;
 
+	static Set<Long> hashcodes = new HashSet<>();
+
 	public static void register(ACMongo mongo, Tagger tagger, String cardId,
 			String text) throws Exception {
 		// 辞書ディレクトリを引数で指定
@@ -35,12 +39,21 @@ public class Utility7 extends HttpServlet {
 			String keyword = morph.surface.toLowerCase();
 			String part = morph.feature
 					.substring(0, morph.feature.indexOf(","));
+
+			long sum = (cardId.hashCode() * 1000) + (keyword.hashCode() * 10)
+					+ part.hashCode();
+
 			// register
-			Query<KeywordAndCard> query = mongo
-					.createQuery(KeywordAndCard.class).filter("cardId", cardId)
-					.filter("keyword = ", keyword.toLowerCase())
-					.filter("part = ", part);
-			if (query.countAll() == 0) {
+			if (hashcodes.contains(sum)) {
+				Query<KeywordAndCard> query = mongo
+						.createQuery(KeywordAndCard.class)
+						.filter("cardId", cardId).filter("keyword = ", keyword)
+						.filter("part = ", part);
+				if (query.countAll() == 0) {
+					mongo.save(new KeywordAndCard(keyword, cardId, part));
+				}
+			} else {
+				hashcodes.add(sum);
 				mongo.save(new KeywordAndCard(keyword, cardId, part));
 			}
 		}
