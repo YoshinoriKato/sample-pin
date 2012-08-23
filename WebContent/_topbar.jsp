@@ -44,7 +44,7 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="brand"><img src="img/icon.png" style="height: 24px"></a>
+			
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li <%=classIndex%>><a href="index.jsp">Cards</a></li>
@@ -52,7 +52,7 @@
 						String userId = (String) session.getAttribute("userId");
 						if (userId != null) {
 					%>
-					<li <%=classMakeCard%>><a href="make-card.jsp">Make Card</a></li>
+					<li <%=classMakeCard%>><a href="make-card.jsp">Make</a></li>
 
 					<!-- 
 					<li <%=classProfile%>><a href="profile.jsp">My Profile</a></li>
@@ -75,6 +75,7 @@
 					<%
 						}
 					%>
+					<li class="divider-vertical"></li>
 					<li>
 						<form class="navbar-search pull-left" method="get" action="index.jsp">
 							<input type="hidden" name="sorted" value="search"> 
