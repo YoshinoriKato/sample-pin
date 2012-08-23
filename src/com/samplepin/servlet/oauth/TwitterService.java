@@ -160,9 +160,12 @@ public class TwitterService {
 	// つぶやく
 	public void tweet(String userId, String message) throws TwitterException,
 			UnknownHostException, MongoException, UnsupportedEncodingException {
-		Twitter twitter = getTwitter(loadAccessToken(userId));
-		if (twitter != null) {
-			twitter.updateStatus(message);
+		AccessToken accessToken = loadAccessToken(userId);
+		if (accessToken != null) {
+			Twitter twitter = getTwitter(accessToken);
+			if (twitter != null) {
+				twitter.updateStatus(message);
+			}
 		}
 	}
 
