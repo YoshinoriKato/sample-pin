@@ -31,10 +31,11 @@ public class SearchAjax extends CardAjax {
 
 		try (ACMongo mongo = new ACMongo()) {
 			List<String> tokens = tokens(words, dic);
-			if ((tokens != null) && !tokens.isEmpty()) {
+
+			if (valid(tokens)) {
 				Set<String> searched = searched(mongo, tokens);
 
-				if ((searched != null) && !searched.isEmpty()) {
+				if (valid(searched)) {
 					cards = cards(mongo, otherUserId, sorted, offset, limit,
 							callback, old, young, type, userId, cardId,
 							searched);
