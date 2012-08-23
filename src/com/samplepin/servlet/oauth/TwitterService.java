@@ -1,7 +1,11 @@
 package com.samplepin.servlet.oauth;
 
+import static com.samplepin.common.CryptMaker.decode;
+import static com.samplepin.common.CryptMaker.encode;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
 
 import twitter4j.Twitter;
@@ -31,7 +35,8 @@ public class TwitterService {
 	public static final String callbackUrl = "http://219.94.246.60/sample-pin/oauth-twitter.jsp";
 
 	private static AccessToken loadAccessToken(String userId)
-			throws UnknownHostException, MongoException {
+			throws UnknownHostException, MongoException,
+			UnsupportedEncodingException {
 		try (ACMongo mongo = new ACMongo()) {
 			TwitterAccount twitterAccount = mongo
 					.createQuery(TwitterAccount.class).filter("userId", userId)
@@ -39,8 +44,9 @@ public class TwitterService {
 			if (twitterAccount == null) {
 				return null;
 			}
-			return new AccessToken(twitterAccount.getAccessToken(),
-					twitterAccount.getTokenSecret());
+			String token = decode(twitterAccount.getAccessToken());
+			String tokenSecret = decode(twitterAccount.getTokenSecret());
+			return new AccessToken(token, tokenSecret);
 		}
 	}
 
@@ -82,7 +88,8 @@ public class TwitterService {
 	}
 
 	static void storeAccessToken(String userId, long l, AccessToken accessToken)
-			throws UnknownHostException, MongoException {
+			throws UnknownHostException, MongoException,
+			UnsupportedEncodingException {
 
 		try (ACMongo mongo = new ACMongo()) {
 			Query<TwitterAccount> query = mongo.createQuery(
@@ -91,16 +98,18 @@ public class TwitterService {
 
 			TwitterAccount twitterAccount = query.get();
 
+			String token = encode(accessToken.getToken());
+			String tokenSecret = encode(accessToken.getTokenSecret());
+
 			if (twitterAccount != null) {
-				twitterAccount.setAccessToken(accessToken.getToken());
-				twitterAccount.setTokenSecret(accessToken.getTokenSecret());
-				twitterAccount.setUser_id(accessToken.getUserId());
+				twitterAccount.setAccessToken(token);
+				twitterAccount.setTokenSecret(tokenSecret);
 				twitterAccount.setScreen_name(accessToken.getScreenName());
 
 			} else {
-				twitterAccount = new TwitterAccount(userId, 0L,
-						accessToken.getToken(), accessToken.getTokenSecret(),
-						accessToken.getUserId(), accessToken.getScreenName());
+				twitterAccount = new TwitterAccount(userId, 0L, token,
+						tokenSecret, accessToken.getUserId(),
+						accessToken.getScreenName());
 				User user = new User(userId, "Sign up by Twitter.",
 						accessToken.getScreenName(), -1);
 				mongo.save(user);
@@ -150,7 +159,7 @@ public class TwitterService {
 
 	// つぶやく
 	public void tweet(String userId, String message) throws TwitterException,
-			UnknownHostException, MongoException {
+			UnknownHostException, MongoException, UnsupportedEncodingException {
 		Twitter twitter = getTwitter(loadAccessToken(userId));
 		if (twitter != null) {
 			twitter.updateStatus(message);

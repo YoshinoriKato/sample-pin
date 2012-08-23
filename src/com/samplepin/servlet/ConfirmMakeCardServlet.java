@@ -46,6 +46,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 											.getCardId()));
 				} catch (Exception e) {
 					e.printStackTrace();
+					session.setAttribute("error", e);
 					throw new ServletException(e);
 				}
 			}
