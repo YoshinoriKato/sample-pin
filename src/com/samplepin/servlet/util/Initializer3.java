@@ -17,12 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.code.morphia.Datastore;
 import com.mongodb.MongoException;
-import com.samplepin.ACMongo;
 import com.samplepin.Card;
 import com.samplepin.Comment;
-import com.samplepin.Helper;
 import com.samplepin.User;
 import com.samplepin.View;
+import com.samplepin.common.ACMongo;
+import com.samplepin.common.Helper;
 
 @WebServlet(urlPatterns = { "/init3.do" })
 public class Initializer3 extends HttpServlet {

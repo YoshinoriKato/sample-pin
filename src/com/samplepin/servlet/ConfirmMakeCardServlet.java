@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.code.morphia.Datastore;
-import com.samplepin.ACMongo;
 import com.samplepin.Card;
-import com.samplepin.Helper;
+import com.samplepin.common.ACMongo;
+import com.samplepin.common.Helper;
 import com.samplepin.servlet.oauth.TwitterService;
 
 @WebServlet(urlPatterns = "/confirm-make-card.do")

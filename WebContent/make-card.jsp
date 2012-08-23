@@ -1,4 +1,4 @@
-<%@page import="com.samplepin.Helper"%>
+<%@page import="com.samplepin.common.Helper"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

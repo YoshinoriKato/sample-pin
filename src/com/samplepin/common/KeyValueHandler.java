@@ -1,17 +1,18 @@
-package com.samplepin;
+package com.samplepin.common;
 
 import java.net.UnknownHostException;
 
 import com.google.code.morphia.query.Query;
 import com.mongodb.MongoException;
+import com.samplepin.KeyAndValue;
 
 public class KeyValueHandler {
 
 	public static String getKeyByValue(String value)
 			throws UnknownHostException, MongoException {
 		try (ACMongo mongo = new ACMongo()) {
-			Query<KeyValue> query = mongo.createQuery(KeyValue.class).filter(
-					"value = ", value);
+			Query<KeyAndValue> query = mongo.createQuery(KeyAndValue.class)
+					.filter("value = ", value);
 			return query.get().getKey();
 		}
 	}
@@ -27,8 +28,8 @@ public class KeyValueHandler {
 	public static String getValueByKey(String key) throws UnknownHostException,
 			MongoException {
 		try (ACMongo mongo = new ACMongo()) {
-			Query<KeyValue> query = mongo.createQuery(KeyValue.class).filter(
-					"key = ", key);
+			Query<KeyAndValue> query = mongo.createQuery(KeyAndValue.class)
+					.filter("key = ", key);
 			return query.get().getKey();
 		}
 	}
@@ -36,10 +37,10 @@ public class KeyValueHandler {
 	public static boolean putKeyAndValue(String key, String value)
 			throws UnknownHostException, MongoException {
 		try (ACMongo mongo = new ACMongo()) {
-			Query<KeyValue> query = mongo.createQuery(KeyValue.class).filter(
-					"key = ", key);
+			Query<KeyAndValue> query = mongo.createQuery(KeyAndValue.class)
+					.filter("key = ", key);
 			if (query.countAll() == 0) {
-				mongo.save(new KeyValue(key, value));
+				mongo.save(new KeyAndValue(key, value));
 				return true;
 			}
 		}

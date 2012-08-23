@@ -10,9 +10,9 @@ import java.util.Set;
 
 import com.google.code.morphia.query.Query;
 import com.google.gson.Gson;
-import com.samplepin.ACMongo;
 import com.samplepin.Recommend;
 import com.samplepin.View;
+import com.samplepin.common.ACMongo;
 
 class RecommendEngine {
 	Comparator<View> SCORE = new Comparator<View>() {

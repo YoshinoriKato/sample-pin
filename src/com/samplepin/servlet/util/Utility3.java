@@ -1,6 +1,6 @@
 package com.samplepin.servlet.util;
 
-import static com.samplepin.Helper.valid;
+import static com.samplepin.common.Helper.valid;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.code.morphia.query.Query;
 import com.mongodb.MongoException;
-import com.samplepin.ACMongo;
 import com.samplepin.Card;
 import com.samplepin.KeyAndImage;
+import com.samplepin.common.ACMongo;
 
 @WebServlet(urlPatterns = { "/util3.do" })
 public class Utility3 extends HttpServlet {

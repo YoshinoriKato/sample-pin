@@ -1,4 +1,4 @@
-package com.samplepin;
+package com.samplepin.common;
 
 import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
@@ -23,6 +23,12 @@ import javax.servlet.http.HttpSession;
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 import com.mongodb.MongoException;
+import com.samplepin.Card;
+import com.samplepin.Comment;
+import com.samplepin.Country;
+import com.samplepin.OneTime;
+import com.samplepin.User;
+import com.samplepin.View;
 
 public class Helper {
 

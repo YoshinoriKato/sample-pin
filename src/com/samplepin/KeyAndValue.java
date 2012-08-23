@@ -5,8 +5,8 @@ import org.bson.types.ObjectId;
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
 
-@Entity(value = "key_value", noClassnameStored = true)
-public class KeyValue {
+@Entity(value = "keys_and_values", noClassnameStored = true)
+public class KeyAndValue {
 
 	@Id
 	ObjectId id;
@@ -15,11 +15,11 @@ public class KeyValue {
 
 	String value;
 
-	public KeyValue() {
+	public KeyAndValue() {
 		super();
 	}
 
-	public KeyValue(String key, String value) {
+	public KeyAndValue(String key, String value) {
 		super();
 		this.key = key;
 		this.value = value;

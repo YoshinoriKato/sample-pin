@@ -18,8 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.code.morphia.query.Query;
-import com.samplepin.ACMongo;
+import com.samplepin.KeyAndValue;
 import com.samplepin.User;
+import com.samplepin.common.ACMongo;
 import com.samplepin.servlet.LoginServlet;
 
 @WebFilter(urlPatterns = { "/index.jsp", "/card-comment.jsp", "/make-card.jsp",
@@ -66,23 +67,32 @@ public class LoginFilter implements Filter {
 	final void readCookie(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		Cookie[] cookies = req.getCookies();
-		String userId = null;
+		String key = null;
 		String welcome = null;
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
 				if (LoginServlet.KEY_FIRST.equals(cookie.getName())) {
 					welcome = cookie.getValue();
 				} else if (LoginServlet.KEY_SECOND.equals(cookie.getName())) {
-					userId = cookie.getValue();
+					key = cookie.getValue();
 				}
 				if (((welcome != null) && (welcome.length() > 11))
-						&& (userId != null)) {
+						&& (key != null)) {
 					try (ACMongo mongo = new ACMongo()) {
-						Query<User> query = mongo.createQuery(User.class)
-								.filter("userId = ", userId);
-						if (query.countAll() == 1) {
-							HttpSession session = req.getSession(true);
-							session.setAttribute("userId", userId);
+
+						Query<KeyAndValue> query0 = mongo.createQuery(
+								KeyAndValue.class).filter("key", key);
+						KeyAndValue keyAndValue = query0.get();
+
+						if (keyAndValue != null) {
+							Query<User> query1 = mongo
+									.createQuery(User.class)
+									.filter("userId = ", keyAndValue.getValue());
+							User user = query1.get();
+							if (user != null) {
+								HttpSession session = req.getSession(true);
+								session.setAttribute("userId", user.getUserId());
+							}
 						}
 					}
 					return;

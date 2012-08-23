@@ -1,6 +1,6 @@
 package com.samplepin.servlet;
 
-import static com.samplepin.Helper.valid;
+import static com.samplepin.common.Helper.valid;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -26,11 +26,11 @@ import javax.servlet.http.Part;
 
 import org.apache.log4j.Logger;
 
-import com.samplepin.ACMongo;
 import com.samplepin.Card;
-import com.samplepin.Helper;
 import com.samplepin.KeyAndImage;
 import com.samplepin.User;
+import com.samplepin.common.ACMongo;
+import com.samplepin.common.Helper;
 
 @WebServlet(name = "IconUploadServlet", urlPatterns = "/make-card.do")
 @MultipartConfig(location = "/Developer/uploaded")

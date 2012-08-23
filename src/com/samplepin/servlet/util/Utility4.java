@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.code.morphia.query.Query;
-import com.samplepin.ACMongo;
 import com.samplepin.Card;
+import com.samplepin.common.ACMongo;
 
 @WebServlet(urlPatterns = { "/util4.do" })
 public class Utility4 extends HttpServlet {

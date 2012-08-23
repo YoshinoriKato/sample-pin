@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 import com.mongodb.MongoException;
-import com.samplepin.ACMongo;
-import com.samplepin.Helper;
 import com.samplepin.OneTime;
 import com.samplepin.User;
+import com.samplepin.common.ACMongo;
+import com.samplepin.common.Helper;
 
 @WebServlet(urlPatterns = { "/signup.do" })
 public class SignupServlet extends HttpServlet {

@@ -1,4 +1,4 @@
-package com.samplepin;
+package com.samplepin.common;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

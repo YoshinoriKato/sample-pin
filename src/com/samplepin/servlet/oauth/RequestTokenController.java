@@ -16,9 +16,9 @@ import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
 import com.mongodb.MongoException;
-import com.samplepin.ACMongo;
-import com.samplepin.Helper;
 import com.samplepin.TwitterAccount;
+import com.samplepin.common.ACMongo;
+import com.samplepin.common.Helper;
 import com.samplepin.servlet.LoginServlet;
 
 @WebServlet(urlPatterns = { "/oauth-twitter.jsp" })

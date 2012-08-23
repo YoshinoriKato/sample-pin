@@ -1,5 +1,6 @@
 <%@page import="com.samplepin.servlet.CommentServlet"%>
 <%@page import="com.samplepin.*"%>
+<%@page import="com.samplepin.common.*"%>
 <%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
