@@ -159,7 +159,7 @@ function makeComment($comment) {
 	$jqA.append($jqIcon);
 }
 
-function callAjax($sorted, $limit, $offset, $userId, $cardId, $type) {
+function callAjax($sorted, $limit, $offset, $userId, $cardId, $type, $words) {
 	if (!$block) {
 		$block = true;
 		$.ajax({
@@ -175,7 +175,8 @@ function callAjax($sorted, $limit, $offset, $userId, $cardId, $type) {
 				limit : $limit,
 				userId : $userId,
 				cardId : $cardId,
-				type : $type
+				type : $type,
+				words : $words
 			},
 			success : callback,
 			error : function(XMLHttpRequest, textStatus, errorThrown) {

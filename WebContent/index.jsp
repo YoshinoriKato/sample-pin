@@ -10,6 +10,9 @@
 	title = ("recommend".equals(sorted)) ? "Recommend" : title;
 	title = ("footprints".equals(sorted)) ? "Footprints" : title;
 	title = ("mine".equals(sorted)) ? "My Cards" : title;
+
+	String words = request.getParameter("words");
+	words = words == null ? "" : words;
 %>
 
 
@@ -23,7 +26,7 @@
 	});
 
 	$(window).load(function() {
-		callAjax($('#sorted').text(), 40, '', $('#userId').text());
+		callAjax($('#sorted').text(), 40, '', $('#userId').text(), "", "card", $('#words').text());
 		$('#main').fadeIn(1000);
 	});
 </script>
@@ -33,7 +36,7 @@
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<jsp:include page="_button.jsp" flush="true" />
-	<div id="title"><%=title %></div>
+	<div id="title"><%=title%></div>
 	<div id="main">
 		<ul id="content">
 			<!--  ajax -->
@@ -43,6 +46,7 @@
 	<div class="center caption star large" id="read-cards"></div>
 	<div style="display: none" id="sorted"><%=sorted%></div>
 	<div style="display: none" id="userId"><%=userId%></div>
+	<div style="display: none" id="words"><%=words%></div>
 	<jsp:include page="_footer.jsp"></jsp:include>
 </body>
 

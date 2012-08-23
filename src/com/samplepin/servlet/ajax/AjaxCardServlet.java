@@ -39,14 +39,21 @@ public class AjaxCardServlet extends HttpServlet {
 		String young = req.getParameter("young");
 		String userId = (String) req.getSession().getAttribute("userId");
 		String cardId = req.getParameter("cardId");
+		String words = req.getParameter("words");
 
-		if ("comment".equals(type)) {
+		if ("search".equals(sorted)) {
+			String dic = req.getServletContext().getRealPath("ipadic");
+			new SearchAjax().ajax(resp.getOutputStream(), otherUserId, sorted,
+					offset, limit, callback, old, young, type, userId, cardId,
+					words, dic);
+
+		} else if ("comment".equals(type)) {
 			new CommentAjax().ajax(resp.getOutputStream(), otherUserId, sorted,
 					offset, limit, callback, old, young, type, userId, cardId);
+
 		} else {
 			new CardAjax().ajax(resp.getOutputStream(), otherUserId, sorted,
 					offset, limit, callback, old, young, type, userId, cardId);
 		}
 	}
-
 }
