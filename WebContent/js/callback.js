@@ -59,6 +59,7 @@ function makeCard($card) {
 	$width = 200;
 	var $jqLi = $('<li/>').addClass('card');
 	var $jqDiv = $('<div/>').attr('id', $card.cardId);
+	var $jqA0 = $('<a/>').addClass('no-hover');
 	var $jqA1 = $('<a/>').addClass('no-hover');
 	var $jqA2 = $('<a/>').addClass('no-hover');
 	var $jqA3 = $('<a/>').addClass('no-hover');
@@ -70,11 +71,11 @@ function makeCard($card) {
 	var $divRibon = $('<div/>').addClass('ribon');
 	var $divImage = $('<div/>');
 	var $divCaption = $('<div/>').addClass('caption deco');
-	var $divName = $('<div/>').addClass('star break-word');
+	var $divName = $('<div/>').addClass('bold deco break-word');
 	var $divBr = $('<br/>').css('clear', 'both');
-	var $divKey = $('<div/>').addClass('star break-word').text(
+	var $divKey = $('<div/>').addClass('card-info break-word').text(
 			'Keywords:' + $card.keywords);
-	var $divUrl = $('<div/>').addClass('star break-word').append($jqA3);
+	var $divUrl = $('<div/>').addClass('card-info break-word').append($jqA3);
 	var $divFooter = $('<div/>').addClass('star right');
 	var $divRibonText = $('<div/>').text($card.view + ' view');
 	var $jqImg = $('<img/>').addClass('image-shot deco').attr('src',
@@ -89,27 +90,28 @@ function makeCard($card) {
 	if ($url != null && $url != '') {
 		$divRibonText.addClass('ribon-text color-blue');
 		$jqDiv.addClass('cell2');
-		$jqA1.attr('href',
-				'jump.jsp?cardId=' + $card.cardId + '&redirectUrl=' + $url)
-				.attr('target', '_blank');
+		$link = 'jump.jsp?cardId=' + $card.cardId + '&redirectUrl=' + $url;
+		$jqA0.attr('href', $link).attr('target', '_blank');
+		$jqA1.attr('href', $link).attr('target', '_blank');
 		$divFooter.text($url);
 	} else {
 		$divName.text($card.userName);
 		$divRibonText.addClass('ribon-text color-red');
 		$jqDiv.addClass('cell');
-		$jqA1.attr('href', 'card-comment.jsp?cardId=' + $card.cardId
-				+ '&type=comment');
+		$link = 'card-comment.jsp?cardId=' + $card.cardId + '&type=comment';
+		$jqA0.attr('href', $link);
+		$jqA1.attr('href', $link);
 		$jqA2.attr('href', 'profile.jsp?userId=' + $card.userId);
 		$divFooter.text($card.likes + ' comment').css('clear', 'both');
 	}
 
 	// construct
 	$('#content').append($jqLi);
-	$jqLi.append($jqA1.append($jqDiv));
+	$jqLi.append($jqDiv);
 	if ($card.view > 0) {
-		$jqDiv.append($divRibon.append($divRibonText));
+		$jqDiv.append($jqA0.append($divRibon.append($divRibonText)));
 	}
-	$jqDiv.append($divImage).append($divName).append($divCaption)
+	$jqDiv.append($jqA1.append($divImage)).append($divName).append($divCaption)
 			.append($divBr);
 	if ($card.keywords) {
 		$jqDiv.append($divKey);
