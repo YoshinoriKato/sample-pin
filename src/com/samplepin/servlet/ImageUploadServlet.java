@@ -53,7 +53,7 @@ public class ImageUploadServlet extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		resp.sendRedirect("image-search.jsp");
+		resp.sendRedirect("make-card.jsp");
 	}
 
 }

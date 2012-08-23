@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.code.morphia.query.Query;
-import com.samplepin.ACMongo;
 import com.samplepin.Card;
 import com.samplepin.Comment;
+import com.samplepin.common.ACMongo;
 
 @WebServlet(urlPatterns = "/confirm-discard.do")
 public class ConfirmDiscardServlet extends HttpServlet {

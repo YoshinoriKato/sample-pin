@@ -75,6 +75,12 @@
 					<%
 						}
 					%>
+					<li>
+						<form class="navbar-search pull-left" method="get" action="index.jsp">
+							<input type="hidden" name="sorted" value="search"> 
+							<input type="text" class="search-query" name="words" placeholder="search">
+						</form>
+					</li>
 				</ul>
 			</div>
 		</div>

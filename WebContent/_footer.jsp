@@ -48,7 +48,7 @@
 		if (($(window).height() * 0.4) < ($(document).height() - $(this).scrollTop())) {
 								callAjax($('#sorted').text(), 20, $counter, $(
 										'#userId').text(), $('#cardId').text(),
-										$('#type').text());
+										$('#type').text(), $('#words').text());
 							}
 							
 <%

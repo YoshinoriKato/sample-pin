@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.code.morphia.query.Query;
 import com.mongodb.MongoException;
-import com.samplepin.ACMongo;
 import com.samplepin.Card;
-import com.samplepin.Helper;
+import com.samplepin.common.ACMongo;
+import com.samplepin.common.Helper;
 
 @WebServlet(urlPatterns = { "/util2.do" })
 public class Utility2 extends HttpServlet {

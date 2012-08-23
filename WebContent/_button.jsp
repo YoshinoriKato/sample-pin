@@ -1,6 +1,7 @@
 <%@page import="com.samplepin.servlet.*"%>
 <%@page import="java.util.*"%>
 <%@page import="com.samplepin.*"%>
+<%@page import="com.samplepin.common.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -28,7 +29,7 @@
 	<a href="index.jsp?sorted=view" class="<%=addClass%>">Views</a>
 	<a href="index.jsp?sorted=comment" class="<%=addClass%>">Comments</a>
 	 -->
-	
+
 	<%
 		if (session.getAttribute("userId") != null) {
 	%>
@@ -46,4 +47,5 @@
 	<%
 		}
 	%>
+
 </div>

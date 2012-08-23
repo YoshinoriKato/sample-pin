@@ -11,11 +11,11 @@ import java.util.Map;
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 import com.mongodb.MongoException;
-import com.samplepin.ACMongo;
 import com.samplepin.Card;
 import com.samplepin.Comment;
-import com.samplepin.Helper;
 import com.samplepin.User;
+import com.samplepin.common.ACMongo;
+import com.samplepin.common.Helper;
 
 public class CommentAjax extends CardAjax {
 

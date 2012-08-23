@@ -7,8 +7,8 @@ import org.bson.types.ObjectId;
 import com.google.code.morphia.annotations.Id;
 import com.google.code.morphia.query.Query;
 import com.mongodb.MongoException;
-import com.samplepin.ACMongo;
-import com.samplepin.IdGenerator;
+import com.samplepin.common.ACMongo;
+import com.samplepin.common.IdGenerator;
 
 public class MongoTest {
 

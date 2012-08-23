@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mongodb.MongoException;
-import com.samplepin.ACMongo;
 import com.samplepin.Card;
 import com.samplepin.Comment;
+import com.samplepin.common.ACMongo;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 @WebServlet(urlPatterns = { "/init1.do" })

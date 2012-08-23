@@ -14,10 +14,10 @@ import javax.servlet.http.HttpSession;
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 import com.mongodb.MongoException;
-import com.samplepin.ACMongo;
 import com.samplepin.Card;
 import com.samplepin.Comment;
-import com.samplepin.Helper;
+import com.samplepin.common.ACMongo;
+import com.samplepin.common.Helper;
 import com.samplepin.servlet.oauth.TwitterService;
 
 @WebServlet(urlPatterns = { "/comment.do" })
@@ -38,7 +38,7 @@ public class CommentServlet extends HttpServlet {
 		String cardId = req.getParameter("cardId");
 		String comment = req.getParameter("comment");
 
-		try {
+		try (ACMongo mongo = new ACMongo()) {
 			HttpSession session = req.getSession();
 			String userId = (String) session.getAttribute("userId");
 
@@ -50,6 +50,8 @@ public class CommentServlet extends HttpServlet {
 
 				new TwitterService().tweet(userId, comment + Helper.LS
 						+ Helper.LS + new ShortCutServlet().toShortCut(cardId));
+
+				ConfirmMakeCardServlet.register(mongo, req, cardId, comment);
 
 				resp.sendRedirect("card-comment.jsp?cardId=" + cardId
 						+ "&type=comment");

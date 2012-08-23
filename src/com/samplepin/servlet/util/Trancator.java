@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.code.morphia.Datastore;
-import com.samplepin.ACMongo;
-import com.samplepin.Helper;
 import com.samplepin.User;
+import com.samplepin.common.ACMongo;
+import com.samplepin.common.Helper;
 
 @WebServlet(urlPatterns = { "/clear.do" })
 public class Trancator extends HttpServlet {

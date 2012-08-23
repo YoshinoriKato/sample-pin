@@ -15,9 +15,10 @@ import javax.servlet.http.HttpSession;
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 import com.mongodb.MongoException;
-import com.samplepin.ACMongo;
-import com.samplepin.Helper;
+import com.samplepin.KeyAndValue;
 import com.samplepin.User;
+import com.samplepin.common.ACMongo;
+import com.samplepin.common.Helper;
 
 @WebServlet(urlPatterns = { "/login.do" })
 public class LoginServlet extends HttpServlet {
@@ -40,9 +41,17 @@ public class LoginServlet extends HttpServlet {
 		sessionNew.setMaxInactiveInterval(-1);// 無制限
 	}
 
-	public static void makeCookie(HttpServletResponse resp, String userId) {
-		Cookie cookie0 = new Cookie(KEY_FIRST, Helper.generatedIdString("ID_"));
-		Cookie cookie1 = new Cookie(KEY_SECOND, userId);
+	public static void makeCookie(HttpServletResponse resp, String userId)
+			throws UnknownHostException, MongoException {
+
+		String key = Helper.generatedIdString("CK_");
+		try (ACMongo mongo = new ACMongo()) {
+			KeyAndValue keyAndValue = new KeyAndValue(key, userId);
+			mongo.save(keyAndValue);
+		}
+
+		Cookie cookie0 = new Cookie(KEY_FIRST, Helper.generatedIdString("CK_"));
+		Cookie cookie1 = new Cookie(KEY_SECOND, key);
 		cookie0.setMaxAge(Integer.MAX_VALUE);
 		cookie1.setMaxAge(Integer.MAX_VALUE);
 		resp.addCookie(cookie0);

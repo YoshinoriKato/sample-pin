@@ -4,8 +4,8 @@ import java.net.UnknownHostException;
 
 import com.google.code.morphia.query.Query;
 import com.mongodb.MongoException;
-import com.samplepin.ACMongo;
 import com.samplepin.Comment;
+import com.samplepin.common.ACMongo;
 
 public class Snipet {
 

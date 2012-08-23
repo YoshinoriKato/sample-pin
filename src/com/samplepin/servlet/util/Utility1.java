@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.code.morphia.query.Query;
-import com.samplepin.ACMongo;
 import com.samplepin.Card;
 import com.samplepin.Comment;
+import com.samplepin.common.ACMongo;
 
 @WebServlet(urlPatterns = { "/util1.do" })
 public class Utility1 extends HttpServlet {

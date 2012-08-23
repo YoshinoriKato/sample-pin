@@ -22,8 +22,8 @@ import org.apache.log4j.Logger;
 
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
-import com.samplepin.ACMongo;
 import com.samplepin.User;
+import com.samplepin.common.ACMongo;
 
 @WebServlet(urlPatterns = "/my-card.do")
 @MultipartConfig(location = "/Developer/uploaded")
