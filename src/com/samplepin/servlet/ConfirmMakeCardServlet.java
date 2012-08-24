@@ -20,6 +20,7 @@ import com.samplepin.Card;
 import com.samplepin.KeywordAndCard;
 import com.samplepin.common.ACMongo;
 import com.samplepin.common.Helper;
+import com.samplepin.common.NaturalLanguageParser;
 import com.samplepin.servlet.oauth.TwitterService;
 
 @WebServlet(urlPatterns = "/confirm-make-card.do")
@@ -73,8 +74,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 									+ new ShortCutServlet().toShortCut(card
 											.getCardId()));
 
-					register(mongo, req, card.getCardId(), card.getCaption()
-							+ " " + card.getKeywords());
+					NaturalLanguageParser.makeIndex(req, card.getCardId());
 
 				} catch (Exception e) {
 					e.printStackTrace();

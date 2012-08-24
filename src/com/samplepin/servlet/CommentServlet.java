@@ -18,6 +18,7 @@ import com.samplepin.Card;
 import com.samplepin.Comment;
 import com.samplepin.common.ACMongo;
 import com.samplepin.common.Helper;
+import com.samplepin.common.NaturalLanguageParser;
 import com.samplepin.servlet.oauth.TwitterService;
 
 @WebServlet(urlPatterns = { "/comment.do" })
@@ -51,7 +52,7 @@ public class CommentServlet extends HttpServlet {
 				new TwitterService().tweet(userId, comment + Helper.LS
 						+ Helper.LS + new ShortCutServlet().toShortCut(cardId));
 
-				ConfirmMakeCardServlet.register(mongo, req, cardId, comment);
+				NaturalLanguageParser.makeIndex(req, cardId);
 
 				resp.sendRedirect("card-comment.jsp?cardId=" + cardId
 						+ "&type=comment");

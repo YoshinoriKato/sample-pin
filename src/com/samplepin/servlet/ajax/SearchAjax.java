@@ -16,6 +16,7 @@ import com.google.code.morphia.query.Query;
 import com.samplepin.Card;
 import com.samplepin.KeywordAndCard;
 import com.samplepin.common.ACMongo;
+import com.samplepin.common.NaturalLanguageParser;
 
 public class SearchAjax extends CardAjax {
 
@@ -30,20 +31,11 @@ public class SearchAjax extends CardAjax {
 		data.put("type", type);
 
 		try (ACMongo mongo = new ACMongo()) {
-			List<String> tokens = tokens(words, dic);
-
-			if (valid(tokens)) {
-				Set<String> searched = searched(mongo, tokens);
-
-				if (valid(searched)) {
-					cards = cards(mongo, otherUserId, sorted, offset, limit,
-							callback, old, young, type, userId, cardId,
-							searched);
-				}
+			Set<String> searched = NaturalLanguageParser.cardIds(dic, words);
+			if (valid(searched)) {
+				cards = cards(mongo, otherUserId, sorted, offset, limit,
+						callback, old, young, type, userId, cardId, searched);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
 		}
 
 		data.put("array", cards.toArray(new Card[0]));

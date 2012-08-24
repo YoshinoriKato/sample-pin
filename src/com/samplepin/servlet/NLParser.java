@@ -22,6 +22,24 @@ import com.samplepin.common.ACMongo;
 
 public class NLParser {
 
+	class MakeIndexRunner extends Thread {
+
+		MakeIndexRunner(final ACMongo mongo, final HttpServletRequest req,
+				final Card card) {
+			super(new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+						makeIndex(mongo, req, card);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		}
+	}
+
 	final static String keyword(Token token) {
 		String keyword = token.getReading() != null ? token.getReading()
 				: token.getSurfaceForm();
@@ -62,24 +80,6 @@ public class NLParser {
 		}
 		// cardId unit
 		register(mongo, req, cardId, parsed);
-	}
-
-	class MakeIndexRunner extends Thread {
-
-		MakeIndexRunner(final ACMongo mongo, final HttpServletRequest req,
-				final Card card) {
-			super(new Runnable() {
-
-				@Override
-				public void run() {
-					try {
-						makeIndex(mongo, req, card);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			});
-		}
 	}
 
 	// kuromoji
