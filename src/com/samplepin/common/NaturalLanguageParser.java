@@ -21,12 +21,15 @@ public class NaturalLanguageParser {
 			throws IOException {
 		Set<String> cardIds = new HashSet<>();
 		try (ACMongo mongo = new ACMongo()) {
-			Query<KeywordsAndCard> query = mongo.createQuery(
-					KeywordsAndCard.class).filter("keywords all ",
-					keywords(dic, text));
-			for (KeywordsAndCard kac : query.asList()) {
-				if (!cardIds.contains(kac.getCardId())) {
-					cardIds.add(kac.getCardId());
+			Set<String> keywords = keywords(dic, text);
+			if ((keywords != null) && !keywords.isEmpty()) {
+				Query<KeywordsAndCard> query = mongo.createQuery(
+						KeywordsAndCard.class)
+						.filter("keywords all ", keywords);
+				for (KeywordsAndCard kac : query.asList()) {
+					if (!cardIds.contains(kac.getCardId())) {
+						cardIds.add(kac.getCardId());
+					}
 				}
 			}
 		}
