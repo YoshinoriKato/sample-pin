@@ -32,7 +32,7 @@ public class MyCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -7182329627922034835L;
+	private static final long serialVersionUID = -7182329627922034835L;
 
 	public static void copyStream(InputStream in, OutputStream os,
 			int bufferSize) throws IOException {

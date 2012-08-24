@@ -50,7 +50,7 @@
 							<form action="my-card.do" enctype="multipart/form-data"
 								method="post" class="form-horizontal">
 								<fieldset>
-									<h3>My Card</h3>
+									<h1 class="tab-header">My Card</h1>
 									<div class="control-group">
 										<label class="control-label">Preview</label>
 										<div class="controls">

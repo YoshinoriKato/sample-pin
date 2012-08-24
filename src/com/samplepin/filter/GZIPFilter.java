@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebFilter(urlPatterns = { "/gzip.do" })
 public class GZIPFilter implements Filter {
 
-	private ServletContext	context;
+	private ServletContext context;
 
 	@Override
 	public void destroy() {

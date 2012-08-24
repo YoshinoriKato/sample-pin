@@ -34,7 +34,7 @@
 						<form id="comment-form" action="confirm-make-card.do"
 							method="post" class="form-horizontal">
 							<fieldset>
-								<h3>Confirm Card</h3>
+								<h1 class="tab-header">Confirm Card</h1>
 								<div class="control-group">
 									<label class="control-label">Preview</label>
 									<div class="controls">

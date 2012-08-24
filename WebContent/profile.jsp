@@ -29,7 +29,7 @@
 			<div class="row">
 				<div class="cell">
 					<div class="profile">
-						<h3>Account</h3>
+						<h1 class="tab-header">Profile</h1>
 						<div class="item-group">
 							<div class="item-label">Image</div>
 							<div class="items">

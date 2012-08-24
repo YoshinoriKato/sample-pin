@@ -46,7 +46,7 @@
 					<div class="form-horizontal">
 						<form class="form-search" action="javascript:searchGoogle()">
 							<fieldset>
-								<h3>Make Tag</h3>
+								<h1 class="tab-header">Make Tag</h1>
 								<div class="control-group">
 									<label for="iconPath" class="control-label">Image</label>
 									<div class="controls">

@@ -30,7 +30,7 @@
 						<form action="account.do" enctype="multipart/form-data"
 							method="post" class="form-horizontal">
 							<fieldset>
-								<h3>Account</h3>
+								<h1 class="tab-header">Account</h1>
 								<div class="control-group">
 									<label for="imagePath" class="control-label">Image</label>
 									<div class="controls">

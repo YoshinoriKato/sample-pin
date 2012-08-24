@@ -25,7 +25,7 @@
 				<div class="cell">
 					<form action="signup.do" method="post" class="form-horizontal">
 						<fieldset>
-							<h3>Sign up</h3>
+							<h1 class="tab-header">Sign up</h1>
 							<input type="hidden" name="redirectUrl" value="<%=fromUrl%>" />
 							<div class="control-group <%=error%>">
 								<label for="mail" class="control-label">Mail Address</label>

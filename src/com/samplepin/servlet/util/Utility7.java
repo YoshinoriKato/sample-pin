@@ -26,7 +26,7 @@ public class Utility7 extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 1609644801230608871L;
+	private static final long serialVersionUID = 1609644801230608871L;
 
 	public static void parse(ACMongo mongo, Tagger tagger, String cardId,
 			String text, Set<KeywordAndCard> hashcodes) throws Exception {

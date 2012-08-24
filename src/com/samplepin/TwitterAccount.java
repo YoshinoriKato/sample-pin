@@ -9,19 +9,19 @@ import com.google.code.morphia.annotations.Id;
 public class TwitterAccount {
 
 	@Id
-	ObjectId	id;
+	ObjectId id;
 
-	String		accessToken;
+	String accessToken;
 
-	String		screen_name;
+	String screen_name;
 
-	String		tokenSecret;
+	String tokenSecret;
 
-	Long		twitterId;
+	Long twitterId;
 
-	Long		user_id;
+	Long user_id;
 
-	String		userId;
+	String userId;
 
 	public TwitterAccount() {
 		super();

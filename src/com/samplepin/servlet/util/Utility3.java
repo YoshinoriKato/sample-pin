@@ -23,7 +23,7 @@ public class Utility3 extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -6147766823673475622L;
+	private static final long serialVersionUID = -6147766823673475622L;
 
 	public static void main(String[] args) {
 		try (ACMongo mongo = new ACMongo()) {

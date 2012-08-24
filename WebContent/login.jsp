@@ -43,7 +43,7 @@
 				<div class="cell">
 					<form action="login.do" method="post" class="form-horizontal">
 						<fieldset>
-							<h3>Login</h3>
+							<h1 class="tab-header">Login</h1>
 							<input type="hidden" name="oneTimePassword"
 								value="<%=oneTimePassword%>" /> <input type="hidden"
 								name="redirectUrl" value="<%=fromUrl%>" />
