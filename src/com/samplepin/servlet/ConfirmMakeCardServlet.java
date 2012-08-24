@@ -20,7 +20,7 @@ import com.samplepin.Card;
 import com.samplepin.KeywordAndCard;
 import com.samplepin.common.ACMongo;
 import com.samplepin.common.Helper;
-import com.samplepin.common.NaturalLanguageParser;
+import com.samplepin.nl.NaturalLanguageParser;
 import com.samplepin.servlet.oauth.TwitterService;
 
 @WebServlet(urlPatterns = "/confirm-make-card.do")

@@ -11,7 +11,7 @@ import java.util.Set;
 import com.google.code.morphia.query.Query;
 import com.samplepin.Card;
 import com.samplepin.common.ACMongo;
-import com.samplepin.common.NaturalLanguageParser;
+import com.samplepin.nl.NaturalLanguageParser;
 
 public class SearchAjax extends CardAjax {
 
