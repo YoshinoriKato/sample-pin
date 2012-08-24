@@ -66,9 +66,13 @@ public class NaturalLanguageParser {
 			List<Card> cards = query0.asList();
 
 			for (Card card : cards) {
-				Set<String> keywords = new HashSet<>();
-				parse(tagger, card.getCaption() + " " + card.getKeywords(),
-						keywords);
+				Set<String> parsed = new HashSet<>();
+				String keywords = card.getKeywords();
+				keywords = keywords != null ? keywords : "";
+				String url = card.getSite();
+				url = url != null ? url : "";
+				parse(tagger, card.getCaption() + Helper.LS + keywords
+						+ Helper.LS + url, parsed);
 
 				// comments
 				Query<Comment> query1 = mongo.createQuery(Comment.class)
@@ -76,7 +80,7 @@ public class NaturalLanguageParser {
 						.order("-createDate");
 				List<Comment> comments = query1.asList();
 				for (Comment comment : comments) {
-					parse(tagger, comment.getCaption(), keywords);
+					parse(tagger, comment.getCaption(), parsed);
 				}
 
 				// unique
@@ -87,7 +91,7 @@ public class NaturalLanguageParser {
 				if (kac == null) {
 					kac = new KeywordsAndCard(null, card.getCardId());
 				}
-				kac.setKeywords(keywords.toArray(new String[0]));
+				kac.setKeywords(parsed.toArray(new String[0]));
 				mongo.save(kac);
 			}
 		}
@@ -97,12 +101,27 @@ public class NaturalLanguageParser {
 		List<Morpheme> list = tagger.parse(text);
 		for (Morpheme morph : list) {
 			String[] token = morph.feature.split(",");
-			if (token.length >= 9) {
-				String keyword = token[8].toLowerCase();
-				if (!keywords.contains(keyword)) {
-					keywords.add(keyword);
-				}
+			String keyword = null;
+			int index = 9;
+			if (token.length >= index) {
+				keyword = token[index - 1];
+			}
+			if (!valid(keyword) && (token.length >= --index)) {
+				keyword = token[index - 1];
+			}
+			if (!valid(keyword)) {
+				keyword = morph.surface;
+			}
+			keyword = keyword.toLowerCase();
+
+			if (valid(keyword) && !keywords.contains(keyword)) {
+				keywords.add(keyword);
 			}
 		}
+	}
+
+	static boolean valid(String value) {
+		return (value != null) && !value.isEmpty() && !"*".equals(value)
+				&& !".".equals(value);
 	}
 }
