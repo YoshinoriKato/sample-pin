@@ -18,6 +18,7 @@
 <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="css/common.css?<%=suffix%>" rel="stylesheet">
 <link href="css/custom.css?<%=suffix%>" rel="stylesheet">
+<link href="css/smartphone.css?<%=suffix%>" rel="stylesheet">
 
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/jquery.wookmark.js"></script>
@@ -39,6 +40,8 @@
 <script type="text/javascript" src="js/searchImages.js?<%=suffix%>"
 	charset="UTF-8"></script>
 <script type="text/javascript" src="js/util.js?<%=suffix%>"
+	charset="UTF-8"></script>
+<script type="text/javascript" src="js/smartphone.js?<%=suffix%>"
 	charset="UTF-8"></script>
 
 

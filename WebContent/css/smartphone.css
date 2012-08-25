@@ -1,0 +1,25 @@
+
+.iphone .portrait {
+	width: 800px;
+}
+
+.iphone .landscape {
+	width: 800px;
+}
+
+.ipad .portrait{
+
+}
+
+.ipad .landscape{
+
+}
+
+.android .portrait{
+	width: 800px;
+}
+
+.android .landscape{
+	width: 800px;
+}
+
