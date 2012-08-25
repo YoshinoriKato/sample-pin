@@ -93,6 +93,7 @@ public class LoginFilter implements Filter {
 							if (user != null) {
 								HttpSession session = req.getSession(true);
 								session.setAttribute("userId", user.getUserId());
+								req.setAttribute("login", "auto login");
 							}
 						}
 					}
