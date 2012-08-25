@@ -1,21 +1,17 @@
 package com.samplepin.servlet.ajax;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import net.reduls.igo.Tagger;
-
 import com.google.code.morphia.query.Query;
 import com.samplepin.Card;
-import com.samplepin.KeywordAndCard;
 import com.samplepin.common.ACMongo;
+import com.samplepin.nl.NaturalLanguageParser;
 
 public class SearchAjax extends CardAjax {
 
@@ -30,20 +26,11 @@ public class SearchAjax extends CardAjax {
 		data.put("type", type);
 
 		try (ACMongo mongo = new ACMongo()) {
-			List<String> tokens = tokens(words, dic);
-
-			if (valid(tokens)) {
-				Set<String> searched = searched(mongo, tokens);
-
-				if (valid(searched)) {
-					cards = cards(mongo, otherUserId, sorted, offset, limit,
-							callback, old, young, type, userId, cardId,
-							searched);
-				}
+			Set<String> searched = NaturalLanguageParser.cardIds(dic, words);
+			if (valid(searched)) {
+				cards = cards(mongo, otherUserId, sorted, offset, limit,
+						callback, old, young, type, userId, cardId, searched);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
 		}
 
 		data.put("array", cards.toArray(new Card[0]));
@@ -86,24 +73,6 @@ public class SearchAjax extends CardAjax {
 
 		cards = query.asList();
 		return cards;
-	}
-
-	final Set<String> searched(ACMongo mongo, List<String> tokens) {
-		Query<KeywordAndCard> query0 = mongo.createQuery(KeywordAndCard.class)
-				.filter("keyword in ", tokens);
-
-		Set<String> searched = new HashSet<>();
-		for (KeywordAndCard keywordAndCard : query0.asList()) {
-			searched.add(keywordAndCard.getCardId());
-		}
-		return searched;
-	}
-
-	final List<String> tokens(String words, String dic)
-			throws FileNotFoundException, IOException {
-		Tagger tagger = new Tagger(dic);
-		List<String> tokens = tagger.wakati(words);
-		return tokens;
 	}
 
 }

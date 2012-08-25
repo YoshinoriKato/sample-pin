@@ -34,7 +34,7 @@
 						<form action="confirm-discard.do" method="post"
 							class="form-horizontal">
 							<fieldset>
-								<h3>Confirm Discard</h3>
+								<h1 class="tab-header">Confirm Discard</h1>
 								<div class="control-group">
 									<label class="control-label">Preview</label>
 									<div class="controls">
@@ -80,7 +80,7 @@
 						} else {
 					%>
 					<div class="caption">
-						<h1>No exist.</h1>
+						<h1  class="tab-header">No exist.</h1>
 					</div>
 					<%
 						}

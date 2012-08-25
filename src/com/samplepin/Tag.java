@@ -9,15 +9,15 @@ import com.google.code.morphia.annotations.Id;
 public class Tag implements Createable, Deleteable {
 
 	@Id
-	ObjectId	id;
+	ObjectId id;
 
-	String		tag;
+	String tag;
 
-	String		key;
+	String key;
 
-	Long		createDate;
+	Long createDate;
 
-	Boolean		isDeleted;
+	Boolean isDeleted;
 
 	public Tag() {
 		super();

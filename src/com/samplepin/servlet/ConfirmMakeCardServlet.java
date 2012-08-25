@@ -20,6 +20,7 @@ import com.samplepin.Card;
 import com.samplepin.KeywordAndCard;
 import com.samplepin.common.ACMongo;
 import com.samplepin.common.Helper;
+import com.samplepin.nl.NaturalLanguageParser;
 import com.samplepin.servlet.oauth.TwitterService;
 
 @WebServlet(urlPatterns = "/confirm-make-card.do")
@@ -28,7 +29,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 6534228482284422460L;
+	private static final long serialVersionUID = 6534228482284422460L;
 
 	public static void register(ACMongo mongo, HttpServletRequest req,
 			String cardId, String text) throws Exception {
@@ -73,8 +74,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 									+ new ShortCutServlet().toShortCut(card
 											.getCardId()));
 
-					register(mongo, req, card.getCardId(), card.getCaption()
-							+ " " + card.getKeywords());
+					NaturalLanguageParser.makeIndex(req, card.getCardId());
 
 				} catch (Exception e) {
 					e.printStackTrace();

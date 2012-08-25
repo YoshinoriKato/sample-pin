@@ -18,6 +18,7 @@ import com.samplepin.Card;
 import com.samplepin.Comment;
 import com.samplepin.common.ACMongo;
 import com.samplepin.common.Helper;
+import com.samplepin.nl.NaturalLanguageParser;
 import com.samplepin.servlet.oauth.TwitterService;
 
 @WebServlet(urlPatterns = { "/comment.do" })
@@ -26,9 +27,9 @@ public class CommentServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 5426777241563315344L;
+	private static final long serialVersionUID = 5426777241563315344L;
 
-	public static final Long	COMMENTS_LIMIT		= 1000L;
+	public static final Long COMMENTS_LIMIT = 1000L;
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -51,7 +52,7 @@ public class CommentServlet extends HttpServlet {
 				new TwitterService().tweet(userId, comment + Helper.LS
 						+ Helper.LS + new ShortCutServlet().toShortCut(cardId));
 
-				ConfirmMakeCardServlet.register(mongo, req, cardId, comment);
+				NaturalLanguageParser.makeIndex(req, cardId);
 
 				resp.sendRedirect("card-comment.jsp?cardId=" + cardId
 						+ "&type=comment");
