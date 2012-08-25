@@ -49,6 +49,8 @@
 				$key = $('#cardId').text();
 				$('#image-shot')
 						.attr("onclick", "pushPull('#cover','#origin')");
+				$('#ribon')
+						.attr("onclick", "pushPull('#cover','#origin')");
 				$('#image-close').attr("onclick",
 						"pushPull('#origin','#cover')");
 				$('#comment-button').attr("onclick",
@@ -82,7 +84,57 @@
 			<%
 				if (card != null) {
 			%>
-			<li class="card">
+			<li class="card"><div id="<%=card.getCardId()%>" class="cell">
+					<%
+						int height = card.getHeight();
+							int width = card.getWidth();
+							height = Math.round(height * (200f / width));
+							width = 200;
+							if (card.getView() > 0) {
+					%>
+					<div class="ribon">
+						<div class="ribon-text color-red link" id="ribon"><%=card.getView()%>
+							view
+						</div>
+					</div>
+					<%
+						}
+					%>
+					<div>
+						<img class="image-shot deco link" src="<%=card.getImagePath()%>"
+							width="<%=width%>" height="<%=height%>" id="image-shot">
+					</div>
+					<div class="bold deco break-word">
+						管理人<a class="no-hover"
+							href="profile.jsp?userId=<%=card.getUserId()%>"><img
+							class="image-icon" src="<%=card.getUserIcon()%>"></a>
+					</div>
+					<div class="caption deco"><%=card.getCaption()%></div>
+					<br style="clear: both;">
+					<%
+						if (Helper.valid(card.getKeywords())) {
+					%>
+					<div class="card-info break-word">
+						Keywords:<%=card.getKeywords()%></div>
+					<%
+						}
+					%>
+					<%
+						if (Helper.valid(card.getSite())) {
+					%>
+					<div class="card-info break-word">
+						<a class="no-hover"
+							href="jump.jsp?cardId=<%=card.getCardId()%>&redirectUrl=<%=card.getSite()%>"
+							target="_blank">URL:<%=card.getSite()%></a>
+					</div>
+					<%
+						}
+					%>
+					<div class="star right" style="clear: both;"><%=card.getLikes()%>
+						comment
+					</div>
+				</div></li>
+			<%-- 			<li class="card">
 				<div class="cell link" id="image-shot">
 					<%
 						if (card.getView() != 0) {
@@ -129,6 +181,7 @@
 					</div>
 				</div>
 			</li>
+ --%>
 			<%
 				}
 			%>
