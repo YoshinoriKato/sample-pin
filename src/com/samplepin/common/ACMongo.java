@@ -10,9 +10,9 @@ import com.mongodb.MongoException;
 
 public class ACMongo extends Mongo implements AutoCloseable {
 
-	String hostName = "";
+	String	hostName	= "";
 
-	String dbName = "";
+	String	dbName		= "";
 
 	public ACMongo() throws UnknownHostException, MongoException {
 		this("127.0.0.1", "sample-pin");

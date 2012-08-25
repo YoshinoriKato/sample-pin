@@ -1,12 +1,10 @@
 package com.samplepin.servlet.util;
 
-import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.google.code.morphia.query.Query;
-import com.mongodb.MongoException;
 import com.samplepin.KeywordsAndCard;
 import com.samplepin.common.ACMongo;
 

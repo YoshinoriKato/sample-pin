@@ -18,7 +18,7 @@ public class Trancator extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1523120751166161328L;
+	private static final long	serialVersionUID	= -1523120751166161328L;
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)

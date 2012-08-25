@@ -21,7 +21,7 @@ public class Utility5 extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5036134172073312539L;
+	private static final long	serialVersionUID	= -5036134172073312539L;
 
 	public static void main(String[] args) throws UnknownHostException,
 			MongoException {

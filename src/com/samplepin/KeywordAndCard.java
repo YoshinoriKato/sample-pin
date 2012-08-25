@@ -9,13 +9,13 @@ import com.google.code.morphia.annotations.Id;
 public class KeywordAndCard {
 
 	@Id
-	ObjectId id;
+	ObjectId	id;
 
-	String keyword;
+	String		keyword;
 
-	String cardId;
+	String		cardId;
 
-	String part;
+	String		part;
 
 	public KeywordAndCard() {
 		super();
