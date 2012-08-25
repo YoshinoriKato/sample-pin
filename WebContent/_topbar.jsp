@@ -5,8 +5,8 @@
 	pageEncoding="UTF-8"%>
 
 <!-- メニュー -->
-<%!final String CLASS_ACTIVE = "class=\"active large\""; %>
-<%!final String CLASS_NEGATIVE = "class=\"large\""; %>
+<%!final String CLASS_ACTIVE = "class=\"active xx-large bold\""; %>
+<%!final String CLASS_NEGATIVE = "class=\"x-large\""; %>
 <%
 	String url = request.getRequestURI();
 
@@ -41,8 +41,7 @@
 		<div class="container">
 			<button type="button" class="btn btn-navbar" data-toggle="collapse"
 				data-target=".nav-collapse">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
+				<span class="icon-bar"></span>
 			</button>
 			
 			<div class="nav-collapse collapse">

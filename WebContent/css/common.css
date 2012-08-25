@@ -125,6 +125,9 @@
 	font-size: xx-large;
 }
 
+.bold {
+	font-weight: bold;	
+}
 
 .profile .item-group {
 	/* effect ---------------------------------------------------------------*/

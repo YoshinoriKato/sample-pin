@@ -21,7 +21,7 @@
 
 <body>
 	<jsp:include page="_topbar.jsp"></jsp:include>
-	<div id="title">Account Setting</div>
+	<div id="title">Account</div>
 	<div id="main">
 		<div class="container">
 			<div class="row">

@@ -134,7 +134,7 @@ function makeComment($comment) {
 			.attr('id', $comment.cardId + '+' + $comment.userId);
 	var $jqA = $('<a/>').addClass('no-hover');
 
-	var $divName = $('<div/>').addClass('star comment');
+	var $divName = $('<div/>').addClass('bold deco comment');
 	var $divCaption = $('<div/>').addClass('caption comment deco');
 	var $divFooter = $('<div/>').addClass('star comment right');
 	var $jqIcon = $('<img/>').addClass('image-icon');

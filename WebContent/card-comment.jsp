@@ -205,7 +205,7 @@
 	<!-- image -->
 	<div id="cover" class="center">
 		<div class="middle">
-			<div id="image-close" class="tab-button">x</div>
+			<div id="image-close" class="tab-button">X</div>
 			<div>
 				<img src="<%=card.getImagePath()%>" id="image-origin">
 			</div>

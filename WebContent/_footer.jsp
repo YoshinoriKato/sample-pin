@@ -17,7 +17,7 @@
 	<div class="caption">Working for you.</div>
 </div>
 <div id="error-dialog">
-	<div id="error-close" class="tab-button">x</div>
+	<div id="error-close" class="tab-button">X</div>
 	<img src="img/broken.gif" class="image-shot">
 	<div class="caption large">Sorry, server error.</div>
 </div>
