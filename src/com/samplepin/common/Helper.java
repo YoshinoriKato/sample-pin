@@ -251,7 +251,7 @@ public class Helper {
 	public static List<Tag> getTags() throws IOException {
 		try (ACMongo mongo = new ACMongo()) {
 			Query<Tag> query = mongo.createQuery(Tag.class).filter("size > ",
-					40);
+					40).order("-createDate");
 			return query.asList();
 		}
 	}
