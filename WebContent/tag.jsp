@@ -19,7 +19,6 @@
 
 <body>
 	<jsp:include page="_topbar.jsp"></jsp:include>
-	<jsp:include page="_button.jsp" flush="true" />
 	<div id="title">Tags</div>
 	<div id="main">
 		<ul id="content">

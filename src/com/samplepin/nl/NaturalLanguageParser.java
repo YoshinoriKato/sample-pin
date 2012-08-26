@@ -24,6 +24,10 @@ import com.samplepin.common.Helper;
 
 public class NaturalLanguageParser {
 
+	static final String SYMBOLS = "[ -/:-@\\[-\\`\\{-\\~]+";
+
+	static final String ALPHA_NUM = "[A-Za-z0-9]";
+
 	public static Set<String> cardIds(String dic, String text)
 			throws IOException {
 		Set<String> cardIds = new HashSet<>();
@@ -77,17 +81,19 @@ public class NaturalLanguageParser {
 			List<Card> cards = cards(mongo, cardId);
 
 			for (Card card : cards) {
+
 				Set<String> parsed = new HashSet<>();
 				IndexingCallbacker callbacker = new IndexingCallbacker(tagger,
 						parsed);
+
+				// cards
 				parseCard(card, callbacker);
 
 				// comments
 				parseComment(mongo, card, callbacker);
 
 				// register
-				KeywordsAndCard kac = newKeyword(mongo, card, parsed);
-				mongo.save(kac);
+				mongo.save(newKeyword(mongo, card, parsed));
 			}
 		}
 	}
@@ -101,9 +107,13 @@ public class NaturalLanguageParser {
 			List<Card> cards = cards(mongo, null);
 
 			Map<String, AtomicInteger> counts = new HashMap<>();
+
 			for (Card card : cards) {
+
 				ParserCallback callbacker = new TaggingCallbacker(tagger,
 						counts);
+
+				// cards
 				parseCard(card, callbacker);
 
 				// comments
@@ -111,8 +121,7 @@ public class NaturalLanguageParser {
 
 			}
 			// register
-			List<Tag> tags = newTag(mongo, counts);
-			mongo.save(tags);
+			mongo.save(newTag(mongo, counts));
 		}
 	}
 
@@ -132,6 +141,11 @@ public class NaturalLanguageParser {
 	static List<Tag> newTag(ACMongo mongo, Map<String, AtomicInteger> counts) {
 		List<Tag> tags = new ArrayList<>();
 		for (String key : counts.keySet()) {
+
+			if ((key.length() < 2) && key.matches("[\\w]")) {
+				continue;
+			}
+
 			String[] keys = { key };
 			Query<KeywordsAndCard> query0 = mongo.createQuery(
 					KeywordsAndCard.class).filter("keywords all ", keys);
@@ -179,6 +193,11 @@ public class NaturalLanguageParser {
 		List<Morpheme> list = tagger.parse(text);
 		for (Morpheme morph : list) {
 			String[] token = morph.feature.split(",");
+
+			if (reject(morph, token[0], text)) {
+				continue;
+			}
+
 			String keyword = null;
 			int index = 9;
 			if (token.length >= index) {
@@ -214,6 +233,13 @@ public class NaturalLanguageParser {
 		for (Comment comment : comments) {
 			callbacker.parse(comment.getCaption());
 		}
+	}
+
+	static boolean reject(Morpheme morph, String part, String text) {
+		return "記号".equals(part)
+				|| morph.surface.matches(SYMBOLS)
+				|| ((morph.surface.length() < 2) && morph.surface
+						.matches(ALPHA_NUM));
 	}
 
 	static boolean valid(String value) {
