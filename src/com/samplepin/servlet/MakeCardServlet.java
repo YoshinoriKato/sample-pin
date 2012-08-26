@@ -27,9 +27,7 @@ import javax.servlet.http.Part;
 import org.apache.log4j.Logger;
 
 import com.samplepin.Card;
-import com.samplepin.KeyAndImage;
 import com.samplepin.User;
-import com.samplepin.common.ACMongo;
 import com.samplepin.common.Helper;
 
 @WebServlet(name = "IconUploadServlet", urlPatterns = "/make-card.do")
@@ -39,7 +37,7 @@ public class MakeCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -7182329627922034835L;
+	private static final long serialVersionUID = -7182329627922034835L;
 
 	public static void copyStream(InputStream in, OutputStream os,
 			int bufferSize) throws IOException {
@@ -90,7 +88,7 @@ public class MakeCardServlet extends HttpServlet {
 			writeFiles(req, uploadQue, card);
 
 		} else {
-			registerKeyAndImagePath(card);
+			// registerKeyAndImagePath(card);
 
 			String fullPath = req.getServletContext().getRealPath(
 					"../icon-keeper");
@@ -210,19 +208,19 @@ public class MakeCardServlet extends HttpServlet {
 		return card;
 	}
 
-	final void registerKeyAndImagePath(Card card) throws IOException {
-		try (ACMongo mongo = new ACMongo()) {
-			if (valid(card.getKeywords())) {
-				// space, zenkaku-space, tab
-				for (String key : card.getKeywords()
-						.split("( |	|　|\r\n|\n|\r)")) {
-					KeyAndImage keyAndImage = new KeyAndImage(key,
-							card.getImagePath());
-					mongo.save(keyAndImage);
-				}
-			}
-		}
-	}
+	// final void registerKeyAndImagePath(Card card) throws IOException {
+	// try (ACMongo mongo = new ACMongo()) {
+	// if (valid(card.getKeywords())) {
+	// // space, zenkaku-space, tab
+	// for (String key : card.getKeywords()
+	// .split("( |	|　|\r\n|\n|\r)")) {
+	// KeyAndImage keyAndImage = new KeyAndImage(key,
+	// card.getImagePath());
+	// mongo.save(keyAndImage);
+	// }
+	// }
+	// }
+	// }
 
 	final void saveCardInfo(File realFolder, File referenceFolder,
 			String fileName, Card card) throws RuntimeException, IOException {

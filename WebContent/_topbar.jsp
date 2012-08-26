@@ -10,7 +10,9 @@
 <%
 	String url = request.getRequestURI();
 
-	String classIndex = url.contains("/index.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
+String classTag = url.contains("/tag.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
+
+String classIndex = url.contains("/index.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
 	classIndex = url.contains("/footprints.jsp") ? CLASS_ACTIVE : classIndex;
 	classIndex = url.contains("/recommend.jsp") ? CLASS_ACTIVE : classIndex;
 	classIndex = url.contains("/card.jsp") ? CLASS_ACTIVE : classIndex;
@@ -19,10 +21,7 @@
 			: CLASS_NEGATIVE;
 	classMakeCard = url.contains("/confirm-make-card.jsp") ? CLASS_ACTIVE : classMakeCard;
 	String classMyCard = url.contains("/my-card.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
-	
-	String classTag = url.contains("/tag.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
-	String classMakeTag = url.contains("/make-tag.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
-	
+		
 	String classLogin = url.contains("/login.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
 	String classLogout = url.contains("/logout.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
 	String classSignup = url.contains("/signup.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
@@ -46,6 +45,7 @@
 			
 			<div class="nav-collapse collapse">
 				<ul class="nav">
+					<li <%=classTag%>><a href="tag.jsp">Tags</a></li>
 					<li <%=classIndex%>><a href="index.jsp">Cards</a></li>
 					<%
 						String userId = (String) session.getAttribute("userId");
@@ -58,9 +58,6 @@
 					<li <%=classMyCard%>><a href="my-card.jsp">Design My Card</a></li>
 
 					<li class="divider-vertical"></li>
-
-					<li <%=classTag%>><a href="tag.jsp">Tag</a></li>
-					<li <%=classMakeTag%>><a href="make-tag.jsp">Make Tag</a></li>
 					 -->
 
 					<li class="divider-vertical"></li>

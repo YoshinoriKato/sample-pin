@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 class GZIPServletResponseWrapper extends
 		javax.servlet.http.HttpServletResponseWrapper {
 
-	protected HttpServletResponse	origResponse	= null;
+	protected HttpServletResponse origResponse = null;
 
-	protected ServletOutputStream	stream			= null;
-	protected PrintWriter			writer			= null;
+	protected ServletOutputStream stream = null;
+	protected PrintWriter writer = null;
 
 	GZIPServletResponseWrapper(HttpServletResponse response) {
 		super(response);

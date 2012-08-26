@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 class GZIPServletOutputStream extends ServletOutputStream implements
 		AutoCloseable {
 
-	protected ByteArrayOutputStream	baos		= null;
-	protected GZIPOutputStream		gzipstream	= null;
-	protected boolean				closed		= false;
-	protected HttpServletResponse	response	= null;
-	protected ServletOutputStream	output		= null;
+	protected ByteArrayOutputStream baos = null;
+	protected GZIPOutputStream gzipstream = null;
+	protected boolean closed = false;
+	protected HttpServletResponse response = null;
+	protected ServletOutputStream output = null;
 
 	GZIPServletOutputStream(HttpServletResponse response) throws IOException {
 		super();

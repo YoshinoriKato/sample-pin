@@ -29,7 +29,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 6534228482284422460L;
+	private static final long serialVersionUID = 6534228482284422460L;
 
 	public static void register(ACMongo mongo, HttpServletRequest req,
 			String cardId, String text) throws Exception {

@@ -9,15 +9,15 @@ import com.google.code.morphia.annotations.Id;
 public class TagAndCard {
 
 	@Id
-	ObjectId	id;
+	ObjectId id;
 
-	String		tag;
+	String tag;
 
-	String		cardId;
+	String cardId;
 
-	Long		createDate;
+	Long createDate;
 
-	Boolean		isDeleted;
+	Boolean isDeleted;
 
 	public TagAndCard() {
 		super();

@@ -9,11 +9,11 @@ import com.google.code.morphia.annotations.Id;
 public class KeyAndValue {
 
 	@Id
-	ObjectId	id;
+	ObjectId id;
 
-	String		key;
+	String key;
 
-	String		value;
+	String value;
 
 	public KeyAndValue() {
 		super();

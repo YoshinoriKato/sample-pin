@@ -18,7 +18,7 @@ import com.google.code.morphia.query.Query;
 import com.samplepin.Card;
 import com.samplepin.Comment;
 import com.samplepin.KeywordsAndCard;
-import com.samplepin.TagAndCard;
+import com.samplepin.Tag;
 import com.samplepin.common.ACMongo;
 import com.samplepin.common.Helper;
 
@@ -109,10 +109,10 @@ public class NaturalLanguageParser {
 				// comments
 				parseComment(mongo, card, callbacker);
 
-				// register
 			}
-			List<TagAndCard> tac = newTag(mongo, counts);
-			mongo.save(tac);
+			// register
+			List<Tag> tags = newTag(mongo, counts);
+			mongo.save(tags);
 		}
 	}
 
@@ -129,19 +129,35 @@ public class NaturalLanguageParser {
 		return kac;
 	}
 
-	static List<TagAndCard> newTag(ACMongo mongo,
-			Map<String, AtomicInteger> counts) {
-		List<TagAndCard> tac = new ArrayList<TagAndCard>();
+	static List<Tag> newTag(ACMongo mongo, Map<String, AtomicInteger> counts) {
+		List<Tag> tags = new ArrayList<>();
 		for (String key : counts.keySet()) {
-			Query<KeywordsAndCard> query2 = mongo.createQuery(
-					KeywordsAndCard.class).filter("keywords all ", key);
-			List<KeywordsAndCard> kacs = query2.asList();
-			if (kacs != null)
-				for (KeywordsAndCard kac : kacs) {
-					tac.add(new TagAndCard(key, kac.getCardId()));
+			String[] keys = { key };
+			Query<KeywordsAndCard> query0 = mongo.createQuery(
+					KeywordsAndCard.class).filter("keywords all ", keys);
+			Query<Tag> query1 = mongo.createQuery(Tag.class).filter("tag = ",
+					key);
+			KeywordsAndCard kac = query0.get();
+
+			// image
+			String imagePath = "img/no_image.png";
+			if (kac != null) {
+				Card card = Helper.getCardInfoByID(kac.getCardId());
+				if (card != null) {
+					imagePath = card.getImagePath();
 				}
+			}
+
+			Tag tag = query1.get();
+			if (tag != null) {
+				tag.setSize(query0.countAll());
+				tag.setImagePath(imagePath);
+				tags.add(tag);
+			} else {
+				tags.add(new Tag(key, query0.countAll(), imagePath));
+			}
 		}
-		return tac;
+		return tags;
 	}
 
 	public static void parse(Tagger tagger, String text,

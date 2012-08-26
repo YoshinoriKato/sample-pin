@@ -9,15 +9,17 @@ import com.google.code.morphia.annotations.Id;
 public class Tag implements Createable, Deleteable {
 
 	@Id
-	ObjectId	id;
+	ObjectId id;
 
-	String		tag;
+	String tag;
 
-	String		key;
+	String imagePath;
 
-	Long		createDate;
+	Long size;
 
-	Boolean		isDeleted;
+	Long createDate;
+
+	Boolean isDeleted;
 
 	public Tag() {
 		super();
@@ -25,10 +27,11 @@ public class Tag implements Createable, Deleteable {
 		this.isDeleted = false;
 	}
 
-	public Tag(String tag, String key) {
+	public Tag(String tag, Long size, String imagePath) {
 		this();
 		this.tag = tag;
-		this.key = key;
+		this.size = size;
+		this.imagePath = imagePath;
 	}
 
 	@Override
@@ -40,13 +43,17 @@ public class Tag implements Createable, Deleteable {
 		return this.id;
 	}
 
+	public String getImagePath() {
+		return this.imagePath;
+	}
+
 	@Override
 	public Boolean getIsDeleted() {
 		return this.isDeleted;
 	}
 
-	public String getKey() {
-		return this.key;
+	public Long getSize() {
+		return this.size;
 	}
 
 	public String getTag() {
@@ -62,13 +69,17 @@ public class Tag implements Createable, Deleteable {
 		this.id = id;
 	}
 
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
 	@Override
 	public void setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 
-	public void setKey(String key) {
-		this.key = key;
+	public void setSize(Long size) {
+		this.size = size;
 	}
 
 	public void setTag(String tag) {

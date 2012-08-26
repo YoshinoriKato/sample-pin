@@ -1,5 +1,6 @@
 package com.samplepin.common;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
 import java.security.NoSuchAlgorithmException;
@@ -27,34 +28,33 @@ import com.samplepin.Card;
 import com.samplepin.Comment;
 import com.samplepin.Country;
 import com.samplepin.OneTime;
+import com.samplepin.Tag;
 import com.samplepin.User;
 import com.samplepin.View;
 
 public class Helper {
 
-	static SimpleDateFormat		SDF_DATE		= new SimpleDateFormat(
-														"yyyy-MM-dd");
+	static SimpleDateFormat SDF_DATE = new SimpleDateFormat("yyyy-MM-dd");
 
-	static SimpleDateFormat		SDF_DATE_TIME	= new SimpleDateFormat(
-														"yyyy-MM-dd HH:mm:ss.SSS");
+	static SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat(
+			"yyyy-MM-dd HH:mm:ss.SSS");
 
-	static SimpleDateFormat		SDF_DATE_HOUR	= new SimpleDateFormat(
-														"yyyy-MM-dd 'at around' HH");
+	static SimpleDateFormat SDF_DATE_HOUR = new SimpleDateFormat(
+			"yyyy-MM-dd 'at around' HH");
 
-	public static final Pattern	convURLLinkPtn	= Pattern
-														.compile(
-																"(http://|https://){1}[\\w\\.\\-/:\\#\\?\\=\\&\\;\\%\\~\\+]+",
-																Pattern.CASE_INSENSITIVE);
+	public static final Pattern convURLLinkPtn = Pattern.compile(
+			"(http://|https://){1}[\\w\\.\\-/:\\#\\?\\=\\&\\;\\%\\~\\+]+",
+			Pattern.CASE_INSENSITIVE);
 
-	static final Long			MILLS_SECOND	= 1000L;
+	static final Long MILLS_SECOND = 1000L;
 
-	static final Long			MILLS_MINUTE	= 60L * MILLS_SECOND;
+	static final Long MILLS_MINUTE = 60L * MILLS_SECOND;
 
-	static final Long			MILLS_HOUR		= 60L * MILLS_MINUTE;
+	static final Long MILLS_HOUR = 60L * MILLS_MINUTE;
 
-	static final Long			MILLS_DAY		= 24L * MILLS_HOUR;
+	static final Long MILLS_DAY = 24L * MILLS_HOUR;
 
-	public static final String	LS				= System.getProperty("line.separator");
+	public static final String LS = System.getProperty("line.separator");
 
 	public static String convURLLink(String str) {
 		Matcher matcher = convURLLinkPtn.matcher(str);
@@ -246,6 +246,14 @@ public class Helper {
 			}
 		}
 		return null;
+	}
+
+	public static List<Tag> getTags() throws IOException {
+		try (ACMongo mongo = new ACMongo()) {
+			Query<Tag> query = mongo.createQuery(Tag.class).filter("size > ",
+					40);
+			return query.asList();
+		}
 	}
 
 	public static User getUserById(HttpSession session) {

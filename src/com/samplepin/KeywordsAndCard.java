@@ -11,11 +11,11 @@ import com.google.code.morphia.annotations.Id;
 public class KeywordsAndCard {
 
 	@Id
-	ObjectId	id;
+	ObjectId id;
 
-	String[]	keywords;
+	String[] keywords;
 
-	String		cardId;
+	String cardId;
 
 	public KeywordsAndCard() {
 		super();

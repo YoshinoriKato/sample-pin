@@ -7,8 +7,8 @@ import net.reduls.igo.Tagger;
 
 class TaggingCallbacker implements ParserCallback {
 
-	Tagger						tagger;
-	Map<String, AtomicInteger>	counts;
+	Tagger tagger;
+	Map<String, AtomicInteger> counts;
 
 	public TaggingCallbacker(Tagger tagger, Map<String, AtomicInteger> counts) {
 		super();

@@ -15,9 +15,11 @@
 	String userId = (String) session.getAttribute("userId");
 	String sorted = request.getParameter("sorted");
 	final String activeCSS = "x-large bold";
-	String classLatest = sorted == null && cardId == null ? activeCSS : "";
+	String classLatest = url.contains("/index.jsp") && sorted == null
+			&& cardId == null ? activeCSS : "";
 	String classMine = "mine".equals(sorted) ? activeCSS : "";
-	String classFootprints = "footprints".equals(sorted) ? activeCSS : "";
+	String classFootprints = "footprints".equals(sorted) ? activeCSS
+			: "";
 	String classRecommend = "recommend".equals(sorted) ? activeCSS : "";
 %>
 
@@ -25,7 +27,8 @@
 	<%
 		if (inCardPage) {
 	%>
-	<a id="comment-button" class="btn btn-large btn-primary btn-cell xx-large">Comment</a>
+	<a id="comment-button"
+		class="btn btn-large btn-primary btn-cell xx-large">Comment</a>
 	<%
 		}
 	%>
@@ -39,9 +42,11 @@
 	<%
 		if (session.getAttribute("userId") != null) {
 	%>
-	<a href="index.jsp?sorted=mine" class="<%=addClass%> <%=classMine%>">Mine</a> <a
-		href="index.jsp?sorted=footprints" class="<%=addClass%> <%=classFootprints%>">Footprints</a>
-	<a href="index.jsp?sorted=recommend" class="<%=addClass%> <%=classRecommend%>">Recommend</a>
+	<a href="index.jsp?sorted=mine" class="<%=addClass%> <%=classMine%>">Mine</a>
+	<a href="index.jsp?sorted=footprints"
+		class="<%=addClass%> <%=classFootprints%>">Footprints</a> <a
+		href="index.jsp?sorted=recommend"
+		class="<%=addClass%> <%=classRecommend%>">Recommend</a>
 	<%
 		}
 
