@@ -23,26 +23,9 @@
 		<ul id="content">
 			<%
 				try (ACMongo mongo = new ACMongo()) {
-					Map<String, AtomicInteger> map = new HashMap<>();
+					Query<TagAndCard> query = mongo.createQuery(TagAndCard.class);
 
-					Query<KeywordsAndCard> query = mongo
-							.createQuery(KeywordsAndCard.class);
-
-					for (KeywordsAndCard kac : query.asList()) {
-						for (String key : kac.getKeywords()) {
-							if (!map.containsKey(key)) {
-								map.put(key, new AtomicInteger(0));
-							}
-							map.get(key).incrementAndGet();
-						}
-					}
-
-					for (String key : map.keySet()) {
-						if (map.get(key).get() > 40) {
-			%>
-			<li class="card"><div class="cell caption"><%=key%></div></li>
-			<%
-				}
+					for (TagAndCard kac : query.asList()) {
 					}
 				}
 			%>

@@ -1,6 +1,8 @@
 package com.samplepin.nl;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,7 @@ import com.google.code.morphia.query.Query;
 import com.samplepin.Card;
 import com.samplepin.Comment;
 import com.samplepin.KeywordsAndCard;
+import com.samplepin.TagAndCard;
 import com.samplepin.common.ACMongo;
 import com.samplepin.common.Helper;
 
@@ -93,6 +96,24 @@ public class NaturalLanguageParser {
 		String realPath = req.getServletContext().getRealPath("ipadic");
 		Tagger tagger = new Tagger(realPath);
 
+		try (ACMongo mongo = new ACMongo()) {
+			// cards
+			List<Card> cards = cards(mongo, null);
+
+			Map<String, AtomicInteger> counts = new HashMap<>();
+			for (Card card : cards) {
+				ParserCallback callbacker = new TaggingCallbacker(tagger,
+						counts);
+				parseCard(card, callbacker);
+
+				// comments
+				parseComment(mongo, card, callbacker);
+
+				// register
+			}
+			List<TagAndCard> tac = newTag(mongo, counts);
+			mongo.save(tac);
+		}
 	}
 
 	static KeywordsAndCard newKeyword(ACMongo mongo, Card card,
@@ -106,6 +127,21 @@ public class NaturalLanguageParser {
 		}
 		kac.setKeywords(parsed.toArray(new String[0]));
 		return kac;
+	}
+
+	static List<TagAndCard> newTag(ACMongo mongo,
+			Map<String, AtomicInteger> counts) {
+		List<TagAndCard> tac = new ArrayList<TagAndCard>();
+		for (String key : counts.keySet()) {
+			Query<KeywordsAndCard> query2 = mongo.createQuery(
+					KeywordsAndCard.class).filter("keywords all ", key);
+			List<KeywordsAndCard> kacs = query2.asList();
+			if (kacs != null)
+				for (KeywordsAndCard kac : kacs) {
+					tac.add(new TagAndCard(key, kac.getCardId()));
+				}
+		}
+		return tac;
 	}
 
 	public static void parse(Tagger tagger, String text,
