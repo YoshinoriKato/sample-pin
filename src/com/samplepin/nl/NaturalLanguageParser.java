@@ -1,6 +1,9 @@
 package com.samplepin.nl;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -93,6 +96,11 @@ public class NaturalLanguageParser {
 				// cards
 				parseCard(card, callbacker);
 
+				// web
+				if (valid(card.getSite())) {
+					parseWebpage(card.getSite(), callbacker);
+				}
+
 				// comments
 				parseComment(mongo, card, callbacker);
 
@@ -178,7 +186,7 @@ public class NaturalLanguageParser {
 		return tags;
 	}
 
-	public static void parse(Tagger tagger, String text,
+	public static void parse(Tagger tagger, CharSequence text,
 			Map<String, AtomicInteger> tags) {
 		for (Morpheme morph : tagger.parse(text)) {
 			String[] token = morph.feature.split(",");
@@ -193,7 +201,8 @@ public class NaturalLanguageParser {
 		}
 	}
 
-	public static void parse(Tagger tagger, String text, Set<String> keywords) {
+	public static void parse(Tagger tagger, CharSequence text,
+			Set<String> keywords) {
 		List<Morpheme> list = tagger.parse(text);
 		for (Morpheme morph : list) {
 			String[] token = morph.feature.split(",");
@@ -239,7 +248,23 @@ public class NaturalLanguageParser {
 		}
 	}
 
-	static boolean reject(Morpheme morph, String part, String text) {
+	public static void parseWebpage(String urlPath, ParserCallback callback)
+			throws IOException {
+		URL url = new URL(urlPath);
+		String line = null;
+		StringBuilder builder = new StringBuilder();
+
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(
+				url.openStream()))) {
+			while ((line = br.readLine()) != null) {
+				builder.append(line).append(Helper.LS);
+			}
+		}
+
+		callback.parse(builder.toString());
+	}
+
+	static boolean reject(Morpheme morph, String part, CharSequence text) {
 		return "記号".equals(part)
 				|| morph.surface.matches(SYMBOLS)
 				|| ((morph.surface.length() < 2) && morph.surface

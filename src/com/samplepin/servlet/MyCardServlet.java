@@ -18,8 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import org.apache.log4j.Logger;
-
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 import com.samplepin.User;
@@ -206,9 +204,6 @@ public class MyCardServlet extends HttpServlet {
 			writeIconFiles(uploadQue, user, realFolder, referenceFolder,
 					acceptFields);
 			req.setAttribute("acceptFields", acceptFields);
-		} else {
-			Logger.getLogger(MyCardServlet.class).error(
-					"upload folder does not exist.");
 		}
 	}
 
@@ -229,8 +224,6 @@ public class MyCardServlet extends HttpServlet {
 				saveUserInfo(referenceFolder, fileName, user);
 				acceptFields.add(u.fileName);
 			} catch (RuntimeException e) {
-				Logger.getLogger(MyCardServlet.class).error(
-						"fail to upload icon file: " + u.fileName, e);
 				throw e;
 			}
 		}

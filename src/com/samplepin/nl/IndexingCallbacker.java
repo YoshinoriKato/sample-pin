@@ -17,7 +17,7 @@ class IndexingCallbacker implements ParserCallback {
 	}
 
 	@Override
-	public void parse(String text) {
+	public void parse(CharSequence text) {
 		NaturalLanguageParser.parse(this.tagger, text, this.parsed);
 	}
 }

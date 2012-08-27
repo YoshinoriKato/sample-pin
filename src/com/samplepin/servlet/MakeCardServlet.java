@@ -24,8 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import org.apache.log4j.Logger;
-
 import com.samplepin.Card;
 import com.samplepin.User;
 import com.samplepin.common.Helper;
@@ -253,9 +251,6 @@ public class MakeCardServlet extends HttpServlet {
 			writeIconFiles(uploadQue, card, realFolder, referenceFolder,
 					acceptFields);
 			req.setAttribute("acceptFields", acceptFields);
-		} else {
-			Logger.getLogger(MakeCardServlet.class).error(
-					"upload folder does not exist.");
 		}
 	}
 
@@ -276,8 +271,6 @@ public class MakeCardServlet extends HttpServlet {
 				saveCardInfo(realFolder, referenceFolder, fileName, card);
 				acceptFields.add(u.fileName);
 			} catch (RuntimeException e) {
-				Logger.getLogger(MakeCardServlet.class).error(
-						"fail to upload icon file: " + u.fileName, e);
 				throw e;
 			}
 		}
