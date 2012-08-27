@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.samplepin.nl.NaturalLanguageParser;
+
 @WebServlet(urlPatterns = { "/xxx.do" })
 public class AjaxCardServlet extends HttpServlet {
 
@@ -42,7 +44,7 @@ public class AjaxCardServlet extends HttpServlet {
 		String words = req.getParameter("words");
 
 		if ("search".equals(sorted)) {
-			String dic = req.getServletContext().getRealPath("ipadic");
+			String dic = NaturalLanguageParser.getDictionaryPath(req);
 			new SearchAjax().ajax(resp.getOutputStream(), otherUserId, sorted,
 					offset, limit, callback, old, young, type, userId, cardId,
 					words, dic);

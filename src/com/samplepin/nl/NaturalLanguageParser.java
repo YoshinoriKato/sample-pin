@@ -56,6 +56,10 @@ public class NaturalLanguageParser {
 		return query0.asList();
 	}
 
+	public static String getDictionaryPath(HttpServletRequest req) {
+		return req.getServletContext().getRealPath("../dictionary/ipadic");
+	}
+
 	public static Set<String> keywords(String dic, String text)
 			throws IOException {
 		Set<String> keywords = new HashSet<>();
@@ -68,7 +72,7 @@ public class NaturalLanguageParser {
 
 	public static void makeIndex(HttpServletRequest req, String cardId)
 			throws IOException {
-		String realPath = req.getServletContext().getRealPath("ipadic");
+		String realPath = getDictionaryPath(req);
 		Tagger tagger = new Tagger(realPath);
 		makeIndex(tagger, cardId);
 	}
@@ -99,7 +103,7 @@ public class NaturalLanguageParser {
 	}
 
 	public static void makeTags(HttpServletRequest req) throws IOException {
-		String realPath = req.getServletContext().getRealPath("ipadic");
+		String realPath = getDictionaryPath(req);
 		Tagger tagger = new Tagger(realPath);
 
 		try (ACMongo mongo = new ACMongo()) {

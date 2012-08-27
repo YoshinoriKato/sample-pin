@@ -34,7 +34,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 	public static void register(ACMongo mongo, HttpServletRequest req,
 			String cardId, String text) throws Exception {
 		// 辞書ディレクトリを引数で指定
-		String dic = req.getServletContext().getRealPath("ipadic");
+		String dic = NaturalLanguageParser.getDictionaryPath(req);
 		Tagger tagger = new Tagger(dic);
 
 		List<Morpheme> list = tagger.parse(text);
