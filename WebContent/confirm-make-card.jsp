@@ -39,46 +39,49 @@
 									<label class="control-label">Preview</label>
 									<div class="controls">
 										<div class="card">
-											<div class="cell link" id="image-shot">
-												<div>
-													<img src="<%=card.getImagePath()%>" class="image-shot">
-												</div>
+											<div id="<%=card.getCardId()%>" class="cell">
 												<%
-													if (card.getView() != 0) {
+													int height = card.getHeight();
+														int width = card.getWidth();
+														height = Math.round(height * (200f / width));
+														width = 200;
+														if (card.getView() > 0) {
 												%>
 												<div class="ribon">
-													<span class="ribon-text color-red"> <%=card.getView()%>
+													<div class="ribon-text color-red"><%=card.getView()%>
 														view
-													</span>
+													</div>
 												</div>
 												<%
 													}
 												%>
-												<div class="star break-word"><%=Helper.escapeHTML(card.getUserName())%>
-													<img class="image-icon" src="<%=card.getUserIcon()%>">
+												<div>
+													<img class="image-shot deco" src="<%=card.getImagePath()%>"
+														width="<%=width%>" height="<%=height%>">
 												</div>
-												<div class="caption deco">
-													<%=Helper.convURLLink(Helper.escapeHTML(card.getCaption()))%>
+												<div class="bold deco break-word">
+													管理人<img class="image-icon" src="<%=card.getUserIcon()%>">
 												</div>
-												<br class="clear-both" />
+												<div class="caption deco"><%=card.getCaption()%></div>
+												<br style="clear: both;">
 												<%
 													if (Helper.valid(card.getKeywords())) {
 												%>
-												<div class="star break-word">
+												<div class="card-info break-word">
 													Keywords:<%=card.getKeywords()%></div>
 												<%
 													}
 												%>
 												<%
 													if (Helper.valid(card.getSite())) {
-												%><div
-													class="star break-word">
-													URL:<%=card.getSite()%></div>
+												%>
+												<div class="card-info break-word">
+													URL:<%=card.getSite()%>
+												</div>
 												<%
 													}
 												%>
-												<div class="star right">
-													<%=card.getLikes() %>
+												<div class="star right" style="clear: both;"><%=card.getLikes()%>
 													comment
 												</div>
 											</div>
