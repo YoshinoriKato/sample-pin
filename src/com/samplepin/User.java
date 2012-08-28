@@ -67,7 +67,7 @@ public class User implements Serializable, Deleteable, Createable {
 		this.createDate = System.currentTimeMillis();
 		this.fontColor = "#666666";
 		this.backgroundImage = "img/wallpaper.png";
-		this.userName = "anonymous";
+		this.userName = "Please, set your name.";
 		this.backgroundColor = "#cccccc";
 		this.useBackgroundImage = true;
 		this.code = 0;

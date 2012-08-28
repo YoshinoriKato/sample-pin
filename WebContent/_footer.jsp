@@ -12,7 +12,9 @@
 <!-- 共有 -->
 
 <div style="display: none" id="page"><%=url%></div>
-<div id="copyrights" class="center caption">&copy; Sample-Pin</div>
+
+<div id="copyrights" class="center caption large">&copy; Sample-Pin</div>
+
 <div id="ajax">
 	<% if(logined !=null) { %>
 		<div class="caption star">Auto login...</div>
@@ -20,12 +22,14 @@
 	<img src="img/ajax.gif">
 	<div class="caption star">Working for you.</div>
 </div>
+
 <div id="error-dialog">
 	<div id="error-close" class="tab-button">X</div>
 	<img src="img/broken.gif" class="image-shot">
 	<div class="caption large">Sorry, server error.</div>
 </div>
-<a href="#top"><div id="bottom-label">Go top</div></a>
+
+<a href="#top"><span id="bottom-label">Go top</span></a>
 
 <script type="text/javascript" charset="UTF-8">
 	$(window).load(function() {	
@@ -46,7 +50,7 @@
 								$('#bottom-label').fadeOut();
 							}
 <%
-		if (url.contains("/index.jsp") || url.contains("/card-comment.jsp")) {
+		if (url.contains("/home.jsp") || url.contains("/card-comment.jsp")) {
 %>
 
 		if (($(window).height() * 0.4) < ($(document).height() - $(this).scrollTop())) {

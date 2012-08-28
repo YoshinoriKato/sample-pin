@@ -83,7 +83,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 				}
 			}
 			log("make end.");
-			resp.sendRedirect("index.jsp");
+			resp.sendRedirect("home.jsp");
 			return;
 
 		} else {

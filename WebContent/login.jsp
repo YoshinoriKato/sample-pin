@@ -20,7 +20,7 @@
 			.getOneTimeByOneTimePassword(oneTimePassword);
 
 	String fromUrl = (String) request.getAttribute("fromUrl");
-	fromUrl = fromUrl != null ? fromUrl : "index.jsp";
+	fromUrl = fromUrl != null ? fromUrl : "home.jsp";
 
 	String mail = (String) request.getAttribute("mail");
 	mail = mail != null ? mail : "";
@@ -40,7 +40,7 @@
 	<div id="main">
 		<div class="container">
 			<div class="row">
-				<div class="cell">
+				<div class="cell span11">
 					<form action="login.do" method="post" class="form-horizontal">
 						<fieldset>
 							<h1 class="tab-header">Login</h1>

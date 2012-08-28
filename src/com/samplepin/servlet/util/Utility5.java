@@ -49,6 +49,6 @@ public class Utility5 extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse response)
 			throws IOException {
 		main(null);
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("home.jsp");
 	}
 }

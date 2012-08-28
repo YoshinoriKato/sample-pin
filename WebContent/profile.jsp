@@ -27,7 +27,7 @@
 	<div id="main">
 		<div class="container">
 			<div class="row">
-				<div class="cell">
+				<div class="cell span11">
 					<div class="profile">
 						<h1 class="tab-header">Profile</h1>
 						<div class="item-group">
@@ -56,7 +56,7 @@
 						<div class="item-group">
 							<div class="item-label">Make Card</div>
 							<div class="items">
-								<a href="index.jsp?userId=<%=user.getUserId()%>"><%=Helper.countCardByUserId(userId)%></a>
+								<a href="home.jsp?userId=<%=user.getUserId()%>"><%=Helper.countCardByUserId(userId)%></a>
 							</div>
 						</div>
 						<div class="item-group">

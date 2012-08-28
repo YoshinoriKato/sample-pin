@@ -26,7 +26,7 @@
 	<div id="main">
 		<div class="container">
 			<div class="row">
-				<div class="cell">
+				<div class="cell span11">
 					<%
 						if (card != null) {
 					%>

@@ -25,7 +25,7 @@
 	<div id="main">
 		<div class="container">
 			<div class="row">
-				<div class="cell">
+				<div class="cell span11">
 					<div class="form-horizontal">
 						<form action="account.do" enctype="multipart/form-data"
 							method="post" class="form-horizontal">

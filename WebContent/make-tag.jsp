@@ -42,7 +42,7 @@
 	<div id="main">
 		<div class="container">
 			<div class="row">
-				<div class="cell">
+				<div class="cell span11">
 					<div class="form-horizontal">
 						<form class="form-search" action="javascript:searchGoogle()">
 							<fieldset>

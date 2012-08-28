@@ -1,33 +1,33 @@
+@charset "utf-8";
 
-.iphone .portrait {
+.portrait.iphone {
 	width: 480px;
 }
 
-.iphone .landscape {
+.landscape.iphone {
 	width: 720px;
 }
 
-.ipad .portrait{
+.portrait.ipad {
 	width: 480px;
 }
 
-.ipad .landscape{
+.landscape.ipad {
 	width: 720px;
 }
 
-.android .portrait{
+.portrait.android {
 	width: 480px;
 }
 
-.android .landscape{
+.landscape.android {
 	width: 720px;
 }
 
-.other .portrait{
+.portrait.other {
 	width: 95%;
 }
 
-.other .landscape{
+.landscape.other {
 	width: 95%;
 }
-

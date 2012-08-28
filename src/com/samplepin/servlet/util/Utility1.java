@@ -37,6 +37,6 @@ public class Utility1 extends HttpServlet {
 				mongo.save(comments);
 			}
 		}
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("home.jsp");
 	}
 }

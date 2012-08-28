@@ -1,3 +1,4 @@
+
 <%@page import="com.samplepin.servlet.*"%>
 <%@page import="java.util.*"%>
 <%@page import="com.samplepin.*"%>
@@ -15,7 +16,7 @@
 	String userId = (String) session.getAttribute("userId");
 	String sorted = request.getParameter("sorted");
 	final String activeCSS = "x-large bold";
-	String classLatest = url.contains("/index.jsp") && sorted == null
+	String classLatest = url.contains("/home.jsp") && sorted == null
 			&& cardId == null ? activeCSS : "";
 	String classMine = "mine".equals(sorted) ? activeCSS : "";
 	String classFootprints = "footprints".equals(sorted) ? activeCSS
@@ -32,24 +33,26 @@
 	<%
 		}
 	%>
-	<a href="index.jsp" class="<%=addClass%> <%=classLatest%>">Latest</a>
+<%-- 	<a href="home.jsp" class="<%=addClass%> <%=classLatest%>">Latest</a>
 
 	<!-- 
-	<a href="index.jsp?sorted=view" class="<%=addClass%>">Views</a>
-	<a href="index.jsp?sorted=comment" class="<%=addClass%>">Comments</a>
+	<a href="home.jsp?sorted=view" class="<%=addClass%>">Views</a>
+	<a href="home.jsp?sorted=comment" class="<%=addClass%>">Comments</a>
 	 -->
 
 	<%
 		if (session.getAttribute("userId") != null) {
 	%>
-	<a href="index.jsp?sorted=mine" class="<%=addClass%> <%=classMine%>">Mine</a>
-	<a href="index.jsp?sorted=footprints"
+	<a href="home.jsp?sorted=mine" class="<%=addClass%> <%=classMine%>">Mine</a>
+	<a href="home.jsp?sorted=footprints"
 		class="<%=addClass%> <%=classFootprints%>">Footprints</a> <a
-		href="index.jsp?sorted=recommend"
+		href="home.jsp?sorted=recommend"
 		class="<%=addClass%> <%=classRecommend%>">Recommend</a>
 	<%
 		}
-
+	%>
+ --%>
+	<%
 		if (card != null && userId != null
 				&& card.getUserId().equals(userId)) {
 	%>

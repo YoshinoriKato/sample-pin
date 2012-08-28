@@ -229,7 +229,7 @@ public class Initializer3 extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		main(null);
-		resp.sendRedirect("index.jsp");
+		resp.sendRedirect("home.jsp");
 	}
 
 }

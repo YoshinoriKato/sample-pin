@@ -83,7 +83,7 @@ public class RequestTokenController extends HttpServlet {
 				LoginServlet.makeCookie(response, twitterAccount.getUserId());
 			}
 
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("home.jsp");
 		} else {
 			response.setContentType("text/plain");
 			response.getWriter().println("AccessTokenがNullってます！");

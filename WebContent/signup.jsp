@@ -13,7 +13,7 @@
 	String error = message != null && !message.isEmpty() ? "error" : "";
 
 	String fromUrl = (String) request.getAttribute("fromUrl");
-	fromUrl = fromUrl != null ? fromUrl : "index.jsp";
+	fromUrl = fromUrl != null ? fromUrl : "home.jsp";
 %>
 
 <body>
@@ -22,7 +22,7 @@
 	<div id="main">
 		<div class="container">
 			<div class="row">
-				<div class="cell">
+				<div class="cell span11">
 					<form action="signup.do" method="post" class="form-horizontal">
 						<fieldset>
 							<h1 class="tab-header">Sign up</h1>

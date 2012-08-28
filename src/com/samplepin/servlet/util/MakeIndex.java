@@ -21,6 +21,10 @@ public class MakeIndex extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		NaturalLanguageParser.makeIndex(request, null);
+		try {
+			NaturalLanguageParser.makeIndex(request, null);
+		} catch (Exception e) {
+			request.getSession().setAttribute("error", e);
+		}
 	}
 }

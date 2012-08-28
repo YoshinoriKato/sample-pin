@@ -1,3 +1,6 @@
+@charset "utf-8";
+
+
 #default {
 	/* effect ---------------------------------------------------------------*/
 	/* layout ---------------------------------------------------------------*/
@@ -9,6 +12,8 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	background-color: #eee;
 	background-image: url("../img/ichimatsu.png?201208131742");
+	background-position:left top;
+	background-attachment:fixed;
 	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
 	/* layout ---------------------------------------------------------------*/
 	/* shape ----------------------------------------------------------------*/
@@ -316,6 +321,7 @@ body {
 	margin-top: 120px;
 	margin-bottom: 60px;
 	/* shape ----------------------------------------------------------------*/
+	width: 95%;
 }
 
 .caption {
@@ -420,7 +426,7 @@ body {
 	box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.3);
 	overflow: hidden;
-	font-size: large;
+	font-size: x-large;
 	color: rgba(180, 180, 180, 0.8);
 	text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.8);
 	/* layout ---------------------------------------------------------------*/

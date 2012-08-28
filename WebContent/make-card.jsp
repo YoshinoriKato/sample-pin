@@ -42,7 +42,7 @@
 	<div id="main">
 		<div class="container">
 			<div class="row">
-				<div class="cell">
+				<div class="cell span11">
 					<div class="form-horizontal">
 						<form class="form-search" action="javascript:searchGoogle()">
 							<fieldset>
@@ -51,7 +51,7 @@
 									<label for="iconPath" class="control-label">Image</label>
 									<div class="controls">
 										<input type="search" id="search-box" value=""
-											placeholder="Keyword" class="input-medium span6 text"> <input
+											placeholder="search" class="input-medium span7 text"> <input
 											type="submit" value="Search" id="search-action"
 											class="btn btn-large btn-primary btn-cell">
 									</div>

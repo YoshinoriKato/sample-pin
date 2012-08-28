@@ -34,7 +34,7 @@ public class Trancator extends HttpServlet {
 			datastore.save(user);
 			log("bye.");
 		}
-		resp.sendRedirect("index.jsp");
+		resp.sendRedirect("home.jsp");
 	}
 
 }

@@ -1,3 +1,4 @@
+<%@page import="com.samplepin.common.Helper"%>
 <%@page import="com.samplepin.servlet.*"%>
 <%@page import="java.util.*"%>
 <%@page import="com.samplepin.*"%>
@@ -10,12 +11,14 @@
 <%
 	String url = request.getRequestURI();
 
-String classTag = url.contains("/tag.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
+	String classIndex = url.contains("/index.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
 
-String classIndex = url.contains("/index.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
-	classIndex = url.contains("/footprints.jsp") ? CLASS_ACTIVE : classIndex;
-	classIndex = url.contains("/recommend.jsp") ? CLASS_ACTIVE : classIndex;
-	classIndex = url.contains("/card.jsp") ? CLASS_ACTIVE : classIndex;
+	String classTag = url.contains("/tag.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
+
+	String classHome = url.contains("/home.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
+	classHome = url.contains("/footprints.jsp") ? CLASS_ACTIVE : classHome;
+	classHome = url.contains("/recommend.jsp") ? CLASS_ACTIVE : classHome;
+	classHome = url.contains("/card.jsp") ? CLASS_ACTIVE : classHome;
 	
 	String classMakeCard = url.contains("/make-card.jsp") ? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
@@ -45,13 +48,21 @@ String classIndex = url.contains("/index.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
 			
 			<div class="nav-collapse collapse">
 				<ul class="nav">
-					<li <%=classTag%>><a href="tag.jsp">Tags</a></li>
-					<li <%=classIndex%>><a href="index.jsp">Cards</a></li>
+					<li <%=classIndex%>><a href="index.jsp">?</a></li>
+
+					<li class="divider-vertical"></li>
+
+					<%-- <li <%=classTag%>><a href="tag.jsp">Tags</a></li> --%>
+					<li <%=classHome%>><a href="home.jsp"><img src="img/favicon.ico" style="height: 24px; width: 24px;" class="opacity80"></a></li>
+
+					<li class="divider-vertical"></li>
+
 					<%
 						String userId = (String) session.getAttribute("userId");
 						if (userId != null) {
+							User user = Helper.getUserById(userId);
 					%>
-					<li <%=classMakeCard%>><a href="make-card.jsp">Make</a></li>
+					<li <%=classMakeCard%>><a href="make-card.jsp">+</a></li>
 
 					<!-- 
 					<li <%=classProfile%>><a href="profile.jsp">My Profile</a></li>
@@ -61,19 +72,26 @@ String classIndex = url.contains("/index.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
 					 -->
 
 					<li class="divider-vertical"></li>
-					<li <%=classAccount%>><a href="account.jsp">Account</a></li>
-					<li <%=classLogout%>><a href="logout.do">Logout</a></li>
+
+					<li <%=classAccount%>><a href="account.jsp">U</a></li>
+
+					<li class="divider-vertical"></li>
+
+					<li <%=classLogout%>><a href="logout.do">Bye</a></li>
 					<%
 						} else {
 					%>
-					<li <%=classLogin%>><a href="login.jsp">Login</a></li>
-					<li <%=classSignup%>><a href="signup.jsp">Sign up</a></li>
+					<li <%=classLogin%>><a href="login.jsp">Start</a></li>
+
+					<li class="divider-vertical"></li>
+
+					<li <%=classSignup%>><a href="signup.jsp">At First</a></li>
 					<%
 						}
 					%>
 					<li class="divider-vertical"></li>
 					<li>
-						<form class="navbar-search pull-left" method="get" action="index.jsp">
+						<form class="navbar-search pull-left" method="get" action="home.jsp">
 							<input type="hidden" name="sorted" value="search"> 
 							<input type="text" class="search-query" name="words" placeholder="search">
 						</form>

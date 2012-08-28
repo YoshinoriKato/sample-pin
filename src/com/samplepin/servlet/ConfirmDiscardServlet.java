@@ -50,7 +50,7 @@ public class ConfirmDiscardServlet extends HttpServlet {
 				}
 			}
 			log("discard end.");
-			resp.sendRedirect("index.jsp");
+			resp.sendRedirect("home.jsp");
 			return;
 
 		} else {

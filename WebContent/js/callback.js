@@ -170,7 +170,7 @@ function callAjax($sorted, $limit, $offset, $userId, $cardId, $type, $words) {
 			scriptCharset : 'UTF-8',
 			url : 'xxx.do',
 			data : {
-				name : 'index.jsp',
+				name : 'home.jsp',
 				key : '0381075127472',
 				sorted : $sorted,
 				offset : $offset,

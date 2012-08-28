@@ -28,7 +28,7 @@ import com.samplepin.Card;
 import com.samplepin.User;
 import com.samplepin.common.Helper;
 
-@WebServlet(name = "IconUploadServlet", urlPatterns = "/make-card.do")
+@WebServlet(urlPatterns = "/make-card.do")
 @MultipartConfig(location = "/Developer/uploaded")
 public class MakeCardServlet extends HttpServlet {
 

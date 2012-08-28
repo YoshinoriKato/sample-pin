@@ -44,7 +44,7 @@
 	<div id="main">
 		<div class="container">
 			<div class="row">
-				<div class="cell">
+				<div class="cell span11">
 					<div calss="padding20">
 						<div class="form-horizontal">
 							<form action="my-card.do" enctype="multipart/form-data"

@@ -21,6 +21,10 @@ public class MakeTag extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		NaturalLanguageParser.makeTags(request);
+		try {
+			NaturalLanguageParser.makeTags(request);
+		} catch (Exception e) {
+			request.getSession().setAttribute("error", e);
+		}
 	}
 }

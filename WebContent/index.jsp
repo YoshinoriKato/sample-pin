@@ -1,53 +1,61 @@
-<%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	String sorted = request.getParameter("sorted");
-	sorted = sorted == null ? "" : sorted;
-	String userId = request.getParameter("userId");
-	userId = (userId != null) ? userId : "";
-	String title = "Cards";
-	title = ("recommend".equals(sorted)) ? "Recommend" : title;
-	title = ("footprints".equals(sorted)) ? "Footprints" : title;
-	title = ("mine".equals(sorted)) ? "My Cards" : title;
-
-	String words = request.getParameter("words");
-	words = words == null ? "" : words;
-%>
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <jsp:include page="_header.jsp"></jsp:include>
-<script type="text/javascript" charset="utf-8">
-	$(window).resize(function() {
-		wookmark();
-	});
-
-	$(window).load(function() {
-		callAjax($('#sorted').text(), 40, '', $('#userId').text(), "", "card", $('#words').text());
-		$('#main').fadeIn(1000);
-	});
-</script>
+<jsp:include page="_effect.jsp"></jsp:include>
 </head>
-
 
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
-	<jsp:include page="_button.jsp" flush="true" />
-	<div id="title"><%=title%></div>
+	<div id="title">What?</div>
 	<div id="main">
-		<ul id="content">
-			<!--  ajax -->
-		</ul>
-		<br style="clear: both;" />
-	</div></div></div>
-	<div class="center caption star large" id="read-cards"></div>
-	<div style="display: none" id="sorted"><%=sorted%></div>
-	<div style="display: none" id="userId"><%=userId%></div>
-	<div style="display: none" id="words"><%=words%></div>
+		<div class="container">
+			<div class="row">
+				<div class="cell span11">
+					<h1 class="tab-header">What's Sample-Pin ?</h1>
+					<div class="profile large">
+						<div class="item-group">
+							<div class="item-label">Abstract</div>
+							<div class="items">
+								<p>A curating service for easy use.</p>
+								<p>And, share images and feelings,</p>
+								<p>about your interest.</p>
+							</div>
+						</div>
+						<div class="item-group">
+							<div class="item-label">How to use 1</div>
+							<div class="items">
+								Click "Home" in the menu bar
+								<ol>
+									<li>View cards</li>
+									<li>Click a card</li>
+									<li>Click "Comment" button in the sub menu bar</li>
+									<li>Write your comment</li>
+								</ol>
+							</div>
+						</div>
+						<div class="item-group">
+							<div class="item-label">How to use 2</div>
+							<div class="items">
+								Click "+" in the menu bar
+								<ol>
+									<li>Search Image</li>
+									<li>Write caption</li>
+									<li>Make and share your card</li>
+								</ol>
+							</div>
+						</div>
+						<div class="item-group">
+							<div class="item-label">How to use 3</div>
+							<div class="items">Repeat</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<jsp:include page="_footer.jsp"></jsp:include>
 </body>
-
 </html>

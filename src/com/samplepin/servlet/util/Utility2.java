@@ -72,6 +72,6 @@ public class Utility2 extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws IOException {
 		main(null);
-		res.sendRedirect("index.jsp");
+		res.sendRedirect("home.jsp");
 	}
 }

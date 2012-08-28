@@ -29,12 +29,12 @@
 				<div class="cell">
 					<div>
 						<a class="no-hover center"
-							href="index.jsp?sorted=search&words=<%=tag.getTag()%>"> <img
+							href="home.jsp?sorted=search&words=<%=tag.getTag()%>"> <img
 							class="image-shot deco" src="<%=tag.getImagePath()%>">
 						</a>
 					</div>
 					<div class="caption center deco">
-						<a href="index.jsp?sorted=search&words=<%=tag.getTag()%>"><%=tag.getTag()%></a>
+						<a href="home.jsp?sorted=search&words=<%=tag.getTag()%>"><%=tag.getTag()%></a>
 					</div>
 					<div class="star right"><%=tag.getSize()%>
 						cards

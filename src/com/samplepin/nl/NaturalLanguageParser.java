@@ -248,20 +248,23 @@ public class NaturalLanguageParser {
 		}
 	}
 
-	public static void parseWebpage(String urlPath, ParserCallback callback)
-			throws IOException {
-		URL url = new URL(urlPath);
-		String line = null;
-		StringBuilder builder = new StringBuilder();
+	public static void parseWebpage(String urlPath, ParserCallback callback) {
+		try {
+			URL url = new URL(urlPath);
+			String line = null;
+			StringBuilder builder = new StringBuilder();
 
-		try (BufferedReader br = new BufferedReader(new InputStreamReader(
-				url.openStream()))) {
-			while ((line = br.readLine()) != null) {
-				builder.append(line).append(Helper.LS);
+			try (BufferedReader br = new BufferedReader(new InputStreamReader(
+					url.openStream()))) {
+				while ((line = br.readLine()) != null) {
+					builder.append(line).append(Helper.LS);
+				}
 			}
-		}
 
-		callback.parse(builder.toString());
+			callback.parse(builder);
+		} catch (IOException e) {
+			// not throw
+		}
 	}
 
 	static boolean reject(Morpheme morph, String part, CharSequence text) {
