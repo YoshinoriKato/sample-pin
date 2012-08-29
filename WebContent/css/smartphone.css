@@ -1,27 +1,27 @@
 @charset "utf-8";
 
 .portrait.iphone {
-	width: 480px;
+	width: 95%;
 }
 
 .landscape.iphone {
-	width: 720px;
+	width: 95%;
 }
 
 .portrait.ipad {
-	width: 480px;
+	width: 95%;
 }
 
 .landscape.ipad {
-	width: 720px;
+	width: 95%;
 }
 
 .portrait.android {
-	width: 480px;
+	width: 95%;
 }
 
 .landscape.android {
-	width: 720px;
+	width: 95%;
 }
 
 .portrait.other {
