@@ -24,90 +24,88 @@
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title">Discard</div>
 	<div id="main">
-		<div class="container">
-			<div class="row">
-				<div class="cell span11">
-					<%
-						if (card != null) {
-					%>
-					<div class="form-horizontal">
-						<form action="confirm-discard.do" method="post"
-							class="form-horizontal">
-							<fieldset>
-								<h1 class="tab-header">Confirm Discard</h1>
-								<div class="control-group">
-									<label class="control-label">Preview</label>
-									<div class="controls">
-										<div class="card">
-											<div id="<%=card.getCardId()%>" class="cell">
-												<%
-													int height = card.getHeight();
-														int width = card.getWidth();
-														height = Math.round(height * (200f / width));
-														width = 200;
-														if (card.getView() > 0) {
-												%>
-												<div class="ribon">
-													<div class="ribon-text color-red"><%=card.getView()%>
-														view
-													</div>
+		<div id="input-window">
+			<div class="cell">
+				<%
+					if (card != null) {
+				%>
+				<div class="form-horizontal">
+					<form action="confirm-discard.do" method="post"
+						class="form-horizontal">
+						<fieldset>
+							<h1 class="tab-header">Confirm Discard</h1>
+							<div class="control-group">
+								<label class="control-label">Preview</label>
+								<div class="controls">
+									<div class="card">
+										<div id="<%=card.getCardId()%>" class="cell">
+											<%
+												int height = card.getHeight();
+													int width = card.getWidth();
+													height = Math.round(height * (200f / width));
+													width = 200;
+													if (card.getView() > 0) {
+											%>
+											<div class="ribon">
+												<div class="ribon-text color-red"><%=card.getView()%>
+													view
 												</div>
-												<%
-													}
-												%>
-												<div>
-													<img class="image-shot deco" src="<%=card.getImagePath()%>"
-														width="<%=width%>" height="<%=height%>">
-												</div>
-												<div class="bold deco break-word">
-													管理人<img class="image-icon" src="<%=card.getUserIcon()%>">
-												</div>
-												<div class="caption deco"><%=card.getCaption()%></div>
-												<br style="clear: both;">
-												<%
-													if (Helper.valid(card.getKeywords())) {
-												%>
-												<div class="card-info break-word">
-													Keywords:<%=card.getKeywords()%></div>
-												<%
-													}
-												%>
-												<%
-													if (Helper.valid(card.getSite())) {
-												%>
-												<div class="card-info break-word">
-													URL:<%=card.getSite()%>
-												</div>
-												<%
-													}
-												%>
-												<div class="star right" style="clear: both;"><%=card.getLikes()%>
-													comment
-												</div>
+											</div>
+											<%
+												}
+											%>
+											<div>
+												<img class="image-shot deco" src="<%=card.getImagePath()%>"
+													width="<%=width%>" height="<%=height%>">
+											</div>
+											<div class="bold deco break-word">
+												管理人<img class="image-icon" src="<%=card.getUserIcon()%>">
+											</div>
+											<div class="caption deco"><%=card.getCaption()%></div>
+											<br style="clear: both;">
+											<%
+												if (Helper.valid(card.getKeywords())) {
+											%>
+											<div class="card-info break-word">
+												Keywords:<%=card.getKeywords()%></div>
+											<%
+												}
+											%>
+											<%
+												if (Helper.valid(card.getSite())) {
+											%>
+											<div class="card-info break-word">
+												URL:<%=card.getSite()%>
+											</div>
+											<%
+												}
+											%>
+											<div class="star right" style="clear: both;"><%=card.getLikes()%>
+												comment
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="control-group">
-									<div class="controls">
-										<input type="hidden" value="<%=cardId%>" name="cardId">
-										<input type="submit" value="Confirm"
-											class="btn btn-large btn-danger btn-cell">
-									</div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<input type="hidden" value="<%=cardId%>" name="cardId">
+									<input type="submit" value="Confirm"
+										class="btn btn-large btn-danger btn-cell">
 								</div>
-							</fieldset>
-						</form>
-					</div>
-					<%
-						} else {
-					%>
-					<div class="caption">
-						<h1 class="tab-header">No exist.</h1>
-					</div>
-					<%
-						}
-					%>
+							</div>
+						</fieldset>
+					</form>
 				</div>
+				<%
+					} else {
+				%>
+				<div class="caption">
+					<h1 class="tab-header">No exist.</h1>
+				</div>
+				<%
+					}
+				%>
 			</div>
 		</div>
 	</div>

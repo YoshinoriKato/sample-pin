@@ -23,9 +23,8 @@
 	<jsp:include page="_topbar.jsp"></jsp:include>
 	<div id="title">Account</div>
 	<div id="main">
-		<div class="container">
-			<div class="row">
-				<div class="cell span11">
+		<div id="input-window">
+				<div class="cell">
 					<div class="form-horizontal">
 						<form action="account.do" enctype="multipart/form-data"
 							method="post" class="form-horizontal">
@@ -45,13 +44,13 @@
 									<div class="controls">
 										<input type="text" name="userName" maxlength="40"
 											value="<%=Helper.escapeHTML(user.getUserName())%>"
-											class="text span8">
+											class="text input-text">
 									</div>
 								</div>
 								<div class="control-group">
 									<label for="mail" class="control-label">Mail</label>
 									<div class="controls">
-										<input type="email" class="text span8" name="mail"
+										<input type="email" class="text input-text" name="mail"
 											value="<%=user.getMail()%>" />
 									</div>
 								</div>
@@ -65,7 +64,7 @@
 								<div class="control-group">
 									<label for="comment" class="control-label">Comment</label>
 									<div class="controls">
-										<textarea class="textarea span8" name="comment" rows="4"><%=Helper.escapeHTML(user.getComment())%></textarea>
+										<textarea class="textarea input-text" name="comment" rows="4"><%=Helper.escapeHTML(user.getComment())%></textarea>
 									</div>
 								</div>
 								<div class="control-group">
@@ -125,7 +124,6 @@
 						</form>
 					</div>
 				</div>
-			</div>
 		</div>
 	</div>
 	<jsp:include page="_footer.jsp"></jsp:include>

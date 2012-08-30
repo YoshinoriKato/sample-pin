@@ -20,40 +20,39 @@
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title">Sign up</div>
 	<div id="main">
-		<div class="container">
-			<div class="row">
-				<div class="cell span11">
-					<form action="signup.do" method="post" class="form-horizontal">
-						<fieldset>
-							<h1 class="tab-header">Sign up</h1>
-							<input type="hidden" name="redirectUrl" value="<%=fromUrl%>" />
-							<div class="control-group <%=error%>">
-								<label for="mail" class="control-label">Mail Address</label>
-								<div class="controls">
-									<input type="email" name="mail" class="span6 input"
-										placeholder="xxxxxx@xxx.xxx" /><span class="help-inline"><%=message%></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="controls">
-									<input type="submit" name="submit" value="Sign up"
-										class="btn btn-large btn-primary btn-cell" />
-								</div>
-							</div>
-						</fieldset>
-					</form>
-					<hr>
-					<div class="form-horizontal">
-						<div class="control-group">
-							<label for="mail" class="control-label">Twitter Account</label>
+		<div id="input-window">
+			<div class="cell">
+				<form action="signup.do" method="post" class="form-horizontal">
+					<fieldset>
+						<h1 class="tab-header">Sign up</h1>
+						<input type="hidden" name="redirectUrl" value="<%=fromUrl%>" />
+						<div class="control-group <%=error%>">
+							<label for="mail" class="control-label">Mail Address</label>
 							<div class="controls">
-								<a href="oauth-twitter.jsp"
-									class="btn btn-large btn-primary btn-cell"><img src="img/bird_gray_48.png"></a>
+								<input type="email" name="mail" class="input-text input"
+									placeholder="xxxxxx@xxx.xxx" /><span class="help-inline"><%=message%></span>
 							</div>
 						</div>
+						<div class="control-group">
+							<div class="controls">
+								<input type="submit" name="submit" value="Sign up"
+									class="btn btn-large btn-primary btn-cell" />
+							</div>
+						</div>
+					</fieldset>
+				</form>
+				<hr>
+				<div class="form-horizontal">
+					<div class="control-group">
+						<label for="mail" class="control-label">Twitter Account</label>
+						<div class="controls">
+							<a href="oauth-twitter.jsp"
+								class="btn btn-large btn-primary btn-cell"><img
+								src="img/bird_gray_48.png"></a>
+						</div>
 					</div>
-
 				</div>
+
 			</div>
 		</div>
 	</div>

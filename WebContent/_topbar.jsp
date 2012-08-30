@@ -53,7 +53,7 @@
 					<li class="divider-vertical"></li>
 
 					<%-- <li <%=classTag%>><a href="tag.jsp">Tags</a></li> --%>
-					<li <%=classHome%>><a href="home.jsp"><img src="img/favicon.ico" style="height: 24px; width: 24px;" class="opacity80"></a></li>
+					<li <%=classHome%>><a href="home.jsp">Home</a></li>
 
 					<li class="divider-vertical"></li>
 
@@ -77,7 +77,7 @@
 
 					<li class="divider-vertical"></li>
 
-					<li <%=classLogout%>><a href="logout.do">Bye</a></li>
+					<li <%=classLogout%>><a href="logout.do">x</a></li>
 					<%
 						} else {
 					%>
@@ -85,7 +85,7 @@
 
 					<li class="divider-vertical"></li>
 
-					<li <%=classSignup%>><a href="signup.jsp">At First</a></li>
+					<li <%=classSignup%>><a href="signup.jsp">@1st</a></li>
 					<%
 						}
 					%>
