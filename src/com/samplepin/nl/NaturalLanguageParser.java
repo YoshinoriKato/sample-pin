@@ -52,7 +52,8 @@ public class NaturalLanguageParser {
 	}
 
 	static List<Card> cards(ACMongo mongo, String cardId) {
-		Query<Card> query0 = mongo.createQuery(Card.class);
+		Query<Card> query0 = mongo.createQuery(Card.class)
+				.filter("isDeleted = ", false).order("createDate");
 		if ((cardId != null) && !cardId.isEmpty()) {
 			query0.filter("cardId = ", cardId);
 		}

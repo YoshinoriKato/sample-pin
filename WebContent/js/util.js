@@ -14,12 +14,12 @@ function checkLength($key) {
 function recoveryText($key) {
 	var $storage = sessionStorage;
 	$('#comment-text').val($storage.getItem($key));
-}
+};
 
 function removeText($key) {
 	var $storage = sessionStorage;
 	$storage.removeItem($key);
-}
+};
 
 function pushPull($on, $off) {
 	pushPull($on, $off, 1000);
