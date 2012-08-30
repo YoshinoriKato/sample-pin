@@ -84,15 +84,17 @@
 						<div class="control-group">
 							<label for="keywords" class="control-label">Keywords</label>
 							<div class="controls">
-								<input type="text" name="keywords" value="<%=keywords%>"
+								<input type="hidden" name="keywords" value="<%=keywords%>"
 									class="input-text text" readonly="readonly">
+									<%=keywords%>
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="site" class="control-label">URL</label>
 							<div class="controls">
-								<input type="text" name="site" value="<%=site%>"
+								<input type="hidden" name="site" value="<%=site%>"
 									class="input-text text" readonly="readonly">
+									<a href="<%=site%>" target="_blank"><%=site%></a>
 							</div>
 						</div>
 						<%
