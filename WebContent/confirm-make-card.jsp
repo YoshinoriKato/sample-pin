@@ -19,8 +19,8 @@
 	/* Card card = (Card) session.getAttribute("confirm"); */
 
 	String message = (String) request.getAttribute("message");
-	message = message != null ? message : "";
-	String error = message != null && !message.isEmpty() ? "error" : "";
+	message = (message != null) ? message : "";
+	String error = (message != null && !message.isEmpty()) ? "error" : "";
 %>
 
 <body>

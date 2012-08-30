@@ -46,6 +46,8 @@ public class Card extends Comment implements Updateable {
 		this.createDate = createDate;
 		this.updateDate = createDate;
 		this.isDeleted = false;
+		this.width = 400;
+		this.height = 400;
 	}
 
 	public Integer getHeight() {

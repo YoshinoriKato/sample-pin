@@ -67,7 +67,7 @@
 										if (Helper.valid(imagePath)) {
 									%>
 									<img alt="" src="<%=imagePath%>" class="image-shot"
-										style="max-width: 480px">
+										style="max-width: 85%">
 									<%
 										} else {
 									%>

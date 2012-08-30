@@ -34,7 +34,7 @@
 								<label for="imagePath" class="control-label">Image</label>
 								<div class="controls">
 									<div>
-										<img src="<%=user.getImagePath()%>" class="image-shot">
+										<img src="<%=user.getImagePath()%>" class="image-shot" style="max-width: 85%">
 									</div>
 									<input type="file" name="imagePath">
 								</div>
