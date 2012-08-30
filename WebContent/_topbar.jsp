@@ -6,8 +6,8 @@
 	pageEncoding="UTF-8"%>
 
 <!-- メニュー -->
-<%!final String CLASS_ACTIVE = "class=\"active em6 bold\""; %>
-<%!final String CLASS_NEGATIVE = "class=\"em5\""; %>
+<%!final String CLASS_ACTIVE = "class=\"active em5 bold\""; %>
+<%!final String CLASS_NEGATIVE = "class=\"em3\""; %>
 <%
 	String url = request.getRequestURI();
 
@@ -47,16 +47,10 @@
 			</button>
 			
 			<div class="nav-collapse collapse">
-				<ul class="nav" style="height: 60px;">
+				<ul class="nav">
 					<li <%=classIndex%>><a href="index.jsp">?</a></li>
-
-					<li class="divider-vertical"></li>
-
 					<%-- <li <%=classTag%>><a href="tag.jsp">Tags</a></li> --%>
 					<li <%=classHome%>><a href="home.jsp">Home</a></li>
-
-					<li class="divider-vertical"></li>
-
 					<%
 						String userId = (String) session.getAttribute("userId");
 						if (userId != null) {
@@ -70,32 +64,22 @@
 
 					<li class="divider-vertical"></li>
 					 -->
-
-					<li class="divider-vertical"></li>
-
 					<li <%=classAccount%>><a href="account.jsp">U</a></li>
-
-					<li class="divider-vertical"></li>
-
-					<li <%=classLogout%>><a href="logout.do">x</a></li>
-					<%
-						} else {
-					%>
-					<li <%=classLogin%>><a href="login.jsp">Start</a></li>
-
-					<li class="divider-vertical"></li>
-
-					<li <%=classSignup%>><a href="signup.jsp">@1st</a></li>
-					<%
-						}
-					%>
-					<li class="divider-vertical"></li>
+					<%-- <li <%=classLogout%>><a href="logout.do">x</a></li> --%>
 					<li>
 						<form class="navbar-search pull-left" method="get" action="home.jsp">
 							<input type="hidden" name="sorted" value="search"> 
 							<input type="text" class="search-query input-short" name="words" placeholder="search">
 						</form>
 					</li>
+					<%
+						} else {
+					%>
+					<li <%=classLogin%>><a href="login.jsp">Start</a></li>
+					<li <%=classSignup%>><a href="signup.jsp">@1st</a></li>
+					<%
+						}
+					%>
 				</ul>
 			</div>
 		</div>

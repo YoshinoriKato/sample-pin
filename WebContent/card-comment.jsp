@@ -88,8 +88,9 @@
 					<%
 						int height = card.getHeight();
 							int width = card.getWidth();
-							height = Math.round(height * (200f / width));
-							width = 200;
+							float cardWidth = 240;
+							height = Math.round(height * (cardWidth / width));
+							width = Math.round(cardWidth);
 							if (card.getView() > 0) {
 					%>
 					<div class="ribon">
@@ -134,54 +135,6 @@
 						comment
 					</div>
 				</div></li>
-			<%-- 			<li class="card">
-				<div class="cell link" id="image-shot">
-					<%
-						if (card.getView() != 0) {
-					%>
-					<div class="ribon">
-						<span class="ribon-text color-red"> <%=card.getView()%>
-							view
-						</span>
-					</div>
-					<%
-						}
-					%>
-					<div>
-						<img src="<%=card.getImagePath()%>" class="image-shot">
-					</div>
-					<div class="star comment">
-						<%=card.getUserName()%><a class="no-hover"
-							href="profile.jsp?userId=<%=card.getUserId()%>"><img
-							class="image-icon" src="<%=card.getUserIcon()%>"></a>
-					</div>
-					<div class="caption deco">
-						<%=Helper.convURLLink(Helper.escapeHTML(card
-						.getCaption()))%>
-					</div>
-					<br class="clear-both" />
-					<%
-						if (Helper.valid(card.getKeywords())) {
-					%>
-					<div class="star break-word">
-						Keywords:<%=card.getKeywords()%></div>
-					<%
-						}
-					%>
-					<%
-						if (Helper.valid(card.getSite())) {
-					%><div class="star break-word">
-						URL:<%=card.getSite()%></div>
-					<%
-						}
-					%>
-					<div class="star right">
-						<%=card.getLikes()%>
-						comment
-					</div>
-				</div>
-			</li>
- --%>
 			<%
 				}
 			%>
@@ -224,7 +177,7 @@
 				class="form-horizontal">
 				<div class="control-group <%=error%>">
 					<div>
-						<textarea id="comment-text" name="comment" class="textarea span6"
+						<textarea id="comment-text" name="comment" class="textarea input-text"
 							rows="4"></textarea>
 					</div>
 					<div class="help-inline"><%=message%></div>

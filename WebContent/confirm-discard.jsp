@@ -42,8 +42,9 @@
 											<%
 												int height = card.getHeight();
 													int width = card.getWidth();
-													height = Math.round(height * (200f / width));
-													width = 200;
+													float cardWidth = 240;
+													height = Math.round(height * (cardWidth / width));
+													width = Math.round(cardWidth);
 													if (card.getView() > 0) {
 											%>
 											<div class="ribon">

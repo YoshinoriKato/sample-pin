@@ -48,15 +48,17 @@ function wookmark() {
 	});
 };
 
+var $cardWidth = 240;
+
 function makeCard($card) {
 
 	// components
 	var $url = $card.url;
 	var $height = $card.height;
 	var $width = $card.width;
-	var $rate = $width / 200;
+	var $rate = $width / $cardWidth;
 	$height = Math.round($height / $rate);
-	$width = 200;
+	$width = $cardWidth;
 	var $jqLi = $('<li/>').addClass('card');
 	var $jqDiv = $('<div/>').attr('id', $card.cardId);
 	var $jqA0 = $('<a/>').addClass('no-hover');
