@@ -6,7 +6,7 @@
 	sorted = sorted == null ? "" : sorted;
 	String userId = request.getParameter("userId");
 	userId = (userId != null) ? userId : "";
-	String title = "Cards";
+	String title = "Home";
 	title = ("recommend".equals(sorted)) ? "Recommend" : title;
 	title = ("footprints".equals(sorted)) ? "Footprints" : title;
 	title = ("mine".equals(sorted)) ? "My Cards" : title;

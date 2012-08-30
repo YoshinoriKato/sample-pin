@@ -38,14 +38,14 @@
 
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
-	<div id="title">Make Card</div>
+	<div id="title">Add</div>
 	<div id="main">
 		<div id="input-window">
 			<div class="cell">
 				<div class="form-horizontal">
 					<form class="form-search" action="javascript:searchGoogle()">
 						<fieldset>
-							<h1 class="tab-header">Make Card</h1>
+							<h1 class="tab-header">Add Card</h1>
 							<div class="control-group">
 								<label for="iconPath" class="control-label">Image</label>
 								<div class="controls">
