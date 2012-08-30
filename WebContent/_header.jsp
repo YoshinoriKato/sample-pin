@@ -16,7 +16,7 @@
 <meta http-equiv="Content-Script-Type"
 	content="text/javascript charset=UTF-8" />
 <meta charset="UTF-8">
-<meta name="viewport" content="width = 600">
+<meta name="viewport" content="width=600, maximum-scale=1.0">
 
 <title>Sample-Pin</title>
 
