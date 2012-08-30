@@ -6,7 +6,7 @@
 	pageEncoding="UTF-8"%>
 
 <!-- メニュー -->
-<%!final String CLASS_ACTIVE = "class=\"active em3 bold\""; %>
+<%!final String CLASS_ACTIVE = "class=\"active em2 bold\""; %>
 <%!final String CLASS_NEGATIVE = "class=\"em5\""; %>
 <%
 	String url = request.getRequestURI();
@@ -75,7 +75,7 @@
 					<%
 						} else {
 					%>
-					<li <%=classLogin%>><a href="login.jsp">Start</a></li>
+					<li <%=classLogin%>><a href="login.jsp">In</a></li>
 					<li <%=classSignup%>><a href="signup.jsp">@1st</a></li>
 					<%
 						}
