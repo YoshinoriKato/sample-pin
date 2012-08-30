@@ -57,75 +57,75 @@
 							</div>
 						</fieldset>
 					</form>
-					<ul id="search-result"></ul>
-					<form action="make-card.do" enctype="multipart/form-data"
-						method="post" class="form-horizontal">
-						<fieldset>
-							<div class="control-group">
-								<div class="controls">
-									<%
-										if (Helper.valid(imagePath)) {
-									%>
-									<img alt="" src="<%=imagePath%>" class="image-shot"
-										style="max-width: 85%">
-									<%
-										} else {
-									%>
-									<input type="file" name="iconPath" />
-									<%
-										}
-									%>
-								</div>
-							</div>
-							<%
-								if (Helper.valid(imagePath)) {
-							%>
-							<div class="control-group">
-								<label for="keywords" class="control-label">Keywords</label>
-								<div class="controls">
-									<input type="text" name="keywords" value="<%=keywords%>"
-										class="input-text text" readonly="readonly">
-								</div>
-							</div>
-							<div class="control-group">
-								<label for="site" class="control-label">URL</label>
-								<div class="controls">
-									<input type="text" name="site" value="<%=site%>"
-										class="input-text text" readonly="readonly">
-								</div>
-							</div>
-							<%
-								}
-							%>
-							<div class="control-group <%=error%>">
-								<label for="caption" class="control-label">Caption</label>
-								<div class="controls">
-									<textarea class="textarea input-text" name="caption" rows="4"></textarea>
-									<span class="help-inline"><%=message%></span>
-								</div>
-							</div>
-							<%
-								if (external != null) {
-							%>
-							<div class="control-group">
-								<label for="url" class="control-label">URL</label>
-								<div class="controls">
-									<input type="url" name="url" class="text input-text">
-								</div>
-							</div>
-							<%
-								}
-							%>
-							<div class="control-group">
-								<div class="controls">
-									<input type="submit" value="Make" id="submit-button"
-										class="btn btn-large btn-primary btn-cell">
-								</div>
-							</div>
-							<input type="hidden" name="imagePath" value="<%=imagePath%>">
-						</fieldset>
-					</form>
 				</div>
+				<ul id="search-result"></ul>
+				<form action="make-card.do" enctype="multipart/form-data"
+					method="post" class="form-horizontal">
+					<fieldset>
+						<div class="control-group">
+							<div class="controls">
+								<%
+									if (Helper.valid(imagePath)) {
+								%>
+								<img alt="" src="<%=imagePath%>" class="image-shot"
+									style="max-width: 85%">
+								<%
+									} else {
+								%>
+								<input type="file" name="iconPath" />
+								<%
+									}
+								%>
+							</div>
+						</div>
+						<%
+							if (Helper.valid(imagePath)) {
+						%>
+						<div class="control-group">
+							<label for="keywords" class="control-label">Keywords</label>
+							<div class="controls">
+								<input type="text" name="keywords" value="<%=keywords%>"
+									class="input-text text" readonly="readonly">
+							</div>
+						</div>
+						<div class="control-group">
+							<label for="site" class="control-label">URL</label>
+							<div class="controls">
+								<input type="text" name="site" value="<%=site%>"
+									class="input-text text" readonly="readonly">
+							</div>
+						</div>
+						<%
+							}
+						%>
+						<div class="control-group <%=error%>">
+							<label for="caption" class="control-label">Caption</label>
+							<div class="controls">
+								<textarea class="textarea input-text" name="caption" rows="4"></textarea>
+								<span class="help-inline"><%=message%></span>
+							</div>
+						</div>
+						<%
+							if (external != null) {
+						%>
+						<div class="control-group">
+							<label for="url" class="control-label">URL</label>
+							<div class="controls">
+								<input type="url" name="url" class="text input-text">
+							</div>
+						</div>
+						<%
+							}
+						%>
+						<div class="control-group">
+							<div class="controls">
+								<input type="submit" value="Make" id="submit-button"
+									class="btn btn-large btn-primary btn-cell">
+							</div>
+						</div>
+						<input type="hidden" name="imagePath" value="<%=imagePath%>">
+					</fieldset>
+				</form>
 			</div>
 		</div>
 	</div>

@@ -9,6 +9,7 @@ function searchGoogle() {
 			google.search.ImageSearch.RESTRICT_FILETYPE.FILETYPE_JPG,
 			google.search.ImageSearch.RESTRICT_FILETYPE.FILETYPE_GIF,
 			google.search.ImageSearch.RESTRICT_FILETYPE.FILETYPE_PNG);
+	imageSearch.setResultSetSize(google.search.Search.LARGE_RESULTSET);
 	imageSearch.execute($($serachBox).val());
 };
 
@@ -26,32 +27,34 @@ function SearchComplete(searcher) {
 			makeImageCell($content, $results[i]);
 		}
 		
-		$('#search-result li').wookmark({
-			offset : 12
-		});
-
-		$content.height($max_height);
+//		$('#search-result li').wookmark({
+//			offset : 12
+//		});
+//
+//		$content.height($max_height);
 	}
 }
 
 function makeImageCell($content, $result) {
 	var $li = $('<li/>').addClass('search-thumb');
 	var $cell = $('<div/>').addClass('cell');
+	var $capture = $('<div/>').addClass('float-left');
 	var $a = $('<a/>').attr(
 			'href',
 			'upload.do?url=' + encodeURIComponent($result.url) + '&keywords='
 					+ encodeURIComponent($($serachBox).val()) + '&site='
 					+ encodeURIComponent($result.originalContextUrl));
-	var $size = $('<div/>').addClass('caption star').append($result.width + 'x' + $result.height);
-	var $title = $('<div/>').addClass('caption star').append($result.title);
+	var $caption = $('<div/>').addClass('caption star').append('[' + $result.width + 'x' + $result.height + '] ' + $result.title);
 	var $image = $('<img/>').attr('src', $result.tbUrl).addClass('image-thumb');
+	var $clear = $('<br/>').css('clear', 'both');
 	$content.append($li);
 	$li.append($cell);
-	$cell.append($a).append($size).append($title);
+	$cell.append($capture).append($caption).append($clear);
+	$capture.append($a);
 	$a.append($image);
 	
-	$view_height = Math.round($result.height / ($result.width / 160)) + 200; 
-	$max_height = ($max_height >= $view_height) ? $max_height : $view_height;
+//	$view_height = Math.round($result.height / ($result.width / 120)) + 200; 
+//	$max_height = ($max_height >= $view_height) ? $max_height : $view_height;
 }
 
 function makeImageCell0($content, $result) {

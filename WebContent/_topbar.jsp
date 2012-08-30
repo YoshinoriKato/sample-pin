@@ -6,8 +6,8 @@
 	pageEncoding="UTF-8"%>
 
 <!-- メニュー -->
-<%!final String CLASS_ACTIVE = "class=\"active em5 bold\""; %>
-<%!final String CLASS_NEGATIVE = "class=\"em3\""; %>
+<%!final String CLASS_ACTIVE = "class=\"active em6 bold\""; %>
+<%!final String CLASS_NEGATIVE = "class=\"em5\""; %>
 <%
 	String url = request.getRequestURI();
 

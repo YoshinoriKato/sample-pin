@@ -163,11 +163,13 @@ html {
 
 #search-result {
 	/* effect ---------------------------------------------------------------*/
+	/* background-color: rgba(255, 0, 0, 0.1); */
+	display: block;
 	/* layout ---------------------------------------------------------------*/
 	position: relative;
-	left: 80px;
+	left: 140px;
 	/* shape ----------------------------------------------------------------*/
-	width: 80%;
+	width: 60%;
 }
 
 #search-result li {
@@ -175,8 +177,9 @@ html {
 	display: block;
 	/* layout ---------------------------------------------------------------*/
 	position: relative;
+	margin-bottom: 10px;
 	/* shape ----------------------------------------------------------------*/
-	width: 160px;
+	/* width: 160px; */
 }
 
 #content li a:HOVER {
@@ -336,7 +339,7 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(80, 80, 80, 0.4);
 	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =                     80);
+	filter: alpha(opacity =                       80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/
@@ -353,16 +356,16 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(80, 80, 80, 0.4);
 	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =                     80);
+	filter: alpha(opacity =                       80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/
-	margin-bottom: 3px;
+	margin-right: 5px;
 	/* shape ----------------------------------------------------------------*/
 	border-radius: 3px 20px 3px;
 	-webkit-border-radius: 3px 20px 3px;
 	-moz-border-radius: 3px 20px 3px;
-	min-width: 150px;
+	min-width: 120px;
 	min-height: 10px;
 }
 
@@ -370,7 +373,7 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(80, 80, 80, 0.4);
 	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =         80);
+	filter: alpha(opacity =           80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/
@@ -396,9 +399,9 @@ body {
 .search-thumb {
 	/* effect ---------------------------------------------------------------*/
 	/* layout ---------------------------------------------------------------*/
-	position: relative;
+	position: absolute;
 	/* shape ----------------------------------------------------------------*/
-	width: 160px;
+	/* width: 160px; */
 }
 
 .text,.textarea,.dropdown {
@@ -603,4 +606,8 @@ body {
 	color: rgba(00, 136, 204, 1.0);
 	/* layout ---------------------------------------------------------------*/
 	/* shape ----------------------------------------------------------------*/
+}
+
+.float-left {
+	float: left;
 }
