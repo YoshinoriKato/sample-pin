@@ -128,6 +128,26 @@
 	font-size: xx-large;
 }
 
+.em3{
+	font-size: 3em;
+}
+
+.em4{
+	font-size: 4em;
+}
+
+.em5{
+	font-size: 5em;
+}
+
+.em6{
+	font-size: 6em;
+}
+
+.em7{
+	font-size: 7em;
+}
+
 .bold {
 	font-weight: bold;	
 }

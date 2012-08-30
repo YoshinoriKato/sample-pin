@@ -40,93 +40,91 @@
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title">Make Tag</div>
 	<div id="main">
-		<div class="container">
-			<div class="row">
-				<div class="cell span11">
-					<div class="form-horizontal">
-						<form class="form-search" action="javascript:searchGoogle()">
-							<fieldset>
-								<h1 class="tab-header">Make Tag</h1>
-								<div class="control-group">
-									<label for="iconPath" class="control-label">Image</label>
-									<div class="controls">
-										<input type="search" id="search-box" value=""
-											placeholder="Keyword" class="input-medium span6 text"> <input
-											type="submit" value="Search" id="search-action"
-											class="btn btn-large btn-primary btn-cell">
-									</div>
+		<div id="input-window">
+			<div class="cell">
+				<div class="form-horizontal">
+					<form class="form-search" action="javascript:searchGoogle()">
+						<fieldset>
+							<h1 class="tab-header">Make Tag</h1>
+							<div class="control-group">
+								<label for="iconPath" class="control-label">Image</label>
+								<div class="controls">
+									<input type="search" id="search-box" value=""
+										placeholder="Keyword" class="input-medium span6 text">
+									<input type="submit" value="Search" id="search-action"
+										class="btn btn-large btn-primary btn-cell">
 								</div>
-							</fieldset>
-						</form>
-						<ul id="search-result"></ul>
-						<form action="make-card.do" enctype="multipart/form-data"
-							method="post" class="form-horizontal">
-							<fieldset>
-								<div class="control-group">
-									<div class="controls">
-										<%
-											if (Helper.valid(imagePath)) {
-										%>
-										<img alt="" src="<%=imagePath%>" class="image-shot">
-										<%
-											} else {
-										%>
-										<input type="file" class="span8" name="iconPath" />
-										<%
-											}
-										%>
-									</div>
+							</div>
+						</fieldset>
+					</form>
+					<ul id="search-result"></ul>
+					<form action="make-card.do" enctype="multipart/form-data"
+						method="post" class="form-horizontal">
+						<fieldset>
+							<div class="control-group">
+								<div class="controls">
+									<%
+										if (Helper.valid(imagePath)) {
+									%>
+									<img alt="" src="<%=imagePath%>" class="image-shot">
+									<%
+										} else {
+									%>
+									<input type="file" class="span8" name="iconPath" />
+									<%
+										}
+									%>
 								</div>
-								<%
-									if (Helper.valid(imagePath)) {
-								%>
-								<div class="control-group">
-									<label for="keywords" class="control-label">Keywords</label>
-									<div class="controls">
-										<input type="text" name="keywords" value="<%=keywords%>"
-											class="span6 text" readonly="readonly">
-									</div>
+							</div>
+							<%
+								if (Helper.valid(imagePath)) {
+							%>
+							<div class="control-group">
+								<label for="keywords" class="control-label">Keywords</label>
+								<div class="controls">
+									<input type="text" name="keywords" value="<%=keywords%>"
+										class="span6 text" readonly="readonly">
 								</div>
-								<div class="control-group">
-									<label for="site" class="control-label">URL</label>
-									<div class="controls">
-										<input type="text" name="site" value="<%=site%>" class="span6 text"
-											readonly="readonly">
-									</div>
+							</div>
+							<div class="control-group">
+								<label for="site" class="control-label">URL</label>
+								<div class="controls">
+									<input type="text" name="site" value="<%=site%>"
+										class="span6 text" readonly="readonly">
 								</div>
-								<%
-									}
-								%>
-								<div class="control-group <%=error%>">
-									<label for="caption" class="control-label">Caption</label>
-									<div class="controls">
-										<textarea name="caption" id="comment-text"
-											class="textarea span8" rows="8"></textarea>
-										<span class="help-inline"><%=message%></span>
-									</div>
+							</div>
+							<%
+								}
+							%>
+							<div class="control-group <%=error%>">
+								<label for="caption" class="control-label">Caption</label>
+								<div class="controls">
+									<textarea name="caption" id="comment-text"
+										class="textarea span8" rows="8"></textarea>
+									<span class="help-inline"><%=message%></span>
 								</div>
-								<%
-									if (external != null) {
-								%>
-								<div class="control-group">
-									<label for="url" class="control-label">URL</label>
-									<div class="controls">
-										<input type="url" name="url" class="text">
-									</div>
+							</div>
+							<%
+								if (external != null) {
+							%>
+							<div class="control-group">
+								<label for="url" class="control-label">URL</label>
+								<div class="controls">
+									<input type="url" name="url" class="text">
 								</div>
-								<%
-									}
-								%>
-								<div class="control-group">
-									<div class="controls">
-										<input type="submit" value="Make" id="submit-button"
-											class="btn btn-large btn-primary btn-cell">
-									</div>
+							</div>
+							<%
+								}
+							%>
+							<div class="control-group">
+								<div class="controls">
+									<input type="submit" value="Make" id="submit-button"
+										class="btn btn-large btn-primary btn-cell">
 								</div>
-								<input type="hidden" name="imagePath" value="<%=imagePath%>">
-							</fieldset>
-						</form>
-					</div>
+							</div>
+							<input type="hidden" name="imagePath" value="<%=imagePath%>">
+						</fieldset>
+					</form>
 				</div>
 			</div>
 		</div>

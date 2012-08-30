@@ -6,8 +6,8 @@
 	pageEncoding="UTF-8"%>
 
 <!-- メニュー -->
-<%!final String CLASS_ACTIVE = "class=\"active xx-large bold\""; %>
-<%!final String CLASS_NEGATIVE = "class=\"x-large\""; %>
+<%!final String CLASS_ACTIVE = "class=\"active em6 bold\""; %>
+<%!final String CLASS_NEGATIVE = "class=\"em5\""; %>
 <%
 	String url = request.getRequestURI();
 
@@ -47,7 +47,7 @@
 			</button>
 			
 			<div class="nav-collapse collapse">
-				<ul class="nav">
+				<ul class="nav" style="height: 60px;">
 					<li <%=classIndex%>><a href="index.jsp">?</a></li>
 
 					<li class="divider-vertical"></li>
@@ -93,7 +93,7 @@
 					<li>
 						<form class="navbar-search pull-left" method="get" action="home.jsp">
 							<input type="hidden" name="sorted" value="search"> 
-							<input type="text" class="search-query" name="words" placeholder="search">
+							<input type="text" class="search-query input-short" name="words" placeholder="search">
 						</form>
 					</li>
 				</ul>

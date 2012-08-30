@@ -1,6 +1,5 @@
 @charset "utf-8";
 
-
 #default {
 	/* effect ---------------------------------------------------------------*/
 	/* layout ---------------------------------------------------------------*/
@@ -8,368 +7,38 @@
 	
 }
 
-#input-window {
+#copyrights {
 	/* effect ---------------------------------------------------------------*/
 	/* layout ---------------------------------------------------------------*/
-	position: relative;
-	left: 10%;
-	/* shape ----------------------------------------------------------------*/
-	width: 80%;
-	min-width: 480px;
-}
-
-.input-text {
-	/* effect ---------------------------------------------------------------*/
-	/* layout ---------------------------------------------------------------*/
-	position: relative;
-	/* shape ----------------------------------------------------------------*/
-	width: 80%;
-	min-width: 280px;
-}
-
-body {
-	/* effect ---------------------------------------------------------------*/
-	background-color: #eee;
-	background-image: url("../img/ichimatsu.png?201208131742");
-	background-position:left top;
-	background-attachment:fixed;
-	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
-	/* layout ---------------------------------------------------------------*/
-	/* shape ----------------------------------------------------------------*/
-}
-
-.tab-header {
-	/* effect ---------------------------------------------------------------*/
-	/* layout ---------------------------------------------------------------*/
-	margin-left: 10px;
-	margin-top: 5px;
-	margin-bottom: 20px;
-	/* shape ----------------------------------------------------------------*/
-}
-
-.btn-cell {
-	/* effect ---------------------------------------------------------------*/
-	border: 1px solid rgba(0, 0, 0, 0.2);
-	box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
-	/* layout ---------------------------------------------------------------*/
-	border-radius: 3px 12px 3px;
-	-webkit-border-radius: 3px 12px 3px;
-	-moz-border-radius: 3px 12px 3px;
-	/* shape ----------------------------------------------------------------*/
-}
-
-#image-origin {
-	/* effect ---------------------------------------------------------------*/
-	background-color: #eee;
-	background-image: url("../img/ichimatsu.png?201208131742");
-	/* layout ---------------------------------------------------------------*/
-	/* shape ----------------------------------------------------------------*/
-	max-height: 80%;
-}
-
-.image-shot {
-	/* effect ---------------------------------------------------------------*/
-	color: rgba(80, 80, 80, 0.4);
-	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =             80);
-	-moz-opacity: 0.80;
-	opacity: 0.80;
-	/* layout ---------------------------------------------------------------*/
-	margin-bottom: 3px;
-	/* shape ----------------------------------------------------------------*/
-	border-radius: 3px 20px 3px;
-	-webkit-border-radius: 3px 20px 3px;
-	-moz-border-radius: 3px 20px 3px;
-	min-width: 200px;
-	min-height: 10px;
-}
-
-.image-thumb {
-	/* effect ---------------------------------------------------------------*/
-	color: rgba(80, 80, 80, 0.4);
-	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =             80);
-	-moz-opacity: 0.80;
-	opacity: 0.80;
-	/* layout ---------------------------------------------------------------*/
-	margin-bottom: 3px;
-	/* shape ----------------------------------------------------------------*/
-	border-radius: 3px 20px 3px;
-	-webkit-border-radius: 3px 20px 3px;
-	-moz-border-radius: 3px 20px 3px;
-	min-width: 150px;
-	min-height: 10px;
-}
-
-.image-icon {
-	/* effect ---------------------------------------------------------------*/
-	color: rgba(80, 80, 80, 0.4);
-	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity = 80);
-	-moz-opacity: 0.80;
-	opacity: 0.80;
-	/* layout ---------------------------------------------------------------*/
-	margin-top: 2px;
-	margin-left: 2px;
-	margin-right: 0.5em;
-	float: left;
-	/* shape ----------------------------------------------------------------*/
-	border-radius: 1px 6px 1px;
-	-webkit-border-radius: 1px 6px 1px;
-	-moz-border-radius: 1px 6px 1px;
-	width: 40px;
-}
-
-.card {
-	/* effect ---------------------------------------------------------------*/
-	/* layout ---------------------------------------------------------------*/
-	position: relative;
-	/* shape ----------------------------------------------------------------*/
-	width: 210px;
-}
-
-.search-thumb {
-	/* effect ---------------------------------------------------------------*/
-	/* layout ---------------------------------------------------------------*/
-	position: relative;
-	/* shape ----------------------------------------------------------------*/
-	width: 160px;
-}
-
-#cover {
-	/* effect ---------------------------------------------------------------*/
-	background-color: rgba(0, 0, 0, 0.4);
-	font-size: larger;
-	display: none;
-	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.6);
-	-webkit-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.6);
-	/* layout ---------------------------------------------------------------*/
+	z-index: 10;
 	position: fixed;
-	top: 10%;
-	left: 10%;
-	z-index: 4;
-	padding: 30px;
-	/* shape ----------------------------------------------------------------*/
-	width: 80%;
-	max-height: 80%;
-	border-radius: 5px 25px 5px;
-	-webkit-border-radius: 5px 25px 5px;
-	-moz-border-radius: 5px 25px 5px;
-}
-
-.text,.textarea,.dropdown {
-	/* effect ---------------------------------------------------------------*/
-	border: 1px solid #777;
-	color: #999;
-	background: #fff;
-	/* Webkit */
-	background: -webkit-gradient(linear, left top, left bottom, from(#eee),
-		to(#fff) );
-	/* Firefox */
-	background: -moz-linear-gradient(top, #eee, #fff);
-	/* IE */
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffeeeeee,
-		endColorstr=#ffffffff );
-	zoom: 1;
-	/* layout ---------------------------------------------------------------*/
-	padding: 5px;
-	/* shape ----------------------------------------------------------------*/
-}
-
-#content {
-	/* effect ---------------------------------------------------------------*/
-	/* layout ---------------------------------------------------------------*/
-	position: relative;
+	bottom: 12px;
+	text-align: center;
 	/* shape ----------------------------------------------------------------*/
 	width: 100%;
 }
 
-#content li {
-	/* effect ---------------------------------------------------------------*/
-	display: block;
-	/* layout ---------------------------------------------------------------*/
-	position: relative;
-	/* shape ----------------------------------------------------------------*/
-	width: 210px;
-}
-
-#search-result {
+#float-bottun {
 	/* effect ---------------------------------------------------------------*/
 	/* layout ---------------------------------------------------------------*/
-	position: relative;
-	left: 80px;
-	/* shape ----------------------------------------------------------------*/
-	width: 80%;
-}
-
-#search-result li {
-	/* effect ---------------------------------------------------------------*/
-	display: block;
-	/* layout ---------------------------------------------------------------*/
-	position: relative;
-	/* shape ----------------------------------------------------------------*/
-	width: 160px;
-}
-
-#content li a:HOVER {
-	text-decoration: none;
-}
-
-#ajax {
-	/* effect ---------------------------------------------------------------*/
-	border: 1px solid rgba(255, 255, 255, 0.3);
-	background-color: rgba(255, 255, 255, 0.95);
-	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
-	text-align: center;
-	/* layout ---------------------------------------------------------------*/
+	z-index: 3;
 	position: fixed;
-	top: 240px;
-	left: 40%;
-	padding: 30px;
-	margin-bottom: 10px;
-	z-index: 10;
-	/* shape ----------------------------------------------------------------*/
-	border-radius: 5px 25px 5px;
-	-webkit-border-radius: 5px 25px 5px;
-	-moz-border-radius: 5px 25px 5px;
-	width: 20%;
-	position: fixed;
-	border-radius: 6px 40px 6px
-}
-
-#error-dialog {
-	/* effect ---------------------------------------------------------------*/
-	border: 1px solid rgba(255, 0, 0, 0.3);
-	background-color: rgba(255, 0, 0, 0.6);
-	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	top: 30px;
+	left: 5%;
 	text-align: center;
-	display: none;
-	/* layout ---------------------------------------------------------------*/
-	padding: 10px;
-	position: fixed;
-	top: 20%;
-	left: 35%;
-	z-index: 9;
 	/* shape ----------------------------------------------------------------*/
-	border-radius: 5px 25px 5px;
-	-webkit-border-radius: 5px 25px 5px;
-	-moz-border-radius: 5px 25px 5px;
-	width: 30%;
-	min-width: 220px;
+	min-width: 400px;
+	width: 90%;
 }
 
-.cell {
+#read-cards {
 	/* effect ---------------------------------------------------------------*/
-	background-color: rgba(255, 255, 255, 0.8);
-	box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
 	/* layout ---------------------------------------------------------------*/
-	padding-top: 5px;
-	padding-bottom: 5px;
-	padding-left: 5px;
-	padding-right: 5px;
-	/* shape ----------------------------------------------------------------*/
-	border-radius: 5px 25px 5px;
-	-webkit-border-radius: 5px 25px 5px;
-	-moz-border-radius: 5px 25px 5px;
-}
-
-.cell2 {
-	/* effect ---------------------------------------------------------------*/
-	border: 1px solid rgba(255, 255, 255, 0.2);
-	background-color: rgba(255, 255, 255, 0.2);
-	box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
-	/* layout ---------------------------------------------------------------*/
-	padding-top: 5px;
-	padding-bottom: 5px;
-	padding-left: 4px;
-	padding-right: 6px;
-	/* shape ----------------------------------------------------------------*/
-	border-radius: 5px 25px 5px;
-	-webkit-border-radius: 5px 25px 5px;
-	-moz-border-radius: 5px 25px 5px;
-	padding-bottom: 10px;
-	padding-left: 9px;
-	padding-right: 11px;
-}
-
-.ribon {
-	/* effect ---------------------------------------------------------------*/
-	overflow: hidden;
-	/* layout ---------------------------------------------------------------*/
-	position: absolute;
-	z-index: 2;
-	top: 0px;
-	left: 0px;
-	/* shape ----------------------------------------------------------------*/
-	width: 90px;
-	height: 90px;
-}
-
-.ribon-text {
-	/* effect ---------------------------------------------------------------*/
-	color: #ffffff;
-	text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.6);
+	padding: 20px;
 	text-align: center;
-	font-size: 11px;
-	font-weight: bold;
-	overflow: hidden;
-	/* layout ---------------------------------------------------------------*/
-	position: absolute;
-	z-index: 2;
-	top: 19px;
-	left: -33px;
-	padding-top: 8px;
-	-webkit-transform: rotate(-45deg);
-	-moz-transform: rotate(-45deg);
-	-o-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
 	/* shape ----------------------------------------------------------------*/
-	width: 125px;
-	height: 22px;
-}
-
-#main {
-	/* effect ---------------------------------------------------------------*/
-	display: none;
-	/* layout ---------------------------------------------------------------*/
-	margin-top: 120px;
-	margin-bottom: 60px;
-	/* shape ----------------------------------------------------------------*/
-	width: 95%;
-}
-
-.caption {
-	/* effect ---------------------------------------------------------------*/
-	color: rgba(60, 60, 60, 0.7);
-	word-wrap: break-word;
-	/* layout ---------------------------------------------------------------*/
-	margin: 5px;
-	/* shape ----------------------------------------------------------------*/
-}
-
-.break-word{
-	word-wrap: break-word;
-}
-
-.caption2 {
-	/* effect ---------------------------------------------------------------*/
-	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.1);
-	/* layout ---------------------------------------------------------------*/
-	margin: 3px;
-	/* shape ----------------------------------------------------------------*/
-}
-
-.page-menu {
-	/* effect ---------------------------------------------------------------*/
-	/* layout ---------------------------------------------------------------*/
-	margin-top: 20px;
-	margin-bottom: 20px;
-	/* shape ----------------------------------------------------------------*/
+	width: 100%;
+	height: 60px;
 }
 
 #origin {
@@ -461,6 +130,397 @@ body {
 	-moz-border-radius: 3px 20px 0px 0px;
 }
 
+#main {
+	/* effect ---------------------------------------------------------------*/
+	display: none;
+	/* layout ---------------------------------------------------------------*/
+	margin-top: 120px;
+	margin-bottom: 60px;
+	/* shape ----------------------------------------------------------------*/
+	width: 95%;
+}
+
+#content {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
+	position: relative;
+	/* shape ----------------------------------------------------------------*/
+	width: 100%;
+}
+
+#content li {
+	/* effect ---------------------------------------------------------------*/
+	display: block;
+	/* layout ---------------------------------------------------------------*/
+	position: relative;
+	/* shape ----------------------------------------------------------------*/
+	width: 210px;
+}
+
+#search-result {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
+	position: relative;
+	left: 80px;
+	/* shape ----------------------------------------------------------------*/
+	width: 80%;
+}
+
+#search-result li {
+	/* effect ---------------------------------------------------------------*/
+	display: block;
+	/* layout ---------------------------------------------------------------*/
+	position: relative;
+	/* shape ----------------------------------------------------------------*/
+	width: 160px;
+}
+
+#content li a:HOVER {
+	text-decoration: none;
+}
+
+#ajax {
+	/* effect ---------------------------------------------------------------*/
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	background-color: rgba(255, 255, 255, 0.95);
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	text-align: center;
+	/* layout ---------------------------------------------------------------*/
+	position: fixed;
+	top: 240px;
+	left: 40%;
+	padding: 30px;
+	margin-bottom: 10px;
+	z-index: 10;
+	/* shape ----------------------------------------------------------------*/
+	border-radius: 5px 25px 5px;
+	-webkit-border-radius: 5px 25px 5px;
+	-moz-border-radius: 5px 25px 5px;
+	width: 20%;
+	position: fixed;
+	border-radius: 6px 40px 6px
+}
+
+#error-dialog {
+	/* effect ---------------------------------------------------------------*/
+	border: 1px solid rgba(255, 0, 0, 0.3);
+	background-color: rgba(255, 0, 0, 0.6);
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	text-align: center;
+	display: none;
+	/* layout ---------------------------------------------------------------*/
+	padding: 10px;
+	position: fixed;
+	top: 20%;
+	left: 35%;
+	z-index: 9;
+	/* shape ----------------------------------------------------------------*/
+	border-radius: 5px 25px 5px;
+	-webkit-border-radius: 5px 25px 5px;
+	-moz-border-radius: 5px 25px 5px;
+	width: 30%;
+	min-width: 220px;
+}
+
+#image-origin {
+	/* effect ---------------------------------------------------------------*/
+	background-color: #eee;
+	background-image: url("../img/ichimatsu.png?201208131742");
+	/* layout ---------------------------------------------------------------*/
+	/* shape ----------------------------------------------------------------*/
+	max-height: 80%;
+}
+
+#cover {
+	/* effect ---------------------------------------------------------------*/
+	background-color: rgba(0, 0, 0, 0.4);
+	font-size: larger;
+	display: none;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.6);
+	/* layout ---------------------------------------------------------------*/
+	position: fixed;
+	top: 10%;
+	left: 10%;
+	z-index: 4;
+	padding: 30px;
+	/* shape ----------------------------------------------------------------*/
+	width: 80%;
+	max-height: 80%;
+	border-radius: 5px 25px 5px;
+	-webkit-border-radius: 5px 25px 5px;
+	-moz-border-radius: 5px 25px 5px;
+}
+
+#title {
+	/* effect ---------------------------------------------------------------*/
+	font-size: 4em;
+	color: rgba(0, 0, 0, 0.3);
+	text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.9);
+	font-weight: bolder;
+	/* layout ---------------------------------------------------------------*/
+	position: fixed;
+	z-index: 20;
+	bottom: 30px;
+	left: 30px;
+	/* shape ----------------------------------------------------------------*/
+}
+
+#input-window {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
+	position: relative;
+	left: 10%;
+	/* shape ----------------------------------------------------------------*/
+	width: 80%;
+	min-width: 480px;
+}
+
+.input-text {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
+	position: relative;
+	/* shape ----------------------------------------------------------------*/
+	width: 80%;
+	min-width: 280px;
+	min-height: 2.5em;
+}
+
+.input-short {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
+	position: relative;
+	/* shape ----------------------------------------------------------------*/
+	width: 40%;
+	min-width: 140px;
+	min-height: 2.5em;
+}
+
+body {
+	/* effect ---------------------------------------------------------------*/
+	background-color: #eee;
+	background-image: url("../img/ichimatsu.png?201208131742");
+	background-position: left top;
+	background-attachment: fixed;
+	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
+	/* layout ---------------------------------------------------------------*/
+	/* shape ----------------------------------------------------------------*/
+}
+
+.tab-header {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
+	margin-left: 10px;
+	margin-top: 5px;
+	margin-bottom: 20px;
+	/* shape ----------------------------------------------------------------*/
+}
+
+.btn-cell {
+	/* effect ---------------------------------------------------------------*/
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+	/* layout ---------------------------------------------------------------*/
+	border-radius: 3px 12px 3px;
+	-webkit-border-radius: 3px 12px 3px;
+	-moz-border-radius: 3px 12px 3px;
+	/* shape ----------------------------------------------------------------*/
+}
+
+.image-shot {
+	/* effect ---------------------------------------------------------------*/
+	color: rgba(80, 80, 80, 0.4);
+	background-color: rgba(0, 0, 0, 0.05);
+	filter: alpha(opacity =                   80);
+	-moz-opacity: 0.80;
+	opacity: 0.80;
+	/* layout ---------------------------------------------------------------*/
+	margin-bottom: 3px;
+	/* shape ----------------------------------------------------------------*/
+	border-radius: 3px 20px 3px;
+	-webkit-border-radius: 3px 20px 3px;
+	-moz-border-radius: 3px 20px 3px;
+	min-width: 200px;
+	min-height: 10px;
+}
+
+.image-thumb {
+	/* effect ---------------------------------------------------------------*/
+	color: rgba(80, 80, 80, 0.4);
+	background-color: rgba(0, 0, 0, 0.05);
+	filter: alpha(opacity =                   80);
+	-moz-opacity: 0.80;
+	opacity: 0.80;
+	/* layout ---------------------------------------------------------------*/
+	margin-bottom: 3px;
+	/* shape ----------------------------------------------------------------*/
+	border-radius: 3px 20px 3px;
+	-webkit-border-radius: 3px 20px 3px;
+	-moz-border-radius: 3px 20px 3px;
+	min-width: 150px;
+	min-height: 10px;
+}
+
+.image-icon {
+	/* effect ---------------------------------------------------------------*/
+	color: rgba(80, 80, 80, 0.4);
+	background-color: rgba(0, 0, 0, 0.05);
+	filter: alpha(opacity =       80);
+	-moz-opacity: 0.80;
+	opacity: 0.80;
+	/* layout ---------------------------------------------------------------*/
+	margin-top: 2px;
+	margin-left: 2px;
+	margin-right: 0.5em;
+	float: left;
+	/* shape ----------------------------------------------------------------*/
+	border-radius: 1px 6px 1px;
+	-webkit-border-radius: 1px 6px 1px;
+	-moz-border-radius: 1px 6px 1px;
+	width: 40px;
+}
+
+.card {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
+	position: relative;
+	/* shape ----------------------------------------------------------------*/
+	width: 210px;
+}
+
+.search-thumb {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
+	position: relative;
+	/* shape ----------------------------------------------------------------*/
+	width: 160px;
+}
+
+.text,.textarea,.dropdown {
+	/* effect ---------------------------------------------------------------*/
+	border: 1px solid #777;
+	color: #999;
+	background: #fff;
+	/* Webkit */
+	background: -webkit-gradient(linear, left top, left bottom, from(#eee),
+		to(#fff) );
+	/* Firefox */
+	background: -moz-linear-gradient(top, #eee, #fff);
+	/* IE */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffeeeeee,
+		endColorstr=#ffffffff );
+	zoom: 1;
+	/* layout ---------------------------------------------------------------*/
+	padding: 5px;
+	/* shape ----------------------------------------------------------------*/
+}
+
+.cell {
+	/* effect ---------------------------------------------------------------*/
+	background-color: rgba(255, 255, 255, 0.8);
+	box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+	font-size: large;
+	/* layout ---------------------------------------------------------------*/
+	padding-top : 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	/* shape ----------------------------------------------------------------*/
+	border-radius: 5px 25px 5px;
+	-webkit-border-radius: 5px 25px 5px;
+	-moz-border-radius: 5px 25px 5px;
+	padding-top: 5px
+}
+
+.cell2 {
+	/* effect ---------------------------------------------------------------*/
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	background-color: rgba(255, 255, 255, 0.2);
+	box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+	/* layout ---------------------------------------------------------------*/
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 4px;
+	padding-right: 6px;
+	/* shape ----------------------------------------------------------------*/
+	border-radius: 5px 25px 5px;
+	-webkit-border-radius: 5px 25px 5px;
+	-moz-border-radius: 5px 25px 5px;
+	padding-bottom: 10px;
+	padding-left: 9px;
+	padding-right: 11px;
+}
+
+.ribon {
+	/* effect ---------------------------------------------------------------*/
+	overflow: hidden;
+	/* layout ---------------------------------------------------------------*/
+	position: absolute;
+	z-index: 2;
+	top: 0px;
+	left: 0px;
+	/* shape ----------------------------------------------------------------*/
+	width: 90px;
+	height: 90px;
+}
+
+.ribon-text {
+	/* effect ---------------------------------------------------------------*/
+	color: #ffffff;
+	text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.6);
+	text-align: center;
+	font-size: 11px;
+	font-weight: bold;
+	overflow: hidden;
+	/* layout ---------------------------------------------------------------*/
+	position: absolute;
+	z-index: 2;
+	top: 19px;
+	left: -33px;
+	padding-top: 8px;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	/* shape ----------------------------------------------------------------*/
+	width: 125px;
+	height: 22px;
+}
+
+.caption {
+	/* effect ---------------------------------------------------------------*/
+	color: rgba(60, 60, 60, 0.7);
+	word-wrap: break-word;
+	/* layout ---------------------------------------------------------------*/
+	margin: 5px;
+	/* shape ----------------------------------------------------------------*/
+}
+
+.break-word {
+	word-wrap: break-word;
+}
+
+.caption2 {
+	/* effect ---------------------------------------------------------------*/
+	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.1);
+	/* layout ---------------------------------------------------------------*/
+	margin: 3px;
+	/* shape ----------------------------------------------------------------*/
+}
+
+.page-menu {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
+	margin-top: 20px;
+	margin-bottom: 20px;
+	/* shape ----------------------------------------------------------------*/
+}
+
 .comment {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(60, 60, 60, 0.7);
@@ -499,20 +559,6 @@ body {
 	height: 50px;
 }
 
-#title {
-	/* effect ---------------------------------------------------------------*/
-	font-size: 4em;
-	color: rgba(0, 0, 0, 0.3);
-	text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.9);
-	font-weight: bolder;
-	/* layout ---------------------------------------------------------------*/
-	position: fixed;
-	z-index: 20;
-	bottom: 30px;
-	left: 30px;
-	/* shape ----------------------------------------------------------------*/
-}
-
 .tab-button {
 	/* effect ---------------------------------------------------------------*/
 	cursor: pointer;
@@ -531,14 +577,6 @@ body {
 .star {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(130, 130, 130, 0.4);
-	/* layout ---------------------------------------------------------------*/
-	/* shape ----------------------------------------------------------------*/
-}
-
-.bold {
-	/* effect ---------------------------------------------------------------*/
-	color: rgba(0, 0, 0, 0.8);
-	font-weight: bold;
 	/* layout ---------------------------------------------------------------*/
 	/* shape ----------------------------------------------------------------*/
 }
@@ -563,38 +601,4 @@ body {
 	color: rgba(00, 136, 204, 1.0);
 	/* layout ---------------------------------------------------------------*/
 	/* shape ----------------------------------------------------------------*/
-}
-
-#copyrights {
-	/* effect ---------------------------------------------------------------*/
-	/* layout ---------------------------------------------------------------*/
-	z-index: 10;
-	position: fixed;
-	bottom: 12px;
-	text-align: center;
-	/* shape ----------------------------------------------------------------*/
-	width: 100%;
-}
-
-#float-bottun {
-	/* effect ---------------------------------------------------------------*/
-	/* layout ---------------------------------------------------------------*/
-	z-index: 3;
-	position: fixed;
-	top: 30px;
-	left: 5%;
-	text-align: center;
-	/* shape ----------------------------------------------------------------*/
-	min-width: 400px;
-	width: 90%;
-}
-
-#read-cards {
-	/* effect ---------------------------------------------------------------*/
-	/* layout ---------------------------------------------------------------*/
-	padding: 20px;
-	text-align: center;
-	/* shape ----------------------------------------------------------------*/
-	width: 100%;
-	height: 60px;
 }

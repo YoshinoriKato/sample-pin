@@ -11,9 +11,8 @@
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title">What?</div>
 	<div id="main">
-		<div class="container">
-			<div class="row">
-				<div class="cell span11">
+		<div id="input-window">
+				<div class="cell">
 					<h1 class="tab-header">What's Sample-Pin ?</h1>
 					<div class="profile large">
 						<div class="item-group">
@@ -54,7 +53,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
 	</div>
 	<jsp:include page="_footer.jsp"></jsp:include>
 </body>

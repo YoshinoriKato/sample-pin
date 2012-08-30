@@ -71,7 +71,7 @@
 									<%
 										} else {
 									%>
-									<input type="file" class="span8" name="iconPath" />
+									<input type="file" name="iconPath" />
 									<%
 										}
 									%>
