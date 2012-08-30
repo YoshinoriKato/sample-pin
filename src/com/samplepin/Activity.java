@@ -6,8 +6,8 @@ import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
 import com.google.code.morphia.annotations.Indexed;
 
-@Entity(value = "recommends", noClassnameStored = true)
-public class Recommend implements Createable {
+@Entity(value = "activities", noClassnameStored = true)
+public class Activity implements Createable {
 
 	@Id
 	ObjectId	id;
@@ -15,15 +15,28 @@ public class Recommend implements Createable {
 	@Indexed
 	String		userId;
 
+	@Indexed
+	String		action;
+
+	String		note;
+
+	@Indexed
 	Long		createDate;
 
-	String		recommendJSON;
+	public Activity() {
+		super();
+	}
 
-	public Recommend(String userId, String recommendJSON) {
+	public Activity(String userId, String action, String note, Long createDate) {
 		super();
 		this.userId = userId;
-		this.createDate = System.currentTimeMillis();
-		this.recommendJSON = recommendJSON;
+		this.action = action;
+		this.note = note;
+		this.createDate = createDate;
+	}
+
+	public String getAction() {
+		return this.action;
 	}
 
 	@Override
@@ -35,12 +48,16 @@ public class Recommend implements Createable {
 		return this.id;
 	}
 
-	public String getRecommendJSON() {
-		return this.recommendJSON;
+	public String getNote() {
+		return this.note;
 	}
 
 	public String getUserId() {
 		return this.userId;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
 	}
 
 	@Override
@@ -52,8 +69,8 @@ public class Recommend implements Createable {
 		this.id = id;
 	}
 
-	public void setRecommendJSON(String recommendJSON) {
-		this.recommendJSON = recommendJSON;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	public void setUserId(String userId) {

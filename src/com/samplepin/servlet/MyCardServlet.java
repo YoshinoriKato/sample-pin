@@ -22,6 +22,7 @@ import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 import com.samplepin.User;
 import com.samplepin.common.ACMongo;
+import com.samplepin.common.ActivityLogger;
 
 @WebServlet(urlPatterns = "/my-card.do")
 @MultipartConfig(location = "/Developer/uploaded")
@@ -30,7 +31,7 @@ public class MyCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7182329627922034835L;
+	private static final long	serialVersionUID	= -7182329627922034835L;
 
 	public static void copyStream(InputStream in, OutputStream os,
 			int bufferSize) throws IOException {
@@ -88,6 +89,9 @@ public class MyCardServlet extends HttpServlet {
 			Datastore datastore = mongo.createDatastore();
 			datastore.save(user);
 		}
+
+		ActivityLogger.log(req, this.getClass(), user);
+
 		log("upload end.");
 
 		resp.sendRedirect("my-card.jsp");

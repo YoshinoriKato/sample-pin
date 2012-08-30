@@ -6,16 +6,18 @@ import org.bson.types.ObjectId;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
+import com.google.code.morphia.annotations.Indexed;
 
 @Entity(value = "keywordlists_and_cards", noClassnameStored = true)
 public class KeywordsAndCard {
 
 	@Id
-	ObjectId id;
+	ObjectId	id;
 
-	String[] keywords;
+	String[]	keywords;
 
-	String cardId;
+	@Indexed
+	String		cardId;
 
 	public KeywordsAndCard() {
 		super();

@@ -19,7 +19,7 @@ import com.mongodb.util.JSON;
 @WebFilter(urlPatterns = { "/*" }, dispatcherTypes = DispatcherType.ERROR)
 public class ErrorLoggingFilter implements Filter {
 
-	private ServletContext context;
+	private ServletContext	context;
 
 	@Override
 	public void destroy() {

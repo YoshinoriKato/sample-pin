@@ -4,16 +4,18 @@ import org.bson.types.ObjectId;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
+import com.google.code.morphia.annotations.Indexed;
 
 @Entity(value = "keys_and_values", noClassnameStored = true)
 public class KeyAndValue {
 
 	@Id
-	ObjectId id;
+	ObjectId	id;
 
-	String key;
+	@Indexed
+	String		key;
 
-	String value;
+	String		value;
 
 	public KeyAndValue() {
 		super();

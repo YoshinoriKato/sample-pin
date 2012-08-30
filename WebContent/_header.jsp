@@ -1,16 +1,22 @@
+<%@page import="com.samplepin.common.ActivityLogger"%>
 <%@page import="com.samplepin.servlet.*"%>
 <%@page import="java.util.*"%>
 <%@page import="com.samplepin.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%!String	suffix	= String.valueOf(System.currentTimeMillis());%>
+
+<%
+	ActivityLogger.log(request, this.getClass(), "request");
+%>
+
 <!-- 共有 -->
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Script-Type"
 	content="text/javascript charset=UTF-8" />
 <meta charset="UTF-8">
-<meta name = "viewport" content = "width = 600">
+<meta name="viewport" content="width = 600">
 
 <title>Sample-Pin</title>
 

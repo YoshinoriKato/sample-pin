@@ -23,13 +23,14 @@ import com.samplepin.Comment;
 import com.samplepin.KeywordsAndCard;
 import com.samplepin.Tag;
 import com.samplepin.common.ACMongo;
+import com.samplepin.common.ActivityLogger;
 import com.samplepin.common.Helper;
 
 public class NaturalLanguageParser {
 
-	static final String SYMBOLS = "[ -/:-@\\[-\\`\\{-\\~]+";
+	static final String	SYMBOLS		= "[ -/:-@\\[-\\`\\{-\\~]+";
 
-	static final String ALPHA_NUM = "[A-Za-z0-9]";
+	static final String	ALPHA_NUM	= "[A-Za-z0-9]";
 
 	public static Set<String> cardIds(String dic, String text)
 			throws IOException {
@@ -78,6 +79,7 @@ public class NaturalLanguageParser {
 		String realPath = getDictionaryPath(req);
 		Tagger tagger = new Tagger(realPath);
 		makeIndex(tagger, cardId);
+		ActivityLogger.log(req, NaturalLanguageParser.class, cardId);
 	}
 
 	public static void makeIndex(Tagger tagger, String cardId)
@@ -135,6 +137,7 @@ public class NaturalLanguageParser {
 			// register
 			mongo.save(newTag(mongo, counts));
 		}
+		ActivityLogger.log(req, NaturalLanguageParser.class, "tag");
 	}
 
 	static KeywordsAndCard newKeyword(ACMongo mongo, Card card,

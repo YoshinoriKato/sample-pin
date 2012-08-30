@@ -19,7 +19,7 @@ public class Utility1 extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5036134172073312539L;
+	private static final long	serialVersionUID	= -5036134172073312539L;
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse response)

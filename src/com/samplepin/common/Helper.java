@@ -34,27 +34,29 @@ import com.samplepin.View;
 
 public class Helper {
 
-	static SimpleDateFormat SDF_DATE = new SimpleDateFormat("yyyy-MM-dd");
+	static SimpleDateFormat		SDF_DATE		= new SimpleDateFormat(
+														"yyyy-MM-dd");
 
-	static SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat(
-			"yyyy-MM-dd HH:mm:ss.SSS");
+	static SimpleDateFormat		SDF_DATE_TIME	= new SimpleDateFormat(
+														"yyyy-MM-dd HH:mm:ss.SSS");
 
-	static SimpleDateFormat SDF_DATE_HOUR = new SimpleDateFormat(
-			"yyyy-MM-dd 'at around' HH");
+	static SimpleDateFormat		SDF_DATE_HOUR	= new SimpleDateFormat(
+														"yyyy-MM-dd 'at around' HH");
 
-	public static final Pattern convURLLinkPtn = Pattern.compile(
-			"(http://|https://){1}[\\w\\.\\-/:\\#\\?\\=\\&\\;\\%\\~\\+]+",
-			Pattern.CASE_INSENSITIVE);
+	public static final Pattern	convURLLinkPtn	= Pattern
+														.compile(
+																"(http://|https://){1}[\\w\\.\\-/:\\#\\?\\=\\&\\;\\%\\~\\+]+",
+																Pattern.CASE_INSENSITIVE);
 
-	static final Long MILLS_SECOND = 1000L;
+	static final Long			MILLS_SECOND	= 1000L;
 
-	static final Long MILLS_MINUTE = 60L * MILLS_SECOND;
+	static final Long			MILLS_MINUTE	= 60L * MILLS_SECOND;
 
-	static final Long MILLS_HOUR = 60L * MILLS_MINUTE;
+	static final Long			MILLS_HOUR		= 60L * MILLS_MINUTE;
 
-	static final Long MILLS_DAY = 24L * MILLS_HOUR;
+	static final Long			MILLS_DAY		= 24L * MILLS_HOUR;
 
-	public static final String LS = System.getProperty("line.separator");
+	public static final String	LS				= System.getProperty("line.separator");
 
 	public static String convURLLink(String str) {
 		Matcher matcher = convURLLinkPtn.matcher(str);

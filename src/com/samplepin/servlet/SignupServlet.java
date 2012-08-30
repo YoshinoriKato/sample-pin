@@ -16,6 +16,7 @@ import com.mongodb.MongoException;
 import com.samplepin.OneTime;
 import com.samplepin.User;
 import com.samplepin.common.ACMongo;
+import com.samplepin.common.ActivityLogger;
 import com.samplepin.common.Helper;
 
 @WebServlet(urlPatterns = { "/signup.do" })
@@ -24,7 +25,7 @@ public class SignupServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7038314414171973611L;
+	private static final long	serialVersionUID	= 7038314414171973611L;
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -63,7 +64,9 @@ public class SignupServlet extends HttpServlet {
 					datastore.save(user);
 					Helper.sendMail(mail, getMessage(userId, password),
 							"Change password was successful.");
+
 				}
+				ActivityLogger.log(req, this.getClass(), user);
 				resp.sendRedirect("send-mail.jsp");
 				return;
 

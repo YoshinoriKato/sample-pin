@@ -4,24 +4,27 @@ import org.bson.types.ObjectId;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
+import com.google.code.morphia.annotations.Indexed;
 
 @Entity(value = "accounts_twitter", noClassnameStored = true)
 public class TwitterAccount {
 
 	@Id
-	ObjectId id;
+	ObjectId	id;
 
-	String accessToken;
+	String		accessToken;
 
-	String screen_name;
+	String		screen_name;
 
-	String tokenSecret;
+	String		tokenSecret;
 
-	Long twitterId;
+	Long		twitterId;
 
-	Long user_id;
+	@Indexed
+	Long		user_id;
 
-	String userId;
+	@Indexed
+	String		userId;
 
 	public TwitterAccount() {
 		super();

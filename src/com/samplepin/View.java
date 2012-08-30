@@ -14,27 +14,28 @@ public class View implements Serializable, Deleteable, Createable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3644966756588336335L;
+	private static final long	serialVersionUID	= 3644966756588336335L;
 
 	@Id
-	ObjectId id;
+	ObjectId					id;
 
-	Long visitedDate;
-
-	Long createDate;
+	Long						visitedDate;
 
 	@Indexed
-	String cardId;
+	Long						createDate;
 
 	@Indexed
-	String userId;
-
-	Integer times;
-
-	Integer comments;
+	String						cardId;
 
 	@Indexed
-	Boolean isDeleted;
+	String						userId;
+
+	Integer						times;
+
+	Integer						comments;
+
+	@Indexed
+	Boolean						isDeleted;
 
 	public View() {
 		this(System.currentTimeMillis(), "", "");

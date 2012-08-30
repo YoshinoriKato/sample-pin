@@ -1,7 +1,6 @@
 package com.samplepin.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,14 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import net.reduls.igo.Morpheme;
-import net.reduls.igo.Tagger;
-
 import com.google.code.morphia.Datastore;
-import com.google.code.morphia.query.Query;
 import com.samplepin.Card;
-import com.samplepin.KeywordAndCard;
 import com.samplepin.common.ACMongo;
+import com.samplepin.common.ActivityLogger;
 import com.samplepin.common.Helper;
 import com.samplepin.nl.NaturalLanguageParser;
 import com.samplepin.servlet.oauth.TwitterService;
@@ -29,29 +24,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6534228482284422460L;
-
-	public static void register(ACMongo mongo, HttpServletRequest req,
-			String cardId, String text) throws Exception {
-		// 辞書ディレクトリを引数で指定
-		String dic = NaturalLanguageParser.getDictionaryPath(req);
-		Tagger tagger = new Tagger(dic);
-
-		List<Morpheme> list = tagger.parse(text);
-		for (Morpheme morph : list) {
-			String keyword = morph.surface.toLowerCase();
-			String part = morph.feature
-					.substring(0, morph.feature.indexOf(","));
-			// register
-			Query<KeywordAndCard> query = mongo
-					.createQuery(KeywordAndCard.class).filter("cardId", cardId)
-					.filter("keyword = ", keyword.toLowerCase())
-					.filter("part = ", part);
-			if (query.countAll() == 0) {
-				mongo.save(new KeywordAndCard(keyword, cardId, part));
-			}
-		}
-	}
+	private static final long	serialVersionUID	= 6534228482284422460L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -75,6 +48,8 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 											.getCardId()));
 
 					NaturalLanguageParser.makeIndex(req, card.getCardId());
+
+					ActivityLogger.log(req, this.getClass(), card);
 
 				} catch (Exception e) {
 					e.printStackTrace();

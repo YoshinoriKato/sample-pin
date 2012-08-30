@@ -27,7 +27,7 @@ public class OAuthTwitterServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -8159111239999377057L;
+	private static final long	serialVersionUID	= -8159111239999377057L;
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)

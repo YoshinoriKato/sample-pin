@@ -26,6 +26,7 @@ import javax.servlet.http.Part;
 
 import com.samplepin.Card;
 import com.samplepin.User;
+import com.samplepin.common.ActivityLogger;
 import com.samplepin.common.Helper;
 
 @WebServlet(urlPatterns = "/make-card.do")
@@ -35,7 +36,7 @@ public class MakeCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7182329627922034835L;
+	private static final long	serialVersionUID	= -7182329627922034835L;
 
 	public static void copyStream(InputStream in, OutputStream os,
 			int bufferSize) throws IOException {
@@ -102,6 +103,8 @@ public class MakeCardServlet extends HttpServlet {
 				card.setUserName(user.getUserName());
 				card.setUserIcon(user.getImagePath());
 			}
+
+			ActivityLogger.log(req, this.getClass(), card);
 
 			req.setAttribute("confirm", card);
 			RequestDispatcher dispathcer = req

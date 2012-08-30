@@ -4,22 +4,25 @@ import org.bson.types.ObjectId;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
+import com.google.code.morphia.annotations.Indexed;
 
 @Entity(value = "tags", noClassnameStored = true)
 public class Tag implements Createable, Deleteable {
 
 	@Id
-	ObjectId id;
+	ObjectId	id;
 
-	String tag;
+	@Indexed
+	String		tag;
 
-	String imagePath;
+	String		imagePath;
 
-	Long size;
+	Long		size;
 
-	Long createDate;
+	Long		createDate;
 
-	Boolean isDeleted;
+	@Indexed
+	Boolean		isDeleted;
 
 	public Tag() {
 		super();
