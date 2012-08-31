@@ -65,11 +65,11 @@
 								href="card-comment.jsp?userId=<%=user.getUserId()%>&type=comment"><%=Helper.countCommentByUserId(userId)%></a>
 						</div>
 					</div>
-					<div class="item-group">
+					<%-- <div class="item-group">
 						<div class="item-label">Mail</div>
 						<div class="items"><%=user.getMail()%>
 						</div>
-					</div>
+					</div> --%>
 					<div class="item-group">
 						<div class="item-label">Birth Day</div>
 						<div class="items"><%=user.getBirthDay()%>

@@ -59,7 +59,7 @@ public class Helper {
 
 	public static final String DOMAIN = "http://doya.info/";
 
-	public static final String NAME = "DOYA.info";
+	public static final String NAME = "DOYA.info Beta";
 
 	public static boolean canTweet(HttpSession session) throws IOException {
 		try (ACMongo mongo = new ACMongo()) {
