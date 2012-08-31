@@ -49,8 +49,7 @@
 				$key = $('#cardId').text();
 				$('#image-shot')
 						.attr("onclick", "pushPull('#cover','#origin')");
-				$('#ribon')
-						.attr("onclick", "pushPull('#cover','#origin')");
+				$('#ribon').attr("onclick", "pushPull('#cover','#origin')");
 				$('#image-close').attr("onclick",
 						"pushPull('#origin','#cover')");
 				$('#comment-button').attr("onclick",
@@ -177,8 +176,8 @@
 				class="form-horizontal">
 				<div class="control-group <%=error%>">
 					<div>
-						<textarea id="comment-text" name="comment" class="textarea input-text"
-							rows="4"></textarea>
+						<textarea id="comment-text" name="comment"
+							class="textarea input-text" rows="4"></textarea>
 					</div>
 					<div class="help-inline"><%=message%></div>
 				</div>
@@ -186,6 +185,16 @@
 					<input id="submit-button" type="submit"
 						class="btn btn-large btn-primary btn-cell" value="Comment"
 						disabled>
+					<%
+						if (Helper.canTweet(session)) {
+					%>
+					<input type="checkbox" name="tweet" checked
+						class="btn btn-large btn-primary btn-cell"
+						style="margin-left: 50px;"> <img
+						src="img/bird_gray_48.png">
+					<%
+						}
+					%>
 				</div>
 				<input type="hidden" name="cardId" value="<%=cardId%>">
 			</form>

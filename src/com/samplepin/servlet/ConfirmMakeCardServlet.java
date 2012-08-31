@@ -1,5 +1,7 @@
 package com.samplepin.servlet;
 
+import static com.samplepin.common.Helper.valid;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -59,6 +61,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		String userId = (String) session.getAttribute("userId");
 		Card card = (Card) session.getAttribute("confirmed");
+		String tweet = req.getParameter("tweet");
 
 		if ((userId != null) && (card != null)) {
 			try (ACMongo mongo = new ACMongo()) {
@@ -66,13 +69,15 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 				datastore.save(card);
 
 				try {
-					new TwitterService().tweet(
-							userId,
-							card.getCaption()
-									+ Helper.LS
-									+ Helper.LS
-									+ new ShortCutServlet().toShortCut(card
-											.getCardId()));
+					if (valid(tweet) && "on".equals(tweet)) {
+						new TwitterService().tweet(
+								userId,
+								card.getCaption()
+										+ Helper.LS
+										+ Helper.LS
+										+ new ShortCutServlet().toShortCut(card
+												.getCardId()));
+					}
 
 					NaturalLanguageParser.makeIndex(req, card.getCardId());
 

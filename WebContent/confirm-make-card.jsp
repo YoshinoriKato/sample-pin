@@ -20,7 +20,9 @@
 
 	String message = (String) request.getAttribute("message");
 	message = (message != null) ? message : "";
-	String error = (message != null && !message.isEmpty()) ? "error" : "";
+	String error = (message != null && !message.isEmpty())
+			? "error"
+			: "";
 %>
 
 <body>
@@ -92,6 +94,16 @@
 								<div class="controls">
 									<input type="submit" value="Confirm"
 										class="btn btn-large btn-primary btn-cell">
+									<%
+										if (Helper.canTweet(session)) {
+									%>
+									<input type="checkbox" name="tweet" checked
+										class="btn btn-large btn-primary btn-cell"
+										style="margin-left: 50px;"> <img
+										src="img/bird_gray_48.png">
+									<%
+										}
+									%>
 								</div>
 							</div>
 						</fieldset>

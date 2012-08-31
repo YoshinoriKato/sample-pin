@@ -29,6 +29,7 @@ import com.samplepin.Comment;
 import com.samplepin.Country;
 import com.samplepin.OneTime;
 import com.samplepin.Tag;
+import com.samplepin.TwitterAccount;
 import com.samplepin.User;
 import com.samplepin.View;
 
@@ -59,6 +60,16 @@ public class Helper {
 	public static final String DOMAIN = "http://doya.info/";
 
 	public static final String NAME = "DOYA.info";
+
+	public static boolean canTweet(HttpSession session) throws IOException {
+		try (ACMongo mongo = new ACMongo()) {
+			String userId = getUserId(session);
+			Query<TwitterAccount> query = mongo.createQuery(
+					TwitterAccount.class).filter("userId = ", userId);
+			TwitterAccount account = query.get();
+			return account != null;
+		}
+	}
 
 	public static String convURLLink(String str) {
 		Matcher matcher = convURLLinkPtn.matcher(str);
@@ -261,7 +272,7 @@ public class Helper {
 	}
 
 	public static User getUserById(HttpSession session) {
-		return getUserById((String) session.getAttribute("userId"));
+		return getUserById(getUserId(session));
 	}
 
 	public static User getUserById(String userId) {
@@ -275,6 +286,10 @@ public class Helper {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static String getUserId(HttpSession session) {
+		return (String) session.getAttribute("userId");
 	}
 
 	public static List<View> getViewsInfoByID(String userId) {

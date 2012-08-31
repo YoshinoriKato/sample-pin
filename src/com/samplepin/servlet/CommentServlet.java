@@ -1,5 +1,7 @@
 package com.samplepin.servlet;
 
+import static com.samplepin.common.Helper.valid;
+
 import java.io.IOException;
 import java.net.UnknownHostException;
 
@@ -38,6 +40,7 @@ public class CommentServlet extends HttpServlet {
 		resp.setCharacterEncoding("UTF-8");
 		String cardId = req.getParameter("cardId");
 		String comment = req.getParameter("comment");
+		String tweet = req.getParameter("tweet");
 
 		try (ACMongo mongo = new ACMongo()) {
 			HttpSession session = req.getSession();
@@ -49,8 +52,11 @@ public class CommentServlet extends HttpServlet {
 				saveComment(new Comment(userId, cardId, comment,
 						System.currentTimeMillis()));
 
-				new TwitterService().tweet(userId, comment + Helper.LS
-						+ Helper.LS + new ShortCutServlet().toShortCut(cardId));
+				if (valid(tweet) && "on".equals(tweet)) {
+					new TwitterService().tweet(userId,
+							comment + Helper.LS + Helper.LS
+									+ new ShortCutServlet().toShortCut(cardId));
+				}
 
 				NaturalLanguageParser.makeIndex(req, cardId);
 
