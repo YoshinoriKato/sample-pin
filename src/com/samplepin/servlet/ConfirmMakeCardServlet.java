@@ -43,10 +43,13 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 
 				try {
 					if (valid(tweet) && "on".equals(tweet)) {
+						String keywords = card.getKeywords();
+						keywords = valid(keywords) ? "[" + keywords + "]" : "";
 						new TwitterService().tweet(
 								userId,
 								card.getCaption()
 										+ Helper.LS
+										+ keywords
 										+ Helper.LS
 										+ new ShortCutServlet().toShortCut(card
 												.getCardId()));

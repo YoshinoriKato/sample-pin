@@ -54,8 +54,11 @@ public class CommentServlet extends HttpServlet {
 						System.currentTimeMillis()));
 
 				if (valid(tweet) && "on".equals(tweet)) {
+					Card card = Helper.getCardInfoByID(cardId);
+					String keywords = card != null ? card.getKeywords() : "";
+					keywords = valid(keywords) ? "[" + keywords + "]" : "";
 					new TwitterService().tweet(userId,
-							comment + Helper.LS + Helper.LS
+							comment + Helper.LS + keywords + Helper.LS
 									+ new ShortCutServlet().toShortCut(cardId));
 				}
 
