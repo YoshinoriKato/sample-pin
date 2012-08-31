@@ -356,7 +356,7 @@ public class Helper {
 
 		try {
 			InternetAddress from = new InternetAddress(
-					"katoy.acces.co.jp@gmail.com", "Web Master");
+					"web.doya.info@gmail.com", "DOYA.info Web Master");
 
 			message.setRecipients(Message.RecipientType.TO, mail);
 			message.setFrom(from);
@@ -364,7 +364,7 @@ public class Helper {
 			message.setText(text, "ISO-2022-JP");
 
 			Transport transport = session.getTransport("smtp");
-			transport.connect("katoy.acces.co.jp@gmail.com", "kato2003");
+			transport.connect("web.doya.info@gmail.com", "doyainfo2012");
 			transport.sendMessage(message, message.getAllRecipients());
 		} catch (UnsupportedEncodingException | MessagingException e) {
 			e.printStackTrace();
