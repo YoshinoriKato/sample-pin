@@ -1,4 +1,3 @@
-
 var $serachBox = '#search-box';
 
 function searchGoogle() {
@@ -26,12 +25,12 @@ function SearchComplete(searcher) {
 		for ( var i = 0; i < $results.length; i++) {
 			makeImageCell($content, $results[i]);
 		}
-		
-//		$('#search-result li').wookmark({
-//			offset : 12
-//		});
-//
-//		$content.height($max_height);
+
+		// $('#search-result li').wookmark({
+		// offset : 12
+		// });
+		//
+		// $content.height($max_height);
 	}
 }
 
@@ -44,17 +43,22 @@ function makeImageCell($content, $result) {
 			'upload.do?url=' + encodeURIComponent($result.url) + '&keywords='
 					+ encodeURIComponent($($serachBox).val()) + '&site='
 					+ encodeURIComponent($result.originalContextUrl));
-	var $caption = $('<div/>').addClass('caption star').append('[' + $result.width + 'x' + $result.height + '] ' + $result.title);
+	var $a2 = $('<a/>').attr('href', $result.originalContextUrl).attr('target',
+			'_blank');
+	var $caption = $('<div/>').addClass('caption star');
 	var $image = $('<img/>').attr('src', $result.tbUrl).addClass('image-thumb');
 	var $clear = $('<br/>').css('clear', 'both');
 	$content.append($li);
 	$li.append($cell);
 	$cell.append($capture).append($caption).append($clear);
 	$capture.append($a);
+	$caption.append($a2);
 	$a.append($image);
-	
-//	$view_height = Math.round($result.height / ($result.width / 120)) + 200; 
-//	$max_height = ($max_height >= $view_height) ? $max_height : $view_height;
+	$a2.append('[' + $result.width + 'x' + $result.height + '] '
+			+ $result.title);
+
+	// $view_height = Math.round($result.height / ($result.width / 120)) + 200;
+	// $max_height = ($max_height >= $view_height) ? $max_height : $view_height;
 }
 
 function makeImageCell0($content, $result) {
