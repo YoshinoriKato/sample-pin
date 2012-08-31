@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.code.morphia.query.Query;
 import com.samplepin.ShortCut;
 import com.samplepin.common.ACMongo;
+import com.samplepin.common.ActivityLogger;
 import com.samplepin.common.Helper;
 
 @WebServlet(urlPatterns = { "/S" })
@@ -30,6 +31,7 @@ public class ShortCutServlet extends HttpServlet {
 			ShortCut shortCut = query.get();
 			resp.sendRedirect("card-comment.jsp?cardId=" + shortCut.getCardId()
 					+ "&type=comment");
+			ActivityLogger.log(req, this.getClass(), shortCut);
 		}
 	}
 

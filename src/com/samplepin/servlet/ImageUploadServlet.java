@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.samplepin.common.ActivityLogger;
+
 @WebServlet(urlPatterns = { "/upload.do" })
 public class ImageUploadServlet extends HttpServlet {
 
@@ -45,6 +47,7 @@ public class ImageUploadServlet extends HttpServlet {
 			File referenceFile = new File(referenceFolder, fileName);
 			MakeCardServlet.copyStream(is, new FileOutputStream(realPathFile),
 					1024);
+			ActivityLogger.log(req, this.getClass(), realPathFile.getName());
 			resp.sendRedirect("make-card.jsp?imagePath="
 					+ URLEncoder.encode(referenceFile.getPath(), "UTF-8")
 					+ "&keywords=" + URLEncoder.encode(keywords, "UTF-8")

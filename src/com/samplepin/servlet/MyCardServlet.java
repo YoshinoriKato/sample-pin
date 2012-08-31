@@ -22,6 +22,7 @@ import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 import com.samplepin.User;
 import com.samplepin.common.ACMongo;
+import com.samplepin.common.ActivityLogger;
 
 @WebServlet(urlPatterns = "/my-card.do")
 @MultipartConfig(location = "/Developer/uploaded")
@@ -88,6 +89,9 @@ public class MyCardServlet extends HttpServlet {
 			Datastore datastore = mongo.createDatastore();
 			datastore.save(user);
 		}
+
+		ActivityLogger.log(req, this.getClass(), user);
+
 		log("upload end.");
 
 		resp.sendRedirect("my-card.jsp");

@@ -15,6 +15,7 @@ import com.google.code.morphia.query.Query;
 import com.samplepin.Card;
 import com.samplepin.Comment;
 import com.samplepin.common.ACMongo;
+import com.samplepin.common.ActivityLogger;
 
 @WebServlet(urlPatterns = "/confirm-discard.do")
 public class ConfirmDiscardServlet extends HttpServlet {
@@ -40,14 +41,18 @@ public class ConfirmDiscardServlet extends HttpServlet {
 				if (card != null) {
 					card.setIsDeleted(true);
 					mongo.save(card);
+
+					// comments
 					Query<Comment> query2 = mongo.createQuery(Comment.class)
 							.filter("cardId", card.getCardId());
 					List<Comment> comments = query2.asList();
 					for (Comment comment : comments) {
 						comment.setIsDeleted(true);
+						ActivityLogger.log(req, this.getClass(), comment);
 					}
 					mongo.save(comments);
 				}
+				ActivityLogger.log(req, this.getClass(), card);
 			}
 			log("discard end.");
 			resp.sendRedirect("home.jsp");

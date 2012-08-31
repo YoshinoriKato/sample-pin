@@ -23,6 +23,7 @@ import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 import com.samplepin.User;
 import com.samplepin.common.ACMongo;
+import com.samplepin.common.ActivityLogger;
 
 @WebServlet(urlPatterns = "/account.do")
 @MultipartConfig(location = "/Developer/uploaded")
@@ -91,11 +92,12 @@ public class AccountServlet extends HttpServlet {
 				datastore.save(user);
 			}
 			log("upload end.");
-
+			ActivityLogger.log(req, this.getClass(), user);
 			resp.sendRedirect("account.jsp");
 		} else {
 			log("upload failed.");
 			req.setAttribute("message", "Please, write your password.");
+			ActivityLogger.log(req, this.getClass(), "upload failed");
 			RequestDispatcher dispathcer = req
 					.getRequestDispatcher("account.jsp");
 			dispathcer.forward(req, resp);

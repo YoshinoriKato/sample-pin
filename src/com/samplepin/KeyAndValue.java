@@ -4,6 +4,7 @@ import org.bson.types.ObjectId;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
+import com.google.code.morphia.annotations.Indexed;
 
 @Entity(value = "keys_and_values", noClassnameStored = true)
 public class KeyAndValue {
@@ -11,6 +12,7 @@ public class KeyAndValue {
 	@Id
 	ObjectId id;
 
+	@Indexed
 	String key;
 
 	String value;

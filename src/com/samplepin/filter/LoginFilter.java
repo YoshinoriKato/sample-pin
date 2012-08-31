@@ -21,6 +21,7 @@ import com.google.code.morphia.query.Query;
 import com.samplepin.KeyAndValue;
 import com.samplepin.User;
 import com.samplepin.common.ACMongo;
+import com.samplepin.common.ActivityLogger;
 import com.samplepin.servlet.LoginServlet;
 
 @WebFilter(urlPatterns = { "/home.jsp", "/card-comment.jsp", "/make-card.jsp",
@@ -94,6 +95,11 @@ public class LoginFilter implements Filter {
 								HttpSession session = req.getSession(true);
 								session.setAttribute("userId", user.getUserId());
 								req.setAttribute("login", "auto login");
+
+								user.setLastUpdate(System.currentTimeMillis());
+								mongo.save(user);
+
+								ActivityLogger.log(req, this.getClass(), user);
 							}
 						}
 					}

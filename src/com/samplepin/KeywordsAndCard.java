@@ -6,6 +6,7 @@ import org.bson.types.ObjectId;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
+import com.google.code.morphia.annotations.Indexed;
 
 @Entity(value = "keywordlists_and_cards", noClassnameStored = true)
 public class KeywordsAndCard {
@@ -15,6 +16,7 @@ public class KeywordsAndCard {
 
 	String[] keywords;
 
+	@Indexed
 	String cardId;
 
 	public KeywordsAndCard() {

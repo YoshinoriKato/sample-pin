@@ -4,6 +4,7 @@ import org.bson.types.ObjectId;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
+import com.google.code.morphia.annotations.Indexed;
 
 @Entity(value = "accounts_twitter", noClassnameStored = true)
 public class TwitterAccount {
@@ -19,8 +20,10 @@ public class TwitterAccount {
 
 	Long twitterId;
 
+	@Indexed
 	Long user_id;
 
+	@Indexed
 	String userId;
 
 	public TwitterAccount() {

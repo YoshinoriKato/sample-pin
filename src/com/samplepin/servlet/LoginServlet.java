@@ -18,6 +18,7 @@ import com.mongodb.MongoException;
 import com.samplepin.KeyAndValue;
 import com.samplepin.User;
 import com.samplepin.common.ACMongo;
+import com.samplepin.common.ActivityLogger;
 import com.samplepin.common.Helper;
 
 @WebServlet(urlPatterns = { "/login.do" })
@@ -73,6 +74,7 @@ public class LoginServlet extends HttpServlet {
 				makeCookie(resp, user.getUserId());
 				String redirectUrl = req.getParameter("redirectUrl");
 				log("forward: " + redirectUrl);
+				ActivityLogger.log(req, this.getClass(), user);
 				resp.sendRedirect(redirectUrl);
 				return;
 			}
@@ -96,6 +98,8 @@ public class LoginServlet extends HttpServlet {
 			User user = query.get();
 			if (user != null) {
 				if (password == user.getPassword()) {
+					user.setLastUpdate(System.currentTimeMillis());
+					datastore.save(user);
 					return user;
 				} else {
 					user.setLoginFaileds(user.getLoginFaileds() + 1);

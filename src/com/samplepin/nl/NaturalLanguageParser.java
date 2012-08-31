@@ -23,6 +23,7 @@ import com.samplepin.Comment;
 import com.samplepin.KeywordsAndCard;
 import com.samplepin.Tag;
 import com.samplepin.common.ACMongo;
+import com.samplepin.common.ActivityLogger;
 import com.samplepin.common.Helper;
 
 public class NaturalLanguageParser {
@@ -51,7 +52,8 @@ public class NaturalLanguageParser {
 	}
 
 	static List<Card> cards(ACMongo mongo, String cardId) {
-		Query<Card> query0 = mongo.createQuery(Card.class);
+		Query<Card> query0 = mongo.createQuery(Card.class)
+				.filter("isDeleted = ", false).order("createDate");
 		if ((cardId != null) && !cardId.isEmpty()) {
 			query0.filter("cardId = ", cardId);
 		}
@@ -78,6 +80,7 @@ public class NaturalLanguageParser {
 		String realPath = getDictionaryPath(req);
 		Tagger tagger = new Tagger(realPath);
 		makeIndex(tagger, cardId);
+		ActivityLogger.log(req, NaturalLanguageParser.class, cardId);
 	}
 
 	public static void makeIndex(Tagger tagger, String cardId)
@@ -135,6 +138,7 @@ public class NaturalLanguageParser {
 			// register
 			mongo.save(newTag(mongo, counts));
 		}
+		ActivityLogger.log(req, NaturalLanguageParser.class, "tag");
 	}
 
 	static KeywordsAndCard newKeyword(ACMongo mongo, Card card,

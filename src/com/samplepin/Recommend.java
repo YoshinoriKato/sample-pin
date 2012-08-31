@@ -4,6 +4,7 @@ import org.bson.types.ObjectId;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
+import com.google.code.morphia.annotations.Indexed;
 
 @Entity(value = "recommends", noClassnameStored = true)
 public class Recommend implements Createable {
@@ -11,6 +12,7 @@ public class Recommend implements Createable {
 	@Id
 	ObjectId id;
 
+	@Indexed
 	String userId;
 
 	Long createDate;

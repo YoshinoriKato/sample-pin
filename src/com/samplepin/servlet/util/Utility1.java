@@ -25,9 +25,17 @@ public class Utility1 extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse response)
 			throws IOException {
 		try (ACMongo mongo = new ACMongo()) {
-			Query<Card> query = mongo.createQuery(Card.class).filter(
+			Query<Card> query0 = mongo.createQuery(Card.class).filter(
+					"isDeleted", false);
+			for (Card card : query0.asList()) {
+				if (card.getImagePath().startsWith("img/flag/")) {
+					card.setIsDeleted(true);
+					mongo.save(card);
+				}
+			}
+			Query<Card> query1 = mongo.createQuery(Card.class).filter(
 					"isDeleted", true);
-			for (Card card : query.asList()) {
+			for (Card card : query1.asList()) {
 				Query<Comment> query2 = mongo.createQuery(Comment.class)
 						.filter("cardId", card.getCardId());
 				List<Comment> comments = query2.asList();

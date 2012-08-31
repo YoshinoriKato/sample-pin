@@ -1,6 +1,7 @@
 package com.samplepin;
 
 import com.google.code.morphia.annotations.Entity;
+import com.google.code.morphia.annotations.Indexed;
 
 @Entity(value = "cards", noClassnameStored = true)
 public class Card extends Comment implements Updateable {
@@ -25,6 +26,7 @@ public class Card extends Comment implements Updateable {
 
 	String site;
 
+	@Indexed
 	Long updateDate;
 
 	public Card() {

@@ -18,8 +18,10 @@ html {
 	position: fixed;
 	bottom: 12px;
 	text-align: center;
+	white-space: nowrap;
+	left: 40%;
 	/* shape ----------------------------------------------------------------*/
-	width: 100%;
+	width: 20%;
 }
 
 #float-bottun {

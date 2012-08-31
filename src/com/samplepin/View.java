@@ -21,6 +21,7 @@ public class View implements Serializable, Deleteable, Createable {
 
 	Long visitedDate;
 
+	@Indexed
 	Long createDate;
 
 	@Indexed

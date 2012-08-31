@@ -19,6 +19,7 @@ import com.mongodb.MongoException;
 import com.samplepin.Card;
 import com.samplepin.Comment;
 import com.samplepin.common.ACMongo;
+import com.samplepin.common.ActivityLogger;
 import com.samplepin.common.Helper;
 import com.samplepin.nl.NaturalLanguageParser;
 import com.samplepin.servlet.oauth.TwitterService;
@@ -59,6 +60,8 @@ public class CommentServlet extends HttpServlet {
 				}
 
 				NaturalLanguageParser.makeIndex(req, cardId);
+
+				ActivityLogger.log(req, this.getClass(), comment);
 
 				resp.sendRedirect("card-comment.jsp?cardId=" + cardId
 						+ "&type=comment");
