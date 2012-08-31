@@ -97,9 +97,7 @@ public class SignupServlet extends HttpServlet {
 		builder.append(LS);
 		builder.append("仮パスワード: ").append(password).append(LS);
 		builder.append(LS);
-		builder.append("URL: ")
-				.append("http://www45022u.sakura.ne.jp/sample-pin/login.jsp")
-				.append(LS);
+		builder.append("URL: ").append(Helper.DOMAIN + "login.jsp").append(LS);
 		return builder.toString();
 	}
 
@@ -111,8 +109,8 @@ public class SignupServlet extends HttpServlet {
 		builder.append("仮パスワード: ").append(password).append(LS);
 		builder.append(LS);
 		builder.append("URL: ")
-				.append("http://www45022u.sakura.ne.jp/sample-pin/login.jsp?onetime="
-						+ oneTime).append(LS);
+				.append(Helper.DOMAIN + "login.jsp?onetime=" + oneTime)
+				.append(LS);
 		return builder.toString();
 	}
 

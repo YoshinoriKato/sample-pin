@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.code.morphia.query.Query;
 import com.samplepin.ShortCut;
 import com.samplepin.common.ACMongo;
+import com.samplepin.common.Helper;
 
 @WebServlet(urlPatterns = { "/S" })
 public class ShortCutServlet extends HttpServlet {
@@ -44,6 +45,6 @@ public class ShortCutServlet extends HttpServlet {
 				mongo.save(shortCut);
 			}
 		}
-		return "http://www45022u.sakura.ne.jp/sample-pin/" + "S?H=" + hex;
+		return Helper.DOMAIN + "S?H=" + hex;
 	}
 }

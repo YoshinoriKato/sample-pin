@@ -1,3 +1,4 @@
+<%@page import="com.samplepin.common.Helper"%>
 <%@page import="com.samplepin.servlet.*"%>
 <%@page import="java.util.*"%>
 <%@page import="com.samplepin.*"%>
@@ -13,7 +14,7 @@
 
 <div style="display: none" id="page"><%=url%></div>
 
-<div id="copyrights" class="center caption large">&copy; Sample-Pin</div>
+<div id="copyrights" class="center caption large">&copy; <%=Helper.NAME %></div>
 
 <div id="ajax">
 	<% if(logined !=null) { %>

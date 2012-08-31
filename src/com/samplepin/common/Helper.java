@@ -56,6 +56,10 @@ public class Helper {
 
 	public static final String LS = System.getProperty("line.separator");
 
+	public static final String DOMAIN = "http://doya.info/";
+
+	public static final String NAME = "DOYA.info";
+
 	public static String convURLLink(String str) {
 		Matcher matcher = convURLLinkPtn.matcher(str);
 		return matcher.replaceAll("<a href=\"$0\" target=\"_blank\">$0</a>");
@@ -318,7 +322,7 @@ public class Helper {
 		builder.append("仮パスワード: ").append("foo").append(LS);
 		builder.append(LS);
 		builder.append("URL: ").append(LS);
-		builder.append("http://localhost:8080/sample-pin/").append(LS);
+		builder.append(DOMAIN).append(LS);
 
 		sendMail("katoy.acces.co.jp@gmail.com", builder.toString(),
 				"Sign up was successful.");
