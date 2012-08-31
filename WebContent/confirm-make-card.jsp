@@ -16,6 +16,7 @@
 
 	Card card = (Card) request.getAttribute("confirm");
 	session.setAttribute("confirmed", card);
+	request.setAttribute("card", card);
 	/* Card card = (Card) session.getAttribute("confirm"); */
 
 	String message = (String) request.getAttribute("message");
@@ -40,53 +41,7 @@
 								<label class="control-label">Preview</label>
 								<div class="controls">
 									<div class="card">
-										<div id="<%=card.getCardId()%>" class="cell">
-											<%
-												int height = card.getHeight();
-												int width = card.getWidth();
-												float cardWidth = 240;
-												height = Math.round(height * (cardWidth / width));
-												width = Math.round(cardWidth);
-												if (card.getView() > 0) {
-											%>
-											<div class="ribon">
-												<div class="ribon-text color-red"><%=card.getView()%>
-													view
-												</div>
-											</div>
-											<%
-												}
-											%>
-											<div>
-												<img class="image-shot deco" src="<%=card.getImagePath()%>"
-													width="<%=width%>" height="<%=height%>">
-											</div>
-											<div class="bold deco break-word">
-												管理人<img class="image-icon" src="<%=card.getUserIcon()%>">
-											</div>
-											<div class="caption deco"><%=card.getCaption()%></div>
-											<br style="clear: both;">
-											<%
-												if (Helper.valid(card.getKeywords())) {
-											%>
-											<div class="card-info break-word">
-												Keywords:<%=card.getKeywords()%></div>
-											<%
-												}
-											%>
-											<%
-												if (Helper.valid(card.getSite())) {
-											%>
-											<div class="card-info break-word">
-												URL:<%=card.getSite()%>
-											</div>
-											<%
-												}
-											%>
-											<div class="star right" style="clear: both;"><%=card.getLikes()%>
-												comment
-											</div>
-										</div>
+										<jsp:include page="_card.jsp"></jsp:include>
 									</div>
 								</div>
 							</div>
