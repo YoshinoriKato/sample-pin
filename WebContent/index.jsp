@@ -55,6 +55,16 @@
 						<div class="item-label">How to use 3</div>
 						<div class="items">Repeat</div>
 					</div>
+					<div class="item-group">
+						<div class="item-label">SNS Page</div>
+						<div class="items">
+							<a href="https://twitter.com/doya_info" target="_blank" style="margin-left: 50px;"><img
+								src="img/bird_gray_48.png"></a><a
+								href="http://www.facebook.com/pages/DOYAinfo/495135587181076"
+								target="_blank" style="margin-left: 80px;"><img
+								src="img/f_logo.png" style="height: 40px; width: 40px;"></a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
