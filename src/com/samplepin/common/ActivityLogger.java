@@ -24,7 +24,7 @@ public class ActivityLogger {
 	public static void log(HttpServletRequest req, String action, String note)
 			throws IOException {
 		Object userId = Helper.getUserId(req);
-		userId = (userId != null) ? userId : "null";
+		userId = (userId != null) ? userId : req.getSession().getId();
 		log((String) userId, action, note);
 	}
 

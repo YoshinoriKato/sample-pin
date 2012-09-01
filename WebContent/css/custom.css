@@ -14,7 +14,7 @@ html {
 #copyrights {
 	/* effect ---------------------------------------------------------------*/
 	/* layout ---------------------------------------------------------------*/
-	z-index: 10;
+	z-index: -10;
 	position: fixed;
 	bottom: 12px;
 	text-align: center;
@@ -263,16 +263,16 @@ html {
 	-moz-border-radius: 5px 25px 5px;
 }
 
+
 #title {
 	/* effect ---------------------------------------------------------------*/
-	display: none;
 	font-size: 4em;
 	color: rgba(0, 0, 0, 0.3);
 	text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.9);
 	font-weight: bolder;
 	/* layout ---------------------------------------------------------------*/
 	position: fixed;
-	z-index: 20;
+	z-index: -2;
 	/* bottom: 30px; */
 	top: 70px;
 	left: 30px;
@@ -286,7 +286,7 @@ html {
 	left: 10%;
 	margin-bottom: 60px;
 	/* shape ----------------------------------------------------------------*/
-	width : 85%;
+	width: 85%;
 	min-width: 480px;
 	width: 85%
 }
@@ -345,7 +345,7 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(80, 80, 80, 0.4);
 	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =                         80);
+	filter: alpha(opacity =                           80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/
@@ -362,7 +362,7 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(80, 80, 80, 0.4);
 	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =                         80);
+	filter: alpha(opacity =                           80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/
@@ -379,7 +379,7 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(80, 80, 80, 0.4);
 	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =             80);
+	filter: alpha(opacity =               80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/

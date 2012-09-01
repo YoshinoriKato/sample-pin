@@ -7,9 +7,9 @@ import javax.crypto.Cipher;
 
 public class CryptMaker {
 
-	static final Key secretKey = Keymaker.makeKey(128);
+	static final Key			secretKey	= Keymaker.makeKey(128);
 
-	public static final String CHAR_SET = "UTF-8";
+	public static final String	CHAR_SET	= "UTF-8";
 
 	/**
 	 * 復号化

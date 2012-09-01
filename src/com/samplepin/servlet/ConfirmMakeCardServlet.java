@@ -26,7 +26,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6534228482284422460L;
+	private static final long	serialVersionUID	= 6534228482284422460L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -45,14 +45,15 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 					if (valid(tweet) && "on".equals(tweet)) {
 						String keywords = card.getKeywords();
 						keywords = valid(keywords) ? "[" + keywords + "]" : "";
-						new TwitterService().tweet(
-								userId,
-								card.getCaption()
-										+ Helper.LS
-										+ keywords
-										+ Helper.LS
-										+ new ShortCutServlet().toShortCut(card
-												.getCardId()));
+						String message = card.getCaption()
+								+ Helper.LS
+								+ keywords
+								+ Helper.LS
+								+ new ShortCutServlet().toShortCut(card
+										.getCardId());
+						TwitterService service = new TwitterService();
+						service.tweet(userId, message);
+						service.tweet("[最新]" + message);
 					}
 
 					NaturalLanguageParser.makeIndex(req, card.getCardId());

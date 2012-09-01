@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
@@ -30,9 +29,9 @@ public class CommentServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5426777241563315344L;
+	private static final long	serialVersionUID	= 5426777241563315344L;
 
-	public static final Long COMMENTS_LIMIT = 1000L;
+	public static final Long	COMMENTS_LIMIT		= 1000L;
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -44,7 +43,6 @@ public class CommentServlet extends HttpServlet {
 		String tweet = req.getParameter("tweet");
 
 		try (ACMongo mongo = new ACMongo()) {
-			HttpSession session = req.getSession();
 			String userId = Helper.getUserId(req);
 
 			log(userId + " > " + comment);
@@ -57,9 +55,11 @@ public class CommentServlet extends HttpServlet {
 					Card card = Helper.getCardInfoByID(cardId);
 					String keywords = card != null ? card.getKeywords() : "";
 					keywords = valid(keywords) ? "[" + keywords + "]" : "";
-					new TwitterService().tweet(userId,
-							comment + Helper.LS + keywords + Helper.LS
-									+ new ShortCutServlet().toShortCut(cardId));
+					String message = comment + Helper.LS + keywords + Helper.LS
+							+ new ShortCutServlet().toShortCut(cardId);
+					TwitterService service = new TwitterService();
+					service.tweet(userId, message);
+					service.tweet("[最新]" + message);
 				}
 
 				NaturalLanguageParser.makeIndex(req, cardId);
