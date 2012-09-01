@@ -50,6 +50,7 @@ function wookmark() {
 
 var $cardWidth = 240;
 
+
 function makeCard($card) {
 
 	// components
@@ -76,7 +77,8 @@ function makeCard($card) {
 	var $divName = $('<div/>').addClass('bold deco break-word');
 	var $divBr = $('<br/>').css('clear', 'both');
 	var $divKey = $('<div/>').addClass('card-info break-word').text(
-			'Keywords:' + $card.keywords);
+			'Keywords:');
+	var $spanKey = $('<span/>').text($card.keywords);
 	var $divUrl = $('<div/>').addClass('card-info break-word').append($jqA3);
 	var $divFooter = $('<div/>').addClass('star right');
 	var $divRibonText = $('<div/>').text($card.view + ' view');
@@ -117,6 +119,7 @@ function makeCard($card) {
 			.append($divBr);
 	if ($card.keywords) {
 		$jqDiv.append($divKey);
+		$divKey.append($spanKey.convLink());
 	}
 	if ($card.site) {
 		$jqDiv.append($divUrl);

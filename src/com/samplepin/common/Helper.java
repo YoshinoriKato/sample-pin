@@ -64,6 +64,8 @@ public class Helper {
 
 	public static final String	NAME			= "DOYA.info Beta";
 
+	static final String			SEPARATOR		= "[ |\\t|\\f|\\r\\n|\\r|\\n]";
+
 	public static boolean canTweet(HttpSession session) throws IOException {
 		try (ACMongo mongo = new ACMongo()) {
 			String userId = getUserId(session);
@@ -72,6 +74,17 @@ public class Helper {
 			TwitterAccount account = query.get();
 			return account != null;
 		}
+	}
+
+	public static String convKeywordLink(String str) {
+		String[] tokens = str.split(SEPARATOR);
+		StringBuilder builder = new StringBuilder();
+		for (String token : tokens) {
+			builder.append("<a href=\"home.jsp?sorted=search&words=")
+					.append(token).append("\">").append(token).append("</a>")
+					.append(" ");
+		}
+		return builder.toString();
 	}
 
 	public static String convURLLink(String str) {

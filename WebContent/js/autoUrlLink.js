@@ -10,3 +10,12 @@ $.fn.autoUrlLink = function(baseURL) {
 		"<a href='$1' target='_blank'>$1</a>");
 	});
 };
+
+
+$.fn.convLink = function(baseURL) {
+	return this.each(function() {
+		var srcText = this.innerHTML;
+		this.innerHTML = srcText.replace(/([^ 　\\t\\f\\r\\n]+)/gi,
+		"<a href='home.jsp?sorted=search&words=$1'>$1</a>");
+	});
+};

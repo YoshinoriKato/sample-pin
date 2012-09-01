@@ -41,7 +41,7 @@
 		if (Helper.valid(card.getKeywords())) {
 	%>
 	<div class="card-info break-word">
-		Keywords:<%=card.getKeywords()%></div>
+		Keywords:<%=Helper.convKeywordLink(card.getKeywords())%></div>
 	<%
 		}
 	%>
