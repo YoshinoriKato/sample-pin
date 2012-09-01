@@ -19,6 +19,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.google.code.morphia.Datastore;
@@ -286,6 +287,10 @@ public class Helper {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static String getUserId(HttpServletRequest request) {
+		return getUserId(request.getSession());
 	}
 
 	public static String getUserId(HttpSession session) {

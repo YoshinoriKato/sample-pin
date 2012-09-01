@@ -17,7 +17,7 @@
 </head>
 
 <%
-	String userId = (String) session.getAttribute("userId");
+	String userId = Helper.getUserId(request);
 	if (userId == null) {
 		HttpServletResponse resp = (HttpServletResponse) response;
 		resp.sendRedirect("login.jsp");

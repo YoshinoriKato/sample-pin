@@ -34,7 +34,7 @@
 
 <%
 	String cardId = request.getParameter("cardId");
-	String userId0 = (String) session.getAttribute("userId");
+	String userId0 = Helper.getUserId(request);
 	String userId1 = (userId0 != null) ? userId0 : session.getId();
 
 	Card card = Helper.getCardInfoByID(cardId);

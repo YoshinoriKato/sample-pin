@@ -9,13 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.code.morphia.query.Query;
 import com.samplepin.Card;
 import com.samplepin.Comment;
 import com.samplepin.common.ACMongo;
 import com.samplepin.common.ActivityLogger;
+import com.samplepin.common.Helper;
 
 @WebServlet(urlPatterns = "/confirm-discard.do")
 public class ConfirmDiscardServlet extends HttpServlet {
@@ -28,8 +28,7 @@ public class ConfirmDiscardServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		HttpSession session = req.getSession();
-		String userId = (String) session.getAttribute("userId");
+		String userId = Helper.getUserId(req);
 		String cardId = req.getParameter("cardId");
 
 		if ((userId != null) && (cardId != null)) {

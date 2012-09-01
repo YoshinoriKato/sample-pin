@@ -22,13 +22,15 @@ import com.samplepin.KeyAndValue;
 import com.samplepin.User;
 import com.samplepin.common.ACMongo;
 import com.samplepin.common.ActivityLogger;
+import com.samplepin.common.Helper;
 import com.samplepin.servlet.LoginServlet;
 
-@WebFilter(urlPatterns = { "/home.jsp", "/card-comment.jsp", "/make-card.jsp",
-		"/my-card.jsp", "/account.jsp", "/S" }, dispatcherTypes = DispatcherType.REQUEST)
+@WebFilter(urlPatterns = { "/*" }, dispatcherTypes = DispatcherType.REQUEST)
 public class LoginFilter implements Filter {
 
 	private ServletContext context;
+
+	static String[] needs = { "/make-card.jsp", "/my-card.jsp", "/account.jsp" };
 
 	@Override
 	public void destroy() {
@@ -41,16 +43,16 @@ public class LoginFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		String url = request.getRequestURL().toString();
-		String userId = (String) request.getSession().getAttribute("userId");
+		String userId = Helper.getUserId(request);
 
 		this.context.log("Request URL: " + url);
 
 		if (userId == null) {
 			readCookie(request, response);
-			userId = (String) request.getSession().getAttribute("userId");
+			userId = Helper.getUserId(request);
 		}
 
-		if (userId == null) {
+		if ((userId == null) && isNeedLogin(url)) {
 			request.getSession().setAttribute("fromUrl", url);
 			RequestDispatcher dispathcer = req
 					.getRequestDispatcher("login.jsp");
@@ -63,6 +65,15 @@ public class LoginFilter implements Filter {
 	@Override
 	public void init(FilterConfig conf) throws ServletException {
 		this.context = conf.getServletContext();
+	}
+
+	private boolean isNeedLogin(String url) {
+		for (String need : needs) {
+			if (url.contains(need)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	final void readCookie(HttpServletRequest req, HttpServletResponse resp)

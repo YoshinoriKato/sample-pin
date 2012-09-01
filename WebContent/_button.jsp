@@ -13,7 +13,7 @@
 	boolean inCardPage = url.contains("/card-comment.jsp")
 			&& (cardId != null && !cardId.isEmpty());
 	Card card = cardId != null ? Helper.getCardInfoByID(cardId) : null;
-	String userId = (String) session.getAttribute("userId");
+	String userId = Helper.getUserId(request);
 	String sorted = request.getParameter("sorted");
 	final String activeCSS = "x-large bold";
 	String classLatest = url.contains("/home.jsp") && sorted == null

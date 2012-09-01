@@ -11,7 +11,7 @@
 </head>
 
 <%
-	String userId = (String) session.getAttribute("userId");
+	String userId = Helper.getUserId(request);
 	User user = Helper.getUserById(userId);
 
 	String message = (String) request.getAttribute("message");

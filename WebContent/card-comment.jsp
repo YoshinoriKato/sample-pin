@@ -11,8 +11,8 @@
 	String otherUserId = request.getParameter("userId");
 	otherUserId = (otherUserId != null) ? otherUserId : "";
 
-	String userId = (String) session.getAttribute("userId");
-	userId = (userId != null) ? userId : session.getId();
+	String userId = Helper.getUserId(request);
+	String selfUserId = (userId != null) ? userId : session.getId();
 
 	String cardId = request.getParameter("cardId");
 	cardId = (cardId != null) ? cardId : "";
@@ -21,8 +21,8 @@
 	type = (type != null) ? type : "card";
 
 	Card card = Helper.getCardInfoByID(cardId);
-	if (card != null && userId != null && !userId.isEmpty()) {
-		Helper.setFootprint(card, userId);
+	if (card != null && selfUserId != null && !selfUserId.isEmpty()) {
+		Helper.setFootprint(card, selfUserId);
 	}
 	request.setAttribute("card", card);
 
@@ -114,7 +114,7 @@
 		<div id="comment-close" class="tab-button">x</div>
 		<div class="center page-menu">
 			<%
-				if (userId != null) {
+				if (Helper.valid(userId)) {
 			%>
 
 			<form id="comment-form" method="post" action="comment.do"

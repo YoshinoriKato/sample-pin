@@ -32,7 +32,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		String userId = (String) session.getAttribute("userId");
+		String userId = Helper.getUserId(req);
 		Card card = (Card) session.getAttribute("confirmed");
 		String tweet = req.getParameter("tweet");
 

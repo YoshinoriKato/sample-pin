@@ -51,7 +51,7 @@
 					<%-- <li <%=classTag%>><a href="tag.jsp">Tags</a></li> --%>
 					<li <%=classHome%>><a href="home.jsp">Home</a></li>
 					<%
-						String userId = (String) session.getAttribute("userId");
+						String userId = Helper.getUserId(request);
 						if (userId != null) {
 							User user = Helper.getUserById(userId);
 					%>

@@ -52,6 +52,8 @@ public class User implements Serializable, Deleteable, Createable {
 
 	String comment;
 
+	Integer category;
+
 	@Indexed
 	Boolean isDeleted;
 
@@ -72,6 +74,7 @@ public class User implements Serializable, Deleteable, Createable {
 		this.useBackgroundImage = true;
 		this.code = 0;
 		this.comment = "";
+		this.category = 100;
 	}
 
 	public User(String userId, String mail, String userName, Integer password) {
@@ -92,6 +95,10 @@ public class User implements Serializable, Deleteable, Createable {
 
 	public String getBirthDay() {
 		return this.birthDay;
+	}
+
+	public Integer getCategory() {
+		return this.category;
 	}
 
 	public Integer getCode() {
@@ -166,6 +173,10 @@ public class User implements Serializable, Deleteable, Createable {
 
 	public void setBirthDay(String birthDay) {
 		this.birthDay = birthDay;
+	}
+
+	public void setCategory(Integer category) {
+		this.category = category;
 	}
 
 	public void setCode(Integer code) {

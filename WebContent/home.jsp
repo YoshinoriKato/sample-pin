@@ -4,10 +4,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+	String userId = Helper.getUserId(request);
 	String sorted = request.getParameter("sorted");
 	sorted = sorted == null ? "" : sorted;
-	String userId = request.getParameter("userId");
-	userId = (userId != null) ? userId : "";
+	String otherUserId = request.getParameter("userId");
+	otherUserId = (otherUserId != null) ? otherUserId : "";
 	String title = "Home";
 	title = ("recommend".equals(sorted)) ? "Recommend" : title;
 	title = ("footprints".equals(sorted)) ? "Footprints" : title;
@@ -23,7 +24,8 @@
 	imagePath = imagePath != null ? URLDecoder.decode(imagePath,
 			"UTF-8") : "";
 	String keywords = request.getParameter("keywords");
-	keywords = keywords != null ? URLDecoder.decode(keywords, "UTF-8")
+	keywords = keywords != null
+			? URLDecoder.decode(keywords, "UTF-8")
 			: keywords;
 	keywords = (keywords != null) ? keywords : "";
 	String site = request.getParameter("site");
@@ -45,14 +47,16 @@
 		wookmark();
 	});
 
-	$(window).load(function() {
- 		recoveryText('make-card');
-		$timer = setInterval(function() {
-			checkLength('make-card');
-		}, 500);
-		callAjax($('#sorted').text(), 40, '', $('#userId').text(), "", "card", $('#words').text());
-		$('#main').fadeIn(1000);
-	});
+	$(window).load(
+			function() {
+				recoveryText('make-card');
+				$timer = setInterval(function() {
+					checkLength('make-card');
+				}, 500);
+				callAjax($('#sorted').text(), 40, '', $('#userId').text(), "",
+						"card", $('#words').text());
+				$('#main').fadeIn(1000);
+			});
 </script>
 </head>
 
@@ -63,6 +67,9 @@
 	<div id="title">Home</div>
 	<div id="main">
 		<div id="input-window">
+		<%
+			if (Helper.valid(userId)) {
+		%>
 			<div class="cell">
 				<div class="form-horizontal">
 					<form class="form-search" action="javascript:searchGoogle()">
@@ -108,15 +115,15 @@
 							<div class="controls">
 								<input type="hidden" name="keywords" value="<%=keywords%>"
 									class="input-text text" readonly="readonly">
-									<%=keywords%>
+								<%=keywords%>
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="site" class="control-label">URL</label>
 							<div class="controls">
 								<input type="hidden" name="site" value="<%=site%>"
-									class="input-text text" readonly="readonly">
-									<a href="<%=site%>" target="_blank"><%=site%></a>
+									class="input-text text" readonly="readonly"> <a
+									href="<%=site%>" target="_blank"><%=site%></a>
 							</div>
 						</div>
 						<%
@@ -125,7 +132,8 @@
 						<div class="control-group <%=error%>">
 							<label for="caption" class="control-label">Caption</label>
 							<div class="controls">
-								<textarea id="comment-text" class="textarea input-text" name="caption" rows="4" placeholder="Please write a comment."></textarea>
+								<textarea id="comment-text" class="textarea input-text"
+									name="caption" rows="4" placeholder="Please write a comment."></textarea>
 								<span class="help-inline"><%=message%></span>
 							</div>
 						</div>
@@ -151,6 +159,16 @@
 					</fieldset>
 				</form>
 			</div>
+		<%
+			} else {
+		%>
+		<div class="caption large center">
+			Please, <a href="login.jsp?fromUrl=home.jsp">Login</a> or <a
+				href="signup.jsp">Sign up</a>.
+		</div>
+		<%
+			}
+		%>
 		</div>
 		<ul id="content">
 			<!--  ajax -->
@@ -159,7 +177,7 @@
 	</div>
 	<div class="center caption star x-large" id="read-cards"></div>
 	<div style="display: none" id="sorted"><%=sorted%></div>
-	<div style="display: none" id="userId"><%=userId%></div>
+	<div style="display: none" id="userId"><%=otherUserId%></div>
 	<div style="display: none" id="words"><%=words%></div>
 	<jsp:include page="_footer.jsp"></jsp:include>
 </body>

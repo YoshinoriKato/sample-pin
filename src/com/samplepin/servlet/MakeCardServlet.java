@@ -21,7 +21,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.samplepin.Card;
@@ -78,8 +77,7 @@ public class MakeCardServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		log("upload start.");
-		HttpSession session = req.getSession();
-		String userId = (String) session.getAttribute("userId");
+		String userId = Helper.getUserId(req);
 		List<Uploader> uploadQue = new ArrayList<Uploader>();
 		Card card = readRequest(req.getParts(), userId, uploadQue);
 

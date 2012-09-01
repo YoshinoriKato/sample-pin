@@ -12,8 +12,7 @@
 
 <%
 	String userId = request.getParameter("userId");
-	userId = userId != null ? userId : (String) session
-			.getAttribute("userId");
+	userId = userId != null ? userId : Helper.getUserId(request);
 	User user = Helper.getUserById(userId);
 
 	String message = (String) request.getAttribute("message");

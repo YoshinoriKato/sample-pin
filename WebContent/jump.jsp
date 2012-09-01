@@ -10,7 +10,7 @@
 <jsp:include page="_effect.jsp"></jsp:include>
 </head>
 <%
-	String userId = (String) session.getAttribute("userId");
+	String userId = Helper.getUserId(request);
 	userId = (userId != null) ? userId : session.getId();
 	String cardId = request.getParameter("cardId");
 	String redirectUrl = request.getParameter("redirectUrl");

@@ -45,7 +45,7 @@ public class CommentServlet extends HttpServlet {
 
 		try (ACMongo mongo = new ACMongo()) {
 			HttpSession session = req.getSession();
-			String userId = (String) session.getAttribute("userId");
+			String userId = Helper.getUserId(req);
 
 			log(userId + " > " + comment);
 

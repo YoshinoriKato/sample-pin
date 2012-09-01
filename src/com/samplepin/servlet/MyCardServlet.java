@@ -23,6 +23,7 @@ import com.google.code.morphia.query.Query;
 import com.samplepin.User;
 import com.samplepin.common.ACMongo;
 import com.samplepin.common.ActivityLogger;
+import com.samplepin.common.Helper;
 
 @WebServlet(urlPatterns = "/my-card.do")
 @MultipartConfig(location = "/Developer/uploaded")
@@ -81,7 +82,7 @@ public class MyCardServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		log("upload start.");
-		String userId = (String) req.getSession().getAttribute("userId");
+		String userId = Helper.getUserId(req);
 		List<Uploader> uploadQue = new ArrayList<>();
 		User user = readRequest(req, uploadQue, userId);
 		writeFiles(req, uploadQue, user);

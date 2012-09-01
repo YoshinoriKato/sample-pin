@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.samplepin.common.Helper;
 import com.samplepin.nl.NaturalLanguageParser;
 
 @WebServlet(urlPatterns = { "/xxx.do" })
@@ -39,7 +40,7 @@ public class AjaxCardServlet extends HttpServlet {
 		String callback = req.getParameter("callback");
 		String old = req.getParameter("old");
 		String young = req.getParameter("young");
-		String userId = (String) req.getSession().getAttribute("userId");
+		String userId = Helper.getUserId(req);
 		String cardId = req.getParameter("cardId");
 		String words = req.getParameter("words");
 
