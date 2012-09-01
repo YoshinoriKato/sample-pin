@@ -28,7 +28,7 @@
 
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
-	<div id="title">Make Card</div>
+	<div id="title">Confirmation</div>
 	<div id="main">
 		<div id="input-window">
 			<div class="cell padding20">
@@ -36,7 +36,7 @@
 					<form id="comment-form" action="confirm-make-card.do" method="post"
 						class="form-horizontal">
 						<fieldset>
-							<h1 class="tab-header">Confirm Card</h1>
+							<h1 class="tab-header">Confirmation</h1>
 							<div class="control-group">
 								<label class="control-label">Preview</label>
 								<div class="controls">

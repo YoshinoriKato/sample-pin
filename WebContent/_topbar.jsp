@@ -43,12 +43,11 @@
 		<div class="container">
 			<button type="button" class="btn btn-navbar" data-toggle="collapse"
 				data-target=".nav-collapse">
-				<span class="icon-bar"></span>
+				<span class="icon-bar"><%=Helper.NAME %></span>
 			</button>
 			
 			<div class="nav-collapse collapse">
 				<ul class="nav">
-					<li <%=classIndex%>><a href="index.jsp">?</a></li>
 					<%-- <li <%=classTag%>><a href="tag.jsp">Tags</a></li> --%>
 					<li <%=classHome%>><a href="home.jsp">Home</a></li>
 					<%
@@ -56,7 +55,7 @@
 						if (userId != null) {
 							User user = Helper.getUserById(userId);
 					%>
-					<li <%=classMakeCard%>><a href="make-card.jsp">+</a></li>
+					<%-- <li <%=classMakeCard%>><a href="make-card.jsp">+</a></li> --%>
 
 					<!-- 
 					<li <%=classProfile%>><a href="profile.jsp">My Profile</a></li>
@@ -65,13 +64,7 @@
 					<li class="divider-vertical"></li>
 					 -->
 					<li <%=classAccount%>><a href="account.jsp">U</a></li>
-					<%-- <li <%=classLogout%>><a href="logout.do">x</a></li> --%>
-					<li>
-						<form class="navbar-search pull-left" method="get" action="home.jsp">
-							<input type="hidden" name="sorted" value="search"> 
-							<input type="text" class="search-query input-short" name="words" placeholder="search">
-						</form>
-					</li>
+					<li <%=classLogout%>><a href="logout.do">x</a></li>
 					<%
 						} else {
 					%>
@@ -80,7 +73,12 @@
 					<%
 						}
 					%>
+					<li <%=classIndex%>><a href="index.jsp">?</a></li>
 				</ul>
+						<form class="navbar-search pull-left" method="get" action="home.jsp">
+							<input type="hidden" name="sorted" value="search"> 
+							<input type="text" class="search-query input-short" name="words" placeholder="search">
+						</form>
 			</div>
 		</div>
 	</div>
