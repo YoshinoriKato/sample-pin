@@ -297,7 +297,7 @@ html {
 	position: relative;
 	/* shape ----------------------------------------------------------------*/
 	width: 80%;
-	min-width: 280px;
+	min-width: 200px;
 }
 
 .input-short {

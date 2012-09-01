@@ -84,17 +84,15 @@
 						<div class="control-group">
 							<label for="keywords" class="control-label">Keywords</label>
 							<div class="controls">
-								<input type="hidden" name="keywords" value="<%=keywords%>"
-									class="input-text text" readonly="readonly">
-									<%=keywords%>
+								<input type="hidden" name="keywords" value="<%=keywords%>">
+								<%=keywords%>
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="site" class="control-label">URL</label>
 							<div class="controls">
-								<input type="hidden" name="site" value="<%=site%>"
-									class="input-text text" readonly="readonly">
-									<a href="<%=site%>" target="_blank"><%=site%></a>
+								<input type="hidden" name="site" value="<%=site%>"> <a
+									href="<%=site%>" target="_blank" class="break-word"><%=site%></a>
 							</div>
 						</div>
 						<%
@@ -103,7 +101,8 @@
 						<div class="control-group <%=error%>">
 							<label for="caption" class="control-label">Caption</label>
 							<div class="controls">
-								<textarea id="comment-text" class="textarea input-text" name="caption" rows="4" placeholder="Please write a comment."></textarea>
+								<textarea id="comment-text" class="textarea input-text"
+									name="caption" rows="4" placeholder="Please write a comment."></textarea>
 								<span class="help-inline"><%=message%></span>
 							</div>
 						</div>
