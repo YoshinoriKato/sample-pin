@@ -87,14 +87,6 @@ public class Helper {
 	}
 
 	public static String convKeywordLink(String str) {
-		// String[] tokens = str.split(SEPARATOR);
-		// StringBuilder builder = new StringBuilder();
-		// for (String token : tokens) {
-		// builder.append("<a href=\"home.jsp?sorted=search&words=")
-		// .append(token).append("\">").append(token).append("</a>")
-		// .append(" ");
-		// }
-		// return builder.toString();
 		Matcher matcher = convURLLinkPtn2.matcher(str);
 		return matcher
 				.replaceAll("<a href=home.jsp?sorted=search&words=\"$0\">$0</a> ");
