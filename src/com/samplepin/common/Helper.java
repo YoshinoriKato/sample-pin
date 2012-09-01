@@ -45,9 +45,19 @@ public class Helper {
 	static SimpleDateFormat		SDF_DATE_HOUR	= new SimpleDateFormat(
 														"yyyy-MM-dd 'at around' HH");
 
-	public static final Pattern	convURLLinkPtn	= Pattern
+	public static final Pattern	convURLLinkPtn0	= Pattern
 														.compile(
 																"(http://|https://){1}[\\w\\.\\-/:\\#\\?\\=\\&\\;\\%\\~\\+]+",
+																Pattern.CASE_INSENSITIVE);
+
+	public static final Pattern	convURLLinkPtn1	= Pattern
+														.compile(
+																"\\[([^\\]]*)\\]",
+																Pattern.CASE_INSENSITIVE);
+
+	public static final Pattern	convURLLinkPtn2	= Pattern
+														.compile(
+																"[^ 　\t\f\r\n]+",
 																Pattern.CASE_INSENSITIVE);
 
 	static final Long			MILLS_SECOND	= 1000L;
@@ -64,6 +74,8 @@ public class Helper {
 
 	public static final String	NAME			= "DOYA.info Beta";
 
+	static final String			SEPARATOR		= "[ |\\t|\\f|\\r\\n|\\r|\\n]";
+
 	public static boolean canTweet(HttpSession session) throws IOException {
 		try (ACMongo mongo = new ACMongo()) {
 			String userId = getUserId(session);
@@ -74,9 +86,28 @@ public class Helper {
 		}
 	}
 
+	public static String convKeywordLink(String str) {
+		// String[] tokens = str.split(SEPARATOR);
+		// StringBuilder builder = new StringBuilder();
+		// for (String token : tokens) {
+		// builder.append("<a href=\"home.jsp?sorted=search&words=")
+		// .append(token).append("\">").append(token).append("</a>")
+		// .append(" ");
+		// }
+		// return builder.toString();
+		Matcher matcher = convURLLinkPtn2.matcher(str);
+		return matcher
+				.replaceAll("<a href=home.jsp?sorted=search&words=\"$0\">$0</a> ");
+	}
+
 	public static String convURLLink(String str) {
-		Matcher matcher = convURLLinkPtn.matcher(str);
-		return matcher.replaceAll("<a href=\"$0\" target=\"_blank\">$0</a>");
+		Matcher matcher0 = convURLLinkPtn0.matcher(str);
+		String temp = matcher0
+				.replaceAll("<a href=\"$0\" target=\"_blank\">$0</a>");
+
+		Matcher matcher1 = convURLLinkPtn1.matcher(temp);
+		return matcher1
+				.replaceAll("<a href=home.jsp?sorted=search&words=\"$0\">$0</a>");
 	}
 
 	public static <T> Long countByID(Class<T> clazz, String ex, String userId) {

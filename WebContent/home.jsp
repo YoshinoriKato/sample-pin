@@ -79,7 +79,7 @@
 								<label for="iconPath" class="control-label">Image</label>
 								<div class="controls">
 									<input type="search" id="search-box" value=""
-										placeholder="search" class="input-medium input-text text">
+										placeholder="Please search images. At last, press enter key." class="input-medium input-text text">
 									<!-- <input type="submit" value="Search" id="search-action"
 										class="btn btn-large btn-primary btn-cell"> -->
 								</div>

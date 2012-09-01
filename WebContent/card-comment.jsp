@@ -119,10 +119,15 @@
 
 			<form id="comment-form" method="post" action="comment.do"
 				class="form-horizontal">
+				<div class="control-group">
+					<div>
+						<input type="url" class="text input-text" name="url" placeholder="If you need, write a resource url.">
+					</div>
+				</div>
 				<div class="control-group <%=error%>">
 					<div>
 						<textarea id="comment-text" name="comment"
-							class="textarea input-text" rows="4"></textarea>
+							class="textarea input-text" rows="4" placeholder="Please, write a comment."></textarea>
 					</div>
 					<div class="help-inline"><%=message%></div>
 				</div>
@@ -133,7 +138,7 @@
 					<%
 						if (Helper.canTweet(session)) {
 					%>
-					<input type="checkbox" name="tweet" checked
+					<input type="checkbox" name="tweet" 
 						class="btn btn-large btn-primary btn-cell"
 						style="margin-left: 50px;"> <img
 						src="img/bird_gray_48.png">

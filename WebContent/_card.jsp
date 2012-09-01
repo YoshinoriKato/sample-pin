@@ -35,13 +35,13 @@
 			href="profile.jsp?userId=<%=card.getUserId()%>"><img
 			class="image-icon" src="<%=card.getUserIcon()%>"></a>
 	</div>
-	<div class="caption deco"><%=card.getCaption()%></div>
+	<div class="caption deco"><%=Helper.escapeHTML(card.getCaption())%></div>
 	<br style="clear: both;">
 	<%
 		if (Helper.valid(card.getKeywords())) {
 	%>
 	<div class="card-info break-word">
-		Keywords:<%=card.getKeywords()%></div>
+		Keywords:<span class="keywords"><%=card.getKeywords()%></span></div>
 	<%
 		}
 	%>
@@ -60,6 +60,9 @@
 		comment
 	</div>
 </div>
+
+<script type="text/javascript">$('.deco').autoUrlLink();$('.keywords').convLink();</script>
+
 <%
 	}
 %>
