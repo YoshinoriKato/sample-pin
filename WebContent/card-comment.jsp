@@ -119,11 +119,11 @@
 
 			<form id="comment-form" method="post" action="comment.do"
 				class="form-horizontal">
-				<div class="control-group">
+				<!-- <div class="control-group">
 					<div>
 						<input type="url" class="text input-text" name="url" placeholder="If you need, write a resource url.">
 					</div>
-				</div>
+				</div> -->
 				<div class="control-group <%=error%>">
 					<div>
 						<textarea id="comment-text" name="comment"
