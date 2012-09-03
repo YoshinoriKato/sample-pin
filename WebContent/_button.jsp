@@ -41,7 +41,7 @@
 	 -->
 
 	<%
-		if (session.getAttribute("userId") != null) {
+		if (!inCardPage && session.getAttribute("userId") != null) {
 	%>
 	<a href="home.jsp?sorted=mine" class="<%=addClass%> <%=classMine%>">Mine</a>
 	<a href="home.jsp?sorted=footprints"

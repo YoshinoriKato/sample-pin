@@ -219,13 +219,14 @@ public class Helper {
 		return new Card();
 	}
 
-	public static Comment getCommentByID(String cardId, String userId, Long createDate) {
+	public static Comment getCommentByID(String cardId, String userId,
+			Long createDate) {
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
 			Query<Comment> query = datastore.createQuery(Comment.class)
-					.filter("cardId = ", cardId)
-					.filter("userId = ", userId)
-					.filter("createDate = ", createDate).filter("isDeleted", false);
+					.filter("cardId = ", cardId).filter("userId = ", userId)
+					.filter("createDate = ", createDate)
+					.filter("isDeleted", false);
 			Comment comment = query.get();
 			if (comment != null) {
 				User user = Helper.getUserById(comment.getUserId());
