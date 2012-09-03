@@ -20,6 +20,9 @@
 	String type = request.getParameter("type");
 	type = (type != null) ? type : "card";
 
+	String image = request.getParameter("image");
+	type = (image != null) ? image : "";
+
 	Card card = Helper.getCardInfoByID(cardId);
 	if (card != null && selfUserId != null && !selfUserId.isEmpty()) {
 		Helper.setFootprint(card, selfUserId);
@@ -45,9 +48,13 @@
 	$(window).load(
 			function() {
 				cardId = $("#cardId").text();
+				$key = $('#cardId').text();
+				
+				// effect
 				pushPull('#main', '#ajax');
 				wookmark();
-				$key = $('#cardId').text();
+				
+				// event
 				$('#image-shot')
 						.attr("onclick", "pushPull('#cover','#origin')");
 				$('#ribon').attr("onclick", "pushPull('#cover','#origin')");
@@ -59,6 +66,8 @@
 						"pushPull('#write','#comment-area')");
 				callAjax($('#sorted').text(), 40, '', $('#userId').text(), $(
 						'#cardId').text(), $('#type').text());
+
+				// text observer
 				recoveryText($key);
 				$('#comment-form').submit(function() {
 					if ($('#comment-text').innerHTML != '') {
@@ -71,6 +80,11 @@
 					checkLength($key);
 				}, 500);
 				$('#main').fadeIn(1000);
+
+				// open image
+				if ($('#image') == 'open') {
+					$('#cover').fadeIn(1000);
+				}
 			});
 </script>
 </head>
@@ -95,6 +109,7 @@
 	<div style="display: none" id="userId"><%=otherUserId%></div>
 	<div style="display: none" id="cardId"><%=cardId%></div>
 	<div style="display: none" id="type"><%=type%></div>
+	<div style="display: none" id="image"><%=image%></div>
 
 	<%
 		if (card != null) {
@@ -127,7 +142,8 @@
 				<div class="control-group <%=error%>">
 					<div>
 						<textarea id="comment-text" name="comment"
-							class="textarea input-text" rows="4" placeholder="Please, write a comment."></textarea>
+							class="textarea input-text" rows="4"
+							placeholder="Please, write a comment."></textarea>
 					</div>
 					<div class="help-inline"><%=message%></div>
 				</div>
@@ -138,7 +154,7 @@
 					<%
 						if (Helper.canTweet(session)) {
 					%>
-					<input type="checkbox" name="tweet" 
+					<input type="checkbox" name="tweet"
 						class="btn btn-large btn-primary btn-cell"
 						style="margin-left: 50px;"> <img
 						src="img/bird_gray_48.png">
