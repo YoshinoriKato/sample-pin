@@ -30,7 +30,7 @@ public class ShortCutServlet extends HttpServlet {
 					"hex = ", hex);
 			ShortCut shortCut = query.get();
 			resp.sendRedirect("card-comment.jsp?cardId=" + shortCut.getCardId()
-					+ "&type=comment");
+					+ "&type=comment&image=open");
 			ActivityLogger.log(req, this.getClass(), shortCut);
 		}
 	}
