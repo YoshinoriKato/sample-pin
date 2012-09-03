@@ -33,7 +33,7 @@
 	<%
 		}
 	%>
-<%-- 	<a href="home.jsp" class="<%=addClass%> <%=classLatest%>">Latest</a>
+	<a href="home.jsp" class="<%=addClass%> <%=classLatest%>">Latest</a>
 
 	<!-- 
 	<a href="home.jsp?sorted=view" class="<%=addClass%>">Views</a>
@@ -51,7 +51,7 @@
 	<%
 		}
 	%>
- --%>
+
 	<%
 		if (card != null && userId != null
 				&& card.getUserId().equals(userId)) {
