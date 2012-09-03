@@ -89,6 +89,7 @@ public class CommentAjax extends CardAjax {
 		}
 
 		data.put("array", cards.toArray(new Comment[0]));
+		data.put("userId", userId);
 		writeToJSON(os, data, callback);
 	}
 

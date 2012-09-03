@@ -36,45 +36,39 @@ import com.samplepin.View;
 
 public class Helper {
 
-	static SimpleDateFormat		SDF_DATE		= new SimpleDateFormat(
-														"yyyy-MM-dd");
+	static SimpleDateFormat SDF_DATE = new SimpleDateFormat("yyyy-MM-dd");
 
-	static SimpleDateFormat		SDF_DATE_TIME	= new SimpleDateFormat(
-														"yyyy-MM-dd HH:mm:ss.SSS");
+	static SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat(
+			"yyyy-MM-dd HH:mm:ss.SSS");
 
-	static SimpleDateFormat		SDF_DATE_HOUR	= new SimpleDateFormat(
-														"yyyy-MM-dd 'at around' HH");
+	static SimpleDateFormat SDF_DATE_HOUR = new SimpleDateFormat(
+			"yyyy-MM-dd 'at around' HH");
 
-	public static final Pattern	convURLLinkPtn0	= Pattern
-														.compile(
-																"(http://|https://){1}[\\w\\.\\-/:\\#\\?\\=\\&\\;\\%\\~\\+]+",
-																Pattern.CASE_INSENSITIVE);
+	public static final Pattern convURLLinkPtn0 = Pattern.compile(
+			"(http://|https://){1}[\\w\\.\\-/:\\#\\?\\=\\&\\;\\%\\~\\+]+",
+			Pattern.CASE_INSENSITIVE);
 
-	public static final Pattern	convURLLinkPtn1	= Pattern
-														.compile(
-																"\\[([^\\]]*)\\]",
-																Pattern.CASE_INSENSITIVE);
+	public static final Pattern convURLLinkPtn1 = Pattern.compile(
+			"\\[([^\\]]*)\\]", Pattern.CASE_INSENSITIVE);
 
-	public static final Pattern	convURLLinkPtn2	= Pattern
-														.compile(
-																"[^ 　\t\f\r\n]+",
-																Pattern.CASE_INSENSITIVE);
+	public static final Pattern convURLLinkPtn2 = Pattern.compile(
+			"[^ 　\t\f\r\n]+", Pattern.CASE_INSENSITIVE);
 
-	static final Long			MILLS_SECOND	= 1000L;
+	static final Long MILLS_SECOND = 1000L;
 
-	static final Long			MILLS_MINUTE	= 60L * MILLS_SECOND;
+	static final Long MILLS_MINUTE = 60L * MILLS_SECOND;
 
-	static final Long			MILLS_HOUR		= 60L * MILLS_MINUTE;
+	static final Long MILLS_HOUR = 60L * MILLS_MINUTE;
 
-	static final Long			MILLS_DAY		= 24L * MILLS_HOUR;
+	static final Long MILLS_DAY = 24L * MILLS_HOUR;
 
-	public static final String	LS				= System.getProperty("line.separator");
+	public static final String LS = System.getProperty("line.separator");
 
-	public static final String	DOMAIN			= "http://doya.info/";
+	public static final String DOMAIN = "http://doya.info/";
 
-	public static final String	NAME			= "DOYA.info Beta";
+	public static final String NAME = "DOYA.info Beta";
 
-	static final String			SEPARATOR		= "[ |\\t|\\f|\\r\\n|\\r|\\n]";
+	static final String SEPARATOR = "[ |\\t|\\f|\\r\\n|\\r|\\n]";
 
 	public static boolean canTweet(HttpSession session) throws IOException {
 		try (ACMongo mongo = new ACMongo()) {
@@ -223,6 +217,28 @@ public class Helper {
 			e.printStackTrace();
 		}
 		return new Card();
+	}
+
+	public static Comment getCommentByID(String cardId, String userId, Long createDate) {
+		try (ACMongo mongo = new ACMongo()) {
+			Datastore datastore = mongo.createDatastore();
+			Query<Comment> query = datastore.createQuery(Comment.class)
+					.filter("cardId = ", cardId)
+					.filter("userId = ", userId)
+					.filter("createDate = ", createDate).filter("isDeleted", false);
+			Comment comment = query.get();
+			if (comment != null) {
+				User user = Helper.getUserById(comment.getUserId());
+				if (user != null) {
+					comment.setUserName(user.getUserName());
+					comment.setUserIcon(user.getImagePath());
+				}
+			}
+			return comment;
+		} catch (UnknownHostException | MongoException e) {
+			e.printStackTrace();
+		}
+		return new Comment();
 	}
 
 	public static List<Comment> getCommentsInfoByID(String cardId) {

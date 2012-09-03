@@ -16,6 +16,7 @@ function callback($data) {
 	var $array = $data.array;
 	var $type = $data.type;
 	var $len = $array.length;
+	var $userId = $data.userId;
 	var $interval = 3;
 	$counter += $len;
 	if ($len == 0) {
@@ -26,7 +27,7 @@ function callback($data) {
 	$timer = setInterval(function() {
 		$one = $array[$i];
 		if ($type == 'comment') {
-			makeComment($one);
+			makeComment($one, $userId);
 		} else {
 			makeCard($one);
 		}
@@ -49,7 +50,6 @@ function wookmark() {
 };
 
 var $cardWidth = 240;
-
 
 function makeCard($card) {
 
@@ -76,8 +76,8 @@ function makeCard($card) {
 	var $divCaption = $('<div/>').addClass('caption deco');
 	var $divName = $('<div/>').addClass('bold deco break-word');
 	var $divBr = $('<br/>').css('clear', 'both');
-	var $divKey = $('<div/>').addClass('card-info break-word').text(
-			'Keywords:');
+	var $divKey = $('<div/>').addClass('card-info break-word')
+			.text('Keywords:');
 	var $spanKey = $('<span/>').text($card.keywords);
 	var $divUrl = $('<div/>').addClass('card-info break-word').append($jqA3);
 	var $divFooter = $('<div/>').addClass('star right');
@@ -131,7 +131,7 @@ function makeCard($card) {
 	$jqA2.append($jqIcon);
 }
 
-function makeComment($comment) {
+function makeComment($comment, $userId) {
 
 	// components
 	var $jqLi = $('<li/>').addClass('card opacity80');
@@ -143,6 +143,7 @@ function makeComment($comment) {
 	var $divCaption = $('<div/>').addClass('caption comment deco');
 	var $divFooter = $('<div/>').addClass('star comment right');
 	var $jqIcon = $('<img/>').addClass('image-icon');
+	var $jqClose = $('<div/>').addClass('close-button');
 
 	$jqDiv.addClass('cell');
 	if ($comment.userIcon != null && $comment.userIcon != '') {
@@ -162,6 +163,17 @@ function makeComment($comment) {
 	$('#content').append($jqLi);
 	$jqLi.append($jqDiv);
 	$jqDiv.append($divName).append($divCaption).append($divFooter);
+
+	// delete
+	if ($userId && $userId == $comment.userId) {
+		var $confirm = $('<a/>').attr(
+				'href',
+				'confirm-discomment.jsp?cardId=' + $comment.cardId + '&userId='
+						+ $comment.userId + '&createDate='
+						+ $comment.createDate).text('x');
+		$jqDiv.append($jqClose);
+		$jqClose.append($confirm);
+	}
 	$divName.append($jqA);
 	$jqA.append($jqIcon);
 }

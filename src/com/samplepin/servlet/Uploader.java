@@ -6,9 +6,9 @@ import javax.servlet.http.Part;
 
 final class Uploader {
 
-	final String	fileName;
+	final String fileName;
 
-	final Part		part;
+	final Part part;
 
 	public Uploader(Part part, String fileName) {
 		super();

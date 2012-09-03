@@ -15,11 +15,11 @@ public class MongoTest {
 	static class Hoge {
 
 		@Id
-		ObjectId	id;
+		ObjectId id;
 
-		Long		key;
+		Long key;
 
-		String		name;
+		String name;
 
 		Hoge() {
 
