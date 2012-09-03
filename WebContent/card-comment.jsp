@@ -21,7 +21,7 @@
 	type = (type != null) ? type : "card";
 
 	String image = request.getParameter("image");
-	type = (image != null) ? image : "";
+	image = (image != null) ? image : "";
 
 	Card card = Helper.getCardInfoByID(cardId);
 	if (card != null && selfUserId != null && !selfUserId.isEmpty()) {
@@ -82,7 +82,7 @@
 				$('#main').fadeIn(1000);
 
 				// open image
-				if ($('#image') == 'open') {
+				if ($('#image').text() == 'open') {
 					$('#cover').fadeIn(1000);
 				}
 			});
