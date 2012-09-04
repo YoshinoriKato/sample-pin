@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@page import="com.samplepin.*"%>
 <%@page import="com.samplepin.common.*"%>
-<%!Card card;%>
+<%!Card	card;%>
 
 <%
 	card = (Card) request.getAttribute("card");
@@ -32,7 +32,8 @@
 	</div>
 	<div class="bold deco break-word">
 		<%=Helper.escapeHTML(card.getUserName())%><a class="no-hover"
-			href="profile.jsp?userId=<%=card.getUserId()%>"><img
+			href="profile.jsp?userId=<%=(card.getAnonymous()) ? card.getUserName() : card
+						.getUserId()%>"><img
 			class="image-icon" src="<%=card.getUserIcon()%>"></a>
 	</div>
 	<div class="caption deco"><%=Helper.escapeHTML(card.getCaption())%></div>
@@ -60,17 +61,24 @@
 	<div class="star right" style="clear: both;"><%=card.getLikes()%>
 		comment
 	</div>
-	<% 
-	String userId = Helper.getUserId(session);
-	String url = request.getRequestURI();
-	if(url.contains("/card-comment.jsp") && card.getUserId().equals(userId)) { %>
+	<%
+		String userId = Helper.getUserId(session);
+			String url = request.getRequestURI();
+			if (url.contains("/card-comment.jsp")
+					&& card.getUserId().equals(userId)) {
+	%>
 	<div class="close-button">
 		<a href="confirm-discard.jsp?cardId=<%=card.getCardId()%>">x</a>
 	</div>
-	<% } %>
+	<%
+		}
+	%>
 </div>
 
-<script type="text/javascript">$('.deco').autoUrlLink();$('.keywords').convLink();</script>
+<script type="text/javascript">
+	$('.deco').autoUrlLink();
+	$('.keywords').convLink();
+</script>
 
 <%
 	}

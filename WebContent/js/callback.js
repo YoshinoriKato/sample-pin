@@ -99,13 +99,14 @@ function makeCard($card) {
 		$jqA1.attr('href', $link).attr('target', '_blank');
 		$divFooter.text($url);
 	} else {
+		var $userId = ($card.anonymous) ? $card.userName : $card.userId;
 		$divName.text($card.userName);
 		$divRibonText.addClass('ribon-text color-red');
 		$jqDiv.addClass('cell');
 		$link = 'card-comment.jsp?cardId=' + $card.cardId + '&type=comment';
 		$jqA0.attr('href', $link);
 		$jqA1.attr('href', $link);
-		$jqA2.attr('href', 'profile.jsp?userId=' + $card.userId);
+		$jqA2.attr('href', 'profile.jsp?userId=' + $userId);
 		$divFooter.text($card.likes + ' comment').css('clear', 'both');
 	}
 
@@ -147,8 +148,9 @@ function makeComment($comment, $userId) {
 
 	$jqDiv.addClass('cell');
 	if ($comment.userIcon != null && $comment.userIcon != '') {
+		var $userId = ($comment.anonymous && $comment.anonymous == true) ? $comment.userName : $comment.userId;
 		$jqIcon.attr('src', $comment.userIcon);
-		$jqA.attr('href', 'profile.jsp?userId=' + $comment.userId);
+		$jqA.attr('href', 'profile.jsp?userId=' + $userId);
 	} else {
 		$jqIcon.attr('src', $comment.cardIcon);
 		$jqA.attr('href', 'card-comment.jsp?cardId=' + $comment.cardId

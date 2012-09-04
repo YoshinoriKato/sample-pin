@@ -9,15 +9,15 @@ import com.google.code.morphia.annotations.Id;
 public class OneTime {
 
 	@Id
-	ObjectId id;
+	ObjectId	id;
 
-	String mail;
+	String		mail;
 
-	String oneTimePassword;
+	String		oneTimePassword;
 
-	String password;
+	String		password;
 
-	Long loginDate;
+	Long		loginDate;
 
 	public OneTime() {
 		super();
