@@ -111,11 +111,12 @@
 				<div class="control-group">
 					<div class="controls">
 						<input type="submit" value="Make" id="submit-button"
-							class="btn btn-large btn-primary btn-cell"> <input
+							class="btn btn-large btn-primary btn-cell">
+						<!-- <input
 							type="checkbox" name="anonymous"
 							class="btn btn-large btn-primary btn-cell"
 							style="margin-left: 50px;"> <img src="img/anonymous.png"
-							class="image-anonymous">
+							class="image-anonymous"> -->
 					</div>
 				</div>
 				<input type="hidden" name="imagePath" value="<%=imagePath%>">

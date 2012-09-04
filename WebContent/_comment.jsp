@@ -52,9 +52,9 @@ String error = message != null && !message.isEmpty() ? "error" : "";
 				<%
 					}
 				%>
-				<input type="checkbox" name="anonymous"
+				<!-- <input type="checkbox" name="anonymous"
 					class="btn btn-large btn-primary btn-cell"
-					style="margin-left: 50px;"> <img src="img/anonymous.png" class="image-anonymous">
+					style="margin-left: 50px;"> <img src="img/anonymous.png" class="image-anonymous"> -->
 			</div>
 			<input type="hidden" name="cardId" value="<%=cardId%>">
 		</form>

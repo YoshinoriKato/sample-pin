@@ -451,13 +451,13 @@ public class Helper {
 	}
 
 	public static void setUserInfoToComment(Comment comment, User user) {
-		if (comment.getAnonymous()) {
-			comment.setUserName("Anonymous");
-			comment.setUserIcon("img/anonymous.png");
-		} else {
-			comment.setUserName(user.getUserName());
-			comment.setUserIcon(user.getImagePath());
-		}
+		// if (comment.getAnonymous()) {
+		// comment.setUserName("Anonymous");
+		// comment.setUserIcon("img/anonymous.png");
+		// } else {
+		comment.setUserName(user.getUserName());
+		comment.setUserIcon(user.getImagePath());
+		// }
 	}
 
 	static public String substitute(String input, String pattern,

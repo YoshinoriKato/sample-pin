@@ -32,8 +32,7 @@
 	</div>
 	<div class="bold deco break-word">
 		<%=Helper.escapeHTML(card.getUserName())%><a class="no-hover"
-			href="profile.jsp?userId=<%=(card.getAnonymous()) ? card.getUserName() : card
-						.getUserId()%>"><img
+			href="profile.jsp?userId=<%=card.getUserId()%>"><img
 			class="image-icon" src="<%=card.getUserIcon()%>"></a>
 	</div>
 	<div class="caption deco"><%=Helper.escapeHTML(card.getCaption())%></div>
