@@ -52,7 +52,7 @@
 		}
 	%>
 
-	<%
+<%-- 	<%
 		if (card != null && userId != null
 				&& card.getUserId().equals(userId)) {
 	%>
@@ -60,6 +60,6 @@
 		class="btn btn-large btn-danger btn-cell x-large">Discard</a>
 	<%
 		}
-	%>
+	%> --%>
 
 </div>

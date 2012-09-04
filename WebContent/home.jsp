@@ -10,9 +10,11 @@
 	String otherUserId = request.getParameter("userId");
 	otherUserId = (otherUserId != null) ? otherUserId : "";
 	String title = "Home";
+	title = (Helper.valid(otherUserId)) ? "Owns" : title;
 	title = ("recommend".equals(sorted)) ? "Recommend" : title;
 	title = ("footprints".equals(sorted)) ? "Footprints" : title;
 	title = ("mine".equals(sorted)) ? "My Cards" : title;
+	title = ("search".equals(sorted)) ? "Search" : title;
 
 	String words = request.getParameter("words");
 	words = words == null ? "" : words;
@@ -64,7 +66,7 @@
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<jsp:include page="_button.jsp" flush="true" />
-	<div id="title">Home</div>
+	<div id="title"><%=title %></div>
 	<div id="main">
 		<div id="input-window">
 		<%

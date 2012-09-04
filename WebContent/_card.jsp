@@ -41,7 +41,8 @@
 		if (Helper.valid(card.getKeywords())) {
 	%>
 	<div class="card-info break-word">
-		Keywords:<span class="keywords"><%=card.getKeywords()%></span></div>
+		Keywords:<span class="keywords"><%=card.getKeywords()%></span>
+	</div>
 	<%
 		}
 	%>
@@ -59,6 +60,14 @@
 	<div class="star right" style="clear: both;"><%=card.getLikes()%>
 		comment
 	</div>
+	<% 
+	String userId = Helper.getUserId(session);
+	String url = request.getRequestURI();
+	if(url.contains("/card-comment.jsp") && card.getUserId().equals(userId)) { %>
+	<div class="close-button">
+		<a href="confirm-discard.jsp?cardId=<%=card.getCardId()%>">x</a>
+	</div>
+	<% } %>
 </div>
 
 <script type="text/javascript">$('.deco').autoUrlLink();$('.keywords').convLink();</script>
