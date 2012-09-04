@@ -345,7 +345,7 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(80, 80, 80, 0.4);
 	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =                           80);
+	filter: alpha(opacity = 80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/
@@ -362,7 +362,7 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(80, 80, 80, 0.4);
 	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =                           80);
+	filter: alpha(opacity = 80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/
@@ -379,7 +379,7 @@ body {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(80, 80, 80, 0.4);
 	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =               80);
+	filter: alpha(opacity = 80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/

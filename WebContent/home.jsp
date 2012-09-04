@@ -50,7 +50,9 @@
 	<jsp:include page="_button.jsp" flush="true" />
 	<div id="title"><%=title %></div>
 	<div id="main">
-		<jsp:include page="_make.jsp" flush="true" />
+		<div id="add-card">
+			<jsp:include page="_make.jsp" flush="true" />
+		</div>
 		<ul id="content">
 			<!--  ajax -->
 		</ul>

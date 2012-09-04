@@ -21,6 +21,11 @@
 				</h1>
 				<div class="profile large">
 					<div class="item-group">
+						<div class="items">
+							<img src="img/title.png" style="min-width: 240px;">
+						</div>
+					</div>
+					<div class="item-group">
 						<div class="item-label">Abstract</div>
 						<div class="items">
 							<p>A curating service for easy use.</p>
@@ -58,8 +63,8 @@
 					<div class="item-group">
 						<div class="item-label">SNS Page</div>
 						<div class="items">
-							<a href="https://twitter.com/doya_info" target="_blank" style="margin-left: 50px;"><img
-								src="img/bird_gray_48.png"></a><a
+							<a href="https://twitter.com/doya_info" target="_blank"
+								style="margin-left: 50px;"><img src="img/bird_gray_48.png"></a><a
 								href="http://www.facebook.com/pages/DOYAinfo/495135587181076"
 								target="_blank" style="margin-left: 80px;"><img
 								src="img/f_logo.png" style="height: 40px; width: 40px;"></a>

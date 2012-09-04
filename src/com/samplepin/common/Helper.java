@@ -36,6 +36,9 @@ import com.samplepin.View;
 
 public class Helper {
 
+	public static final String TIMESTAMP = String.valueOf(System
+			.currentTimeMillis());
+
 	static SimpleDateFormat SDF_DATE = new SimpleDateFormat("yyyy-MM-dd");
 
 	static SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat(

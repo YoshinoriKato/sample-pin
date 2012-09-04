@@ -26,7 +26,7 @@
 
 <div id="error-dialog">
 	<div id="error-close" class="tab-button">X</div>
-	<img src="img/broken.gif" class="image-shot">
+	<img src="img/ERROR.png?<%=Helper.TIMESTAMP %>" class="image-shot">
 	<div class="caption large">Sorry, server error.</div>
 </div>
 

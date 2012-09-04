@@ -5,7 +5,7 @@
 <%@page import="com.samplepin.common.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%!String suffix = String.valueOf(System.currentTimeMillis());%>
+<%!String suffix = Helper.TIMESTAMP;%>
 
 <%
 	ActivityLogger.log(request, this.getClass(), "request");
