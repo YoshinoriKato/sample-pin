@@ -34,9 +34,21 @@
 						</div>
 					</div>
 					<div class="item-group">
+						<div class="item-label">How to use 0</div>
+						<div class="items">
+							Click <a href="signup.jsp">"@1st"</a>
+							<ol>
+								<li>Write your mail address, or <a href="oauth-twitter.jsp">Twitter
+										Login</a></li>
+								<li>If written your mail address, go to <a href="login.jsp">Login Page</a>, from sign-up mail</li>
+								<li>And then, write your mail address and password</li>
+							</ol>
+						</div>
+					</div>
+					<div class="item-group">
 						<div class="item-label">How to use 1</div>
 						<div class="items">
-							Click "Home" in the menu bar
+							Click <a href="home.jsp">"Home"</a> in the menu bar
 							<ol>
 								<li>View cards</li>
 								<li>Click a card</li>
@@ -48,7 +60,7 @@
 					<div class="item-group">
 						<div class="item-label">How to use 2</div>
 						<div class="items">
-							Click "+" in the menu bar
+							Focus on "Add" in <a href="home.jsp">"Home"</a>
 							<ol>
 								<li>Search Images</li>
 								<li>Write a caption</li>
@@ -58,7 +70,7 @@
 					</div>
 					<div class="item-group">
 						<div class="item-label">How to use 3</div>
-						<div class="items">Repeat</div>
+						<div class="items">Repeat 1, 2</div>
 					</div>
 					<div class="item-group">
 						<div class="item-label">SNS Page</div>
