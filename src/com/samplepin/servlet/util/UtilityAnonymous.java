@@ -1,8 +1,6 @@
 package com.samplepin.servlet.util;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,16 +32,17 @@ public class UtilityAnonymous extends HttpServlet {
 			if (query.countAll() == 0) {
 				User user = new User(USER_ID, "xxx@xxx.xxx", USER_ID, -1);
 				user.setBirthDay("1605-10-26");
-				Date date = DateFormat.getDateInstance().parse("1605/10/26");
-				user.setCreateDate(date.getTime());
-				user.setLastUpdate(date.getTime());
+				// Date date = DateFormat.getDateInstance().parse("1605/10/26");
+				user.setCreateDate(-11492528400000L);
+				user.setLastUpdate(-11492528400000L);
 				user.setImagePath("img/anonymous.png");
 				user.setComment(USER_ID);
 				mongo.save(user);
 			}
 
-		} catch (java.text.ParseException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
+			req.setAttribute("error", e);
 			throw new ServletException(e);
 		}
 		response.sendRedirect("home.jsp");

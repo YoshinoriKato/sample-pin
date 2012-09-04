@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import twitter4j.TwitterException;
+
 import com.google.code.morphia.Datastore;
+import com.mongodb.MongoException;
 import com.samplepin.Card;
 import com.samplepin.common.ACMongo;
 import com.samplepin.common.ActivityLogger;
@@ -42,19 +45,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 				datastore.save(card);
 
 				try {
-					if (valid(tweet) && "on".equals(tweet)) {
-						String keywords = card.getKeywords();
-						keywords = valid(keywords) ? "[" + keywords + "]" : "";
-						String message = card.getCaption()
-								+ Helper.LS
-								+ keywords
-								+ Helper.LS
-								+ new ShortCutServlet().toShortCut(card
-										.getCardId());
-						TwitterService service = new TwitterService();
-						service.tweet(userId, message);
-						service.tweet("[最新]" + message);
-					}
+					tweet(card, userId, tweet);
 
 					NaturalLanguageParser.makeIndex(req, card.getCardId());
 
@@ -78,6 +69,19 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 			dispathcer.forward(req, resp);
 			return;
 		}
+	}
+
+	final void tweet(Card card, String userId, String tweet)
+			throws IOException, MongoException, TwitterException {
+		TwitterService service = new TwitterService();
+		String keywords = card.getKeywords();
+		keywords = valid(keywords) ? "[" + keywords + "]" : "";
+		String message = card.getCaption() + Helper.LS + keywords + Helper.LS
+				+ new ShortCutServlet().toShortCut(card.getCardId());
+		if (valid(tweet) && "on".equals(tweet)) {
+			service.tweet(userId, message);
+		}
+		service.tweet("[最新]" + message);
 	}
 
 }

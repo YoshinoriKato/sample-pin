@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import twitter4j.TwitterException;
+
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 import com.mongodb.MongoException;
@@ -52,16 +54,7 @@ public class CommentServlet extends HttpServlet {
 				saveComment(new Comment(userId, cardId, comment,
 						System.currentTimeMillis(), isAnonymous(anonymous)));
 
-				if (valid(tweet) && "on".equals(tweet)) {
-					Card card = Helper.getCardByID(cardId);
-					String keywords = card != null ? card.getKeywords() : "";
-					keywords = valid(keywords) ? "[" + keywords + "]" : "";
-					String message = comment + Helper.LS + keywords + Helper.LS
-							+ new ShortCutServlet().toShortCut(cardId);
-					TwitterService service = new TwitterService();
-					service.tweet(userId, message);
-					service.tweet("[最新]" + message);
-				}
+				tweet(cardId, userId, comment, tweet);
 
 				NaturalLanguageParser.makeIndex(req, cardId);
 
@@ -84,7 +77,7 @@ public class CommentServlet extends HttpServlet {
 		dispathcer.forward(req, resp);
 	}
 
-	boolean isAnonymous(String anonymous) {
+	final boolean isAnonymous(String anonymous) {
 		return valid(anonymous) && "on".equals(anonymous);
 	}
 
@@ -115,5 +108,19 @@ public class CommentServlet extends HttpServlet {
 				datastore.save(card);
 			}
 		}
+	}
+
+	final void tweet(String cardId, String userId, String comment, String tweet)
+			throws IOException, MongoException, TwitterException {
+		Card card = Helper.getCardByID(cardId);
+		String keywords = card != null ? card.getKeywords() : "";
+		keywords = valid(keywords) ? "[" + keywords + "]" : "";
+		String message = comment + Helper.LS + keywords + Helper.LS
+				+ new ShortCutServlet().toShortCut(cardId);
+		TwitterService service = new TwitterService();
+		if (valid(tweet) && "on".equals(tweet)) {
+			service.tweet(userId, message);
+		}
+		service.tweet("[最新]" + message);
 	}
 }
