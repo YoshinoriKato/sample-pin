@@ -38,7 +38,8 @@
 						<label for="search-box" class="control-label">Image Search</label>
 						<div class="controls">
 							<input type="search" id="search-box" name="search-box" value=""
-								placeholder="Please search images. At last, press enter key." class="input-medium input-text text">
+								placeholder="Please search images. At last, press enter key."
+								class="input-medium input-text text">
 							<!-- <input type="submit" value="Search" id="search-action"
 										class="btn btn-large btn-primary btn-cell"> -->
 						</div>
@@ -51,7 +52,7 @@
 			method="post" class="form-horizontal">
 			<fieldset>
 				<div class="control-group">
-				<label for="iconPath" class="control-label">or Image File</label>
+					<label for="iconPath" class="control-label">or Image File</label>
 					<div class="controls">
 						<%
 							if (Helper.valid(imagePath)) {
@@ -110,7 +111,11 @@
 				<div class="control-group">
 					<div class="controls">
 						<input type="submit" value="Make" id="submit-button"
-							class="btn btn-large btn-primary btn-cell">
+							class="btn btn-large btn-primary btn-cell"> <input
+							type="checkbox" name="anonymous"
+							class="btn btn-large btn-primary btn-cell"
+							style="margin-left: 50px;"> <img src="img/anonymous.png"
+							class="image-anonymous">
 					</div>
 				</div>
 				<input type="hidden" name="imagePath" value="<%=imagePath%>">

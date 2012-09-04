@@ -202,7 +202,7 @@ public class Helper {
 		return "";
 	}
 
-	public static Card getCardInfoByID(String cardId) {
+	public static Card getCardByID(String cardId) {
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
 			Query<Card> query = datastore.createQuery(Card.class)
@@ -211,8 +211,7 @@ public class Helper {
 			if (card != null) {
 				User user = Helper.getUserById(card.getUserId());
 				if (user != null) {
-					card.setUserName(user.getUserName());
-					card.setUserIcon(user.getImagePath());
+					setUserInfoToComment(card, user);
 				}
 			}
 			return card;
@@ -234,8 +233,7 @@ public class Helper {
 			if (comment != null) {
 				User user = Helper.getUserById(comment.getUserId());
 				if (user != null) {
-					comment.setUserName(user.getUserName());
-					comment.setUserIcon(user.getImagePath());
+					setUserInfoToComment(comment, user);
 				}
 			}
 			return comment;
@@ -443,6 +441,16 @@ public class Helper {
 			datastore.save(view);
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();
+		}
+	}
+
+	public static void setUserInfoToComment(Comment comment, User user) {
+		if (comment.getAnonymous()) {
+			comment.setUserName("Anonymous");
+			comment.setUserIcon("img/anonymous.png");
+		} else {
+			comment.setUserName(user.getUserName());
+			comment.setUserIcon(user.getImagePath());
 		}
 	}
 

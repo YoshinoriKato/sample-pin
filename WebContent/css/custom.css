@@ -394,6 +394,22 @@ body {
 	width: 40px;
 }
 
+.image-anonymous {
+	/* effect ---------------------------------------------------------------*/
+	color: rgba(80, 80, 80, 0.4);
+	background-color: rgba(0, 0, 0, 0.05);
+	filter: alpha(opacity = 80);
+	-moz-opacity: 0.80;
+	opacity: 0.80;
+	/* layout ---------------------------------------------------------------*/
+	/* shape ----------------------------------------------------------------*/
+	border-radius: 1px 6px 1px;
+	-webkit-border-radius: 1px 6px 1px;
+	-moz-border-radius: 1px 6px 1px;
+	height: 48px;
+	width: 48px;
+}
+
 .card {
 	/* effect ---------------------------------------------------------------*/
 	/* layout ---------------------------------------------------------------*/

@@ -4,7 +4,7 @@ import java.net.UnknownHostException;
 
 import com.google.code.morphia.query.Query;
 import com.mongodb.MongoException;
-import com.samplepin.Comment;
+import com.samplepin.Card;
 import com.samplepin.common.ACMongo;
 
 public class Snipet {
@@ -15,13 +15,10 @@ public class Snipet {
 	public static void main(String[] args) {
 		try (ACMongo mongo = new ACMongo()) {
 
-			Query<Comment> query = mongo.createQuery(Comment.class)
-					.filter("isDeleted = ", false)
-					.filter("userId = ", "ID_3Cb2TaAmy2tCLGqEQ5HAdSV3kKxEd3dJ");
+			Query<Card> query = mongo.createQuery(Card.class).filter(
+					"cardId = ", "C_gLlhmoWrnSacOUGo_FDyqGyCVFpR8i3s");
 
-			for (Comment comment : query.asList()) {
-				System.out.println(comment.getCaption());
-			}
+			mongo.createDatastore().delete(query);
 
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();

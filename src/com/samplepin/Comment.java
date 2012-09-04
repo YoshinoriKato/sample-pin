@@ -44,18 +44,27 @@ public class Comment implements Serializable, Deleteable, Createable {
 	@Transient
 	String userName;
 
+	Boolean anonymous;
+
 	public Comment() {
 		super();
+		this.anonymous = false;
+		this.isDeleted = false;
+		this.imagePath = "";
 	}
 
-	public Comment(String userId, String cardId, String caption, Long createDate) {
-		super();
+	public Comment(String userId, String cardId, String caption,
+			Long createDate, Boolean anonymous) {
+		this();
 		this.userId = userId;
 		this.cardId = cardId;
 		this.caption = caption;
 		this.createDate = createDate;
-		this.isDeleted = false;
-		this.imagePath = "";
+		this.anonymous = anonymous;
+	}
+
+	public Boolean getAnonymous() {
+		return this.anonymous;
 	}
 
 	public String getCaption() {
@@ -98,6 +107,10 @@ public class Comment implements Serializable, Deleteable, Createable {
 
 	public String getUserName() {
 		return this.userName;
+	}
+
+	public void setAnonymous(Boolean anonymous) {
+		this.anonymous = anonymous;
 	}
 
 	public void setCaption(String caption) {

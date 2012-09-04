@@ -13,7 +13,7 @@
 <%
 	String cardId = request.getParameter("cardId");
 
-	Card card = Helper.getCardInfoByID(cardId);
+	Card card = Helper.getCardByID(cardId);
 	request.setAttribute("card", card);
 
 	String message = (String) request.getAttribute("message");

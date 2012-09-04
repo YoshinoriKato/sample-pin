@@ -98,8 +98,7 @@ public class MakeCardServlet extends HttpServlet {
 		if ((card.getCaption() != null) && !card.getCaption().isEmpty()) {
 			User user = Helper.getUserById(userId);
 			if (user != null) {
-				card.setUserName(user.getUserName());
-				card.setUserIcon(user.getImagePath());
+				Helper.setUserInfoToComment(card, user);
 			}
 
 			ActivityLogger.log(req, this.getClass(), card);
@@ -179,6 +178,7 @@ public class MakeCardServlet extends HttpServlet {
 			String keywords = getValueByKeyword(part, "keywords");
 			String site = getValueByKeyword(part, "site");
 			String imagePath = getValueByKeyword(part, "imagePath");
+			String anonymous = getValueByKeyword(part, "anonymous");
 
 			if (title != null) {
 
@@ -196,6 +196,9 @@ public class MakeCardServlet extends HttpServlet {
 
 			} else if (valid(site)) {
 				card.setSite(site);
+
+			} else if (valid(anonymous)) {
+				card.setAnonymous(true);
 
 			} else {
 				String path = getFileName(part);

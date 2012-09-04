@@ -78,7 +78,7 @@ public class DeleteCommentServlet extends HttpServlet {
 					.filter("isDeleted", false);
 
 			if ((query0.countAll() != 0)) {
-				Card card = Helper.getCardInfoByID(cardId);
+				Card card = Helper.getCardByID(cardId);
 				card.setLikes(card.getLikes() - 1);
 				mongo.save(card);
 

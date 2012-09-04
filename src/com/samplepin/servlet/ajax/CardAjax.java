@@ -63,7 +63,7 @@ public class CardAjax {
 						_limit);
 				if (valid(views)) {
 					for (View view : views) {
-						Card card = Helper.getCardInfoByID(view.getCardId());
+						Card card = Helper.getCardByID(view.getCardId());
 						if (card != null) {
 							cards.add(card);
 						}
@@ -110,8 +110,7 @@ public class CardAjax {
 			for (Card card : cards) {
 				User user = Helper.getUserById(card.getUserId());
 				if (user != null) {
-					card.setUserIcon(user.getImagePath());
-					card.setUserName(user.getUserName());
+					Helper.setUserInfoToComment(card, user);
 				}
 			}
 

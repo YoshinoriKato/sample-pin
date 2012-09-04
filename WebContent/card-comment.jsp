@@ -23,16 +23,17 @@
 	String image = request.getParameter("image");
 	image = (image != null) ? image : "";
 
-	Card card = Helper.getCardInfoByID(cardId);
+	Card card = Helper.getCardByID(cardId);
 	if (card != null && selfUserId != null && !selfUserId.isEmpty()) {
 		Helper.setFootprint(card, selfUserId);
 	}
 	request.setAttribute("card", card);
 
-	String message = (String) request.getAttribute("message");
+/* 	String message = (String) request.getAttribute("message");
 	message = message != null ? message : "";
 
 	String error = message != null && !message.isEmpty() ? "error" : "";
+ */
 %>
 
 
@@ -125,58 +126,7 @@
 	</div>
 
 	<!-- comment form -->
-	<div id="comment-area">
-		<div id="comment-close" class="tab-button">x</div>
-		<div class="center page-menu">
-			<%
-				if (Helper.valid(userId)) {
-			%>
-
-			<form id="comment-form" method="post" action="comment.do"
-				class="form-horizontal">
-				<!-- <div class="control-group">
-					<div>
-						<input type="url" class="text input-text" name="url" placeholder="If you need, write a resource url.">
-					</div>
-				</div> -->
-				<div class="control-group <%=error%>">
-					<div>
-						<textarea id="comment-text" name="comment"
-							class="textarea input-text" rows="4"
-							placeholder="Please, write a comment."></textarea>
-					</div>
-					<div class="help-inline"><%=message%></div>
-				</div>
-				<div class="control-group">
-					<input id="submit-button" type="submit"
-						class="btn btn-large btn-primary btn-cell" value="Comment"
-						disabled>
-					<%
-						if (Helper.canTweet(session)) {
-					%>
-					<input type="checkbox" name="tweet"
-						class="btn btn-large btn-primary btn-cell"
-						style="margin-left: 50px;"> <img
-						src="img/bird_gray_48.png">
-					<%
-						}
-					%>
-				</div>
-				<input type="hidden" name="cardId" value="<%=cardId%>">
-			</form>
-
-			<%
-				} else {
-			%>
-			<div class="caption large">
-				Please, <a href="login.jsp?fromUrl=card.jsp?cardId=<%=cardId%>">Login</a>
-				or <a href="signup.jsp">Sign up</a>.
-			</div>
-			<%
-				}
-			%>
-		</div>
-	</div>
+	<jsp:include page="_comment.jsp"></jsp:include>
 	<%
 		}
 	%>

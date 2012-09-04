@@ -185,7 +185,7 @@ public class NaturalLanguageParser {
 				// image
 				String imagePath = "img/no_image.png";
 				if (kac != null) {
-					Card card = Helper.getCardInfoByID(kac.getCardId());
+					Card card = Helper.getCardByID(kac.getCardId());
 					if (card != null) {
 						imagePath = card.getImagePath();
 					}

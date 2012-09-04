@@ -41,6 +41,7 @@ public class CommentServlet extends HttpServlet {
 		String cardId = req.getParameter("cardId");
 		String comment = req.getParameter("comment");
 		String tweet = req.getParameter("tweet");
+		String anonymous = req.getParameter("anonymous");
 
 		try (ACMongo mongo = new ACMongo()) {
 			String userId = Helper.getUserId(req);
@@ -49,10 +50,10 @@ public class CommentServlet extends HttpServlet {
 
 			if ((userId != null) && (comment != null) && !comment.isEmpty()) {
 				saveComment(new Comment(userId, cardId, comment,
-						System.currentTimeMillis()));
+						System.currentTimeMillis(), isAnonymous(anonymous)));
 
 				if (valid(tweet) && "on".equals(tweet)) {
-					Card card = Helper.getCardInfoByID(cardId);
+					Card card = Helper.getCardByID(cardId);
 					String keywords = card != null ? card.getKeywords() : "";
 					keywords = valid(keywords) ? "[" + keywords + "]" : "";
 					String message = comment + Helper.LS + keywords + Helper.LS
@@ -81,6 +82,10 @@ public class CommentServlet extends HttpServlet {
 				.getRequestDispatcher("card-comment.jsp?cardId=" + cardId
 						+ "&type=comment");
 		dispathcer.forward(req, resp);
+	}
+
+	boolean isAnonymous(String anonymous) {
+		return valid(anonymous) && "on".equals(anonymous);
 	}
 
 	final void saveComment(Comment comment) throws UnknownHostException,

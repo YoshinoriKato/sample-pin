@@ -37,7 +37,7 @@
 	String userId0 = Helper.getUserId(request);
 	String userId1 = (userId0 != null) ? userId0 : session.getId();
 
-	Card card = Helper.getCardInfoByID(cardId);
+	Card card = Helper.getCardByID(cardId);
 	Helper.setFootprint(card, userId1);
 	Random dice = new Random(System.nanoTime());
 	List<Comment> comments = Helper.getCommentsInfoByID(cardId);

@@ -187,7 +187,7 @@ public class Initializer3 extends HttpServlet {
 
 					Comment comment = new Comment(userId, card.getCardId(),
 							((dice.nextInt() % 2) == 0) ? caption2 : song2,
-							mills3);
+							mills3, false);
 					datastore.save(comment);
 					card.setUpdateDate(comment.getCreateDate());
 					mongo.save(card);

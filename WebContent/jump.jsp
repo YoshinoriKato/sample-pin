@@ -15,7 +15,7 @@
 	String cardId = request.getParameter("cardId");
 	String redirectUrl = request.getParameter("redirectUrl");
 	redirectUrl = URLDecoder.decode(redirectUrl, "UTF-8");
-	Card card = Helper.getCardInfoByID(cardId);
+	Card card = Helper.getCardByID(cardId);
 	Helper.setFootprint(card, userId);
 	response.sendRedirect(redirectUrl);
 %>

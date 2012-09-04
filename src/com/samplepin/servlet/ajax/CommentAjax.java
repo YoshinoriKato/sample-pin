@@ -76,15 +76,14 @@ public class CommentAjax extends CardAjax {
 		for (Comment comment : cards) {
 			User user = Helper.getUserById(comment.getUserId());
 			if (user != null) {
+				Helper.setUserInfoToComment(comment, user);
 				if (valid(otherUserId)) {
-					Card card = Helper.getCardInfoByID(comment.getCardId());
+					// own comments
+					Card card = Helper.getCardByID(comment.getCardId());
 					if (card != null) {
 						comment.setCardIcon(card.getImagePath());
 					}
-				} else {
-					comment.setUserIcon(user.getImagePath());
 				}
-				comment.setUserName(user.getUserName());
 			}
 		}
 
