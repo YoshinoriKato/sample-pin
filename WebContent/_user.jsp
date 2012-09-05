@@ -18,6 +18,7 @@
 		<%=Helper.escapeHTML(user.getUserName())%>
 	</div>
 	<div class="caption deco"><%=Helper.escapeHTML(user.getComment())%></div>
+	<br style="clear: both;">
 	<div class="star right" style="clear: both;">
 		Signed up:
 		<%=Helper.formatToDateString(user.getCreateDate())%>

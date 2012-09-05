@@ -100,7 +100,7 @@ function makeCard($card) {
 		$jqA0.attr('href', $link).attr('target', '_blank');
 		$jqA1.attr('href', $link).attr('target', '_blank');
 		$divFooter.text($url);
-		
+
 	} else {
 		$divName.text($card.userName);
 		$divRibonText.addClass('ribon-text color-red');
@@ -145,6 +145,7 @@ function makeComment($comment, $userId) {
 	var $divName = $('<div/>').addClass('bold deco comment');
 	var $divCaption = $('<div/>').addClass('caption comment deco');
 	var $divFooter = $('<div/>').addClass('star comment right');
+	var $divBr = $('<br/>').css('clear', 'both');
 	var $jqIcon = $('<img/>').addClass('image-icon');
 	var $jqClose = $('<div/>').addClass('close-button');
 
@@ -160,12 +161,12 @@ function makeComment($comment, $userId) {
 	$divName.text($comment.userName);
 	$divCaption.append($comment.caption).autoUrlLink().escapeReturn();
 	$divFooter.text($comment.createDate).aboutTimestamp();
-	$divFooter.css('clear', 'both');
 
 	// construct
 	$('#content').append($jqLi);
 	$jqLi.append($jqDiv);
-	$jqDiv.append($divName).append($divCaption).append($divFooter);
+	$jqDiv.append($divName).append($divCaption).append($divBr).append(
+			$divFooter);
 
 	// delete
 	if ($userId && $userId == $comment.userId) {

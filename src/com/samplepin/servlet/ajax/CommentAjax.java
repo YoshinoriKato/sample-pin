@@ -82,6 +82,7 @@ public class CommentAjax extends CardAjax {
 					Card card = Helper.getCardByID(comment.getCardId());
 					if (card != null) {
 						comment.setCardIcon(card.getImagePath());
+						comment.setUserIcon(null); // judge by page
 					}
 				}
 			}
