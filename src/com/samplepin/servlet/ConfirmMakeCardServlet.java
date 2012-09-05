@@ -29,7 +29,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 6534228482284422460L;
+	private static final long serialVersionUID = 6534228482284422460L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -81,7 +81,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 		if (valid(tweet) && "on".equals(tweet)) {
 			service.tweet(userId, message);
 		}
-		service.tweet("[最新]" + message);
+		service.tweet("ADD: " + message);
 	}
 
 }

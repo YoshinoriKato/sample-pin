@@ -10,19 +10,19 @@ import com.google.code.morphia.annotations.Indexed;
 public class Tag implements Createable, Deleteable {
 
 	@Id
-	ObjectId	id;
+	ObjectId id;
 
 	@Indexed
-	String		tag;
+	String tag;
 
-	String		imagePath;
+	String imagePath;
 
-	Long		size;
+	Long size;
 
-	Long		createDate;
+	Long createDate;
 
 	@Indexed
-	Boolean		isDeleted;
+	Boolean isDeleted;
 
 	public Tag() {
 		super();

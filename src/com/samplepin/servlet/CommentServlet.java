@@ -31,9 +31,9 @@ public class CommentServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 5426777241563315344L;
+	private static final long serialVersionUID = 5426777241563315344L;
 
-	public static final Long	COMMENTS_LIMIT		= 1000L;
+	public static final Long COMMENTS_LIMIT = 1000L;
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -121,6 +121,6 @@ public class CommentServlet extends HttpServlet {
 		if (valid(tweet) && "on".equals(tweet)) {
 			service.tweet(userId, message);
 		}
-		service.tweet("[最新]" + message);
+		service.tweet("MSG: " + message);
 	}
 }
