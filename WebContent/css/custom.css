@@ -131,7 +131,6 @@ html {
 	background-color: rgba(0, 0, 0, 0.7);
 	box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.3);
-	overflow: hidden;
 	font-size: x-large;
 	color: rgba(180, 180, 180, 0.8);
 	text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.8);
@@ -345,7 +344,6 @@ html {
 	position: relative;
 	left: 10%;
 	margin-bottom: 60px;
-	overflow: hidden;
 	/* shape ----------------------------------------------------------------*/
 	min-width: 480px;
 	width: 85%;
