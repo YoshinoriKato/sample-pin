@@ -112,15 +112,21 @@ public class CommentServlet extends HttpServlet {
 
 	final void tweet(String cardId, String userId, String comment, String tweet)
 			throws IOException, MongoException, TwitterException {
-		Card card = Helper.getCardByID(cardId);
-		String keywords = card != null ? card.getKeywords() : "";
-		keywords = valid(keywords) ? "[" + keywords + "]" : "";
-		String message = comment + Helper.LS + keywords + Helper.LS
-				+ new ShortCutServlet().toShortCut(cardId);
-		TwitterService service = new TwitterService();
-		if (valid(tweet) && "on".equals(tweet)) {
-			service.tweet(userId, message);
+		try {
+			TwitterService service = new TwitterService();
+
+			Card card = Helper.getCardByID(cardId);
+			String keywords = card != null ? card.getKeywords() : "";
+			keywords = valid(keywords) ? "[" + keywords + "]" : "";
+			String message = comment + Helper.LS + keywords + Helper.LS
+					+ new ShortCutServlet().toShortCut(cardId);
+
+			if (valid(tweet) && "on".equals(tweet)) {
+				service.tweet(userId, message);
+			}
+			service.tweet("MSG: " + message);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		service.tweet("MSG: " + message);
 	}
 }

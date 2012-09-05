@@ -18,8 +18,8 @@ String error = message != null && !message.isEmpty() ? "error" : "";
 
 %>
 
-<div id="comment-area">
-	<div id="comment-close" class="tab-button">x</div>
+<!-- <div id="comment-area"> -->
+	<!-- <div id="comment-close" class="tab-button">x</div> -->
 	<div class="center page-menu">
 		<%
 			if (Helper.valid(userId)) {
@@ -70,5 +70,5 @@ String error = message != null && !message.isEmpty() ? "error" : "";
 			}
 		%>
 	</div>
-</div>
+<!-- </div> -->
 

@@ -30,24 +30,8 @@
 		if (Helper.valid(userId)) {
 	%>
 	<div class="cell">
-		<div class="form-horizontal">
-			<form class="form-search" action="javascript:searchGoogle()">
-				<fieldset>
-					<h1 class="tab-header">Add</h1>
-					<div class="control-group">
-						<label for="search-box" class="control-label">Image Search</label>
-						<div class="controls">
-							<input type="search" id="search-box" name="search-box" value=""
-								placeholder="Please search images. At last, press enter key."
-								class="input-medium input-text text">
-							<!-- <input type="submit" value="Search" id="search-action"
-										class="btn btn-large btn-primary btn-cell"> -->
-						</div>
-					</div>
-				</fieldset>
-			</form>
-		</div>
-		<ul id="search-result"></ul>
+		<h1 class="tab-header">Add</h1>
+		<jsp:include page="_search.jsp"></jsp:include>
 		<form action="make-card.do" enctype="multipart/form-data"
 			method="post" class="form-horizontal">
 			<fieldset>

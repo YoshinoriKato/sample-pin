@@ -73,15 +73,22 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 
 	final void tweet(Card card, String userId, String tweet)
 			throws IOException, MongoException, TwitterException {
-		TwitterService service = new TwitterService();
-		String keywords = card.getKeywords();
-		keywords = valid(keywords) ? "[" + keywords + "]" : "";
-		String message = card.getCaption() + Helper.LS + keywords + Helper.LS
-				+ new ShortCutServlet().toShortCut(card.getCardId());
-		if (valid(tweet) && "on".equals(tweet)) {
-			service.tweet(userId, message);
+		try {
+			TwitterService service = new TwitterService();
+
+			String keywords = card.getKeywords();
+			keywords = valid(keywords) ? "[" + keywords + "]" : "";
+			String message = card.getCaption() + Helper.LS + keywords
+					+ Helper.LS
+					+ new ShortCutServlet().toShortCut(card.getCardId());
+
+			if (valid(tweet) && "on".equals(tweet)) {
+				service.tweet(userId, message);
+			}
+			service.tweet("ADD: " + message);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		service.tweet("ADD: " + message);
 	}
 
 }

@@ -43,7 +43,7 @@
 <jsp:include page="_header.jsp"></jsp:include>
 <script type="text/javascript" charset="utf-8">
 	$(window).resize(function() {
-		wookmark();
+		/* wookmark(); */
 	});
 
 	$(window).load(
@@ -53,7 +53,7 @@
 				
 				// effect
 				pushPull('#main', '#ajax');
-				wookmark();
+				/* wookmark(); */
 				
 				// event
 				$('#image-shot')
@@ -92,14 +92,23 @@
 
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
-	<jsp:include page="_button.jsp" flush="true" />
+	<%-- <jsp:include page="_button.jsp" flush="true" /> --%>
 	<div id="title">Comments</div>
 	<div id="main">
-		<ul id="content">
-			<li class="card"><jsp:include page="_card.jsp"></jsp:include></li>
-			<!--  ajax -->
-		</ul>
-		<br style="clear: both;" />
+		<div id="split">
+			<div id="split-left">
+				<div class="card margin-bottom20"><jsp:include
+						page="_card.jsp"></jsp:include></div>
+			</div>
+			<div id="split-right">
+				<ul id="content">
+					<li class="cell margin-bottom20" style="max-height: 170px;">
+					<jsp:include page="_comment.jsp"></jsp:include></li>
+					<!--  ajax -->
+				</ul>
+			</div>
+			<br style="clear: both;" />
+		</div>
 	</div>
 
 	<!-- read cards -->
@@ -126,7 +135,7 @@
 	</div>
 
 	<!-- comment form -->
-	<jsp:include page="_comment.jsp"></jsp:include>
+	<%-- <jsp:include page="_comment.jsp"></jsp:include> --%>
 	<%
 		}
 	%>

@@ -8,10 +8,10 @@
 
 	String sorted = request.getParameter("sorted");
 	sorted = sorted == null ? "" : sorted;
-	
+
 	String otherUserId = request.getParameter("userId");
 	otherUserId = (otherUserId != null) ? otherUserId : "";
-	
+
 	String title = "Home";
 	title = (Helper.valid(otherUserId)) ? "Owns" : title;
 	title = ("recommend".equals(sorted)) ? "Recommend" : title;
@@ -48,10 +48,27 @@
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<jsp:include page="_button.jsp" flush="true" />
-	<div id="title"><%=title %></div>
+	<div id="title"><%=title%></div>
 	<div id="main">
 		<div id="add-card">
-			<jsp:include page="_make.jsp" flush="true" />
+			<div id="input-window">
+				<%
+					if (Helper.valid(userId)) {
+				%>
+				<div class="cell" style="padding-top: 25px">
+					<jsp:include page="_search.jsp"></jsp:include>
+				</div>
+				<%
+					} else {
+				%>
+				<div class="caption large center">
+					Please, <a href="login.jsp?fromUrl=home.jsp">Login</a> or <a
+						href="signup.jsp">Sign up</a>.
+				</div>
+				<%
+					}
+				%>
+			</div>
 		</div>
 		<ul id="content">
 			<!--  ajax -->

@@ -16,6 +16,10 @@
 	max-height: 50%;
 }
 
+.margin-bottom20 {
+	margin-bottom: 14px;
+}
+
 /* Font HuiFontP */
 @font-face {
 	font-family: 'HuiFontPRegular';

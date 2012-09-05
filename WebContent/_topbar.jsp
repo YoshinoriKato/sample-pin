@@ -54,7 +54,7 @@
 						if (userId != null) {
 							User user = Helper.getUserById(userId);
 					%>
-					<%-- <li <%=classMakeCard%>><a href="make-card.jsp">+</a></li> --%>
+					<li <%=classMakeCard%>><a href="make-card.jsp">+</a></li>
 
 					<!-- 
 					<li <%=classProfile%>><a href="profile.jsp">My Profile</a></li>

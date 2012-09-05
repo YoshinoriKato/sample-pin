@@ -30,14 +30,16 @@ function callback($data) {
 			makeComment($one, $userId);
 		} else {
 			makeCard($one);
+			wookmark();
 		}
-		wookmark();
 		$i++;
 		if ($i >= $len) {
 			clearInterval($timer);
 			$('#content').css('height', $(document).height() - 120);
 			$('#read-cards').text('read ' + $counter + ' cards');
-			wookmark();
+			if ($type != 'comment') {
+				wookmark();
+			}
 			teaDown();
 		}
 	}, $interval);
@@ -98,6 +100,7 @@ function makeCard($card) {
 		$jqA0.attr('href', $link).attr('target', '_blank');
 		$jqA1.attr('href', $link).attr('target', '_blank');
 		$divFooter.text($url);
+		
 	} else {
 		$divName.text($card.userName);
 		$divRibonText.addClass('ribon-text color-red');
@@ -134,7 +137,7 @@ function makeCard($card) {
 function makeComment($comment, $userId) {
 
 	// components
-	var $jqLi = $('<li/>').addClass('card opacity80');
+	var $jqLi = $('<li/>').addClass('opacity80 margin-bottom20');
 	var $jqDiv = $('<div/>')
 			.attr('id', $comment.cardId + '+' + $comment.userId);
 	var $jqA = $('<a/>').addClass('no-hover');
