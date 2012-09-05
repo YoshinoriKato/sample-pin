@@ -1,6 +1,7 @@
 var $serachBox = '#search-box';
 
 function searchGoogle() {
+	$('#ajax').fadeIn(10);
 	var imageSearch = new google.search.ImageSearch();
 	imageSearch
 			.setSearchCompleteCallback(this, SearchComplete, [ imageSearch ]);
@@ -25,6 +26,7 @@ function SearchComplete(searcher) {
 		for ( var i = 0; i < $results.length; i++) {
 			makeImageCell($content, $results[i]);
 		}
+		$('#ajax').fadeOut(1000);
 
 		// $('#search-result li').wookmark({
 		// offset : 12
