@@ -29,11 +29,14 @@
 	}
 	request.setAttribute("card", card);
 
-/* 	String message = (String) request.getAttribute("message");
-	message = message != null ? message : "";
+	User user = Helper.getUserById(userId);
+	request.setAttribute("user", user);
 
-	String error = message != null && !message.isEmpty() ? "error" : "";
- */
+	/* 	String message = (String) request.getAttribute("message");
+	 message = message != null ? message : "";
+
+	 String error = message != null && !message.isEmpty() ? "error" : "";
+	 */
 %>
 
 
@@ -97,13 +100,30 @@
 	<div id="main">
 		<div id="split">
 			<div id="split-left">
-				<div class="card margin-bottom20"><jsp:include
-						page="_card.jsp"></jsp:include></div>
+				<div class="card margin-bottom20">
+					<%
+						if (Helper.valid(cardId)) {
+					%>
+					<jsp:include page="_card.jsp"></jsp:include>
+					<%
+						} else if (Helper.valid(userId)) {
+					%>
+					<jsp:include page="_user.jsp"></jsp:include>
+					<%
+						}
+					%>
+				</div>
 			</div>
 			<div id="split-right">
 				<ul id="content">
-					<li class="cell margin-bottom20" style="max-height: 170px;">
-					<jsp:include page="_comment.jsp"></jsp:include></li>
+					<%
+						if (Helper.valid(cardId)) {
+					%>
+					<li class="cell margin-bottom20" style="max-height: 170px;"><jsp:include
+							page="_comment.jsp"></jsp:include></li>
+					<%
+						}
+					%>
 					<!--  ajax -->
 				</ul>
 			</div>
