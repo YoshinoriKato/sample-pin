@@ -33,6 +33,7 @@
 							<p>about your interest.</p>
 						</div>
 					</div>
+					<hr>
 					<div class="item-group">
 						<div class="item-label">How to use 0</div>
 						<div class="items">
@@ -45,6 +46,7 @@
 							</ol>
 						</div>
 					</div>
+					<hr>
 					<div class="item-group">
 						<div class="item-label">How to use 1</div>
 						<div class="items">
@@ -72,6 +74,7 @@
 						<div class="item-label">How to use 3</div>
 						<div class="items">Repeat 1, 2</div>
 					</div>
+					<hr>
 					<div class="item-group">
 						<div class="item-label">SNS Page</div>
 						<div class="items">

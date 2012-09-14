@@ -8,23 +8,34 @@
 
 <%
 	String addClass = "btn btn-large btn-cell large opacity80";
+
 	String url = request.getRequestURI();
+
 	String cardId = request.getParameter("cardId");
+	
 	boolean inCardPage = url.contains("/card-comment.jsp")
 	&& (cardId != null && !cardId.isEmpty());
+	
 	Card card = cardId != null ? Helper.getCardByID(cardId) : null;
+	
 	String userId = Helper.getUserId(request);
+	
 	String sorted = request.getParameter("sorted");
-	final String activeCSS = "x-large bold";
-	String classLatest = url.contains("/home.jsp") && sorted == null
-	&& cardId == null ? activeCSS : "";
+	
+	final String activeCSS = " active bold";
+	
+	String classLatest = (url.contains("/home.jsp") && sorted == null
+	&& cardId == null) ? activeCSS : "";
+	
 	String classMine = "mine".equals(sorted) ? activeCSS : "";
+	
 	String classFootprints = "footprints".equals(sorted) ? activeCSS
 	: "";
+	
 	String classRecommend = "recommend".equals(sorted) ? activeCSS : "";
 %>
 
-<div id="float-bottun" class="center page-menu">
+<div id="float-bottun" class="center opacity70">
 	<%
 		if (inCardPage) {
 	%>

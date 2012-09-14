@@ -2,7 +2,7 @@
 
 body {
 	/* effect ---------------------------------------------------------------*/
-	background-color: #eee;
+	background-color: #99ccff;
 	background-image: url("../img/ichimatsu.png?201208131742");
 	background-position: left top;
 	background-attachment: fixed;
@@ -35,17 +35,76 @@ html {
 	width: 20%;
 }
 
+#navigation {
+	/* effect ---------------------------------------------------------------*/
+	background-color: rgba(0, 0, 255, 0.2);
+	/* layout ---------------------------------------------------------------*/
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	z-index: 100;
+	text-align: center;
+	/* shape ----------------------------------------------------------------*/
+	width : 100%;
+	height: 55px;
+}
+
+#navi-menu {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
+	position: relative;
+	margin: 0 auto;
+	word-wrap: none;
+	/* shape ----------------------------------------------------------------*/
+	min-width: 10%;
+}
+
+#search-box {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
+	margin-top: 10px;
+	/* shape ----------------------------------------------------------------*/
+}
+
+#menu {
+	/* effect ---------------------------------------------------------------*/
+	list-style-type: none;
+	/* layout ---------------------------------------------------------------*/
+	padding-top: 5px;
+	padding-bottom: 5px;
+	position: relative;
+	/* shape ----------------------------------------------------------------*/
+}
+
+#menu :AFTER{
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
+	/* shape ----------------------------------------------------------------*/
+	clear: both;
+}
+
+#menu li {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
+	/* shape ----------------------------------------------------------------*/
+	float: left;
+	margin-right: 5px;
+	
+}
+
 #float-bottun {
 	/* effect ---------------------------------------------------------------*/
-	background-color: rgba(0, 0, 0, 0.00);
+	background-color: rgba(0, 0, 255, 0.2);
 	/* layout ---------------------------------------------------------------*/
 	z-index: 3;
 	position: fixed;
-	top: 30px;
+	top: 55px;
 	text-align: center;
+	padding-top: 5px;
 	/* shape ----------------------------------------------------------------*/
 	min-width: 600px; /* view port */
 	width: 100%;
+	height: 50px;
 	z-index: 3;
 }
 
@@ -128,11 +187,11 @@ html {
 
 #bottom-label {
 	/* effect ---------------------------------------------------------------*/
-	background-color: rgba(0, 0, 0, 0.7);
+	background-color: rgba(0, 0, 255, 0.4);
 	box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.3);
 	font-size: x-large;
-	color: rgba(180, 180, 180, 0.8);
+	color: rgba(255, 255, 255, 0.8);
 	text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.8);
 	/* layout ---------------------------------------------------------------*/
 	text-align: center;
@@ -326,12 +385,13 @@ html {
 #title {
 	/* effect ---------------------------------------------------------------*/
 	font-size: 4em;
-	color: rgba(0, 0, 0, 0.3);
-	text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.9);
+	color: rgba(255, 255, 255, 0.7);
+	text-shadow: 0px 0px 3px rgba(0, 0, 255, 0.3);
 	font-weight: bolder;
+	visibility:hidden;
 	/* layout ---------------------------------------------------------------*/
 	position: fixed;
-	z-index: -2;
+	z-index: 2;
 	/* bottom: 30px; */
 	top: 70px;
 	left: 30px;
@@ -343,7 +403,8 @@ html {
 	/* layout ---------------------------------------------------------------*/
 	position: relative;
 	left: 10%;
-	margin-bottom: 60px;
+	margin-top: 50px;
+	margin-bottom: 50px;
 	/* shape ----------------------------------------------------------------*/
 	min-width: 480px;
 	width: 85%;
@@ -393,7 +454,7 @@ html {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(80, 80, 80, 0.4);
 	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =           80);
+	filter: alpha(opacity =               80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/
@@ -410,7 +471,7 @@ html {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(80, 80, 80, 0.4);
 	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =           80);
+	filter: alpha(opacity =               80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/
@@ -427,7 +488,7 @@ html {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(80, 80, 80, 0.4);
 	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =           80);
+	filter: alpha(opacity =               80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/
@@ -446,7 +507,7 @@ html {
 	/* effect ---------------------------------------------------------------*/
 	color: rgba(80, 80, 80, 0.4);
 	background-color: rgba(0, 0, 0, 0.05);
-	filter: alpha(opacity =           80);
+	filter: alpha(opacity =               80);
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/
@@ -711,3 +772,4 @@ html {
 .float-left {
 	float: left;
 }
+
