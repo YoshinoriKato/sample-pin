@@ -6,8 +6,8 @@
 	pageEncoding="UTF-8"%>
 
 <!-- メニュー -->
-<%!final String CLASS_ACTIVE = "class=\"active large bold btn btn-large btn-cell opacity80\"";%>
-<%!final String CLASS_NEGATIVE = "class=\"large bold btn-info btn btn-large btn-cell opacity80\"";%>
+<%!final String CLASS_ACTIVE = "class=\"active bold btn btn-large btn-cell opacity80\"";%>
+<%!final String CLASS_NEGATIVE = "class=\"bold btn-info btn btn-large btn-cell opacity80\"";%>
 <%
 	String url = request.getRequestURI();
 
@@ -53,14 +53,14 @@
 <div id="navigation">
 	<div id="navi-menu">
 		<ul id="menu">
-			<li><a <%=classTag%> href="tag.jsp">Tag</a></li>
-			<li><a <%=classHome%> href="home.jsp">Home</a></li>
+			<li><a <%=classTag%> href="tag.jsp">タグ</a></li>
+			<li><a <%=classHome%> href="home.jsp">ホーム</a></li>
 			<%
 				String userId = Helper.getUserId(request);
 				if (userId != null) {
 					User user = Helper.getUserById(userId);
 			%>
-			<li><a <%=classMakeCard%> href="make-card.jsp">+Add</a></li>
+			<li><a <%=classMakeCard%> href="make-card.jsp">+追加</a></li>
 
 			<!-- 
 		<li><a <%=classProfile%> href="profile.jsp">My Profile</a></li>
@@ -68,19 +68,19 @@
 
 		<li><a class="divider-vertical"></li>
 		 -->
-			<li><a <%=classAccount%> href="account.jsp">User</a> <a
-				<%=classLogout%> href="logout.do">bye</a></li>
+			<li><a <%=classAccount%> href="account.jsp">ユーザー</a> <a
+				<%=classLogout%> href="logout.do">ログアウト</a></li>
 			<%
 				} else {
 			%>
-			<li><a <%=classLogin%> href="login.jsp">In</a> <a
-				<%=classSignup%> href="signup.jsp">@1st</a></li>
+			<li><a <%=classLogin%> href="login.jsp">ログイン</a> <a
+				<%=classSignup%> href="signup.jsp">サインアップ</a></li>
 			<%
 				}
 			%>
-			<li><a <%=classIndex%> href="index.jsp">?</a></li>
+			<li><a <%=classIndex%> href="index.jsp">ヘルプ</a></li>
 
-			<li id="search-box"><form class="form-search" method="get"
+			<li id="card-search-box"><form class="form-search" method="get"
 					action="home.jsp">
 					<input type="hidden" name="sorted" value="search"> <input
 						type="text" class="input-medium search-query" name="words"

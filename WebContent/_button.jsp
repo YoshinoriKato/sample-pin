@@ -7,7 +7,11 @@
 	pageEncoding="UTF-8"%>
 
 <%
-	String addClass = "btn btn-large btn-cell large opacity80";
+	final String CSS_BASE = "btn btn-large btn-cell opacity80";
+
+	final String CSS_ACTIVE = CSS_BASE + " active bold";
+
+	final String CSS_NEGATIVE = CSS_BASE + " btn-info";
 
 	String url = request.getRequestURI();
 
@@ -22,43 +26,33 @@
 	
 	String sorted = request.getParameter("sorted");
 	
-	final String activeCSS = " active bold";
-	
 	String classLatest = (url.contains("/home.jsp") && sorted == null
-	&& cardId == null) ? activeCSS : "";
+	&& cardId == null) ? CSS_ACTIVE : CSS_NEGATIVE;
 	
-	String classMine = "mine".equals(sorted) ? activeCSS : "";
+	String classMine = "mine".equals(sorted) ? CSS_ACTIVE : CSS_NEGATIVE;
 	
-	String classFootprints = "footprints".equals(sorted) ? activeCSS
-	: "";
+	String classFootprints = "footprints".equals(sorted) ? CSS_ACTIVE
+	: CSS_NEGATIVE;
 	
-	String classRecommend = "recommend".equals(sorted) ? activeCSS : "";
+	String classRecommend = "recommend".equals(sorted) ? CSS_ACTIVE : CSS_NEGATIVE;
 %>
 
 <div id="float-bottun" class="center opacity70">
-	<%
-		if (inCardPage) {
-	%>
-	<a id="comment-button"
-		class="btn btn-large btn-primary btn-cell xx-large">Comment</a>
-	<%
-		}
-	%>
-	<a href="home.jsp" class="<%=addClass%> <%=classLatest%>">Latest</a>
+	<a href="home.jsp" class="<%=classLatest%>">最新</a>
 
 	<!-- 
-	<a href="home.jsp?sorted=view" class="<%=addClass%>">Views</a>
-	<a href="home.jsp?sorted=comment" class="<%=addClass%>">Comments</a>
+	<a href="home.jsp?sorted=view" class="<%=CSS_BASE%>">Views</a>
+	<a href="home.jsp?sorted=comment" class="<%=CSS_BASE%>">Comments</a>
 	 -->
 
 	<%
 		if (!inCardPage && session.getAttribute("userId") != null) {
 	%>
-	<a href="home.jsp?sorted=mine" class="<%=addClass%> <%=classMine%>">Mine</a>
+	<a href="home.jsp?sorted=mine" class="<%=classMine%>">所有</a>
 	<a href="home.jsp?sorted=footprints"
-		class="<%=addClass%> <%=classFootprints%>">Footprints</a> <a
+		class="<%=classFootprints%>">足あと</a> <a
 		href="home.jsp?sorted=recommend"
-		class="<%=addClass%> <%=classRecommend%>">Recommend</a>
+		class="<%=classRecommend%>">オススメ</a>
 	<%
 		}
 	%>
