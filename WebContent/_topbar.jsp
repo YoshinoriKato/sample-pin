@@ -6,8 +6,8 @@
 	pageEncoding="UTF-8"%>
 
 <!-- メニュー -->
-<%!final String CLASS_ACTIVE = "class=\"active bold btn btn-large btn-cell opacity80\"";%>
-<%!final String CLASS_NEGATIVE = "class=\"bold btn-info btn btn-large btn-cell opacity80\"";%>
+<%!final String CLASS_ACTIVE = "class=\"active btn-success bold btn btn-large btn-cell opacity80\"";%>
+<%!final String CLASS_NEGATIVE = "class=\"bold btn btn-large btn-cell opacity80\"";%>
 <%
 	String url = request.getRequestURI();
 

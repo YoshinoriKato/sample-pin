@@ -9,9 +9,9 @@
 <%
 	final String CSS_BASE = "btn btn-large btn-cell opacity80";
 
-	final String CSS_ACTIVE = CSS_BASE + " active bold";
+	final String CSS_ACTIVE = CSS_BASE + " active bold btn-success";
 
-	final String CSS_NEGATIVE = CSS_BASE + " btn-info";
+	final String CSS_NEGATIVE = CSS_BASE + " ";
 
 	String url = request.getRequestURI();
 
