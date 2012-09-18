@@ -103,10 +103,12 @@
 						if (Helper.valid(cardId)) {
 					%>
 					<jsp:include page="_card.jsp"></jsp:include>
+					<% if (Helper.valid(userId)) { %>
 					<div>
 						<a class="bold btn btn-large btn-cell opacity80 margin-top20 btn-info"
 							href="make-card.jsp?parentId=<%=cardId%>">+連結</a>
 					</div>
+					<% } %>
 					<div class="margin-top20">
 					<%
 						List<Card> cards = Helper.getCardsByID(cardId);
