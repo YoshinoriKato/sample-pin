@@ -2,6 +2,7 @@ package com.samplepin;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Indexed;
+import com.google.code.morphia.annotations.Transient;
 
 @Entity(value = "cards", noClassnameStored = true)
 public class Card extends Comment implements Updateable {
@@ -11,6 +12,9 @@ public class Card extends Comment implements Updateable {
 	private static final long serialVersionUID = 2686047770755644944L;
 
 	String parentId;
+
+	@Transient
+	String parentIcon;
 
 	String url;
 
@@ -64,6 +68,10 @@ public class Card extends Comment implements Updateable {
 		return this.likes;
 	}
 
+	public String getParentIcon() {
+		return this.parentIcon;
+	}
+
 	public String getParentId() {
 		return this.parentId;
 	}
@@ -99,6 +107,10 @@ public class Card extends Comment implements Updateable {
 
 	public void setLikes(Integer likes) {
 		this.likes = likes;
+	}
+
+	public void setParentIcon(String parentIcon) {
+		this.parentIcon = parentIcon;
 	}
 
 	public void setParentId(String parentId) {

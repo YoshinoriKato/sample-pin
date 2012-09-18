@@ -464,6 +464,17 @@ public class Helper {
 		comment.setUserName(user.getUserName());
 		comment.setUserIcon(user.getImagePath());
 		// }
+
+		if (comment instanceof Card) {
+			Card card = (Card) comment;
+			if (Helper.valid(card.getParentId())
+					&& !"self".equals(card.getParentId())) {
+				Card parent = Helper.getCardByID(card.getParentId());
+				if (Helper.valid(parent)) {
+					card.setParentIcon(parent.getImagePath());
+				}
+			}
+		}
 	}
 
 	static public String substitute(String input, String pattern,

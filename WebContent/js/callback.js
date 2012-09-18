@@ -65,14 +65,19 @@ function makeCard($card) {
 	var $jqLi = $('<li/>').addClass('card');
 	var $jqDiv = $('<div/>').attr('id', $card.cardId);
 	
+	var $divCardMain = $('<div/>').addClass('card-sub');
+	var $divCardIcon0 = $('<div/>').addClass('card-icon');
+	var $divCardSubtext0 = $('<div/>').addClass('card-subtext');
+
 	var $divCardSub = $('<div/>').addClass('card-sub');
-	var $divCardIcon = $('<div/>').addClass('card-icon');
-	var $divCardSubtext = $('<div/>').addClass('card-subtext');
+	var $divCardIcon1 = $('<div/>').addClass('card-icon');
+	var $divCardSubtext1 = $('<div/>').addClass('card-subtext');
 
 	var $jqA0 = $('<a/>').addClass('no-hover');
 	var $jqA1 = $('<a/>').addClass('no-hover');
 	var $jqA2 = $('<a/>').addClass('no-hover');
 	var $jqA3 = $('<a/>').addClass('no-hover');
+	var $jqA4 = $('<a/>').addClass('no-hover');
 	$jqA3.attr(
 			'href',
 			'jump.jsp?cardId=' + $card.cardId + '&redirectUrl='
@@ -82,7 +87,8 @@ function makeCard($card) {
 	var $divImage = $('<div/>');
 	var $divCaption = $('<div/>').addClass('caption deco');
 	var $divName = $('<div/>').addClass('bold deco break-word');
-	var $divBr = $('<br/>').css('clear', 'both');
+	var $divBr0 = $('<br/>').css('clear', 'both');
+	var $divBr1 = $('<br/>').css('clear', 'both');
 	var $divKey = $('<div/>').addClass('card-info break-word')
 			.text('Keywords:');
 	var $spanKey = $('<span/>').text($card.keywords);
@@ -123,20 +129,33 @@ function makeCard($card) {
 	if ($card.view > 0) {
 		$jqDiv.append($jqA0.append($divRibon.append($divRibonText)));
 	}
-	$jqDiv.append($jqA1.append($divImage)).append($divCardSub)
-			.append($divBr);
-	$divCardSub.append($divCardIcon).append($divCardSubtext);
-	$divCardIcon.append($jqA2);
-	$divCardSubtext.append($divName).append($divCaption);
+	$jqDiv.append($jqA1.append($divImage)).append($divCardMain)
+			.append($divBr0);
+	$divCardMain.append($divCardIcon0).append($divCardSubtext0);
+	$divCardIcon0.append($jqA2);
+	$divCardSubtext0.append($divName).append($divCaption);
 	
+	$jqDiv.append($divCardSub);
+	$divCardSub.append($divCardIcon1).append($divCardSubtext1);
+
+	if ($card.parentId != null && $card.parentId != '' && $card.parentId != 'self') {
+		$divCardIcon1.append($jqA4);
+		$jqA4.attr('href',
+				'card-comment.jsp?cardId=' + $card.parentId + '&type=comment').attr(
+						'target', '_blank');
+		$jqA4.append($('<img/>').attr('src', $card.parentIcon).addClass('image-icon'));
+	}
+
 	if ($card.keywords) {
-		$jqDiv.append($divKey);
+		$divCardSubtext1.append($divKey);
 		$divKey.append($spanKey.convLink());
 	}
+
 	if ($card.site) {
-		$jqDiv.append($divUrl);
+		$divCardSubtext1.append($divUrl);
 	}
-	$jqDiv.append($divFooter);
+	
+	$jqDiv.append($divBr1).append($divFooter);
 	$divImage.append($jqImg);
 	$divCaption.text($card.caption).autoUrlLink().escapeReturn();
 	$jqA2.append($jqIcon);
@@ -158,8 +177,8 @@ function makeComment($comment, $userId) {
 	var $jqClose = $('<div/>').addClass('close-button');
 	
 	var $divCardSub = $('<div/>').addClass('card-sub');
-	var $divCardIcon = $('<div/>').addClass('card-icon');
-	var $divCardSubtext = $('<div/>').addClass('card-subtext');
+	var $divCardIcon0 = $('<div/>').addClass('card-icon');
+	var $divCardSubtext0 = $('<div/>').addClass('card-subtext');
 
 	$jqDiv.addClass('cell');
 	if ($comment.userIcon != null && $comment.userIcon != '') {
@@ -179,9 +198,9 @@ function makeComment($comment, $userId) {
 	$jqLi.append($jqDiv);
 	$jqDiv.append($divCardSub).append($divBr).append(
 			$divFooter);
-	$divCardSub.append($divCardIcon).append($divCardSubtext);
-	$divCardIcon.append($jqA);
-	$divCardSubtext.append($divCaption);
+	$divCardSub.append($divCardIcon0).append($divCardSubtext0);
+	$divCardIcon0.append($jqA);
+	$divCardSubtext0.append($divCaption);
 
 	// delete
 	if ($userId && $userId == $comment.userId) {

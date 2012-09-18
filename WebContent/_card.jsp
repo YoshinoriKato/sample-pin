@@ -85,6 +85,7 @@
 			%>
 		</div>
 	</div>
+	<br style="clear: both;">
 	<div class="star right" style="clear: both;"><%=card.getLikes()%>
 		comment
 	</div>
