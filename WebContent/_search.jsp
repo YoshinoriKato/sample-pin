@@ -4,6 +4,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<script type="text/javascript">
+	var $prefix = 'http://labs.preferred.jp/reflexa/api.php?q=';
+	
+	var suffix = '&format=json';
+
+</script>
+
 <div class="form-horizontal">
 	<form class="form-search" action="javascript:searchGoogle()">
 		<fieldset>

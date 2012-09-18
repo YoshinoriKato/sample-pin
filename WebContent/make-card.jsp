@@ -10,10 +10,8 @@
 <jsp:include page="_effect.jsp"></jsp:include>
 <script type="text/javascript">
 	$(window).load(function() {
-		recoveryText('make-card');
-		$timer = setInterval(function() {
-			checkLength('make-card');
-		}, 500);
+		observeText('#comment-text', 'make-card');
+		observeText('#search-box', 'search-box');
 	});
 </script>
 </head>

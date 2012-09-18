@@ -8,14 +8,6 @@
 <head>
 <jsp:include page="_header.jsp"></jsp:include>
 <jsp:include page="_effect.jsp"></jsp:include>
-<script type="text/javascript">
-	$(window).load(function() {
-		recoveryText('make-card');
-		$timer = setInterval(function() {
-			checkLength('make-card');
-		}, 500);
-	});
-</script>
 </head>
 
 <%

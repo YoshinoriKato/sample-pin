@@ -72,7 +72,7 @@
 						'#cardId').text(), $('#type').text());
 
 				// text observer
-				recoveryText($key);
+				observeText('#comment-text', $key);
 				$('#comment-form').submit(function() {
 					if ($('#comment-text').innerHTML != '') {
 						removeText($key);
@@ -80,9 +80,6 @@
 					}
 					return false;
 				});
-				$timer = setInterval(function() {
-					checkLength($key);
-				}, 500);
 				$('#main').fadeIn(1000);
 
 				// open image

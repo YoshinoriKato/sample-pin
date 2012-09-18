@@ -34,10 +34,7 @@
 
 	$(window).load(
 			function() {
-				recoveryText('make-card');
-				$timer = setInterval(function() {
-					checkLength('make-card');
-				}, 500);
+				observeText('#search-box', 'search-box');
 				callAjax($('#sorted').text(), 40, '', $('#userId').text(), "",
 						"card", $('#words').text());
 				$('#main').fadeIn(1000);

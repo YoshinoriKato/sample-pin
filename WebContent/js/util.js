@@ -1,5 +1,6 @@
-function checkLength($key) {
-	$text = $('#comment-text').val();
+
+function checkLength($id, $key) {
+	$text = $($id).val();
 	if ($text != null) {
 		if ($text.length > 0) {
 			$('#submit-button').removeAttr('disabled');
@@ -7,13 +8,14 @@ function checkLength($key) {
 			$storage.setItem($key, $text);
 		} else {
 			$('#submit-button').attr('disabled', 'disabled');
+			removeText($key);
 		}
 	}
 };
 
-function recoveryText($key) {
+function recoveryText($id, $key) {
 	var $storage = sessionStorage;
-	$('#comment-text').val($storage.getItem($key));
+	$($id).val($storage.getItem($key));
 };
 
 function removeText($key) {
@@ -24,6 +26,14 @@ function removeText($key) {
 function pushPull($on, $off) {
 	pushPull($on, $off, 1000);
 };
+
+function observeText($id, $key) {
+	recoveryText($id, $key);
+	$timer0 = setInterval(function() {
+		checkLength($id, $key);
+	}, 500);
+}
+
 
 function pushPull($on, $off, $duration) {
 	$($off).fadeOut($duration);

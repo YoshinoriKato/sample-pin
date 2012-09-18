@@ -11,9 +11,6 @@
 <script type="text/javascript">
 	$(window).load(
 			function() {
-				$timer = setInterval(function() {
-					checkLength();
-				}, 500);
 				cardId = $("#cardId").text();
 				pushPull('#main', '#ajax');
 				wookmark();
