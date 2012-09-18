@@ -26,57 +26,60 @@
 						</div>
 					</div>
 					<div class="item-group">
-						<div class="item-label">Abstract</div>
+						<div class="item-label">概要</div>
 						<div class="items">
-							<p>A curating service for easy use.</p>
-							<p>And sharing images and feelings,</p>
-							<p>about your interest.</p>
+							<p>気軽に使えるキュレーションサービスです。</p>
+							<p>検索した画像とそれを見たときの感想、</p>
+							<p>あなたの興味を共有してください。</p>
 						</div>
 					</div>
 					<hr>
 					<div class="item-group">
-						<div class="item-label">How to use 0</div>
+						<div class="item-label">はじめに</div>
 						<div class="items">
-							Click <a href="signup.jsp">"@1st"</a>
+							メニューの中の<a href="signup.jsp">"サインアップ"</a>をクリックしてください。
 							<ol>
-								<li>Write your mail address, or <a href="oauth-twitter.jsp">Twitter
-										Login</a></li>
-								<li>If written your mail address, go to <a href="login.jsp">Login Page</a>, from sign-up mail</li>
-								<li>And then, write your mail address and password</li>
+								<li>メールアドレスを書いていただくか、<a href="oauth-twitter.jsp">Twitter
+										Login</a>を実施してください。</li>
+								<li>もし、メールアドレスを登録していただけたなら、<a href="login.jsp">ログイン</a>のページへお送りしたメールのURLから飛んでください。</li>
+								<li>ログインのページでは、登録したメールアドレスとお送りした仮パスワードでログインしていただけます。</li>
+								<li>仮パスワードは、<a href="account.jsp">ユーザー</a>のページから変更ができます。</li>
 							</ol>
 						</div>
 					</div>
 					<hr>
 					<div class="item-group">
-						<div class="item-label">How to use 1</div>
+						<div class="item-label">使い方 1</div>
 						<div class="items">
-							Click <a href="home.jsp">"Home"</a> in the menu bar
+							メニューの中の<a href="home.jsp">"ホーム"</a>を押してください。
 							<ol>
-								<li>View cards</li>
-								<li>Click a card</li>
-								<li>Click "Comment" button in the sub menu bar</li>
-								<li>Write your comment</li>
+								<li>並んでいるカードを眺めてください。</li>
+								<li>興味を感じたカードをクリックしてください。</li>
+								<li>コメントの欄から、感想を投稿してください。</li>
+								<li>なお、コメントの付いたカードは一覧の一番上に移動します。</li>
 							</ol>
 						</div>
 					</div>
 					<div class="item-group">
-						<div class="item-label">How to use 2</div>
+						<div class="item-label">使い方 2</div>
 						<div class="items">
-							Focus on "Add" in <a href="home.jsp">"Home"</a>
+							<a href="home.jsp">"ホーム"</a>の上部に注目してください。
 							<ol>
-								<li>Search Images</li>
-								<li>Write a caption</li>
-								<li>Make and share your card</li>
+								<li>Search Imagesという欄があります。</li>
+								<li>キーワードを入力して、画像を検索してください。</li>
+								<li>気に入った画像を選択してください。</li>
+								<li>感想や説明を書いて投稿してください。</li>
+								<li>確認画面で承認すれば、あなたのカードが作成されます。</li>
 							</ol>
 						</div>
 					</div>
 					<div class="item-group">
-						<div class="item-label">How to use 3</div>
-						<div class="items">Repeat 1, 2</div>
+						<div class="item-label">使い方 3</div>
+						<div class="items">使い方 1、2を繰り返してください。</div>
 					</div>
 					<hr>
 					<div class="item-group">
-						<div class="item-label">SNS Page</div>
+						<div class="item-label">SNS ページ</div>
 						<div class="items">
 							<a href="https://twitter.com/doya_info" target="_blank"
 								style="margin-left: 50px;"><img src="img/bird_gray_48.png"></a><a
