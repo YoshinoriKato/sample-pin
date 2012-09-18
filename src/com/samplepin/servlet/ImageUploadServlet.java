@@ -25,7 +25,7 @@ public class ImageUploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 7137737292592767679L;
 
 	@Override
-	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		try {
 			String url = URLDecoder.decode(req.getParameter("url"), "UTF-8");

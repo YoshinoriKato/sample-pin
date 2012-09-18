@@ -82,6 +82,7 @@ function SearchComplete(searcher) {
 	if ($results && (0 < $results.length)) {
 		var $content = $('#search-result');
 		$content.empty();
+		$seq = 0;
 		for ( var i = 0; i < $results.length; i++) {
 			makeImageCell($content, $results[i]);
 		}
@@ -95,7 +96,44 @@ function SearchComplete(searcher) {
 	}
 }
 
+var $seq = 0;
+
 function makeImageCell($content, $result) {
+	var $formId = 'id_' + $seq++;
+	var $li = $('<li/>').addClass('search-thumb');
+	var $cell = $('<div/>').addClass('cell');
+	var $capture = $('<div/>').addClass('float-left');
+	var $parentId = $($KEY_PARENT_ID).text();
+	$parentId = ($parentId != null && $parentId != '') ? '&parentId=' + $parentId : '';
+	var $a2 = $('<a/>').attr('href', $result.originalContextUrl).attr('target',
+			'_blank');
+	var $caption = $('<div/>').addClass('caption star');
+	var $image = $('<img/>').attr('src', $result.tbUrl).addClass('image-thumb');
+	var $clear = $('<br/>').css('clear', 'both');
+
+	var $form = $('<form/>').attr('id', $formId).attr('method', 'post').attr('action', 'upload.do');
+	var $inUrl = $('<input/>').attr('type', 'hidden').attr('name','url').attr('value', encodeURIComponent($result.url));
+	var $inKeywords = $('<input/>').attr('type', 'hidden').attr('name','keywords').attr('value', encodeURIComponent($($KEY_SEARCH_BOX).val()));
+	var $inSite = $('<input/>').attr('type', 'hidden').attr('name','site').attr('value', encodeURIComponent($result.originalContextUrl));
+	var $inParent = $('<input/>').attr('type', 'hidden').attr('name','parentId').attr('value', $parentId);
+	var $submit = $('<a/>').attr('href', 'javascript:$(' + $formId + ').submit();');
+	$form.append($inUrl).append($inKeywords).append($inSite).append($inParent).append($submit);
+
+	$content.append($li);
+	$li.append($cell);
+	$caption.append($a2);
+	$a2.append('[' + $result.width + 'x' + $result.height + '] '
+			+ $result.title);
+	
+	$cell.append($capture).append($caption).append($clear);
+	$capture.append($form);
+	$submit.append($image);
+
+	// $view_height = Math.round($result.height / ($result.width / 120)) + 200;
+	// $max_height = ($max_height >= $view_height) ? $max_height : $view_height;
+}
+
+function makeImageCell1($content, $result) {
 	var $li = $('<li/>').addClass('search-thumb');
 	var $cell = $('<div/>').addClass('cell');
 	var $capture = $('<div/>').addClass('float-left');
@@ -129,17 +167,20 @@ function makeImageCell0($content, $result) {
 	var $cell = $('<div/>').addClass('cell');
 	var $parentId = $($KEY_PARENT_ID).text();
 	$parentId = ($parentId != null && $parentId != '') ? '&parentId=' + $parentId : '';
-	var $a = $('<a/>').attr(
-			'href',
-			'upload.do?url=' + encodeURIComponent($result.url) + '&keywords='
-					+ encodeURIComponent($($KEY_SEARCH_BOX).val()) + '&site='
-					+ encodeURIComponent($result.originalContextUrl) + $parentId);
+
+	var $form = $('<form/>').attr('method', 'post').attr('action', 'upload.do');
+	var $inUrl = $('<input/>').attr('type', 'hidden').attr('name','url').attr('value', encodeURIComponent($result.url));
+	var $inKeywords = $('<input/>').attr('type', 'hidden').attr('name','keywords').attr('value', encodeURIComponent($($KEY_SEARCH_BOX).val()));
+	var $inSite = $('<input/>').attr('type', 'hidden').attr('name','site').attr('value', encodeURIComponent($result.originalContextUrl));
+	var $inParent = $('<input/>').attr('type', 'hidden').attr('name','parentId').attr('value', $parentId);
 	var $title = $('<div/>').addClass('caption').append($result.title);
 	var $image = $('<img/>').attr('src', $result.tbUrl).addClass('image-shot');
+	var $submit = $('<a/>').attr('href', 'javascript:submit();');
+	$form.append($inUrl).append($inKeywords).append($inSite).append($inParent).append($submit);
 	$content.append($li);
 	$li.append($cell);
-	$cell.append($a).append($title);
-	$a.append($image);
+	$cell.append($form).append($title);
+	$submit.append($image);
 }
 
 google.load('search', '1');

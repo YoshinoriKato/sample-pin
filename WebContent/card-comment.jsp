@@ -93,7 +93,6 @@
 
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
-	<%-- <jsp:include page="_button.jsp" flush="true" /> --%>
 	<div id="title">Comments</div>
 	<div id="main">
 		<div id="split">
