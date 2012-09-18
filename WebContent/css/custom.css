@@ -491,6 +491,7 @@ html {
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/
 	margin-top: 2px;
+	margin-bottom: 2px;
 	margin-left: 2px;
 	margin-right: 0.5em;
 	float: left;
@@ -517,13 +518,22 @@ html {
 	width: 48px;
 }
 
+.card-main:AFTER {
+	clear: both;
+}
+
+.card-sub:AFTER {
+	clear: both;
+}
+
 .card-icon {
+	position: absolute;
 	width: 44px;
 	float: left;
 }
 
 .card-subtext {
-	clear: both;
+	margin-left: 44px;
 }
 
 .card {

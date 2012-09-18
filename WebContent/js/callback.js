@@ -64,6 +64,11 @@ function makeCard($card) {
 	$width = $cardWidth;
 	var $jqLi = $('<li/>').addClass('card');
 	var $jqDiv = $('<div/>').attr('id', $card.cardId);
+	
+	var $divCardSub = $('<div/>').addClass('card-sub');
+	var $divCardIcon = $('<div/>').addClass('card-icon');
+	var $divCardSubtext = $('<div/>').addClass('card-subtext');
+
 	var $jqA0 = $('<a/>').addClass('no-hover');
 	var $jqA1 = $('<a/>').addClass('no-hover');
 	var $jqA2 = $('<a/>').addClass('no-hover');
@@ -118,8 +123,12 @@ function makeCard($card) {
 	if ($card.view > 0) {
 		$jqDiv.append($jqA0.append($divRibon.append($divRibonText)));
 	}
-	$jqDiv.append($jqA1.append($divImage)).append($divName).append($divCaption)
+	$jqDiv.append($jqA1.append($divImage)).append($divCardSub)
 			.append($divBr);
+	$divCardSub.append($divCardIcon).append($divCardSubtext);
+	$divCardIcon.append($jqA2);
+	$divCardSubtext.append($divName).append($divCaption);
+	
 	if ($card.keywords) {
 		$jqDiv.append($divKey);
 		$divKey.append($spanKey.convLink());
@@ -130,7 +139,6 @@ function makeCard($card) {
 	$jqDiv.append($divFooter);
 	$divImage.append($jqImg);
 	$divCaption.text($card.caption).autoUrlLink().escapeReturn();
-	$divName.append($jqA2);
 	$jqA2.append($jqIcon);
 }
 
@@ -148,6 +156,10 @@ function makeComment($comment, $userId) {
 	var $divBr = $('<br/>').css('clear', 'both');
 	var $jqIcon = $('<img/>').addClass('image-icon');
 	var $jqClose = $('<div/>').addClass('close-button');
+	
+	var $divCardSub = $('<div/>').addClass('card-sub');
+	var $divCardIcon = $('<div/>').addClass('card-icon');
+	var $divCardSubtext = $('<div/>').addClass('card-subtext');
 
 	$jqDiv.addClass('cell');
 	if ($comment.userIcon != null && $comment.userIcon != '') {
@@ -159,14 +171,17 @@ function makeComment($comment, $userId) {
 				+ '&type=comment');
 	}
 	$divName.text($comment.userName);
-	$divCaption.append($comment.caption).autoUrlLink().escapeReturn();
+	$divCaption.append($divName).append($comment.caption).autoUrlLink().escapeReturn();
 	$divFooter.text($comment.createDate).aboutTimestamp();
 
 	// construct
 	$('#content').append($jqLi);
 	$jqLi.append($jqDiv);
-	$jqDiv.append($divName).append($divCaption).append($divBr).append(
+	$jqDiv.append($divCardSub).append($divBr).append(
 			$divFooter);
+	$divCardSub.append($divCardIcon).append($divCardSubtext);
+	$divCardIcon.append($jqA);
+	$divCardSubtext.append($divCaption);
 
 	// delete
 	if ($userId && $userId == $comment.userId) {
@@ -178,7 +193,6 @@ function makeComment($comment, $userId) {
 		$jqDiv.append($jqClose);
 		$jqClose.append($confirm);
 	}
-	$divName.append($jqA);
 	$jqA.append($jqIcon);
 }
 

@@ -49,11 +49,11 @@ public class ImageUploadServlet extends HttpServlet {
 			File realFolder = new File(fullPath);
 			File realPathFile = new File(realFolder, fileName);
 			File referenceFile = new File(referenceFolder, fileName);
-			
+
 			MakeCardServlet.copyStream(is, new FileOutputStream(realPathFile),
 					1024);
 			ActivityLogger.log(req, this.getClass(), realPathFile.getName());
-			
+
 			resp.sendRedirect("make-card.jsp?imagePath="
 					+ URLEncoder.encode(referenceFile.getPath(), "UTF-8")
 					+ "&keywords=" + URLEncoder.encode(keywords, "UTF-8")

@@ -26,51 +26,65 @@
 	<%
 		}
 	%>
-	<div>
+	<div class="card-main">
 		<img class="image-shot deco link" src="<%=card.getImagePath()%>"
 			width="<%=width%>" height="<%=height%>" id="image-shot">
 	</div>
-	<div class="bold deco break-word">
-		<%=Helper.escapeHTML(card.getUserName())%><a class="no-hover"
-			href="profile.jsp?userId=<%=card.getUserId()%>"><img
-			class="image-icon" src="<%=card.getUserIcon()%>"></a>
+	<div class="card-comment">
+		<div class="card-icon">
+			<div>
+				<a class="no-hover"
+					href="profile.jsp?userId=<%=card.getUserId()%>"><img
+					class="image-icon" src="<%=card.getUserIcon()%>"></a>
+			</div>
+		</div>
+		<div class="card-subtext">
+			<div class="bold deco break-word">
+			<%=Helper.escapeHTML(card.getUserName())%></div>
+			<div class="caption deco"><%=Helper.escapeHTML(card.getCaption())%></div>
+		</div>
 	</div>
-	<div class="caption deco"><%=Helper.escapeHTML(card.getCaption())%></div>
 	<br style="clear: both;">
-	<%
-		if (Helper.valid(card.getParentId())) {
-			Card parent = Helper.getCardByID(card.getParentId());
-			if (parent != null) {
-	%>
-	<div class="card-info break-word">
-		<a class="no-hover"
-			href="card-comment.jsp?cardId=<%=card.getParentId()%>&type=comment"><img
-			class="image-icon" src="<%=parent.getImagePath()%>"></a>
+	<div class="card-sub">
+		<div class="card-icon">
+			<%
+				if (Helper.valid(card.getParentId())) {
+						Card parent = Helper.getCardByID(card.getParentId());
+						if (parent != null) {
+			%>
+			<div class="card-info break-word">
+				<a class="no-hover"
+					href="card-comment.jsp?cardId=<%=card.getParentId()%>&type=comment"><img
+					class="image-icon" src="<%=parent.getImagePath()%>"></a>
+			</div>
+			<%
+				}
+					}
+			%>
+		</div>
+		<div class="card-subtext">
+			<%
+				if (Helper.valid(card.getKeywords())) {
+			%>
+			<div class="card-info break-word">
+				Keywords:<span class="keywords"><%=card.getKeywords()%></span>
+			</div>
+			<%
+				}
+			%>
+			<%
+				if (Helper.valid(card.getSite())) {
+			%>
+			<div class="card-info break-word">
+				<a class="no-hover"
+					href="jump.jsp?cardId=<%=card.getCardId()%>&redirectUrl=<%=card.getSite()%>"
+					target="_blank">URL:<%=card.getSite()%></a>
+			</div>
+			<%
+				}
+			%>
+		</div>
 	</div>
-	<%
-			}
-		}
-	%>
-	<%
-		if (Helper.valid(card.getKeywords())) {
-	%>
-	<div class="card-info break-word">
-		Keywords:<span class="keywords"><%=card.getKeywords()%></span>
-	</div>
-	<%
-		}
-	%>
-	<%
-		if (Helper.valid(card.getSite())) {
-	%>
-	<div class="card-info break-word">
-		<a class="no-hover"
-			href="jump.jsp?cardId=<%=card.getCardId()%>&redirectUrl=<%=card.getSite()%>"
-			target="_blank">URL:<%=card.getSite()%></a>
-	</div>
-	<%
-		}
-	%>
 	<div class="star right" style="clear: both;"><%=card.getLikes()%>
 		comment
 	</div>
