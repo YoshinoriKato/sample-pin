@@ -11,7 +11,9 @@
 <script type="text/javascript">
 	$(window).load(function() {
 		observeText('#comment-text', 'make-card');
-		observeText('#search-box', 'search-box');
+		
+		/* search */
+		searchKeywords();
 	});
 </script>
 </head>

@@ -5,9 +5,6 @@
 	pageEncoding="UTF-8"%>
 
 <script type="text/javascript">
-	var $prefix = 'http://labs.preferred.jp/reflexa/api.php?q=';
-	
-	var suffix = '&format=json';
 
 </script>
 

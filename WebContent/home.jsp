@@ -34,9 +34,12 @@
 
 	$(window).load(
 			function() {
-				observeText('#search-box', 'search-box');
+				/* search */
+				searchKeywords();
+
 				callAjax($('#sorted').text(), 40, '', $('#userId').text(), "",
 						"card", $('#words').text());
+				
 				$('#main').fadeIn(1000);
 			});
 </script>

@@ -1,4 +1,61 @@
+
 var $serachBox = '#search-box';
+
+var $calledAPI = false;
+
+var $rememmber = "";
+
+function searchKeywords(){
+	/* search */
+	var $key = 'search-box';
+	observeText($serachBox, $key);
+	$timer0 = setInterval(function() {
+		checkLength($serachBox, $key);
+//		if($rememmber != $($serachBox).val()){
+//			getKeywords();
+//			$rememmber = $($serachBox).val();
+//		}
+	}, 500);
+}
+
+function getKeywords(){
+	if (!$calledAPI) {
+		$calledAPI = true;
+		$.ajax({
+//			headers : {'Access-Control-Allow-Origin' : '*'},
+			cache : false,
+			type : 'GET',
+			scriptCharset : 'UTF-8',
+			url : 'http://labs.preferred.jp/reflexa/api.php?q='
+					+ $($serachBox).val() + "&format=json",
+			data : {
+			},
+			success : function(data) {
+				alert(data);
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(textStatus);
+				alert(errorThrown);
+				$('#ajax').fadeOut(10);
+				$('#error-dialog').fadeIn(10);
+				$calledAPI = false;
+			},
+			dataType : 'jsonp'
+		});
+//		$.get('http://labs.preferred.jp/reflexa/api.php?q='
+//				+ $($serachBox).val() + "&format=json", function($data) {
+//					alert($data);
+//				});
+	}
+}
+
+function setKeywords($data){
+	alert($data);
+	for(var $i = 0; $i < $data.length; $i++) {
+		alert($data[$i]);
+	}
+	$calledAPI = false;
+}
 
 function searchGoogle() {
 	$('#ajax').fadeIn(10);
