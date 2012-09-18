@@ -16,8 +16,11 @@
 			: keywords;
 	keywords = (keywords != null) ? keywords : "";
 	String site = request.getParameter("site");
-	site = site != null ? URLDecoder.decode(site, "UTF-8") : site;
-	site = (site != null) ? site : "";
+	site = Helper.valid(site) ? URLDecoder.decode(site, "UTF-8") : site;
+	site = Helper.valid(site) ? site : "";
+	
+	String parentId = request.getParameter("parentId");
+	parentId = Helper.valid(parentId) ? parentId : "";
 
 	message = message != null ? message : "";
 	String error = message != null && !message.isEmpty() ? "error" : "";
@@ -104,6 +107,7 @@
 					</div>
 				</div>
 				<input type="hidden" name="imagePath" value="<%=imagePath%>">
+				<input type="hidden" name="parentId" value="<%=parentId%>">
 			</fieldset>
 		</form>
 	</div>
@@ -117,5 +121,6 @@
 	<%
 		}
 	%>
+	<div style="display: none" id="parentId"><%=parentId%></div>
 </div>
 

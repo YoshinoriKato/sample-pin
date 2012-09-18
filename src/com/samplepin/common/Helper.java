@@ -221,6 +221,18 @@ public class Helper {
 		return new Card();
 	}
 
+	public static List<Card> getCardsByID(String cardId) {
+		try (ACMongo mongo = new ACMongo()) {
+			Datastore datastore = mongo.createDatastore();
+			Query<Card> query = datastore.createQuery(Card.class)
+					.filter("parentId = ", cardId).filter("isDeleted", false);
+			return query.asList();
+		} catch (UnknownHostException | MongoException e) {
+			e.printStackTrace();
+		}
+		return new ArrayList<Card>();
+	}
+
 	public static Comment getCommentByID(String cardId, String userId,
 			Long createDate) {
 		try (ACMongo mongo = new ACMongo()) {

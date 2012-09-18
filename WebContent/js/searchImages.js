@@ -1,5 +1,7 @@
 
-var $serachBox = '#search-box';
+var $KEY_SEARCH_BOX = '#search-box';
+
+var $KEY_PARENT_ID = '#parentId';
 
 var $calledAPI = false;
 
@@ -8,12 +10,12 @@ var $rememmber = "";
 function searchKeywords(){
 	/* search */
 	var $key = 'search-box';
-	observeText($serachBox, $key);
+	observeText($KEY_SEARCH_BOX, $key);
 	$timer0 = setInterval(function() {
-		checkLength($serachBox, $key);
-//		if($rememmber != $($serachBox).val()){
+		checkLength($KEY_SEARCH_BOX, $key);
+//		if($rememmber != $($KEY_SEARCH_BOX).val()){
 //			getKeywords();
-//			$rememmber = $($serachBox).val();
+//			$rememmber = $($KEY_SEARCH_BOX).val();
 //		}
 	}, 500);
 }
@@ -27,7 +29,7 @@ function getKeywords(){
 			type : 'GET',
 			scriptCharset : 'UTF-8',
 			url : 'http://labs.preferred.jp/reflexa/api.php?q='
-					+ $($serachBox).val() + "&format=json",
+					+ $($KEY_SEARCH_BOX).val() + "&format=json",
 			data : {
 			},
 			success : function(data) {
@@ -43,7 +45,7 @@ function getKeywords(){
 			dataType : 'jsonp'
 		});
 //		$.get('http://labs.preferred.jp/reflexa/api.php?q='
-//				+ $($serachBox).val() + "&format=json", function($data) {
+//				+ $($KEY_SEARCH_BOX).val() + "&format=json", function($data) {
 //					alert($data);
 //				});
 	}
@@ -67,7 +69,7 @@ function searchGoogle() {
 			google.search.ImageSearch.RESTRICT_FILETYPE.FILETYPE_GIF,
 			google.search.ImageSearch.RESTRICT_FILETYPE.FILETYPE_PNG);
 	imageSearch.setResultSetSize(google.search.Search.LARGE_RESULTSET);
-	imageSearch.execute($($serachBox).val());
+	imageSearch.execute($($KEY_SEARCH_BOX).val());
 };
 
 function OnLoad() {
@@ -97,11 +99,13 @@ function makeImageCell($content, $result) {
 	var $li = $('<li/>').addClass('search-thumb');
 	var $cell = $('<div/>').addClass('cell');
 	var $capture = $('<div/>').addClass('float-left');
+	var $parentId = $($KEY_PARENT_ID).text();
+	$parentId = ($parentId != null && $parentId != '') ? '&parentId=' + $parentId : '';
 	var $a = $('<a/>').attr(
 			'href',
 			'upload.do?url=' + encodeURIComponent($result.url) + '&keywords='
-					+ encodeURIComponent($($serachBox).val()) + '&site='
-					+ encodeURIComponent($result.originalContextUrl));
+					+ encodeURIComponent($($KEY_SEARCH_BOX).val()) + '&site='
+					+ encodeURIComponent($result.originalContextUrl) + $parentId);
 	var $a2 = $('<a/>').attr('href', $result.originalContextUrl).attr('target',
 			'_blank');
 	var $caption = $('<div/>').addClass('caption star');
@@ -123,11 +127,13 @@ function makeImageCell($content, $result) {
 function makeImageCell0($content, $result) {
 	var $li = $('<li/>').addClass('card');
 	var $cell = $('<div/>').addClass('cell');
+	var $parentId = $($KEY_PARENT_ID).text();
+	$parentId = ($parentId != null && $parentId != '') ? '&parentId=' + $parentId : '';
 	var $a = $('<a/>').attr(
 			'href',
 			'upload.do?url=' + encodeURIComponent($result.url) + '&keywords='
-					+ encodeURIComponent($($serachBox).val()) + '&site='
-					+ encodeURIComponent($result.originalContextUrl));
+					+ encodeURIComponent($($KEY_SEARCH_BOX).val()) + '&site='
+					+ encodeURIComponent($result.originalContextUrl) + $parentId);
 	var $title = $('<div/>').addClass('caption').append($result.title);
 	var $image = $('<img/>').attr('src', $result.tbUrl).addClass('image-shot');
 	$content.append($li);

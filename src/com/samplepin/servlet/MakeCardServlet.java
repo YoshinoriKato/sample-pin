@@ -179,6 +179,7 @@ public class MakeCardServlet extends HttpServlet {
 			String site = getValueByKeyword(part, "site");
 			String imagePath = getValueByKeyword(part, "imagePath");
 			String anonymous = getValueByKeyword(part, "anonymous");
+			String parentId = getValueByKeyword(part, "parentId");
 
 			if (title != null) {
 
@@ -199,6 +200,9 @@ public class MakeCardServlet extends HttpServlet {
 
 			} else if (valid(anonymous)) {
 				card.setAnonymous(true);
+
+			} else if (valid(parentId)) {
+				card.setParentId(parentId);
 
 			} else {
 				String path = getFileName(part);

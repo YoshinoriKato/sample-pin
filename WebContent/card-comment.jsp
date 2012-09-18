@@ -1,3 +1,4 @@
+<%@page import="java.util.*"%>
 <%@page import="com.samplepin.servlet.*"%>
 <%@page import="com.samplepin.*"%>
 <%@page import="com.samplepin.common.*"%>
@@ -102,6 +103,23 @@
 						if (Helper.valid(cardId)) {
 					%>
 					<jsp:include page="_card.jsp"></jsp:include>
+					<div>
+						<a class="bold btn btn-large btn-cell opacity80 margin-top20 btn-info"
+							href="make-card.jsp?parentId=<%=cardId%>">+連結</a>
+					</div>
+					<div class="margin-top20">
+					<%
+						List<Card> cards = Helper.getCardsByID(cardId);
+							if (Helper.valid(cards)) {
+								for (Card child : cards) {
+					%>
+					<a href="card-comment.jsp?cardId=<%=child.getCardId()%>&type=comment"><img
+						class="image-icon" src="<%=child.getImagePath()%>"></a>
+					<%
+						}
+							}
+					%>
+					</div>
 					<%
 						} else if (Helper.valid(userId)) {
 					%>
@@ -150,9 +168,6 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- comment form -->
-	<%-- <jsp:include page="_comment.jsp"></jsp:include> --%>
 	<%
 		}
 	%>

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@page import="com.samplepin.*"%>
 <%@page import="com.samplepin.common.*"%>
-<%!Card	card;%>
+<%!Card card;%>
 
 <%
 	card = (Card) request.getAttribute("card");
@@ -37,6 +37,20 @@
 	</div>
 	<div class="caption deco"><%=Helper.escapeHTML(card.getCaption())%></div>
 	<br style="clear: both;">
+	<%
+		if (Helper.valid(card.getParentId())) {
+			Card parent = Helper.getCardByID(card.getParentId());
+			if (parent != null) {
+	%>
+	<div class="card-info break-word">
+		<a class="no-hover"
+			href="card-comment.jsp?cardId=<%=card.getParentId()%>&type=comment"><img
+			class="image-icon" src="<%=parent.getImagePath()%>"></a>
+	</div>
+	<%
+			}
+		}
+	%>
 	<%
 		if (Helper.valid(card.getKeywords())) {
 	%>

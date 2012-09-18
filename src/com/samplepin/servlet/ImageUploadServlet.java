@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.samplepin.common.ActivityLogger;
+import com.samplepin.common.Helper;
 
 @WebServlet(urlPatterns = { "/upload.do" })
 public class ImageUploadServlet extends HttpServlet {
@@ -31,6 +32,9 @@ public class ImageUploadServlet extends HttpServlet {
 			String keywords = URLDecoder.decode(req.getParameter("keywords"),
 					"UTF-8");
 			String site = URLDecoder.decode(req.getParameter("site"), "UTF-8");
+			String parentId = req.getParameter("parentId");
+			parentId = Helper.valid(parentId) ? "&parentId=" + parentId : "";
+
 			URL u = new URL(url);
 			MakeCardServlet make = new MakeCardServlet();
 			InputStream is = u.openStream();
@@ -45,13 +49,15 @@ public class ImageUploadServlet extends HttpServlet {
 			File realFolder = new File(fullPath);
 			File realPathFile = new File(realFolder, fileName);
 			File referenceFile = new File(referenceFolder, fileName);
+			
 			MakeCardServlet.copyStream(is, new FileOutputStream(realPathFile),
 					1024);
 			ActivityLogger.log(req, this.getClass(), realPathFile.getName());
+			
 			resp.sendRedirect("make-card.jsp?imagePath="
 					+ URLEncoder.encode(referenceFile.getPath(), "UTF-8")
 					+ "&keywords=" + URLEncoder.encode(keywords, "UTF-8")
-					+ "&site=" + URLEncoder.encode(site, "UTF-8"));
+					+ "&site=" + URLEncoder.encode(site, "UTF-8") + parentId);
 			return;
 		} catch (IOException e) {
 			e.printStackTrace();
