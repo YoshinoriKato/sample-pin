@@ -61,18 +61,24 @@
 	})();
 </script>
 
+<!-- hatena -->
+<script type="text/javascript"
+	src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8"
+	async="async"></script>
+
+
 <div id="sns-link">
 	<div id="sns-close" class="close-button">x</div>
 	<div id="twitter-button">
 		<a href="https://twitter.com/share" class="twitter-share-button"
 			data-lang="ja">Twitter</a>
 	</div>
-	
+
 	<div id="facebook-button" class="margin-top20">
 		<div class="fb-like" data-href="http://doya.info/" data-send="false"
 			data-layout="button_count" data-width="450" data-show-faces="false"></div>
 	</div>
-	
+
 	<div id="mixi-button" class="margin-top20">
 		<div data-plugins-type="mixi-favorite"
 			data-service-key="bf28d3d3db4ee8eeb397cac5038c541e30c1dd65"
@@ -84,5 +90,14 @@
 	<div id="google-button" class="margin-top20">
 		<!-- Place this tag where you want the +1 button to render. -->
 		<div class="g-plusone" data-size="medium" data-href="http://doya.info"></div>
+	</div>
+
+	<div id="hatena-button" class="margin-top20">
+		<a href="http://b.hatena.ne.jp/entry/http://doya.info"
+			class="hatena-bookmark-button" data-hatena-bookmark-title="DOYA.info"
+			data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img
+			src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+			alt="このエントリーをはてなブックマークに追加" width="20" height="20"
+			style="border: none;" /></a>
 	</div>
 </div>
