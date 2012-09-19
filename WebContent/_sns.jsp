@@ -69,7 +69,7 @@
 
 <div id="sns-link">
 	<div id="sns-close" class="close-button">x</div>
-	<div id="twitter-button">
+	<div id="twitter-button" class="margin-top20">
 		<a href="https://twitter.com/share" class="twitter-share-button"
 			data-lang="ja">Twitter</a>
 	</div>
