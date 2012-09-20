@@ -164,7 +164,7 @@ function makeCard($card) {
 function makeComment($comment, $userId) {
 
 	// components
-	var $jqLi = $('<li/>').addClass('opacity80 margin-bottom20');
+	var $jqLi = $('<li/>').addClass('opacity80 margin-bottom-default');
 	var $jqDiv = $('<div/>')
 			.attr('id', $comment.cardId + '+' + $comment.userId);
 	var $jqA = $('<a/>').addClass('no-hover');

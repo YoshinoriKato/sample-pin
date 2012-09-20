@@ -104,18 +104,18 @@
 	<div id="main">
 		<div id="split">
 			<div id="split-left">
-				<div class="card margin-bottom20">
+				<div class="card margin-bottom-default">
 					<%
 						if (Helper.valid(cardId)) {
 					%>
 					<jsp:include page="_card.jsp"></jsp:include>
 					<% if (Helper.valid(userId)) { %>
 					<div>
-						<a class="bold btn btn-large btn-cell opacity80 margin-top20 btn-info"
+						<a class="bold btn btn-large btn-cell opacity80 margin-top-default btn-info"
 							href="make-card.jsp?parentId=<%=cardId%>">+連結</a>
 					</div>
 					<% } %>
-					<div id="card-family" class="margin-top20">
+					<div id="card-family" class="margin-top-default">
 						<ul id="children">
 						<%
 							List<Card> cards = Helper.getCardsByID(cardId);
@@ -146,7 +146,7 @@
 					<%
 						if (Helper.valid(cardId)) {
 					%>
-					<li class="cell margin-bottom20" style="max-height: 170px;"><jsp:include
+					<li class="cell margin-bottom-default" style="max-height: 170px;"><jsp:include
 							page="_comment.jsp"></jsp:include></li>
 					<%
 						}
