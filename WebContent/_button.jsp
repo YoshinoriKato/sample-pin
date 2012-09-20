@@ -31,6 +31,8 @@
 	
 	String classMine = "mine".equals(sorted) ? CSS_ACTIVE : CSS_NEGATIVE;
 	
+	String classView = "view".equals(sorted) ? CSS_ACTIVE : CSS_NEGATIVE;
+	
 	String classFootprints = "footprints".equals(sorted) ? CSS_ACTIVE
 	: CSS_NEGATIVE;
 	
@@ -40,8 +42,8 @@
 <div id="float-bottun" class="center opacity70">
 	<a href="home.jsp" class="<%=classLatest%>">最新</a>
 
+	<a href="home.jsp?sorted=view" class="<%=classView%>">注目</a>
 	<!-- 
-	<a href="home.jsp?sorted=view" class="<%=CSS_BASE%>">Views</a>
 	<a href="home.jsp?sorted=comment" class="<%=CSS_BASE%>">Comments</a>
 	 -->
 

@@ -16,9 +16,9 @@
 				<div class="controls">
 					<input type="search" id="search-box" name="search-box" value=""
 						placeholder="Please search images. At last, press enter key."
-						class="input-medium input-text text">
-					<!-- <input type="submit" value="Search" id="search-action"
-										class="btn btn-large btn-primary btn-cell"> -->
+						class="input-medium input-text text"> <input type="submit"
+						class="btn  btn-submit" value="Search">
+					<div id="float-box" class="input-text text"></div>
 				</div>
 			</div>
 		</fieldset>
