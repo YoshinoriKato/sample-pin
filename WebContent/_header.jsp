@@ -29,9 +29,16 @@
 
 
 <!-- title -->
-<title><%=Helper.NAME%></title>
+<%
+	if(Helper.valid(request.getAttribute("subTitle"))){
+		String subTitle = (String) request.getAttribute("subTitle");
+%>
+	<title><%=Helper.NAME+subTitle%></title>
 
+<% } else { %>
+	<title><%=Helper.NAME%></title>
 
+<% } %>
 
 <!-- favicon -->
 <link rel="shortcut icon" href="img/favicon.ico?<%=suffix%>">

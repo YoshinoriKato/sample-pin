@@ -141,8 +141,7 @@ function makeCard($card) {
 	if ($card.parentId != null && $card.parentId != '' && $card.parentId != 'self') {
 		$divCardIcon1.append($jqA4);
 		$jqA4.attr('href',
-				'card-comment.jsp?cardId=' + $card.parentId + '&type=comment').attr(
-						'target', '_blank');
+				'card-comment.jsp?cardId=' + $card.parentId + '&type=comment');
 		$jqA4.append($('<img/>').attr('src', $card.parentIcon).addClass('image-icon'));
 	}
 

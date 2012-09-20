@@ -38,6 +38,11 @@
 
 	 String error = message != null && !message.isEmpty() ? "error" : "";
 	 */
+
+	String subTitle = card.getKeywords();
+	subTitle = Helper.valid(subTitle) ? subTitle : card.getCaption()
+			.split("[\r|\n|\r\n]")[0];
+	request.setAttribute("subTitle", " [" + subTitle + "]");
 %>
 
 
@@ -109,12 +114,16 @@
 						if (Helper.valid(cardId)) {
 					%>
 					<jsp:include page="_card.jsp"></jsp:include>
-					<% if (Helper.valid(userId)) { %>
+					<%
+						if (Helper.valid(userId)) {
+					%>
 					<div>
 						<a class="bold btn btn-large btn-cell opacity80 margin-top-default btn-info"
 							href="make-card.jsp?parentId=<%=cardId%>">+連結</a>
 					</div>
-					<% } %>
+					<%
+						}
+					%>
 					<div id="card-family" class="margin-top-default">
 						<ul id="children">
 						<%
@@ -127,9 +136,9 @@
 							class="child" src="<%=child.getImagePath()%>"></a></li>
 						
 						<%
-							}
-								}
-						%>
+													}
+														}
+												%>
 						</ul>
 					</div>
 					<%
