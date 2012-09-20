@@ -15,18 +15,26 @@ public class ShortCut {
 
 	String cardId;
 
+	String category;
+
 	public ShortCut() {
 		super();
+		this.category = "S";
 	}
 
-	public ShortCut(String hex, String cardId) {
-		super();
+	public ShortCut(String hex, String cardId, String category) {
+		this();
 		this.hex = hex;
 		this.cardId = cardId;
+		this.category = category;
 	}
 
 	public String getCardId() {
 		return this.cardId;
+	}
+
+	public String getCategory() {
+		return this.category;
 	}
 
 	public String getHex() {
@@ -39,6 +47,10 @@ public class ShortCut {
 
 	public void setCardId(String cardId) {
 		this.cardId = cardId;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public void setHex(String hex) {

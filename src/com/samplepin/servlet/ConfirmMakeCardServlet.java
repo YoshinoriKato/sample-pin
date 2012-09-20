@@ -71,20 +71,40 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 		}
 	}
 
+	final String makeMessage(Card card) throws IOException {
+		StringBuilder builder = new StringBuilder();
+
+		builder.append(card.getCaption()).append(Helper.LS);
+
+		String keywords = card.getKeywords();
+		if (valid(keywords)) {
+			keywords = valid(keywords) ? "[" + keywords + "]" : "";
+			builder.append(keywords).append(Helper.LS);
+		}
+
+		builder.append(new ShortCutServlet().toShortCut(card.getCardId()))
+				.append(Helper.LS);
+
+		// if (Helper.valid(card.getImagePath())) {
+		// builder.append(
+		// new LinkImageServlet().toShortCut(card.getImagePath()))
+		// .append(Helper.LS);
+		// }
+
+		return builder.toString();
+	}
+
 	final void tweet(Card card, String userId, String tweet)
 			throws IOException, MongoException, TwitterException {
 		try {
 			TwitterService service = new TwitterService();
 
-			String keywords = card.getKeywords();
-			keywords = valid(keywords) ? "[" + keywords + "]" : "";
-			String message = card.getCaption() + Helper.LS + keywords
-					+ Helper.LS
-					+ new ShortCutServlet().toShortCut(card.getCardId());
+			String message = makeMessage(card);
 
 			if (valid(tweet) && "on".equals(tweet)) {
 				service.tweet(userId, message);
 			}
+
 			service.tweet("ADD: " + message);
 		} catch (Exception e) {
 			e.printStackTrace();

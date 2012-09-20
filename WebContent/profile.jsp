@@ -14,6 +14,10 @@
 	String userId = request.getParameter("userId");
 	userId = userId != null ? userId : Helper.getUserId(request);
 	User user = Helper.getUserById(userId);
+	
+	if(user == null){
+		response.sendError(404);
+	}
 
 	String message = (String) request.getAttribute("message");
 	message = message != null ? message : "";

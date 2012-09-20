@@ -26,8 +26,8 @@ public class ShortCutServlet extends HttpServlet {
 			throws IOException {
 		String hex = req.getParameter("H");
 		try (ACMongo mongo = new ACMongo()) {
-			Query<ShortCut> query = mongo.createQuery(ShortCut.class).filter(
-					"hex = ", hex);
+			Query<ShortCut> query = mongo.createQuery(ShortCut.class)
+					.filter("category = ", "S").filter("hex = ", hex);
 			ShortCut shortCut = query.get();
 			resp.sendRedirect("card-comment.jsp?cardId=" + shortCut.getCardId()
 					+ "&type=comment&image=open");
@@ -43,7 +43,7 @@ public class ShortCutServlet extends HttpServlet {
 					"hex", hex);
 			ShortCut shortCut = query.get();
 			if (shortCut == null) {
-				shortCut = new ShortCut(hex, cardId);
+				shortCut = new ShortCut(hex, cardId, "S");
 				mongo.save(shortCut);
 			}
 		}

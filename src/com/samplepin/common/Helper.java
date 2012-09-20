@@ -221,6 +221,25 @@ public class Helper {
 		return new Card();
 	}
 
+	public static Card getCardByImagePath(String imagePath) {
+		try (ACMongo mongo = new ACMongo()) {
+			Datastore datastore = mongo.createDatastore();
+			Query<Card> query = datastore.createQuery(Card.class).filter(
+					"imagePath = ", imagePath);
+			Card card = query.get();
+			if (card != null) {
+				User user = Helper.getUserById(card.getUserId());
+				if (user != null) {
+					setUserInfoToComment(card, user);
+				}
+			}
+			return card;
+		} catch (UnknownHostException | MongoException e) {
+			e.printStackTrace();
+		}
+		return new Card();
+	}
+
 	public static List<Card> getCardsByID(String cardId) {
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
