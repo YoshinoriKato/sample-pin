@@ -225,7 +225,8 @@ public class Helper {
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
 			Query<Card> query = datastore.createQuery(Card.class)
-					.filter("parentId = ", cardId).filter("isDeleted", false);
+					.filter("parentId = ", cardId).filter("isDeleted", false)
+					.order("-updateDate");
 			return query.asList();
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();

@@ -72,6 +72,13 @@
 				callAjax($('#sorted').text(), 40, '', $('#userId').text(), $(
 						'#cardId').text(), $('#type').text());
 
+				$('#children li').wookmark({
+					autoResize: true,
+					offset : 14,
+					container : $('#card-family'),
+					itemWidth: 100
+				});
+				
 				// text observer
 				observeText('#comment-text', $key);
 				$('#comment-form').submit(function() {
@@ -108,18 +115,22 @@
 							href="make-card.jsp?parentId=<%=cardId%>">+連結</a>
 					</div>
 					<% } %>
-					<div class="margin-top20">
-					<%
-						List<Card> cards = Helper.getCardsByID(cardId);
-							if (Helper.valid(cards)) {
-								for (Card child : cards) {
-					%>
-					<a href="card-comment.jsp?cardId=<%=child.getCardId()%>&type=comment"><img
-						class="image-icon" src="<%=child.getImagePath()%>"></a>
-					<%
-						}
+					<div id="card-family" class="margin-top20">
+						<ul id="children">
+						<%
+							List<Card> cards = Helper.getCardsByID(cardId);
+								if (Helper.valid(cards)) {
+									for (Card child : cards) {
+						%>
+						
+						<li><a href="card-comment.jsp?cardId=<%=child.getCardId()%>&type=comment"><img
+							class="child" src="<%=child.getImagePath()%>"></a></li>
+						
+						<%
 							}
-					%>
+								}
+						%>
+						</ul>
 					</div>
 					<%
 						} else if (Helper.valid(userId)) {
