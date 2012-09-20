@@ -10,7 +10,9 @@ import java.util.Set;
 
 import com.google.code.morphia.query.Query;
 import com.samplepin.Card;
+import com.samplepin.User;
 import com.samplepin.common.ACMongo;
+import com.samplepin.common.Helper;
 import com.samplepin.nl.NaturalLanguageParser;
 
 public class SearchAjax extends CardAjax {
@@ -30,6 +32,12 @@ public class SearchAjax extends CardAjax {
 			if (valid(searched)) {
 				cards = cards(mongo, otherUserId, sorted, offset, limit,
 						callback, old, young, type, userId, cardId, searched);
+				for (Card card : cards) {
+					User user = Helper.getUserById(card.getUserId());
+					if (user != null) {
+						Helper.setUserInfoToComment(card, user);
+					}
+				}
 			}
 		}
 

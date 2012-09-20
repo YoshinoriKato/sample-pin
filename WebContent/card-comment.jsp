@@ -25,24 +25,24 @@
 	image = (image != null) ? image : "";
 
 	Card card = Helper.getCardByID(cardId);
-	if (card != null && selfUserId != null && !selfUserId.isEmpty()) {
-		Helper.setFootprint(card, selfUserId);
+	if (card != null) {
+		if (selfUserId != null && !selfUserId.isEmpty()) {
+			request.setAttribute("card", card);
+			Helper.setFootprint(card, selfUserId);
+		}
+
+		String subTitle = card.getKeywords();
+		subTitle = Helper.valid(subTitle) ? subTitle : card
+				.getCaption().split("[\r|\n|\r\n]")[0];
+		request.setAttribute("subTitle", " [" + subTitle + "]");
 	}
-	request.setAttribute("card", card);
 
 	User user = Helper.getUserById(userId);
 	request.setAttribute("user", user);
 
-	/* 	String message = (String) request.getAttribute("message");
-	 message = message != null ? message : "";
-
-	 String error = message != null && !message.isEmpty() ? "error" : "";
-	 */
-
-	String subTitle = card.getKeywords();
-	subTitle = Helper.valid(subTitle) ? subTitle : card.getCaption()
-			.split("[\r|\n|\r\n]")[0];
-	request.setAttribute("subTitle", " [" + subTitle + "]");
+	if (card == null && user == null) {
+		response.sendError(HttpServletResponse.SC_NOT_FOUND);
+	}
 %>
 
 
@@ -118,7 +118,8 @@
 						if (Helper.valid(userId)) {
 					%>
 					<div>
-						<a class="bold btn btn-large btn-cell opacity80 margin-top-default btn-info"
+						<a
+							class="bold btn btn-large btn-cell opacity80 margin-top-default btn-info"
 							href="make-card.jsp?parentId=<%=cardId%>">+連結</a>
 					</div>
 					<%
@@ -126,19 +127,20 @@
 					%>
 					<div id="card-family" class="margin-top-default">
 						<ul id="children">
-						<%
-							List<Card> cards = Helper.getCardsByID(cardId);
-								if (Helper.valid(cards)) {
-									for (Card child : cards) {
-						%>
-						
-						<li><a href="card-comment.jsp?cardId=<%=child.getCardId()%>&type=comment"><img
-							class="child" src="<%=child.getImagePath()%>"></a></li>
-						
-						<%
-													}
-														}
-												%>
+							<%
+								List<Card> cards = Helper.getCardsByID(cardId);
+									if (Helper.valid(cards)) {
+										for (Card child : cards) {
+							%>
+
+							<li><a
+								href="card-comment.jsp?cardId=<%=child.getCardId()%>&type=comment"><img
+									class="child" src="<%=child.getImagePath()%>"></a></li>
+
+							<%
+								}
+									}
+							%>
 						</ul>
 					</div>
 					<%

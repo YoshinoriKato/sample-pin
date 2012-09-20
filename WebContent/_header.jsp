@@ -1,4 +1,4 @@
-<%@page import="com.samplepin.common.ActivityLogger"%>
+<%@page import="com.samplepin.common.*"%>
 <%@page import="com.samplepin.servlet.*"%>
 <%@page import="java.util.*"%>
 <%@page import="com.samplepin.*"%>
