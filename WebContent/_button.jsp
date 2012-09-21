@@ -39,10 +39,11 @@
 	String classRecommend = "recommend".equals(sorted) ? CSS_ACTIVE : CSS_NEGATIVE;
 %>
 
-<div id="float-bottun" class="center opacity70">
-	<a href="home.jsp" class="<%=classLatest%>">最新</a>
+<div id="float-bottun" class="opacity70">
+<ul class="menu">
+	<li><a href="home.jsp" class="<%=classLatest%>">最新</a></li>
 
-	<a href="home.jsp?sorted=view" class="<%=classView%>">注目</a>
+	<li><a href="home.jsp?sorted=view" class="<%=classView%>">注目</a></li>
 	<!-- 
 	<a href="home.jsp?sorted=comment" class="<%=CSS_BASE%>">Comments</a>
 	 -->
@@ -50,11 +51,12 @@
 	<%
 		if (!inCardPage && session.getAttribute("userId") != null) {
 	%>
-	<a href="home.jsp?sorted=mine" class="<%=classMine%>">所有</a>
-	<a href="home.jsp?sorted=footprints"
-		class="<%=classFootprints%>">足あと</a> <a
+	<li><a href="home.jsp?sorted=mine" class="<%=classMine%>">所有</a></li>
+	<li><a href="home.jsp?sorted=footprints"
+		class="<%=classFootprints%>">足あと</a></li>
+	<li><a
 		href="home.jsp?sorted=recommend"
-		class="<%=classRecommend%>">オススメ</a>
+		class="<%=classRecommend%>">オススメ</a></li>
 	<%
 		}
 	%>
@@ -69,4 +71,13 @@
 		}
 	%> --%>
 
+	<li><form class="form-search" method="get"
+			action="home.jsp" id="card-search-box">
+		<input type="hidden" name="sorted" value="search"> <input
+			type="text" class="input-medium search-query" name="words"
+			placeholder="Search by Keywords">
+			<!--  <input type="submit"
+			value="^" class="btn bold btn-cell"> -->
+	</form></li>
+</ul>
 </div>

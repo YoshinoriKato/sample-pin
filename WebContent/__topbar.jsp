@@ -86,10 +86,6 @@
 					%>
 					<li <%=classIndex%>><a href="index.jsp">?</a></li>
 				</ul>
-						<form class="navbar-search pull-left" method="get" action="home.jsp">
-							<input type="hidden" name="sorted" value="search"> 
-							<input type="text" class="search-query input-short" name="words" placeholder="search">
-						</form>
 			</div>
 		</div>
 	</div>

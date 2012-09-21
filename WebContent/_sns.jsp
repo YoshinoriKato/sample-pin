@@ -1,4 +1,4 @@
-
+<% if(false) { %>
 <script type="text/javascript" charset="UTF-8">
 	$(window).load(function() {	
 		$('#sns-close').attr("onclick",
@@ -101,3 +101,5 @@
 			style="border: none;" /></a>
 	</div>
 </div>
+
+<% } %>

@@ -52,7 +52,7 @@
 
 <div id="navigation">
 	<div id="navi-menu">
-		<ul id="menu">
+		<ul class="menu">
 			<li><a <%=classTag%> href="tag.jsp">タグ</a></li>
 			<li><a <%=classHome%> href="home.jsp">ホーム</a></li>
 			<%
@@ -68,7 +68,8 @@
 
 		<li><a class="divider-vertical"></li>
 		 -->
-			<li><a <%=classAccount%> href="account.jsp">ユーザー</a> <a
+			<li><a <%=classAccount%> href="account.jsp">ユーザー</a></li>
+			<li><a
 				<%=classLogout%> href="logout.do">ログアウト</a></li>
 			<%
 				} else {
@@ -79,15 +80,6 @@
 				}
 			%>
 			<li><a <%=classIndex%> href="index.jsp">ヘルプ</a></li>
-
-			<li id="card-search-box"><form class="form-search" method="get"
-					action="home.jsp">
-					<input type="hidden" name="sorted" value="search"> <input
-						type="text" class="input-medium search-query" name="words"
-						placeholder="Search by Keywords">
-						<!--  <input type="submit"
-						value="^" class="btn bold btn-cell"> -->
-				</form></li>
 		</ul>
 	</div>
 </div>
