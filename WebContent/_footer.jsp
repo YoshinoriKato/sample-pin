@@ -20,7 +20,7 @@
 	<% if(logined !=null) { %>
 		<div class="caption star">Auto login...</div>
 	<% } %>
-	<img src="img/ajax.gif">
+	<img src="img/ajax-loader.gif">
 	<div class="caption star">Working for you.</div>
 </div>
 

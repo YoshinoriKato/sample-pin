@@ -19,9 +19,7 @@
 	cardId = (cardId != null) ? cardId : "";
 
 	String type = request.getParameter("type");
-	if(type == null){
-		response.sendError(500);
-	}
+	type = (type != null) ? type : "comment";
 
 	String image = request.getParameter("image");
 	image = (image != null) ? image : "";
