@@ -35,15 +35,28 @@
 					</div>
 					<hr>
 					<div class="item-group">
+						<div class="item-label">動画</div>
+						<div class="items">
+						<div class="margin-bottom-default">
+							<video controls="controls">
+							<source src="../../icon-keeper/movie.mp4"></source></video></div>
+							<p>サイト利用の一例です。</p>
+						</div>
+					</div>
+					<hr>
+					<div class="item-group">
 						<div class="item-label">はじめに</div>
 						<div class="items">
 							メニューの中の<a href="signup.jsp">"サインアップ"</a>をクリックしてください。
 							<ol>
 								<li>メールアドレスを書いていただくか、<a href="oauth-twitter.jsp">Twitter
-										Login</a>を実施してください。</li>
-								<li>もし、メールアドレスを登録していただけたなら、<a href="login.jsp">ログイン</a>のページへお送りしたメールのURLから飛んでください。</li>
+										Login</a>を実施してください。
+								</li>
+								<li>もし、メールアドレスを登録していただけたなら、<a href="login.jsp">ログイン</a>のページへお送りしたメールのURLから飛んでください。
+								</li>
 								<li>ログインのページでは、登録したメールアドレスとお送りした仮パスワードでログインしていただけます。</li>
-								<li>仮パスワードは、<a href="account.jsp">ユーザー</a>のページから変更ができます。</li>
+								<li>仮パスワードは、<a href="account.jsp">ユーザー</a>のページから変更ができます。
+								</li>
 							</ol>
 						</div>
 					</div>

@@ -19,7 +19,9 @@
 	cardId = (cardId != null) ? cardId : "";
 
 	String type = request.getParameter("type");
-	type = (type != null) ? type : "card";
+	if(type == null){
+		response.sendError(500);
+	}
 
 	String image = request.getParameter("image");
 	image = (image != null) ? image : "";
