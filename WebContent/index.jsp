@@ -29,8 +29,7 @@
 						<div class="item-label">概要</div>
 						<div class="items">
 							<p>気軽に使えるキュレーションサービスです。</p>
-							<p>検索した画像とそれを見たときの感想、</p>
-							<p>あなたの興味を共有してください。</p>
+							<p>あなたが検索した画像、それを見たときの感想・興味を共有してください。</p>
 						</div>
 					</div>
 					<hr>
@@ -41,21 +40,30 @@
 							<video controls="controls">
 							<source src="../../icon-keeper/movie.mp4"></source></video></div>
 							<p>サイト利用の一例です。</p>
+							<p>ヘルプからTwitterアカウントでログイン、ホーム画面、コメント、カード作成、ホーム画面切り替えをしています。</p>
 						</div>
 					</div>
 					<hr>
 					<div class="item-group">
 						<div class="item-label">はじめに</div>
 						<div class="items">
-							メニューの中の<a href="signup.jsp">"サインアップ"</a>をクリックしてください。
+							<p>メニューの中の<a href="signup.jsp">"サインアップ"</a>をクリックしてください。</p>
+							<p>※サインアップしなくても、ホーム画面やコメントをご覧いただけます。</p>
 							<ol>
-								<li>メールアドレスを書いていただくか、<a href="oauth-twitter.jsp">Twitter
-										Login</a>を実施してください。
+								<li>メールアドレスを書いていただくか、<a href="oauth-twitter.jsp">Twitterログイン</a>を実施してください。
 								</li>
-								<li>もし、メールアドレスを登録していただけたなら、<a href="login.jsp">ログイン</a>のページへお送りしたメールのURLから飛んでください。
+								<li>メールアドレスを登録していただいた場合
+									<ol>
+										<li><a href="login.jsp">ログイン</a>のページへお送りしたメールのURLから飛んでください。</li>
+										<li>ログインのページでは、登録したメールアドレスとお送りした仮パスワードでログインしていただけます。</li>
+										<li>仮パスワードは、<a href="account.jsp">ユーザー</a>のページから変更ができます。
+										</li>
+									</ol>
 								</li>
-								<li>ログインのページでは、登録したメールアドレスとお送りした仮パスワードでログインしていただけます。</li>
-								<li>仮パスワードは、<a href="account.jsp">ユーザー</a>のページから変更ができます。
+								<li><a href="oauth-twitter.jsp">Twitterログイン</a>を選ばれた場合
+									<ol>
+										<li>Twitterからの指示に沿って、アクセスを許可してください。</li>
+									</ol>
 								</li>
 							</ol>
 						</div>
@@ -64,7 +72,7 @@
 					<div class="item-group">
 						<div class="item-label">使い方 1</div>
 						<div class="items">
-							メニューの中の<a href="home.jsp">"ホーム"</a>を押してください。
+							<p>メニューの中の<a href="home.jsp">"ホーム"</a>を押してください。</p>
 							<ol>
 								<li>並んでいるカードを眺めてください。</li>
 								<li>興味を感じたカードをクリックしてください。</li>
@@ -76,7 +84,7 @@
 					<div class="item-group">
 						<div class="item-label">使い方 2</div>
 						<div class="items">
-							<a href="home.jsp">"ホーム"</a>の上部に注目してください。
+							<p><a href="home.jsp">"ホーム"</a>の上部に注目してください。</p>
 							<ol>
 								<li>Search Imagesという欄があります。</li>
 								<li>キーワードを入力して、画像を検索してください。</li>
