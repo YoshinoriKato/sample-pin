@@ -37,40 +37,5 @@
 		$('#error-close').attr("onclick",
 		"pushPull('#null','#error-dialog')");
 	});
-	
-	var $scroll = 240;
-
-	$(function() {
-		$('#bottom-label').hide();
-		$(window)
-				.scroll(
-						function() {
-							if ($(this).scrollTop() > 60) {
-								$('#bottom-label').fadeIn();
-							} else {
-								$('#bottom-label').fadeOut();
-							}
-<%
-		if (url.contains("/home.jsp") || url.contains("/card-comment.jsp")) {
-%>
-
-		if (($(window).height() * 0.4) < ($(document).height() - $(this).scrollTop())) {
-								callAjax($('#sorted').text(), 20, $counter, $(
-										'#userId').text(), $('#cardId').text(),
-										$('#type').text(), $('#words').text());
-							}
-							
-<%
-	}
-%>
-		});
-		$('#bottom-label a').click(function() {
-			$('body').animate({
-				scrollTop : 0
-			}, 500);
-			return false;
-		});
-
-	});
 </script>
 

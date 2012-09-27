@@ -84,6 +84,8 @@
 	charset="UTF-8"></script>
 <script type="text/javascript" src="js/smartphone.js?<%=suffix%>"
 	charset="UTF-8"></script>
+<script type="text/javascript" src="js/pageScroll.js?<%=suffix%>"
+	charset="UTF-8"></script>
 
 
 
