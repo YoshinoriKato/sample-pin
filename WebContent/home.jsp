@@ -47,29 +47,8 @@
 
 <body>
 	<jsp:include page="_topbar.jsp" flush="true" />
-	<%-- <jsp:include page="_button.jsp" flush="true" /> --%>
 	<div id="title"><%=title%></div>
 	<div id="main">
-		<div id="add-card">
-			<div id="input-window">
-				<%
-					if (Helper.valid(userId)) {
-				%>
-				<div class="cell" style="padding-top: 25px">
-					<jsp:include page="_search.jsp"></jsp:include>
-				</div>
-				<%
-					} else {
-				%>
-				<div class="caption large center">
-					Please, <a href="login.jsp?fromUrl=home.jsp">Login</a> or <a
-						href="signup.jsp">Sign up</a>.
-				</div>
-				<%
-					}
-				%>
-			</div>
-		</div>
 		<ul id="content">
 			<!--  ajax -->
 		</ul>

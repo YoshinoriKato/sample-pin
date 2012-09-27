@@ -22,7 +22,7 @@
 
 
 <!-- iOS -->
-<meta name="viewport" content="width=600, maximum-scale=1.0">
+<meta name="viewport" content="width=640, maximum-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 

@@ -27,9 +27,19 @@ function isNeed() {
 			.scrollTop());
 }
 
+function isNeed2() {
+	return ($scrolled > $(this).scrollTop());
+}
+
 function isTarget($page) {
 	return $page.indexOf('/home.jsp') || $page.indexOf('/card-comment.jsp');
 }
+
+function isTarget2($page) {
+	return $page.indexOf('/home.jsp');
+}
+
+var $scrolled = 0;
 
 $(function() {
 	$('#bottom-label').hide();
@@ -41,6 +51,14 @@ $(function() {
 				readMore();
 			}
 		}
+//		if (isTarget2($page)) {
+//			if (isNeed2()) {
+//				$('#add-card').fadeIn();
+//			} else {
+//				$('#add-card').fadeOut();
+//			}
+//		}
+		$scrolled = $(this).scrollTop();
 	});
 	gotoTop();
 });

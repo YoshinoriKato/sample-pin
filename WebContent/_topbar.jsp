@@ -111,5 +111,4 @@
 		</div>
 	</div>
 </div>
-<div class="topbar-gap"></div>
 

@@ -38,7 +38,7 @@ html {
 
 #navigation {
 	/* effect ---------------------------------------------------------------*/
-	background-color: rgba(0, 0, 0, 0.4);
+	background-color: rgba(255, 255, 255, 0.9);
 	/* layout ---------------------------------------------------------------*/
 	position: fixed;
 	left: 0px;
@@ -47,7 +47,7 @@ html {
 	z-index: 100;
 	/* shape ----------------------------------------------------------------*/
 	width : 100%;
-	min-width: 600px;
+	min-width: 640px;
 }
 
 #navi-menu {
@@ -94,7 +94,7 @@ html {
 	text-align: center;
 	padding-bottom: 5px;
 	/* shape ----------------------------------------------------------------*/
-	min-width: 600px; /* view port */
+	min-width: 640px; /* view port */
 	width: 100%;
 	height: 50px;
 	z-index: 3;
@@ -426,13 +426,25 @@ html {
 	/* layout ---------------------------------------------------------------*/
 	position: relative;
 	left: 10%;
-	margin-top: 60px;
-	margin-bottom: 30px;
+	margin-top: 30px;
+	margin-bottom: 60px;
 	/* shape ----------------------------------------------------------------*/
-	min-width: 480px;
-	width: 85%;
-	min-width: 480px
+	min-width: 540px;
+	width: 82%;
 }
+
+#add-card
+{
+/* 	background-color: rgba(0,0,255,1);
+	position: fixed;
+	top: 60px;
+	left: 0px;
+	z-index: 500;
+	text-align: center;
+	margin: 0px;
+	padding: 10px;
+	width: 100%;
+ */}
 
 .input-text {
 	/* effect ---------------------------------------------------------------*/
@@ -490,12 +502,12 @@ html {
 	-moz-opacity: 0.80;
 	opacity: 0.80;
 	/* layout ---------------------------------------------------------------*/
-	margin-bottom: 3px;
+	margin-bottom: 7px;
 	/* shape ----------------------------------------------------------------*/
 	border-radius: 3px 20px 3px;
 	-webkit-border-radius: 3px 20px 3px;
 	-moz-border-radius: 3px 20px 3px;
-	min-width: 240px;
+	min-width: 230px;
 	min-height: 10px;
 }
 
@@ -636,15 +648,14 @@ html {
 	-webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
 	font-size: large;
 	/* layout ---------------------------------------------------------------*/
-	padding-top: 5px;
-	padding-bottom: 5px;
-	padding-left: 5px;
-	padding-right: 5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
 	/* shape ----------------------------------------------------------------*/
 	border-radius: 5px 25px 5px;
 	-webkit-border-radius: 5px 25px 5px;
 	-moz-border-radius: 5px 25px 5px;
-	padding-top: 5px
 }
 
 .cell2 {
@@ -926,4 +937,25 @@ html {
 	/* shape ----------------------------------------------------------------*/
 	width: 32px;
 	height: 32px;
+}
+
+.menu a:link {
+	color: #666;
+	text-decoration: none;
+}
+
+.menu a:visited {
+	color: #666;
+	text-decoration: none;
+}
+
+.menu a:hover {
+	color: #FF00FF;
+	text-decoration: none;
+	filter: mask(img=#FF00FF);
+}
+
+.menu a:active {
+	color: #0000FF;
+	text-decoration: none;
 }
