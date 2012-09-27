@@ -55,7 +55,7 @@
 		/* wookmark(); */
 	});
 
-	$(window).load(
+	attach(window, 'load', 
 			function() {
 				cardId = $("#cardId").text();
 				$key = $('#cardId').text();

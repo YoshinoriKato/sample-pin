@@ -1,6 +1,6 @@
 <% if(false) { %>
 <script type="text/javascript" charset="UTF-8">
-	$(window).load(function() {	
+	attach(window, 'load', function() {	
 		$('#sns-close').attr("onclick",
 		"pushPull('#null','#sns-link')");
 	});

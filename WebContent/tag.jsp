@@ -9,7 +9,7 @@
 <head>
 <jsp:include page="_header.jsp"></jsp:include>
 <script type="text/javascript" charset="UTF-8">
-	$(window).load(function() {
+	attach(window, 'load', function() {
 		$('#main').fadeIn(1000);
 		$('#ajax').fadeOut(1000);
 		wookmark();

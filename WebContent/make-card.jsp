@@ -9,7 +9,7 @@
 <jsp:include page="_header.jsp"></jsp:include>
 <jsp:include page="_effect.jsp"></jsp:include>
 <script type="text/javascript">
-	$(window).load(function() {
+	attach(window, 'load', function() {
 		observeText('#comment-text', 'make-card');
 		
 		/* search */

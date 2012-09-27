@@ -25,7 +25,7 @@
 		wookmark();
 	});
 
-	$(window).load(function() {
+	attach(window, 'load', function() {
 		callAjax($('#sorted').text(), 40, '', $('#userId').text(), "", "card", $('#words').text());
 		$('#main').fadeIn(1000);
 	});

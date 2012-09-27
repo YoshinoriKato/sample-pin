@@ -9,7 +9,7 @@
 <head>
 <jsp:include page="_header.jsp"></jsp:include>
 <script type="text/javascript">
-	$(window).load(
+	attach(window, 'load', 
 			function() {
 				cardId = $("#cardId").text();
 				pushPull('#main', '#ajax');

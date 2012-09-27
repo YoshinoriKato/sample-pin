@@ -1,4 +1,13 @@
 
+//複数の場所からwindow.onloadを呼ぶことができる
+function attach(obj, eve, func) {
+	if (obj.attachEvent) {
+		obj.attachEvent('on' + eve, func);
+	} else {
+		obj.addEventListener(eve, func, false);
+	}
+}
+
 function checkLength($id, $key) {
 	$text = $($id).val();
 	if ($text != null) {

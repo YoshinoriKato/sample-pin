@@ -7,7 +7,7 @@
 <!-- 共有 -->
 
 <script type="text/javascript" charset="UTF-8">
-	$(window).load(function() {
+	attach(window, 'load', function() {
 		pushPull('#main', '#ajax');
 	});
 </script>

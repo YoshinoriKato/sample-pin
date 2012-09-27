@@ -73,7 +73,7 @@
 </body>
 
 <script type="text/javascript">
-	$(window).load(function() {
+	attach(window, 'load', function() {
 		$cardId = $("#cardId").text();
 		pushPull('#main', '#ajax');
 		wookmark();

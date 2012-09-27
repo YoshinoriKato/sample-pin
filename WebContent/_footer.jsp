@@ -33,7 +33,7 @@
 <a href="#top"><span id="bottom-label">Go top</span></a>
 
 <script type="text/javascript" charset="UTF-8">
-	$(window).load(function() {	
+	attach(window, 'load', function() {	
 		$('#error-close').attr("onclick",
 		"pushPull('#null','#error-dialog')");
 	});

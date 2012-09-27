@@ -5,7 +5,7 @@
 <head>
 <jsp:include page="_header.jsp"></jsp:include>
 <script type="text/javascript" charset="UTF-8">
-	$(window).load(function() {
+	attach(window, 'load', function() {
 		$('#ajax').fadeOut(1000);
 	});
 </script>

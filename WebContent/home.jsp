@@ -32,7 +32,7 @@
 		wookmark();
 	});
 
-	$(window).load(
+	attach(window, 'load', 
 			function() {
 				/* search */
 				searchKeywords();
