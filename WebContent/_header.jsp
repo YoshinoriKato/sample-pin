@@ -22,7 +22,7 @@
 
 
 <!-- iOS -->
-<meta name="viewport" content="width=720, maximum-scale=1.0">
+<meta name="viewport" content="width=600, maximum-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
@@ -47,6 +47,7 @@
 
 <!-- css -->
 <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 <link href="css/common.css?<%=suffix%>" rel="stylesheet">
 <link href="css/custom.css?<%=suffix%>" rel="stylesheet">
 <link href="css/smartphone.css?<%=suffix%>" rel="stylesheet">
@@ -59,6 +60,7 @@
 <script type="text/javascript" src="js/jquery.dateFormat-1.0.js"></script>
 <script type="text/javascript" src="js/dateformat.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap-dropdown.js"></script>
 
 
 

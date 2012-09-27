@@ -6,42 +6,35 @@
 	pageEncoding="UTF-8"%>
 
 <!-- メニュー -->
-<%!final String CLASS_ACTIVE = "class=\"active btn-success bold btn btn-large btn-cell opacity80\"";%>
-<%!final String CLASS_NEGATIVE = "class=\"bold btn btn-large btn-cell opacity80\"";%>
+<%!final String CLASS_ACTIVE = " active";%>
+<%!final String CLASS_NEGATIVE = " ";%>
 <%
 	String url = request.getRequestURI();
 
 	String classIndex = url.contains("/index.jsp") ? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 
-	String classTag = url.contains("/tag.jsp") ? CLASS_ACTIVE
-			: CLASS_NEGATIVE;
-
 	String classHome = url.contains("/home.jsp") ? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
+	classHome = url.contains("/tag.jsp") ? CLASS_ACTIVE : classHome;
 	classHome = url.contains("/footprints.jsp") ? CLASS_ACTIVE
 			: classHome;
 	classHome = url.contains("/recommend.jsp") ? CLASS_ACTIVE
 			: classHome;
-	classHome = url.contains("/card.jsp") ? CLASS_ACTIVE : classHome;
 
 	String classMakeCard = url.contains("/make-card.jsp") ? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 	classMakeCard = url.contains("/confirm-make-card.jsp") ? CLASS_ACTIVE
 			: classMakeCard;
-	String classMyCard = url.contains("/my-card.jsp") ? CLASS_ACTIVE
-			: CLASS_NEGATIVE;
 
 	String classLogin = url.contains("/login.jsp") ? CLASS_ACTIVE
-			: CLASS_NEGATIVE;
-	String classLogout = url.contains("/logout.jsp") ? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 	String classSignup = url.contains("/signup.jsp") ? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 	String classAccount = url.contains("/account.jsp") ? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
-	String classProfile = url.contains("/profile.jsp") ? CLASS_ACTIVE
-			: CLASS_NEGATIVE;
+
+	String userId = Helper.getUserId(request);
 %>
 
 <script type="text/javascript" charset="utf-8">
@@ -50,36 +43,73 @@
 	});
 </script>
 
-<div id="navigation">
-	<div id="navi-menu">
-		<ul class="menu">
-			<li><a <%=classTag%> href="tag.jsp">タグ</a></li>
-			<li><a <%=classHome%> href="home.jsp">ホーム</a></li>
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<ul class="nav pills">
+			<li class="<%=classHome%>"><a href="home.jsp"><img src="img/home32.png" class="menu-icon" alt="home">&emsp;ホーム</a></li>
+				<li class="dropdown <%=classHome%>"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown"><b
+						class="caret"></b></a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						<li><a href="tag.jsp">タグ</a></li>
+						<li class="divider"></li>
+						<li><a href="home.jsp">最新</a></li>
+						<li><a href="home.jsp?sorted=view">注目</a></li>
+						<li><a href="home.jsp?sorted=comment">沸騰</a></li>
+						<%
+							if (userId != null && session.getAttribute("userId") != null) {
+						%>
+						<li class="divider"></li>
+						<li><a href="home.jsp?sorted=mine">所有</a></li>
+						<li><a href="home.jsp?sorted=footprints">足あと</a></li>
+						<li><a href="home.jsp?sorted=recommend">オススメ</a></li>
+						<%
+							}
+						%>
+					</ul></li>
+				<%
+					if (Helper.valid(userId)) {
+				%>
+				
+				<li class="<%=classMakeCard%>"><a href="make-card.jsp"><img src="img/linedpaperplus32.png" class="menu-icon" alt="add a card">&emsp;＋カード</a></li>
+				
+				<li class="dropdown <%=classAccount%>"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown"><img src="img/gear32.png" class="menu-icon" alt="etc.">&emsp;その他<b
+						class="caret"></b></a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						<li><a href="account.jsp"><img src="img/user32.png" class="menu-icon" alt="account">&emsp;設定</a></li>
+						<li class="divider"></li>
+						<li><a href="logout.do"><img src="img/stop32.png" class="menu-icon" alt="logout">&emsp;ログアウト</a></li>
+						<li class="divider"></li>
+						<li><a href="index.jsp"><img src="img/lightbulb32.png" class="menu-icon" alt="help">&emsp;ヘルプ</a></li>
+					</ul></li>
+				<%
+					} else {
+				%>
+				
+				<li class="<%=classLogin%>"><a href="login.jsp"><img src="img/check32.png" class="menu-icon" alt="login">&emsp;ログイン</a></li>
+				<li class="<%=classSignup%>"><a href="signup.jsp"><img src="img/pencil32.png" class="menu-icon" alt="signup">&emsp;サインアップ</a></li>
+				
+				<li class="<%=classIndex%>"><a href="index.jsp"><img src="img/lightbulb32.png" class="menu-icon" alt="help">&emsp;ヘルプ</a></li>
+				<%
+					}
+				%>
+			</ul>
 			<%
-				String userId = Helper.getUserId(request);
-				if (userId != null) {
-					User user = Helper.getUserById(userId);
+				if (Helper.valid(userId)) {
 			%>
-			<li><a <%=classMakeCard%> href="make-card.jsp">+追加</a></li>
-
-			<!-- 
-		<li><a <%=classProfile%> href="profile.jsp">My Profile</a></li>
-		<li><a <%=classMyCard%> href="my-card.jsp">Design My Card</a></li>
-
-		<li><a class="divider-vertical"></li>
-		 -->
-			<li><a <%=classAccount%> href="account.jsp">ユーザー</a></li>
-			<li><a
-				<%=classLogout%> href="logout.do">ログアウト</a></li>
-			<%
-				} else {
-			%>
-			<li><a <%=classLogin%> href="login.jsp">ログイン</a> <a
-				<%=classSignup%> href="signup.jsp">サインアップ</a></li>
+			<form class="navbar-search pull-right" method="get" action="home.jsp"
+				id="card-search-box">
+				<input type="hidden" name="sorted" value="search"><input
+					type="search" name="words" placeholder="Search by Keywords"
+					class="search-query">
+			</form>
 			<%
 				}
 			%>
-			<li><a <%=classIndex%> href="index.jsp">ヘルプ</a></li>
-		</ul>
+		</div>
 	</div>
 </div>
+<div class="topbar-gap"></div>
+
