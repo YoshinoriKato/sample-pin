@@ -59,11 +59,17 @@
 			function() {
 				cardId = $("#cardId").text();
 				$key = $('#cardId').text();
-				
+	});
+
+	attach(window, 'load', 
+			function() {
 				// effect
 				pushPull('#main', '#ajax');
 				/* wookmark(); */
-				
+	});
+
+	attach(window, 'load', 
+			function() {
 				// event
 				$('#image-shot')
 						.attr("onclick", "pushPull('#cover','#origin')");
@@ -74,16 +80,26 @@
 						"pushPull('#comment-area','#write')");
 				$('#comment-close').attr("onclick",
 						"pushPull('#write','#comment-area')");
+	});
+
+	attach(window, 'load', 
+			function() {
 				callAjax($('#sorted').text(), 40, '', $('#userId').text(), $(
 						'#cardId').text(), $('#type').text());
+	});
 
+	attach(window, 'load', 
+			function() {
 				$('#children li').wookmark({
 					autoResize: true,
 					offset : 14,
 					container : $('#card-family'),
 					itemWidth: 100
 				});
-				
+	});
+
+	attach(window, 'load', 
+			function() {
 				// text observer
 				observeText('#comment-text', $key);
 				$('#comment-form').submit(function() {
@@ -94,7 +110,10 @@
 					return false;
 				});
 				$('#main').fadeIn(1000);
+	});
 
+	attach(window, 'load', 
+			function() {
 				// open image
 				if ($('#image').text() == 'open') {
 					$('#cover').fadeIn(1000);
@@ -103,10 +122,23 @@
 </script>
 </head>
 
-<body>
+<body class="home">
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title">Comments</div>
 	<div id="main">
+	<%
+		if (card != null) {
+	%>
+	<!-- image -->
+		<div id="cover" class="center">
+			<div class="middle">
+				<div id="image-close" class="close-button">x</div>
+				<img src="<%=card.getImagePath()%>" id="image-origin">
+			</div>
+		</div>
+		<%
+			}
+		%>
 		<div id="split">
 			<div id="split-left">
 				<div class="card margin-bottom-default">
@@ -179,21 +211,6 @@
 	<div style="display: none" id="type"><%=type%></div>
 	<div style="display: none" id="image"><%=image%></div>
 
-	<%
-		if (card != null) {
-	%>
-	<!-- image -->
-	<div id="cover" class="center">
-		<div class="middle">
-			<div id="image-close" class="tab-button">X</div>
-			<div>
-				<img src="<%=card.getImagePath()%>" id="image-origin">
-			</div>
-		</div>
-	</div>
-	<%
-		}
-	%>
 	<jsp:include page="_footer.jsp"></jsp:include>
 	<jsp:include page="_sns.jsp"></jsp:include>
 </body>

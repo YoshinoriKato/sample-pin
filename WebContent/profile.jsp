@@ -24,7 +24,7 @@
 	String error = message != null && !message.isEmpty() ? "error" : "";
 %>
 
-<body>
+<body class="home">
 	<jsp:include page="_topbar.jsp"></jsp:include>
 	<div id="title">Profile</div>
 	<div id="main">

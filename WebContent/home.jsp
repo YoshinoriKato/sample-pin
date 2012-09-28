@@ -45,7 +45,7 @@
 </script>
 </head>
 
-<body>
+<body class="home">
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title"><%=title%></div>
 	<div id="main">

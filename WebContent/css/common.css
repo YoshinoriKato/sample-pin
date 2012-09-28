@@ -122,6 +122,18 @@
 	background-color: rgba(40, 40, 230, 0.9);
 }
 
+.xx-small {
+	font-size: xx-small;
+}
+
+.x-small {
+	font-size: x-small;
+}
+
+.small {
+	font-size: small;
+}
+
 .large {
 	font-size: large;
 }

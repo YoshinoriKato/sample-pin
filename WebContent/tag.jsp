@@ -17,7 +17,7 @@
 </script>
 </head>
 
-<body>
+<body class="home">
 	<jsp:include page="_topbar.jsp"></jsp:include>
 	<div id="title">Tags</div>
 	<div id="main">

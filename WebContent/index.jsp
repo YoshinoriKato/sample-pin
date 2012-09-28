@@ -8,12 +8,12 @@
 <jsp:include page="_effect.jsp"></jsp:include>
 </head>
 
-<body>
+<body class="home">
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title">What?</div>
 	<div id="main">
 		<div id="input-window">
-			<div class="cell">
+			<div class="cell margin-bottom-default">
 				<h1 class="tab-header">
 					What's
 					<%=Helper.NAME%>
@@ -22,7 +22,7 @@
 				<div class="profile large">
 					<div class="item-group">
 						<div class="items">
-							<img src="img/title.png" style="min-width: 240px;">
+							<img src="img/title.png" style="max-width: 120px;">
 						</div>
 					</div>
 					<div class="item-group">
@@ -32,22 +32,33 @@
 							<p>あなたが検索した画像、それを見たときの感想・興味を共有してください。</p>
 						</div>
 					</div>
-					<hr>
+				</div>
+			</div>
+			<div class="cell margin-bottom-default">
+				<h3 class="tab-header">動画</h3>
+				<div class="profile large">
 					<div class="item-group">
-						<div class="item-label">動画</div>
+						<div class="item-label"></div>
 						<div class="items">
-						<div class="margin-bottom-default">
-							<video controls="controls">
-							<source src="../../icon-keeper/movie.mp4"></source></video></div>
+							<div class="margin-bottom-default">
+								<video controls="controls"> <source
+									src="../../icon-keeper/movie.mp4"></source></video>
+							</div>
 							<p>サイト利用の一例です。</p>
 							<p>ヘルプからTwitterアカウントでログイン、ホーム画面、コメント、カード作成、ホーム画面切り替えをしています。</p>
 						</div>
 					</div>
-					<hr>
+				</div>
+			</div>
+			<div class="cell margin-bottom-default">
+				<h3 class="tab-header">はじめに</h3>
+				<div class="profile large">
 					<div class="item-group">
-						<div class="item-label">はじめに</div>
+						<div class="item-label"></div>
 						<div class="items">
-							<p>メニューの中の<a href="signup.jsp">"サインアップ"</a>をクリックしてください。</p>
+							<p>
+								メニューの中の<a href="signup.jsp">"サインアップ"</a>をクリックしてください。
+							</p>
 							<p>※サインアップしなくても、ホーム画面やコメントをご覧いただけます。</p>
 							<ol>
 								<li>メールアドレスを書いていただくか、<a href="oauth-twitter.jsp">Twitterログイン</a>を実施してください。
@@ -63,16 +74,21 @@
 								<li><a href="oauth-twitter.jsp">Twitterログイン</a>を選ばれた場合
 									<ol>
 										<li>Twitterからの指示に沿って、アクセスを許可してください。</li>
-									</ol>
-								</li>
+									</ol></li>
 							</ol>
 						</div>
 					</div>
-					<hr>
+				</div>
+			</div>
+			<div class="cell margin-bottom-default">
+				<h3 class="tab-header">使い方</h3>
+				<div class="profile large">
 					<div class="item-group">
 						<div class="item-label">使い方 1</div>
 						<div class="items">
-							<p>メニューの中の<a href="home.jsp">"ホーム"</a>を押してください。</p>
+							<p>
+								メニューの中の<a href="home.jsp">"ホーム"</a>を押してください。
+							</p>
 							<ol>
 								<li>並んでいるカードを眺めてください。</li>
 								<li>興味を感じたカードをクリックしてください。</li>
@@ -84,7 +100,9 @@
 					<div class="item-group">
 						<div class="item-label">使い方 2</div>
 						<div class="items">
-							<p><a href="home.jsp">"ホーム"</a>の上部に注目してください。</p>
+							<p>
+								<a href="home.jsp">"ホーム"</a>の上部に注目してください。
+							</p>
 							<ol>
 								<li>Search Imagesという欄があります。</li>
 								<li>キーワードを入力して、画像を検索してください。</li>
@@ -98,9 +116,13 @@
 						<div class="item-label">使い方 3</div>
 						<div class="items">使い方 1、2を繰り返してください。</div>
 					</div>
-					<hr>
+				</div>
+			</div>
+			<div class="cell margin-bottom-default">
+				<h3 class="tab-header">SNS ページ</h3>
+				<div class="profile large">
 					<div class="item-group">
-						<div class="item-label">SNS ページ</div>
+						<div class="item-label"></div>
 						<div class="items">
 							<a href="https://twitter.com/doya_info" target="_blank"
 								style="margin-left: 50px;"><img src="img/bird_gray_48.png"></a><a
@@ -112,8 +134,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<jsp:include page="_footer.jsp"></jsp:include>
-	<jsp:include page="_sns.jsp"></jsp:include>
+		<jsp:include page="_footer.jsp"></jsp:include>
+		<jsp:include page="_sns.jsp"></jsp:include>
 </body>
 </html>

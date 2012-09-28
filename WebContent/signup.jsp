@@ -16,7 +16,7 @@
 	fromUrl = fromUrl != null ? fromUrl : "home.jsp";
 %>
 
-<body>
+<body class="home">
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title">Sign up</div>
 	<div id="main">

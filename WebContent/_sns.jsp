@@ -1,12 +1,12 @@
-<% if(false) { %>
+
 <script type="text/javascript" charset="UTF-8">
-	attach(window, 'load', function() {	
-		$('#sns-close').attr("onclick",
-		"pushPull('#null','#sns-link')");
+	attach(window, 'load', function() {
+		$('#sns-link').attr("onclick", "pushPull('#sns','#sns-link')");
+		$('#sns').attr("onclick", "pushPull('#sns-link','#sns')");
 	});
 </script>
 
-<!-- twitter -->
+twitter
 <script type="text/javascript" charset="UTF-8">
 	!function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
@@ -19,7 +19,7 @@
 	}(document, "script", "twitter-wjs");
 </script>
 
-<!-- facebook -->
+facebook
 <div id="fb-root"></div>
 <script type="text/javascript" charset="UTF-8">
 	(function(d, s, id) {
@@ -33,7 +33,7 @@
 	}(document, 'script', 'facebook-jssdk'));
 </script>
 
-<!-- mixi -->
+mixi
 <script type="text/javascript" charset="UTF-8">
 	(function(d) {
 		var s = d.createElement('script');
@@ -44,8 +44,8 @@
 	})(document);
 </script>
 
-<!-- google+ -->
-<!-- Place this tag after the last +1 button tag. -->
+google+
+Place this tag after the last +1 button tag.
 <script type="text/javascript">
 	window.___gcfg = {
 		lang : 'ja'
@@ -61,24 +61,26 @@
 	})();
 </script>
 
-<!-- hatena -->
+hatena
 <script type="text/javascript"
 	src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8"
 	async="async"></script>
 
-
-<div id="sns-link">
-	<div id="sns-close" class="close-button">x</div>
+<div class="sns-info link" id="sns"><img src="img/heart32.png" class="menu-icon"></div>
+<div class="sns-info" id="sns-link">
+	twitter
 	<div id="twitter-button" class="margin-top-default">
 		<a href="https://twitter.com/share" class="twitter-share-button"
 			data-lang="ja">Twitter</a>
 	</div>
 
+	facebook
 	<div id="facebook-button" class="margin-top-default">
 		<div class="fb-like" data-href="http://doya.info/" data-send="false"
 			data-layout="button_count" data-width="450" data-show-faces="false"></div>
 	</div>
 
+	mixi
 	<div id="mixi-button" class="margin-top-default">
 		<div data-plugins-type="mixi-favorite"
 			data-service-key="bf28d3d3db4ee8eeb397cac5038c541e30c1dd65"
@@ -87,11 +89,13 @@
 			data-show-comment="false" data-width=""></div>
 	</div>
 
+	google
 	<div id="google-button" class="margin-top-default">
-		<!-- Place this tag where you want the +1 button to render. -->
+		Place this tag where you want the +1 button to render.
 		<div class="g-plusone" data-size="medium" data-href="http://doya.info"></div>
 	</div>
 
+	hatena
 	<div id="hatena-button" class="margin-top-default">
 		<a href="http://b.hatena.ne.jp/entry/http://doya.info"
 			class="hatena-bookmark-button" data-hatena-bookmark-title="DOYA.info"
@@ -102,4 +106,3 @@
 	</div>
 </div>
 
-<% } %>

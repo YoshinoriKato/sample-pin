@@ -22,7 +22,7 @@
 
 
 <!-- iOS -->
-<meta name="viewport" content="width=640, maximum-scale=1.0">
+<meta name="viewport" content="width=1000, maximum-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
@@ -51,7 +51,6 @@
 <link href="css/common.css?<%=suffix%>" rel="stylesheet">
 <link href="css/custom.css?<%=suffix%>" rel="stylesheet">
 <link href="css/smartphone.css?<%=suffix%>" rel="stylesheet">
-
 
 
 <!-- javascript -->

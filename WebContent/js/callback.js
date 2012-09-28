@@ -1,6 +1,8 @@
-var $timer;
+var $cardWidth = 230;
 
 var $offset = 14;
+
+var $timer;
 
 var $counter = 0;
 
@@ -50,8 +52,6 @@ function wookmark() {
 		offset : $offset
 	});
 };
-
-var $cardWidth = 240;
 
 function makeCard($card) {
 

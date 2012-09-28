@@ -43,15 +43,9 @@ String error = message != null && !message.isEmpty() ? "error" : "";
 			<div class="control-group">
 				<input id="submit-button" type="submit"
 					class="btn btn-large btn-primary btn-cell" value="Comment" disabled>
-				<%
-					if (Helper.canTweet(session)) {
-				%>
 				<input type="checkbox" name="tweet"
 					class="btn btn-large btn-primary btn-cell"
 					style="margin-left: 50px;"> <img src="img/bird_gray_48.png">
-				<%
-					}
-				%>
 				<!-- <input type="checkbox" name="anonymous"
 					class="btn btn-large btn-primary btn-cell"
 					style="margin-left: 50px;"> <img src="img/anonymous.png" class="image-anonymous"> -->

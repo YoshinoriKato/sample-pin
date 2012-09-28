@@ -102,10 +102,10 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 			String message = makeMessage(card);
 
 			if (valid(tweet) && "on".equals(tweet)) {
+				service.tweet("ADD: " + message);
 				service.tweet(userId, message);
 			}
 
-			service.tweet("ADD: " + message);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

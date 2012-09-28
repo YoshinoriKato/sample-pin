@@ -33,7 +33,7 @@
 	String error = message != null && !message.isEmpty() ? "error" : "";
 %>
 
-<body>
+<body class="home">
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title">Login</div>
 	<div id="main">

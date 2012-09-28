@@ -17,7 +17,7 @@
 	});
 </script>
 </head>
-<body>
+<body class="home">
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title">Add</div>
 	<div id="main">

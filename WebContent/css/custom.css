@@ -2,12 +2,17 @@
 
 body {
 	/* effect ---------------------------------------------------------------*/
-	/* background-color: #99ccff; */
+	background-color: #fff;
+	/* layout ---------------------------------------------------------------*/
+	/* shape ----------------------------------------------------------------*/
+}
+
+.home {
+	/* effect ---------------------------------------------------------------*/
 	background-color: #eee;
 	background-image: url("../img/ichimatsu.png?201208131742");
 	background-position: left top;
 	background-attachment: fixed;
-	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
 	/* layout ---------------------------------------------------------------*/
 	/* shape ----------------------------------------------------------------*/
 }
@@ -26,14 +31,11 @@ html {
 #copyrights {
 	/* effect ---------------------------------------------------------------*/
 	/* layout ---------------------------------------------------------------*/
-	z-index: -10;
-	position: fixed;
-	bottom: 12px;
 	text-align: center;
 	white-space: nowrap;
-	left: 40%;
+	padding: 10px;
 	/* shape ----------------------------------------------------------------*/
-	width: 20%;
+	width: 100%;
 }
 
 #navigation {
@@ -58,29 +60,17 @@ html {
 	/* shape ----------------------------------------------------------------*/
 }
 
+#sns{
+}
+
 #sns-link{
-	/* effect ---------------------------------------------------------------*/
-	background-color: rgba(0, 0, 0, 0.4);
-	box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
-	/* layout ---------------------------------------------------------------*/
-	position: fixed;
-	z-index: 100;
-	text-align: left;
-	left: -3px;
-	top: 60%;
-	padding: 14px;
-	/* shape ----------------------------------------------------------------*/
-	min-width: 80px;
-	border-radius: 0px 25px 5px 0px;
-	-webkit-border-radius: 0px 25px 5px 0px;
-	-moz-border-radius: 0px 25px 5px 0px;
+	display: none;
 }
 
 #card-search-box {
 	/* effect ---------------------------------------------------------------*/
 	/* layout ---------------------------------------------------------------*/
-	margin-top: 12px;
+	margin-top: 20px;
 	/* shape ----------------------------------------------------------------*/
 }
 
@@ -195,13 +185,13 @@ html {
 	text-align: center;
 	position: fixed;
 	bottom: -5px;
-	right: 20px;
+	right: -5px;
 	padding: 20px;
 	z-index: 20;
 	/* shape ----------------------------------------------------------------*/
-	border-radius: 3px 25px 0px 0px;
-	-webkit-border-radius: 3px 20px 0px 0px;
-	-moz-border-radius: 3px 20px 0px 0px;
+	border-radius: 25px 0px 0px 0px;
+	-webkit-border-radius: 25px 0px 0px 0px;
+	-moz-border-radius: 25px 0px 0px 0px;
 }
 
 #full-body {
@@ -214,8 +204,9 @@ html {
 #main {
 	/* effect ---------------------------------------------------------------*/
 	display: none;
+	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
 	/* layout ---------------------------------------------------------------*/
-	margin-top: 80px;
+	margin-top: 100px;
 	margin-bottom: 60px;
 	/* shape ----------------------------------------------------------------*/
 	width: 100%;
@@ -274,6 +265,7 @@ html {
 	/* effect ---------------------------------------------------------------*/
 	/* layout ---------------------------------------------------------------*/
 	position: relative;
+	margin-bottom: 20px;
 	/* shape ----------------------------------------------------------------*/
 	/* width: 100%; */
 }
@@ -379,23 +371,28 @@ html {
 	/* effect ---------------------------------------------------------------*/
 	background-color: #eee;
 	background-image: url("../img/ichimatsu.png?201208131742");
+	box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
 	/* layout ---------------------------------------------------------------*/
 	/* shape ----------------------------------------------------------------*/
-	max-height: 80%;
+	max-width: 90%;
+	max-height: 90%;
 }
 
 #cover {
 	/* effect ---------------------------------------------------------------*/
-	background-color: rgba(0, 0, 0, 0.4);
+	/* background-color: rgba(0, 0, 0, 0.4); */
 	font-size: larger;
 	display: none;
-	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.6);
-	-webkit-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.6);
+/* 	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.6); */
 	/* layout ---------------------------------------------------------------*/
-	position: fixed;
+/* 	position: fixed;
 	top: 10%;
-	left: 10%;
 	z-index: 4;
+ */	
+ 	position: relative;
+	left: 10%;
 	padding: 30px;
 	/* shape ----------------------------------------------------------------*/
 	width: 80%;
@@ -484,14 +481,14 @@ html {
 
 .btn-cell {
 	/* effect ---------------------------------------------------------------*/
-	border: 1px solid rgba(0, 0, 0, 0.2);
+/* 	border: 1px solid rgba(0, 0, 0, 0.2);
 	box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3); */
 	/* layout ---------------------------------------------------------------*/
 	/* shape ----------------------------------------------------------------*/
-	border-radius: 3px 12px 3px;
+/* 	border-radius: 3px 12px 3px;
 	-webkit-border-radius: 3px 12px 3px;
-	-moz-border-radius: 3px 12px 3px;
+	-moz-border-radius: 3px 12px 3px; */
 }
 
 .image-shot {
@@ -545,7 +542,7 @@ html {
 	border-radius: 1px 6px 1px;
 	-webkit-border-radius: 1px 6px 1px;
 	-moz-border-radius: 1px 6px 1px;
-	width: 40px;
+	width: 32px;
 }
 
 .image-anonymous {
@@ -800,8 +797,9 @@ html {
 .close-button {
 	/* effect ---------------------------------------------------------------*/
 	cursor: pointer;
-	font-size: large;
-	color: rgba(180, 180, 180, 0.8);
+	font-size: 18px;
+	background-color: rgba(0, 0, 0, 0.4);
+	color: rgba(180, 180, 180, 0.6);
 	text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8);
 	/* layout ---------------------------------------------------------------*/
 	z-index: 2;
@@ -809,6 +807,19 @@ html {
 	right: 12px;
 	top: 6px;
 	text-align: center;
+	padding: 3px;
+	/* shape ----------------------------------------------------------------*/
+	border-radius: 500px;
+	-webkit-border-radius: 500px;
+	-moz-border-radius: 500px;
+	width: 24px;
+	height: 24px;
+}
+
+.close-button a {
+	/* effect ---------------------------------------------------------------*/
+	color: rgba(180, 180, 180, 0.8);
+	/* layout ---------------------------------------------------------------*/
 	/* shape ----------------------------------------------------------------*/
 }
 
@@ -817,13 +828,6 @@ html {
 	/* layout ---------------------------------------------------------------*/
 	/* shape ----------------------------------------------------------------*/
 	min-height: 160px;
-}
-
-.close-button a {
-	/* effect ---------------------------------------------------------------*/
-	color: rgba(180, 180, 180, 0.8);
-	/* layout ---------------------------------------------------------------*/
-	/* shape ----------------------------------------------------------------*/
 }
 
 .star {
@@ -958,4 +962,41 @@ html {
 .menu a:active {
 	color: #0000FF;
 	text-decoration: none;
+}
+
+
+.menu-user-icon {
+	/* effect ---------------------------------------------------------------*/
+	/* layout ---------------------------------------------------------------*/
+	/* shape ----------------------------------------------------------------*/
+	max-width: 32px;
+	max-height: 32px;
+}
+
+.sns-info {
+	/* effect ---------------------------------------------------------------*/
+	background-color: rgba(0, 0, 0, 0.4);
+	box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+	/* layout ---------------------------------------------------------------*/
+	position: fixed;
+	z-index: 5;
+	text-align: left;
+	left: -3px;
+	top: 65px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-right: 15px;
+	padding-left: 10px;
+/* shape ----------------------------------------------------------------*/
+	min-width: 32px;
+	border-radius: 0px 0px 25px 0px;
+	-webkit-border-radius: 0px 0px 25px 0px;
+	-moz-border-radius: 0px 0px 25px 0px;
+}
+
+.user-name {
+	max-width: 80px;
+	overflow: hidden;
+	font-size: xx-small;
 }

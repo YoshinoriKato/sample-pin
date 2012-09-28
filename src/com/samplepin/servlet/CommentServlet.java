@@ -122,9 +122,9 @@ public class CommentServlet extends HttpServlet {
 					+ new ShortCutServlet().toShortCut(cardId);
 
 			if (valid(tweet) && "on".equals(tweet)) {
+				service.tweet("MSG: " + message);
 				service.tweet(userId, message);
 			}
-			service.tweet("MSG: " + message);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

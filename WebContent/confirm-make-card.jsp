@@ -26,7 +26,7 @@
 			: "";
 %>
 
-<body>
+<body class="home">
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title">Confirmation</div>
 	<div id="main">
@@ -49,16 +49,10 @@
 								<div class="controls">
 									<input type="submit" value="Confirm"
 										class="btn btn-large btn-primary btn-cell">
-									<%
-										if (Helper.canTweet(session)) {
-									%>
 									<input type="checkbox" name="tweet" checked
 										class="btn btn-large btn-primary btn-cell"
 										style="margin-left: 50px;"> <img
 										src="img/bird_gray_48.png">
-									<%
-										}
-									%>
 								</div>
 							</div>
 						</fieldset>
