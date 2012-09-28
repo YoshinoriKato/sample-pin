@@ -20,6 +20,7 @@
 <body class="home">
 	<jsp:include page="_topbar.jsp"></jsp:include>
 	<div id="title">Tags</div>
+	<div style="height: 40px;"></div>
 	<div id="main">
 		<ul id="content">
 			<%

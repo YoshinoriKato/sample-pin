@@ -19,7 +19,7 @@ function gotoTop() {
 	$('#bottom-label a').click(function() {
 		$('body').animate({
 			scrollTop : 0
-		}, 1000);
+		}, 2000);
 		return false;
 	});
 }
@@ -29,7 +29,11 @@ function isNeed() {
 			.scrollTop());
 }
 
-//function isTarget($page) {
+function isHided() {
+	return $scrolled > $(this).scrollTop();
+}
+
+// function isTarget($page) {
 //	return $page
 //			&& $page != ''
 //			&& ($page.indexOf('/home.jsp') > 0 || $page

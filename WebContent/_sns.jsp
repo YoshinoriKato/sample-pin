@@ -1,3 +1,4 @@
+<% if(false) { %>
 
 <script type="text/javascript" charset="UTF-8">
 	attach(window, 'load', function() {
@@ -106,3 +107,4 @@
 	</div>
 </div>
 
+<% } %>

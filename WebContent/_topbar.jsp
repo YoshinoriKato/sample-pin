@@ -11,62 +11,108 @@
 <%
 	String url = request.getRequestURI();
 
-	String classIndex = url.contains("/index.jsp") ? CLASS_ACTIVE
+	String classIndex = url.contains("/index.jsp")
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 
-	String classHome = url.contains("/home.jsp") ? CLASS_ACTIVE
+	String classHome = url.contains("/home.jsp")
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 	classHome = url.contains("/tag.jsp") ? CLASS_ACTIVE : classHome;
-	classHome = url.contains("/footprints.jsp") ? CLASS_ACTIVE
+	classHome = url.contains("/footprints.jsp")
+			? CLASS_ACTIVE
 			: classHome;
-	classHome = url.contains("/recommend.jsp") ? CLASS_ACTIVE
+	classHome = url.contains("/recommend.jsp")
+			? CLASS_ACTIVE
 			: classHome;
 
-	String classMakeCard = url.contains("/make-card.jsp") ? CLASS_ACTIVE
+	String classTag = url.contains("/tag.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
+	
+	String classMakeCard = url.contains("/make-card.jsp")
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
-	classMakeCard = url.contains("/confirm-make-card.jsp") ? CLASS_ACTIVE
+	classMakeCard = url.contains("/confirm-make-card.jsp")
+			? CLASS_ACTIVE
 			: classMakeCard;
 
-	String classLogin = url.contains("/login.jsp") ? CLASS_ACTIVE
+	String classLogin = url.contains("/login.jsp")
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
-	String classSignup = url.contains("/signup.jsp") ? CLASS_ACTIVE
+	String classSignup = url.contains("/signup.jsp")
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
-	
-	String classAccount = url.contains("/account.jsp") ? CLASS_ACTIVE
+
+	String classAccount = url.contains("/account.jsp")
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
-	classAccount = url.contains("/index.jsp") ? CLASS_ACTIVE
+	classAccount = url.contains("/index.jsp")
+			? CLASS_ACTIVE
 			: classAccount;
 
-	String classProfile = url.contains("/profile.jsp") ? CLASS_ACTIVE
+	String classProfile = url.contains("/profile.jsp")
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 
 	String userId = Helper.getUserId(session);
 	User user = Helper.getUserById(userId);
+	
+	String cardId = request.getParameter("cardId");
+	
+	String sorted = request.getParameter("sorted");
+	
+	String classLatest = (url.contains("/home.jsp") && sorted == null
+	&& cardId == null) ? CLASS_ACTIVE : CLASS_NEGATIVE;
+	
+	String classMine = "mine".equals(sorted) ? CLASS_ACTIVE : CLASS_NEGATIVE;
+	
+	String classView = "view".equals(sorted) ? CLASS_ACTIVE : CLASS_NEGATIVE;
+	
+	String classComment = "comment".equals(sorted) ? CLASS_ACTIVE : CLASS_NEGATIVE;
+	
+	String classFootprints = "footprints".equals(sorted) ? CLASS_ACTIVE
+	: CLASS_NEGATIVE;
+	
+	String classRecommend = "recommend".equals(sorted) ? CLASS_ACTIVE : CLASS_NEGATIVE;
+
 %>
 
 <script type="text/javascript" charset="utf-8">
 	attach(window, 'load', function() {
 		$('.dropdown-toggle').dropdown();
 	});
+
+	var $height = $('#main-menu').height;
+	attach(window, 'scroll', function() {
+		if (isHided()) {
+			pushPull('#main-menu', '#null', 5);
+		} else {
+			pushPull('#null', '#main-menu', 5);
+		}
+	});
 </script>
 
 <div class="navbar navbar-fixed-top">
-	<div class="navbar-inner">
+	<div id="main-menu" class="navbar-inner">
 		<div class="container">
 			<ul class="nav pills">
 				<%
 					if (Helper.valid(user)) {
 				%>
-				<li class="<%=classProfile%>"><a href="profile.jsp" class="center"><img
-						src="<%=user.getImagePath()%>" class="menu-user-icon img-circle"><br><span class="user-name">あなた</span></a></li>
+				<li class="<%=classProfile%>"><a href="profile.jsp"
+					class="center"><img src="<%=user.getImagePath()%>"
+						class="menu-user-icon img-circle"><br> <span
+						class="user-name">あなた</span></a></li>
 				<%
 					}
 				%>
-				<li class="<%=classHome%>"></li>
-				<li class="dropdown <%=classHome%>"><a href="#"
+				<li class="<%=classHome%>"><a href="home.jsp"
+					class="center x-small"><img src="img/home32.png"
+						class="menu-icon" alt="home"><br>ホーム</a></li>
+
+<%-- 				<li class="dropdown"><a href="#"
 					class="dropdown-toggle center x-small" data-toggle="dropdown"><img
-						src="img/home32.png" class="menu-icon" alt="home"><b
-						class="caret"></b><br>ホーム</a>
+						src="img/search32.png" class="menu-icon" alt="filter"><b
+						class="caret"></b><br>フィルタ</a>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 						<li><a href="home.jsp">最新</a></li>
 						<li><a href="home.jsp?sorted=view">注目</a></li>
@@ -83,7 +129,7 @@
 						%>
 						<li class="divider"></li>
 						<li><a href="tag.jsp">タグ</a></li>
-					</ul></li>
+					</ul></li> --%>
 				<%
 					if (Helper.valid(userId)) {
 				%>
@@ -97,27 +143,29 @@
 						src="img/gear32.png" class="menu-icon" alt="etc."><b
 						class="caret"></b><br>その他</a>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-						<li><a href="account.jsp" class="x-small"><img src="img/user32.png"
-								class="menu-icon" alt="account">&emsp;設定</a></li>
+						<li><a href="account.jsp" class="x-small"><img
+								src="img/user32.png" class="menu-icon" alt="account">&emsp;設定</a></li>
 						<li class="divider"></li>
-						<li><a href="logout.do" class="x-small"><img src="img/stop32.png"
-								class="menu-icon" alt="logout">&emsp;ログアウト</a></li>
+						<li><a href="logout.do" class="x-small"><img
+								src="img/stop32.png" class="menu-icon" alt="logout">&emsp;ログアウト</a></li>
 						<li class="divider"></li>
-						<li><a href="index.jsp" class="x-small"><img src="img/lightbulb32.png"
-								class="menu-icon" alt="help">&emsp;ヘルプ</a></li>
+						<li><a href="index.jsp" class="x-small"><img
+								src="img/lightbulb32.png" class="menu-icon" alt="help">&emsp;ヘルプ</a></li>
 					</ul></li>
 				<%
 					} else {
 				%>
 
-				<li class="<%=classLogin%>"><a href="login.jsp" class="center x-small"><img
-						src="img/check32.png" class="menu-icon" alt="login"><br>ログイン</a></li>
+				<li class="<%=classLogin%>"><a href="login.jsp"
+					class="center x-small"><img src="img/check32.png"
+						class="menu-icon" alt="login"><br>ログイン</a></li>
 				<li class="<%=classSignup%>"><a href="signup.jsp"
-					class="center x-small"><img src="img/pencil32.png" class="menu-icon"
-						alt="signup"><br>サインアップ</a></li>
+					class="center x-small"><img src="img/pencil32.png"
+						class="menu-icon" alt="signup"><br>サインアップ</a></li>
 
-				<li class="<%=classIndex%>"><a href="index.jsp" class="center x-small"><img
-						src="img/lightbulb32.png" class="menu-icon" alt="help"><br>ヘルプ</a></li>
+				<li class="<%=classIndex%>"><a href="index.jsp"
+					class="center x-small"><img src="img/lightbulb32.png"
+						class="menu-icon" alt="help"><br>ヘルプ</a></li>
 				<%
 					}
 				%>
@@ -136,5 +184,35 @@
 			%>
 		</div>
 	</div>
-</div>
 
+	<%
+		if (url.contains("/home.jsp") || url.contains("/tag.jsp")) {
+	%>
+	<div class="navbar"
+		style="margin: 0px; width: 100%; position: absolute;">
+		<div class="navbar-inner center">
+			<ul class="nav">
+				<li><a>フィルター：</a></li>
+				<li class="<%=classLatest%>"><a href="home.jsp">最新</a></li>
+				<li class="<%=classView%>"><a href="home.jsp?sorted=view">注目</a></li>
+				<li class="<%=classComment%>"><a href="home.jsp?sorted=comment">沸騰</a></li>
+				<%
+					if (userId != null && session.getAttribute("userId") != null) {
+				%>
+				<li class="divider-vertical"></li>
+				<li class="<%=classMine%>"><a href="home.jsp?sorted=mine">所有</a></li>
+				<li class="<%=classFootprints%>"><a
+					href="home.jsp?sorted=footprints">足あと</a></li>
+				<li class="<%=classRecommend%>"><a href="home.jsp?sorted=recommend">オススメ</a></li>
+				<%
+					}
+				%>
+				<li class="divider-vertical"></li>
+				<li class="<%=classTag%>"><a href="tag.jsp">タグ</a></li>
+			</ul>
+		</div>
+	</div>
+	<%
+		}
+	%>
+</div>

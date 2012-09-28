@@ -54,6 +54,7 @@
 <body class="home">
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title"><%=title%></div>
+	<div style="height: 40px;"></div>
 	<div id="main">
 		<ul id="content">
 			<!--  ajax -->
