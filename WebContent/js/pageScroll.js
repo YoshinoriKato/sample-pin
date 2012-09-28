@@ -1,5 +1,7 @@
 var $scroll = 240;
 
+var $scrolled = 0;
+
 function bottomLabel() {
 	if ($(this).scrollTop() > 60) {
 		$('#bottom-label').fadeIn();
@@ -27,38 +29,20 @@ function isNeed() {
 			.scrollTop());
 }
 
-function isNeed2() {
-	return ($scrolled > $(this).scrollTop());
-}
-
-function isTarget($page) {
-	return $page.indexOf('/home.jsp') || $page.indexOf('/card-comment.jsp');
-}
-
-function isTarget2($page) {
-	return $page.indexOf('/home.jsp');
-}
-
-var $scrolled = 0;
+//function isTarget($page) {
+//	return $page
+//			&& $page != ''
+//			&& ($page.indexOf('/home.jsp') > 0 || $page
+//					.indexOf('/card-comment.jsp') > 0);
+//}
 
 $(function() {
 	$('#bottom-label').hide();
-	$(window).scroll(function() {
+
+	attach(window, 'scroll', function() {
 		bottomLabel();
-		var $page = $('#page').text();
-		if (isTarget($page)) {
-			if (isNeed()) {
-				readMore();
-			}
-		}
-//		if (isTarget2($page)) {
-//			if (isNeed2()) {
-//				$('#add-card').fadeIn();
-//			} else {
-//				$('#add-card').fadeOut();
-//			}
-//		}
 		$scrolled = $(this).scrollTop();
 	});
+
 	gotoTop();
 });

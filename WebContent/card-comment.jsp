@@ -119,6 +119,12 @@
 					$('#cover').fadeIn(1000);
 				}
 			});
+
+	attach(window, 'scroll', function() {
+		if (isNeed()) {
+				readMore();
+			}
+	});
 </script>
 </head>
 
