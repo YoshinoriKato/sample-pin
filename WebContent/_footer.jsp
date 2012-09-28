@@ -25,7 +25,7 @@
 </div>
 
 <div id="error-dialog">
-	<div id="error-close" class="tab-button">X</div>
+	<div id="error-close" class="close-button">x</div>
 	<img src="img/ERROR.png?<%=Helper.TIMESTAMP %>" class="image-shot">
 	<div class="caption large">Sorry, server error.</div>
 </div>
@@ -34,7 +34,7 @@
 
 <script type="text/javascript" charset="UTF-8">
 	attach(window, 'load', function() {	
-		$('#error-close').attr("onclick",
+		$('#error-dialog').attr("onclick",
 		"pushPull('#null','#error-dialog')");
 	});
 </script>
