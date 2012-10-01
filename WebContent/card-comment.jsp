@@ -12,7 +12,7 @@
 	String otherUserId = request.getParameter("userId");
 	otherUserId = (otherUserId != null) ? otherUserId : "";
 
-	String userId = Helper.getUserId(request);
+	String userId = Helper.getUserId(session);
 	String selfUserId = (userId != null) ? userId : session.getId();
 
 	String cardId = request.getParameter("cardId");
@@ -40,7 +40,10 @@
 	User user = Helper.getUserById(userId);
 	request.setAttribute("user", user);
 
-	if (card == null && user == null) {
+	if ((card == null
+			&& user == null)
+			|| (card.getAccessLevel() > 0 && !card.getUserId().equals(
+					userId))) {
 		response.sendError(HttpServletResponse.SC_NOT_FOUND);
 	}
 %>

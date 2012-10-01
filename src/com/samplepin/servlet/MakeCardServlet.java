@@ -180,6 +180,7 @@ public class MakeCardServlet extends HttpServlet {
 			String imagePath = getValueByKeyword(part, "imagePath");
 			String anonymous = getValueByKeyword(part, "anonymous");
 			String parentId = getValueByKeyword(part, "parentId");
+			String accessLevel = getValueByKeyword(part, "accessLevel");
 
 			if (title != null) {
 
@@ -203,6 +204,9 @@ public class MakeCardServlet extends HttpServlet {
 
 			} else if (valid(parentId)) {
 				card.setParentId(parentId);
+
+			} else if (valid(accessLevel)) {
+				card.setAccessLevel(Integer.valueOf(accessLevel));
 
 			} else {
 				String path = getFileName(part);

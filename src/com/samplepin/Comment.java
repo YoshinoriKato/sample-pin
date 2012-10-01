@@ -46,11 +46,14 @@ public class Comment implements Serializable, Deleteable, Createable {
 
 	Boolean anonymous;
 
+	Integer accessLevel;
+
 	public Comment() {
 		super();
 		this.anonymous = false;
 		this.isDeleted = false;
 		this.imagePath = "";
+		this.accessLevel = 0;
 	}
 
 	public Comment(String userId, String cardId, String caption,
@@ -61,6 +64,14 @@ public class Comment implements Serializable, Deleteable, Createable {
 		this.caption = caption;
 		this.createDate = createDate;
 		this.anonymous = anonymous;
+	}
+
+	public Integer getAccessLevel() {
+		return accessLevel;
+	}
+
+	public void setAccessLevel(Integer accessLevel) {
+		this.accessLevel = accessLevel;
 	}
 
 	public Boolean getAnonymous() {

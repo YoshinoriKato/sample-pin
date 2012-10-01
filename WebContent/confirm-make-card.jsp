@@ -48,8 +48,9 @@
 							<div class="control-group">
 								<div class="controls">
 									<input type="submit" value="Confirm"
-										class="btn btn-large btn-primary btn-cell">
-									<input type="checkbox" name="tweet" checked
+										class="btn btn-large btn-primary btn-cell"> <input
+										type="checkbox" name="tweet"
+										<%=(card.getAccessLevel() == 0) ? "checked" : ""%>
 										class="btn btn-large btn-primary btn-cell"
 										style="margin-left: 50px;"> <img
 										src="img/bird_gray_48.png">
