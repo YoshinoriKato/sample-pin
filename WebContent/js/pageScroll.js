@@ -30,7 +30,9 @@ function isNeed() {
 }
 
 function isHided() {
-	return $scrolled > $(this).scrollTop();
+	var $scroll = $(this).scrollTop();
+//	$('#scrolled-val').text($scroll);
+	return $scrolled > $scroll || $scroll < 24;
 }
 
 // function isTarget($page) {

@@ -61,9 +61,9 @@
 							</p>
 							<p>※サインアップしなくても、ホーム画面やコメントをご覧いただけます。</p>
 							<ol>
-								<li>メールアドレスを書いていただくか、<a href="oauth-twitter.jsp">Twitterログイン</a>を実施してください。
+								<li>メールアドレスを登録いただくか、<a href="oauth-twitter.jsp">Twitterログイン</a>をしてください。
 								</li>
-								<li>メールアドレスを登録していただいた場合
+								<li>メールアドレスを登録いただいた場合
 									<ol>
 										<li><a href="login.jsp">ログイン</a>のページへお送りしたメールのURLから飛んでください。</li>
 										<li>ログインのページでは、登録したメールアドレスとお送りした仮パスワードでログインしていただけます。</li>
@@ -71,7 +71,7 @@
 										</li>
 									</ol>
 								</li>
-								<li><a href="oauth-twitter.jsp">Twitterログイン</a>を選ばれた場合
+								<li><a href="oauth-twitter.jsp">Twitterログイン</a>をされた場合
 									<ol>
 										<li>Twitterからの指示に沿って、アクセスを許可してください。</li>
 									</ol></li>

@@ -209,6 +209,8 @@
 				%>
 				<li class="divider-vertical"></li>
 				<li class="<%=classTag%>"><a href="tag.jsp">タグ</a></li>
+				<li class="divider-vertical"></li>
+				<li><a id="scrolled-val"></a></li>
 			</ul>
 		</div>
 	</div>
