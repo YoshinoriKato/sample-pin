@@ -69,7 +69,7 @@
 
 	<!-- facebook -->
 	<div id="facebook-button" class="sns-like-button">
-		<div class="fb-like" data-href="http://doya.info/" data-send="false"
+		<div class="fb-like" data-send="false"
 			data-layout="button_count" data-width="450" data-show-faces="false"></div>
 	</div>
 
@@ -77,7 +77,7 @@
 	<div id="mixi-button" class="sns-like-button">
 		<div data-plugins-type="mixi-favorite"
 			data-service-key="bf28d3d3db4ee8eeb397cac5038c541e30c1dd65"
-			data-size="medium" data-href="http://doya.info"
+			data-size="medium" 
 			data-show-faces="false" data-show-count="true"
 			data-show-comment="false" data-width=""></div>
 	</div>
@@ -85,12 +85,12 @@
 	<!-- google -->
 	<div id="google-button" class="sns-like-button">
 		<!-- Place this tag where you want the +1 button to render. -->
-		<div class="g-plusone" data-size="medium" data-href="http://doya.info"></div>
+		<div class="g-plusone" data-size="medium"></div>
 	</div>
 
 	<!-- hatena -->
 	<div id="hatena-button" class="sns-like-button">
-		<a href="http://b.hatena.ne.jp/entry/http://doya.info"
+		<a href="http://b.hatena.ne.jp/entry/"
 			class="hatena-bookmark-button" data-hatena-bookmark-title="DOYA.info"
 			data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img
 			src="http://b.st-hatena.com/images/entry-button/button-only.gif"
