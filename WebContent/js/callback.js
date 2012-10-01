@@ -195,7 +195,7 @@ function makeComment($comment, $userId) {
 	$divFooter.text($comment.createDate).aboutTimestamp();
 
 	// construct
-	$('#content').append($jqLi);
+	$('#latest-info').before($jqLi);
 	$jqLi.append($jqDiv);
 	$jqDiv.append($divCardSub).append($divBr).append(
 			$divFooter);

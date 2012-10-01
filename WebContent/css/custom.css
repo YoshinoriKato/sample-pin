@@ -443,6 +443,15 @@ html {
 	width: 100%;
  */}
 
+
+#latest-info {
+	list-style-type: none;
+}
+
+#latest-info li {
+	padding: 10px;
+}
+
 .input-text {
 	/* effect ---------------------------------------------------------------*/
 	/* layout ---------------------------------------------------------------*/
@@ -998,3 +1007,4 @@ html {
 	overflow: hidden;
 	font-size: xx-small;
 }
+
