@@ -28,11 +28,13 @@ function callback($data) {
 
 	$timer = setInterval(function() {
 		$one = $array[$i];
-		if ($type == 'comment') {
-			makeComment($one, $userId);
-		} else {
-			makeCard($one);
-			wookmark();
+		if ($one.accessLevel == 0 || $one.userId == $userId) {
+			if ($type == 'comment') {
+				makeComment($one, $userId);
+			} else {
+				makeCard($one);
+				wookmark();
+			}
 		}
 		$i++;
 		if ($i >= $len) {
@@ -193,7 +195,7 @@ function makeComment($comment, $userId) {
 	$divFooter.text($comment.createDate).aboutTimestamp();
 
 	// construct
-	$('#content').append($jqLi);
+	$('#latest-info').before($jqLi);
 	$jqLi.append($jqDiv);
 	$jqDiv.append($divCardSub).append($divBr).append(
 			$divFooter);

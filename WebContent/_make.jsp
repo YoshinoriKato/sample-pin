@@ -33,7 +33,7 @@
 		if (Helper.valid(userId)) {
 	%>
 	<div class="cell">
-		<h1 class="tab-header">Add</h1>
+		<h1 class="tab-header">Add Graphic</h1>
 		<jsp:include page="_search.jsp"></jsp:include>
 		<form action="make-card.do" enctype="multipart/form-data"
 			method="post" class="form-horizontal">
@@ -95,6 +95,13 @@
 				<%
 					}
 				%>
+				<div class="control-group">
+					<label for="accessLevel" class="control-label">Access Level</label>
+					<div class="controls">
+						<input type="number" min="0" max="100" name="accessLevel" class="text" value="0">
+						<span class="help-inline">level 0 ... 公開, level 100 ... 非公開</span>
+					</div>
+				</div>
 				<div class="control-group">
 					<div class="controls">
 						<input type="submit" value="Make" id="submit-button"

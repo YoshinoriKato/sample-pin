@@ -26,6 +26,7 @@ public class SearchAjax extends CardAjax {
 		Map<String, Object> data = new HashMap<>();
 		type = valid(type) ? type : "card";
 		data.put("type", type);
+		data.put("userId", userId);
 
 		try (ACMongo mongo = new ACMongo()) {
 			Set<String> searched = NaturalLanguageParser.cardIds(dic, words);

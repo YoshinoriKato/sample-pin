@@ -520,4 +520,18 @@ public class Helper {
 	public static final boolean valid(String val) {
 		return (val != null) && !val.isEmpty();
 	}
+
+	public static List<Card> newCards(Long updateDate) {
+		try (ACMongo mongo = new ACMongo()) {
+			Datastore datastore = mongo.createDatastore();
+			Query<Card> query = datastore.createQuery(Card.class)
+					.filter("accessLevel = ", 0).filter("isDeleted", false)
+					.filter("updateDate < ", updateDate).order("-updateDate")
+					.limit(10);
+			return query.asList();
+		} catch (UnknownHostException | MongoException e) {
+			e.printStackTrace();
+		}
+		return new ArrayList<Card>();
+	}
 }

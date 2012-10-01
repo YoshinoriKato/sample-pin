@@ -12,7 +12,7 @@
 	String otherUserId = request.getParameter("userId");
 	otherUserId = (otherUserId != null) ? otherUserId : "";
 
-	String userId = Helper.getUserId(request);
+	String userId = Helper.getUserId(session);
 	String selfUserId = (userId != null) ? userId : session.getId();
 
 	String cardId = request.getParameter("cardId");
@@ -40,7 +40,9 @@
 	User user = Helper.getUserById(userId);
 	request.setAttribute("user", user);
 
-	if (card == null && user == null) {
+	if ((card == null && user == null)
+			|| (card.getAccessLevel() > 0 && !card.getUserId().equals(
+					userId))) {
 		response.sendError(HttpServletResponse.SC_NOT_FOUND);
 	}
 %>
@@ -55,75 +57,66 @@
 		/* wookmark(); */
 	});
 
-	attach(window, 'load', 
-			function() {
-				cardId = $("#cardId").text();
-				$key = $('#cardId').text();
+	attach(window, 'load', function() {
+		cardId = $("#cardId").text();
+		$key = $('#cardId').text();
 	});
 
-	attach(window, 'load', 
-			function() {
-				// effect
-				pushPull('#main', '#ajax');
-				/* wookmark(); */
+	attach(window, 'load', function() {
+		// effect
+		pushPull('#main', '#ajax');
+		/* wookmark(); */
 	});
 
-	attach(window, 'load', 
-			function() {
-				// event
-				$('#image-shot')
-						.attr("onclick", "pushPull('#cover','#origin')");
-				$('#ribon').attr("onclick", "pushPull('#cover','#origin')");
-				$('#image-close').attr("onclick",
-						"pushPull('#origin','#cover')");
-				$('#comment-button').attr("onclick",
-						"pushPull('#comment-area','#write')");
-				$('#comment-close').attr("onclick",
-						"pushPull('#write','#comment-area')");
+	attach(window, 'load', function() {
+		// event
+		$('#image-shot').attr("onclick", "pushPull('#cover','#origin')");
+		$('#ribon').attr("onclick", "pushPull('#cover','#origin')");
+		$('#image-close').attr("onclick", "pushPull('#origin','#cover')");
+		$('#comment-button').attr("onclick",
+				"pushPull('#comment-area','#write')");
+		$('#comment-close').attr("onclick",
+				"pushPull('#write','#comment-area')");
 	});
 
-	attach(window, 'load', 
-			function() {
-				callAjax($('#sorted').text(), 40, '', $('#userId').text(), $(
-						'#cardId').text(), $('#type').text());
+	attach(window, 'load', function() {
+		callAjax($('#sorted').text(), 40, '', $('#userId').text(), $('#cardId')
+				.text(), $('#type').text());
 	});
 
-	attach(window, 'load', 
-			function() {
-				$('#children li').wookmark({
-					autoResize: true,
-					offset : 14,
-					container : $('#card-family'),
-					itemWidth: 100
-				});
+	attach(window, 'load', function() {
+		$('#children li').wookmark({
+			autoResize : true,
+			offset : 14,
+			container : $('#card-family'),
+			itemWidth : 100
+		});
 	});
 
-	attach(window, 'load', 
-			function() {
-				// text observer
-				observeText('#comment-text', $key);
-				$('#comment-form').submit(function() {
-					if ($('#comment-text').innerHTML != '') {
-						removeText($key);
-						return true;
-					}
-					return false;
-				});
-				$('#main').fadeIn(1000);
+	attach(window, 'load', function() {
+		// text observer
+		observeText('#comment-text', $key);
+		$('#comment-form').submit(function() {
+			if ($('#comment-text').innerHTML != '') {
+				removeText($key);
+				return true;
+			}
+			return false;
+		});
+		$('#main').fadeIn(1000);
 	});
 
-	attach(window, 'load', 
-			function() {
-				// open image
-				if ($('#image').text() == 'open') {
-					$('#cover').fadeIn(1000);
-				}
-			});
+	attach(window, 'load', function() {
+		// open image
+		if ($('#image').text() == 'open') {
+			$('#cover').fadeIn(1000);
+		}
+	});
 
 	attach(window, 'scroll', function() {
 		if (isNeed()) {
-				readMore();
-			}
+			readMore();
+		}
 	});
 </script>
 </head>
@@ -132,10 +125,10 @@
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title">Comments</div>
 	<div id="main">
-	<%
-		if (card != null) {
-	%>
-	<!-- image -->
+		<%
+			if (card != null) {
+		%>
+		<!-- image -->
 		<div id="cover" class="center">
 			<div class="middle">
 				<div id="image-close" class="close-button">x</div>
@@ -195,12 +188,33 @@
 					<%
 						if (Helper.valid(cardId)) {
 					%>
-					<li class="cell margin-bottom-default" style="max-height: 170px;"><jsp:include
+					<li class="cell" style="max-height: 170px;"><jsp:include
 							page="_comment.jsp"></jsp:include></li>
 					<%
 						}
 					%>
+					<li class="margin-bottom-default"><jsp:include
+							page="_sns.jsp"></jsp:include><br style="clear: both;" /></li>
 					<!--  ajax -->
+					<li id="latest-info" class="cell margin-bottom-default">
+						<p>その他のカード</p>
+						<ul>
+							<%
+								List<Card> cards = Helper.newCards(card.getUpdateDate());
+								for (Card newone : cards) {
+									int length = newone.getCaption().length();
+									String caption = length > 40 ? newone.getCaption().substring(0,
+											40)
+											+ "..." : newone.getCaption();
+							%>
+							<li><a
+								href="card-comment.jsp?cardId=<%=newone.getCardId()%>&type=comment"><span
+									class="deco"><%=caption%></span></a> (view:<%=newone.getView()%>, comment:<%=newone.getLikes()%>)</li>
+							<%
+								}
+							%>
+						</ul>
+					</li>
 				</ul>
 			</div>
 			<br style="clear: both;" />
@@ -218,7 +232,6 @@
 	<div style="display: none" id="image"><%=image%></div>
 
 	<jsp:include page="_footer.jsp"></jsp:include>
-	<jsp:include page="_sns.jsp"></jsp:include>
 </body>
 
 </html>

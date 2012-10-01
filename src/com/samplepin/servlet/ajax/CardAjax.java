@@ -32,6 +32,7 @@ public class CardAjax {
 		Map<String, Object> data = new HashMap<>();
 		type = valid(type) ? type : "card";
 		data.put("type", type);
+		data.put("userId", userId);
 		boolean alreadyRead = false;
 		int _offset = valid(offset) ? Integer.valueOf(offset) : 0;
 		int _limit = valid(limit) ? Integer.valueOf(limit) : 0;
