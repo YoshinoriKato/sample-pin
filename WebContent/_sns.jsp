@@ -1,11 +1,3 @@
-<% if(false) { %>
-
-<script type="text/javascript" charset="UTF-8">
-	attach(window, 'load', function() {
-		$('#sns-link').attr("onclick", "pushPull('#sns','#sns-link')");
-		$('#sns').attr("onclick", "pushPull('#sns-link','#sns')");
-	});
-</script>
 
 <!-- twitter -->
 <script type="text/javascript" charset="UTF-8">
@@ -21,7 +13,7 @@
 </script>
 
 <!-- facebook -->
-<div id="fb-root"></div>
+<div id="fb-root" style="display: none;"></div>
 <script type="text/javascript" charset="UTF-8">
 	(function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
@@ -67,22 +59,22 @@
 	src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8"
 	async="async"></script>
 
-<div class="sns-info link" id="sns"><img src="img/heart32.png" class="menu-icon"></div>
-<div class="sns-info" id="sns-link">
+<div id="sns-like">
+
 	<!-- twitter -->
-	<div id="twitter-button" class="margin-top-default">
+	<div id="twitter-button" class="sns-like-button">
 		<a href="https://twitter.com/share" class="twitter-share-button"
 			data-lang="ja">Twitter</a>
 	</div>
 
 	<!-- facebook -->
-	<div id="facebook-button" class="margin-top-default">
+	<div id="facebook-button" class="sns-like-button">
 		<div class="fb-like" data-href="http://doya.info/" data-send="false"
 			data-layout="button_count" data-width="450" data-show-faces="false"></div>
 	</div>
 
 	<!-- mixi -->
-	<div id="mixi-button" class="margin-top-default">
+	<div id="mixi-button" class="sns-like-button">
 		<div data-plugins-type="mixi-favorite"
 			data-service-key="bf28d3d3db4ee8eeb397cac5038c541e30c1dd65"
 			data-size="medium" data-href="http://doya.info"
@@ -91,13 +83,13 @@
 	</div>
 
 	<!-- google -->
-	<div id="google-button" class="margin-top-default">
+	<div id="google-button" class="sns-like-button">
 		<!-- Place this tag where you want the +1 button to render. -->
 		<div class="g-plusone" data-size="medium" data-href="http://doya.info"></div>
 	</div>
 
 	<!-- hatena -->
-	<div id="hatena-button" class="margin-top-default">
+	<div id="hatena-button" class="sns-like-button">
 		<a href="http://b.hatena.ne.jp/entry/http://doya.info"
 			class="hatena-bookmark-button" data-hatena-bookmark-title="DOYA.info"
 			data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img
@@ -106,5 +98,3 @@
 			style="border: none;" /></a>
 	</div>
 </div>
-
-<% } %>

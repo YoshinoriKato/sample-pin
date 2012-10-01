@@ -136,6 +136,5 @@
 		</div>
 	</div>
 	<jsp:include page="_footer.jsp"></jsp:include>
-	<jsp:include page="_sns.jsp"></jsp:include>
 </body>
 </html>

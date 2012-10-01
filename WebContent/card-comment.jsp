@@ -188,11 +188,13 @@
 					<%
 						if (Helper.valid(cardId)) {
 					%>
-					<li class="cell margin-bottom-default" style="max-height: 170px;"><jsp:include
+					<li class="cell" style="max-height: 170px;"><jsp:include
 							page="_comment.jsp"></jsp:include></li>
 					<%
 						}
 					%>
+					<li class="margin-bottom-default"><jsp:include
+							page="_sns.jsp"></jsp:include><br style="clear: both;" /></li>
 					<!--  ajax -->
 					<li id="latest-info" class="cell margin-bottom-default">
 						<p>その他のカード</p>
@@ -230,7 +232,6 @@
 	<div style="display: none" id="image"><%=image%></div>
 
 	<jsp:include page="_footer.jsp"></jsp:include>
-	<jsp:include page="_sns.jsp"></jsp:include>
 </body>
 
 </html>
