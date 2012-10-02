@@ -67,11 +67,7 @@ public class Comment implements Serializable, Deleteable, Createable {
 	}
 
 	public Integer getAccessLevel() {
-		return accessLevel;
-	}
-
-	public void setAccessLevel(Integer accessLevel) {
-		this.accessLevel = accessLevel;
+		return this.accessLevel;
 	}
 
 	public Boolean getAnonymous() {
@@ -118,6 +114,10 @@ public class Comment implements Serializable, Deleteable, Createable {
 
 	public String getUserName() {
 		return this.userName;
+	}
+
+	public void setAccessLevel(Integer accessLevel) {
+		this.accessLevel = accessLevel;
 	}
 
 	public void setAnonymous(Boolean anonymous) {

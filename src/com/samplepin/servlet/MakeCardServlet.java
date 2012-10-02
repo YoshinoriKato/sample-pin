@@ -56,6 +56,73 @@ public class MakeCardServlet extends HttpServlet {
 		}
 	}
 
+	static final String formatName(byte[] b) {
+
+		if ((b[0] == Byte.parseByte("0x42"))
+				&& (b[1] == Byte.parseByte("0x4D"))) {
+			return ".bmp";
+
+		} else if ((b[0] == Byte.parseByte("0xFF"))
+				&& (b[1] == Byte.parseByte("0xD8"))
+				&& (b[2] == Byte.parseByte("0xFF"))) {
+			return ".jpeg";
+
+		} else if ((b[0] == Byte.parseByte("0x89"))
+				&& (b[1] == Byte.parseByte("0x50"))
+				&& (b[2] == Byte.parseByte("0x4E"))
+				&& (b[3] == Byte.parseByte("0x47"))
+				&& (b[4] == Byte.parseByte("0x0D"))
+				&& (b[5] == Byte.parseByte("0x0A"))
+				&& (b[6] == Byte.parseByte("0x1A"))
+				&& (b[7] == Byte.parseByte("0x0A"))) {
+			return ".png";
+
+		} else if ((b[0] == Byte.parseByte("0x47"))
+				&& (b[1] == Byte.parseByte("0x49"))
+				&& (b[2] == Byte.parseByte("0x46"))
+				&& (b[3] == Byte.parseByte("0x38"))
+				&& ((b[4] == Byte.parseByte("0x39")) || (b[4] == Byte
+						.parseByte("0x37")))
+				&& (b[5] == Byte.parseByte("0x61"))) {
+			return ".gif";
+		}
+
+		return null;
+	}
+
+	public static void main(String[] args) {
+		byte[] sample = { 0x42, 0x4D };
+		for (byte b : sample) {
+			System.out.println(b);
+		}
+	}
+
+	public static String readStream(InputStream in, File folder, int bufferSize)
+			throws IOException {
+		int len = -1;
+		byte[] b = new byte[bufferSize * 1024];
+		OutputStream os = null;
+		String ret = null;
+		try {
+			while ((len = in.read(b, 0, b.length)) != -1) {
+				if (os == null) {
+					ret = "I" + System.nanoTime() + formatName(b);
+					os = new FileOutputStream(new File(folder, ret));
+				}
+				os.write(b, 0, len);
+			}
+			os.flush();
+		} finally {
+			if (in != null) {
+				in.close();
+			}
+			if (os != null) {
+				os.close();
+			}
+		}
+		return ret;
+	}
+
 	boolean accept(String name) {
 		name = name.toLowerCase();
 		if (name.endsWith(".gif")) {

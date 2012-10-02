@@ -8,18 +8,19 @@
 	String userId = Helper.getUserId(request);
 
 	String message = (String) request.getAttribute("message");
-	String imagePath = request.getParameter("imagePath");
-	imagePath = imagePath != null ? URLDecoder.decode(imagePath,
+	String imagePath = (String) request.getAttribute("imagePath");
+/* 	imagePath = imagePath != null ? URLDecoder.decode(imagePath,
 			"UTF-8") : "";
-	String keywords = request.getParameter("keywords");
-	keywords = keywords != null ? URLDecoder.decode(keywords, "UTF-8")
-			: keywords;
+ */
+	String keywords = (String)request.getAttribute("keywords");
+/* 	keywords = keywords != null ? URLDecoder.decode(keywords, "UTF-8")
+			: keywords; */
 	keywords = (keywords != null) ? keywords : "";
-	String site = request.getParameter("site");
-	site = Helper.valid(site) ? URLDecoder.decode(site, "UTF-8") : site;
+	String site = (String)request.getAttribute("site");
+/* 	site = Helper.valid(site) ? URLDecoder.decode(site, "UTF-8") : site; */
 	site = Helper.valid(site) ? site : "";
 	
-	String parentId = request.getParameter("parentId");
+	String parentId = (String)request.getAttribute("parentId");
 	parentId = Helper.valid(parentId) ? parentId : "";
 
 	message = message != null ? message : "";
