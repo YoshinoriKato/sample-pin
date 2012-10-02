@@ -208,8 +208,9 @@
 											+ "..." : newone.getCaption();
 							%>
 							<li><a
-								href="card-comment.jsp?cardId=<%=newone.getCardId()%>&type=comment"><span
-									class="deco"><%=caption%></span></a> (view:<%=newone.getView()%>, comment:<%=newone.getLikes()%>)</li>
+								href="card-comment.jsp?cardId=<%=newone.getCardId()%>&type=comment&image=open"><span
+									class="deco"><%=caption%></span></a> (view:<%=newone.getView()%>,
+								comment:<%=newone.getLikes()%>)</li>
 							<%
 								}
 							%>
