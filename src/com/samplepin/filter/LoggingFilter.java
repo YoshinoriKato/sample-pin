@@ -31,11 +31,14 @@ public class LoggingFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse) response;
 
 		String remoteAddress = request.getRemoteAddr();
-		String uri = ((HttpServletRequest) request).getRequestURI();
+		String uri = req.getRequestURI();
 		String protocol = request.getProtocol();
 		this.context.log("User IP: " + remoteAddress + " | Resource File: "
 				+ uri + " | Protocol: " + protocol);
-
+		// for(String headerName : Collections.list(req.getHeaderNames())){
+		// this.context.log(headerName + ": " + req.getHeader(headerName));
+		// System.out.println(headerName + ": " + req.getHeader(headerName));
+		// }
 		chain.doFilter(req, resp);
 	}
 
