@@ -25,7 +25,7 @@
 </div>
 
 <div id="error-dialog">
-	<div id="error-close" class="close-button">x</div>
+	<div id="error-close" class="close-button">&times;</div>
 	<img src="img/ERROR.png?<%=Helper.TIMESTAMP %>" class="image-shot">
 	<div class="caption large">Sorry, server error.</div>
 </div>

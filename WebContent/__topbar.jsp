@@ -75,7 +75,7 @@
 					<li class="divider-vertical"></li>
 					 -->
 					<li <%=classAccount%>><a href="account.jsp">U</a></li>
-					<li <%=classLogout%>><a href="logout.do">x</a></li>
+					<li <%=classLogout%>><a href="logout.do">&times;</a></li>
 					<%
 						} else {
 					%>

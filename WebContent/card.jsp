@@ -112,7 +112,7 @@
 
 	<div id="cover" class="center">
 		<div class="middle">
-			<div id="image-close" class="tab-button">x</div>
+			<div id="image-close" class="tab-button">&times;</div>
 			<div>
 				<img src="<%=card.getImagePath()%>" id="image-origin">
 			</div>
@@ -120,7 +120,7 @@
 	</div>
 
 	<div id="comment-area">
-		<div id="comment-close" class="tab-button">x</div>
+		<div id="comment-close" class="tab-button">&times;</div>
 		<div class="center page-menu">
 			<%
 				if (comments.size() >= CommentServlet.COMMENTS_LIMIT) {

@@ -131,7 +131,7 @@
 		<!-- image -->
 		<div id="cover" class="center">
 			<div class="middle">
-				<div id="image-close" class="close-button">x</div>
+				<div id="image-close" class="close-button">&times;</div>
 				<img src="<%=card.getImagePath()%>" id="image-origin">
 			</div>
 		</div>

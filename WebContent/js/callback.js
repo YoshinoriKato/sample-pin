@@ -209,7 +209,7 @@ function makeComment($comment, $userId) {
 				'href',
 				'confirm-discomment.jsp?cardId=' + $comment.cardId + '&userId='
 						+ $comment.userId + '&createDate='
-						+ $comment.createDate).text('x');
+						+ $comment.createDate).text('×');
 		$jqDiv.append($jqClose);
 		$jqClose.append($confirm);
 	}

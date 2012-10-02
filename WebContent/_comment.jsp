@@ -19,7 +19,7 @@ String error = message != null && !message.isEmpty() ? "error" : "";
 %>
 
 <!-- <div id="comment-area"> -->
-	<!-- <div id="comment-close" class="tab-button">x</div> -->
+	<!-- <div id="comment-close" class="tab-button">&times;</div> -->
 	<div class="center page-menu">
 		<%
 			if (Helper.valid(userId)) {

@@ -96,7 +96,7 @@
 					&& card.getUserId().equals(userId)) {
 	%>
 	<div class="close-button">
-		<a href="confirm-discard.jsp?cardId=<%=card.getCardId()%>">x</a>
+		<a href="confirm-discard.jsp?cardId=<%=card.getCardId()%>">&times;</a>
 	</div>
 	<%
 		}
