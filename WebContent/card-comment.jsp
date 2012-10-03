@@ -151,9 +151,9 @@
 					<%
 						if (userId.equals(card.getUserId())) {
 					%>
-					<div class="cell margin-top-default">
+					<div class="cell margin-top-default opacity60">
 						<p>親</p>
-						<form action="update-card.do" method="post" class="form">
+						<form action="update-parent.do" method="post" class="form">
 							<fieldset>
 								<input type="hidden" name="cardId" value="<%=cardId%>">
 								<div class="control-group">
@@ -162,6 +162,24 @@
 										<input type="text" class="text" name="parentId"
 											value="<%=card.getParentId()%>"
 											placeholder="Parent's Card ID.">
+									</div>
+								</div>
+								<input type="submit" value="Update"
+									class="btn btn-large btn-primary">
+							</fieldset>
+						</form>
+					</div>
+					<div class="cell margin-top-default opacity60">
+						<p>コメント修正</p>
+						<form action="update-caption.do" method="post" class="form">
+							<fieldset>
+								<input type="hidden" name="cardId" value="<%=cardId%>">
+								<div class="control-group">
+									<label for="caption" class="control-label"></label>
+									<div class="controls">
+										<textarea type="text" class="text" name="caption"
+											
+											placeholder="Caption"><%=card.getCaption()%></textarea>
 									</div>
 								</div>
 								<input type="submit" value="Update"

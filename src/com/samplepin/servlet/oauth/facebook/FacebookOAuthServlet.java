@@ -9,6 +9,7 @@ import java.net.URLConnection;
 import java.net.UnknownHostException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,7 @@ import com.samplepin.User;
 import com.samplepin.common.ACMongo;
 import com.samplepin.common.Helper;
 
+@WebServlet(urlPatterns = { "/oauth-facebook.jsp" })
 public class FacebookOAuthServlet extends HttpServlet {
 
 	/**

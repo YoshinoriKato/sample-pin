@@ -21,6 +21,7 @@
 	site = Helper.valid(site) ? site : "";
 	
 	String parentId = (String)request.getAttribute("parentId");
+	parentId = Helper.valid(parentId) ? parentId : request.getParameter("parentId");
 	parentId = Helper.valid(parentId) ? parentId : "";
 
 	message = message != null ? message : "";
