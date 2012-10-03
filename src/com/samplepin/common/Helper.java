@@ -1,6 +1,9 @@
 package com.samplepin.common;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
 import java.security.NoSuchAlgorithmException;
@@ -24,6 +27,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
+import com.google.gson.Gson;
 import com.mongodb.MongoException;
 import com.samplepin.Card;
 import com.samplepin.Comment;
@@ -436,6 +440,21 @@ public class Helper {
 			e.printStackTrace();
 		}
 		return new ArrayList<Card>();
+	}
+
+	public static <T> T readJson(InputStream is, Class<T> clazz)
+			throws IOException {
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+			String line;
+			StringBuilder builder = new StringBuilder();
+			while ((line = br.readLine()) != null) {
+				builder.append(line);
+			}
+			return new Gson().fromJson(builder.toString(), clazz);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}
 	}
 
 	public static void sendMail(String mail, String text, String title) {

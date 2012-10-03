@@ -21,7 +21,7 @@ import com.samplepin.common.ACMongo;
 import com.samplepin.common.ActivityLogger;
 import com.samplepin.common.Helper;
 import com.samplepin.nl.NaturalLanguageParser;
-import com.samplepin.servlet.oauth.TwitterService;
+import com.samplepin.servlet.oauth.twitter.TwitterService;
 
 @WebServlet(urlPatterns = "/confirm-make-card.do")
 public class ConfirmMakeCardServlet extends HttpServlet {
