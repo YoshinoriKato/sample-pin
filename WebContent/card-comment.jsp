@@ -148,6 +148,30 @@
 					<%
 						if (Helper.valid(userId)) {
 					%>
+					<%
+						if (userId.equals(card.getUserId())) {
+					%>
+					<div class="cell margin-top-default">
+						<p>親</p>
+						<form action="update-card.do" method="post" class="form">
+							<fieldset>
+								<input type="hidden" name="cardId" value="<%=cardId%>">
+								<div class="control-group">
+									<label for="parentId" class="control-label"></label>
+									<div class="controls">
+										<input type="text" class="text" name="parentId"
+											value="<%=card.getParentId()%>"
+											placeholder="Parent's Card ID.">
+									</div>
+								</div>
+								<input type="submit" value="Update"
+									class="btn btn-large btn-primary">
+							</fieldset>
+						</form>
+					</div>
+					<%
+						}
+					%>
 					<div>
 						<a
 							class="bold btn btn-large btn-cell opacity80 margin-top-default btn-info"
