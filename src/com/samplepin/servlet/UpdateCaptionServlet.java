@@ -37,10 +37,10 @@ public class UpdateCaptionServlet extends HttpServlet {
 
 			if (userId.equals(card.getUserId())) {
 				try (ACMongo mongo = new ACMongo()) {
-						if (Helper.valid(card)) {
-							card.setCaption(caption);
-							mongo.save(card);
-						}
+					if (Helper.valid(card)) {
+						card.setCaption(caption);
+						mongo.save(card);
+					}
 					ActivityLogger.log(req, this.getClass(), card);
 				} catch (Exception e) {
 					log(e.getMessage());
