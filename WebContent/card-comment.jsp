@@ -151,7 +151,7 @@
 					<%
 						if (userId.equals(card.getUserId())) {
 					%>
-					<div class="cell margin-top-default opacity60">
+					<div class="cell margin-top-default opacity50">
 						<p>親</p>
 						<form action="update-parent.do" method="post" class="form">
 							<fieldset>
@@ -169,7 +169,7 @@
 							</fieldset>
 						</form>
 					</div>
-					<div class="cell margin-top-default opacity60">
+					<div class="cell margin-top-default opacity50">
 						<p>コメント修正</p>
 						<form action="update-caption.do" method="post" class="form">
 							<fieldset>
@@ -230,15 +230,16 @@
 					<%
 						if (Helper.valid(cardId)) {
 					%>
-					<li class="cell" style="max-height: 170px;"><jsp:include
+					<li class="cell margin-bottom-default opacity70" style="max-height: 170px;"><jsp:include
 							page="_comment.jsp"></jsp:include></li>
 					<%
 						}
 					%>
+					<!--  ajax -->
+					<li id="comment-insert"></li>
 					<li class="margin-bottom-default"><jsp:include
 							page="_sns.jsp"></jsp:include><br style="clear: both;" /></li>
-					<!--  ajax -->
-					<li id="latest-info" class="cell margin-bottom-default">
+					<li id="latest-info" class="cell margin-bottom-default opacity60">
 						<p>その他のカード</p>
 						<ul>
 							<%
