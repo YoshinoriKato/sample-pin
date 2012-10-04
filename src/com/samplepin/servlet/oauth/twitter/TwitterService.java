@@ -88,9 +88,10 @@ public class TwitterService {
 		twitter.updateStatus("login successful.");
 	}
 
-	static void storeAccessToken(String userId, long l, AccessToken accessToken)
-			throws UnknownHostException, MongoException,
-			UnsupportedEncodingException {
+	static OAuthStatus storeAccessToken(String userId, long l,
+			AccessToken accessToken) {
+
+		OAuthStatus status = OAuthStatus.NG;
 
 		try (ACMongo mongo = new ACMongo()) {
 			Query<TwitterAccount> query = mongo.createQuery(
@@ -103,20 +104,29 @@ public class TwitterService {
 			String tokenSecret = encode(accessToken.getTokenSecret());
 
 			if (twitterAccount != null) {
+				// login
 				twitterAccount.setAccessToken(token);
 				twitterAccount.setTokenSecret(tokenSecret);
 				twitterAccount.setScreen_name(accessToken.getScreenName());
+				status = OAuthStatus.LOGIN;
 
 			} else {
+				// sign up
 				twitterAccount = new TwitterAccount(userId, 0L, token,
 						tokenSecret, accessToken.getUserId(),
 						accessToken.getScreenName());
 				User user = new User(userId, "Sign up by Twitter.",
 						accessToken.getScreenName(), -1);
+				user.setIsFirst(false);
 				mongo.save(user);
+				status = OAuthStatus.SIGNUP;
 			}
 			mongo.save(twitterAccount);
+		} catch (UnknownHostException | MongoException
+				| UnsupportedEncodingException e) {
+			e.printStackTrace();
 		}
+		return status;
 	}
 
 	// Twitterインスタンスの取得

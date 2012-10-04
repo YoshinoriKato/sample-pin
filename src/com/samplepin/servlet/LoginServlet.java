@@ -75,7 +75,13 @@ public class LoginServlet extends HttpServlet {
 				String redirectUrl = req.getParameter("redirectUrl");
 				log("forward: " + redirectUrl);
 				ActivityLogger.log(req, this.getClass(), user);
-				resp.sendRedirect(redirectUrl);
+
+				if (user.getIsFirst()) {
+					user.setIsFirst(false);
+					resp.sendRedirect("conversion.jsp");
+				} else {
+					resp.sendRedirect(redirectUrl);
+				}
 				return;
 			}
 		} catch (Exception e) {

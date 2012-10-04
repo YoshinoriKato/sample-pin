@@ -41,8 +41,8 @@
 	request.setAttribute("user", user);
 
 	if ((card == null && user == null)
-			|| (card.getAccessLevel() > 0 && !card.getUserId().equals(
-					userId))) {
+			|| (card != null && card.getAccessLevel() > 0 && !card
+					.getUserId().equals(userId))) {
 		response.sendError(HttpServletResponse.SC_NOT_FOUND);
 	}
 %>
@@ -132,7 +132,20 @@
 		<div id="cover" class="center">
 			<div class="middle">
 				<div id="image-close" class="close-button">&times;</div>
-				<img src="<%=card.getImagePath()%>" id="image-origin">
+				<div><img src="<%=card.getImagePath()%>" id="image-origin"></div>
+				<%
+					if (Helper.valid(card.getSite())) {
+							String path = card.getSite();
+							path = path.length() > 40 ? path.substring(0, 40) + "..."
+									: path;
+				%>
+				<div class="margin-top-default">
+					<a href="<%=card.getSite()%>" target="_blank"
+						class="large badge opacity60">URL: <%=path%></a>
+				</div>
+				<%
+					}
+				%>
 			</div>
 		</div>
 		<%
@@ -178,8 +191,25 @@
 									<label for="caption" class="control-label"></label>
 									<div class="controls">
 										<textarea type="text" class="text" name="caption"
-											
 											placeholder="Caption"><%=card.getCaption()%></textarea>
+									</div>
+								</div>
+								<input type="submit" value="Update"
+									class="btn btn-large btn-primary">
+							</fieldset>
+						</form>
+					</div>
+					<div class="cell margin-top-default opacity50">
+						<p>アクセスレベル</p>
+						<form action="update-level.do" method="post" class="form">
+							<fieldset>
+								<input type="hidden" name="cardId" value="<%=cardId%>">
+								<div class="control-group">
+									<label for="accessLevel" class="control-label"></label>
+									<div class="controls">
+										<input type="number" min="0" max="100" name="accessLevel"
+											class="text" placeholder="Caption"
+											value="<%=card.getAccessLevel()%>">
 									</div>
 								</div>
 								<input type="submit" value="Update"
@@ -230,25 +260,27 @@
 					<%
 						if (Helper.valid(cardId)) {
 					%>
-					<li class="cell margin-bottom-default opacity70" style="max-height: 170px;"><jsp:include
-							page="_comment.jsp"></jsp:include></li>
+					<li class="cell margin-bottom-default opacity70"
+						style="max-height: 170px;"><jsp:include page="_comment.jsp"></jsp:include></li>
 					<%
 						}
 					%>
 					<!--  ajax -->
 					<li id="comment-insert"></li>
-					<li class="margin-bottom-default"><jsp:include
-							page="_sns.jsp"></jsp:include><br style="clear: both;" /></li>
+					<%
+						if (card != null) {
+					%>
+					<li class="margin-bottom-default"><jsp:include page="_sns.jsp"></jsp:include><br
+						style="clear: both;" /></li>
 					<li id="latest-info" class="cell margin-bottom-default opacity60">
 						<p>その他のカード</p>
 						<ul>
 							<%
 								List<Card> cards = Helper.newCards(card.getUpdateDate());
-								for (Card newone : cards) {
-									int length = newone.getCaption().length();
-									String caption = length > 40 ? newone.getCaption().substring(0,
-											40)
-											+ "..." : newone.getCaption();
+									for (Card newone : cards) {
+										int length = newone.getCaption().length();
+										String caption = length > 40 ? newone.getCaption()
+												.substring(0, 40) + "..." : newone.getCaption();
 							%>
 							<li><a
 								href="card-comment.jsp?cardId=<%=newone.getCardId()%>&type=comment&image=open"><span
@@ -259,6 +291,9 @@
 							%>
 						</ul>
 					</li>
+					<%
+						}
+					%>
 				</ul>
 			</div>
 			<br style="clear: both;" />

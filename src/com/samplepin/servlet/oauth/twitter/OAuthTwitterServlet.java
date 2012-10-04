@@ -71,8 +71,8 @@ public class OAuthTwitterServlet extends HttpServlet {
 			// accessToken.getTokenSecret());
 
 			String userId = Helper.generatedIdString("TW_");
-			TwitterService.storeAccessToken(userId, twitter.verifyCredentials()
-					.getId(), accessToken);
+			OAuthStatus status = TwitterService.storeAccessToken(userId,
+					twitter.verifyCredentials().getId(), accessToken);
 
 			// login
 			try (ACMongo mongo = new ACMongo()) {
@@ -83,10 +83,24 @@ public class OAuthTwitterServlet extends HttpServlet {
 				LoginServlet.makeCookie(response, twitterAccount.getUserId());
 			}
 
-			response.sendRedirect("home.jsp");
+			switch (status) {
+			case LOGIN:
+				response.sendRedirect("home.jsp");
+				break;
+
+			case SIGNUP:
+				response.sendRedirect("conversion.jsp");
+				break;
+
+			default:
+				response.sendRedirect("error.jsp");
+				break;
+			}
+
 		} else {
 			response.setContentType("text/plain");
 			response.getWriter().println("AccessTokenがNullってます！");
+			response.sendError(500);
 		}
 	}
 
