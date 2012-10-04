@@ -45,7 +45,7 @@
 		</div>
 	</div>
 	<br style="clear: both;">
-	<div class="card-sub">
+	<%-- <div class="card-sub">
 		<div class="card-icon">
 			<%
 				if (Helper.valid(card.getParentId())) {
@@ -85,7 +85,7 @@
 			%>
 		</div>
 	</div>
-	<br style="clear: both;">
+	<br style="clear: both;"> --%>
 	<div class="star right" style="clear: both;"><%=card.getLikes()%>
 		comment
 	</div>

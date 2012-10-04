@@ -453,19 +453,19 @@ html {
 }
 
 #sns-like {
-	padding: 20px;
+	/* padding: 20px; */
 }
 
 .sns-like-button {
 	/* effect ---------------------------------------------------------------*/
-	background-color: rgba(0, 0, 0, 0.1);
+	background-color: rgba(0, 0, 0, 0.2);
 	/* layout ---------------------------------------------------------------*/
 	float: left;
 	margin: 10px;
 	text-align: center;
 	padding: 5px;
 	/* shape ----------------------------------------------------------------*/
-	width: 160px;
+	/* width: 160px; */
 }
 
 
@@ -525,9 +525,9 @@ html {
 	/* layout ---------------------------------------------------------------*/
 	margin-bottom: 7px;
 	/* shape ----------------------------------------------------------------*/
-	border-radius: 3px 20px 3px;
+	/* border-radius: 3px 20px 3px;
 	-webkit-border-radius: 3px 20px 3px;
-	-moz-border-radius: 3px 20px 3px;
+	-moz-border-radius: 3px 20px 3px; */
 	min-width: 230px;
 	min-height: 10px;
 }
@@ -669,8 +669,8 @@ html {
 	-webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
 	font-size: large;
 	/* layout ---------------------------------------------------------------*/
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 	padding-left: 10px;
 	padding-right: 10px;
 	/* shape ----------------------------------------------------------------*/
