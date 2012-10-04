@@ -57,6 +57,8 @@ public class User implements Serializable, Deleteable, Createable {
 	@Indexed
 	Boolean isDeleted;
 
+	Boolean isFirst;
+
 	public User() {
 		super();
 		this.userId = "";
@@ -75,6 +77,7 @@ public class User implements Serializable, Deleteable, Createable {
 		this.code = 0;
 		this.comment = "";
 		this.category = 100;
+		this.isFirst = false;
 	}
 
 	public User(String userId, String mail, String userName, Integer password) {
@@ -83,6 +86,7 @@ public class User implements Serializable, Deleteable, Createable {
 		this.mail = mail;
 		this.userName = userName;
 		this.password = password;
+		this.isFirst = true;
 	}
 
 	public String getBackgroundColor() {
@@ -129,6 +133,10 @@ public class User implements Serializable, Deleteable, Createable {
 	@Override
 	public Boolean getIsDeleted() {
 		return this.isDeleted;
+	}
+
+	public Boolean getIsFirst() {
+		return this.isFirst;
 	}
 
 	public Long getLastUpdate() {
@@ -207,6 +215,10 @@ public class User implements Serializable, Deleteable, Createable {
 	@Override
 	public void setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
+	}
+
+	public void setIsFirst(Boolean isFirst) {
+		this.isFirst = isFirst;
 	}
 
 	public void setLastUpdate(Long lastUpdate) {
