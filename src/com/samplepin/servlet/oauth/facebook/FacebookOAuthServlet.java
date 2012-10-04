@@ -30,7 +30,7 @@ public class FacebookOAuthServlet extends HttpServlet {
 	 */
 	private static final long	serialVersionUID		= -7700928228357051804L;
 
-	private String redirect_uri = "http://doya.info/oauth-facebook.jsp";
+	private String				redirect_uri			= "http://doya.info/oauth-facebook.jsp";
 
 	HttpSession					session;
 
@@ -38,7 +38,7 @@ public class FacebookOAuthServlet extends HttpServlet {
 
 	static String				FACEBOOK_APP_ID_SECRET	= "";
 
-	static String KEY_FACEBOOK_INFO = "facebook";
+	static String				KEY_FACEBOOK_INFO		= "facebook";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)

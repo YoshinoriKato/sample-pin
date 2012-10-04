@@ -57,7 +57,7 @@ public class User implements Serializable, Deleteable, Createable {
 	@Indexed
 	Boolean						isDeleted;
 
-	Boolean isFirst;
+	Boolean						isFirst;
 
 	public User() {
 		super();
