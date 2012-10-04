@@ -117,6 +117,7 @@ public class TwitterService {
 						accessToken.getScreenName());
 				User user = new User(userId, "Sign up by Twitter.",
 						accessToken.getScreenName(), -1);
+				user.setIsFirst(false);
 				mongo.save(user);
 				status = OAuthStatus.SIGNUP;
 			}

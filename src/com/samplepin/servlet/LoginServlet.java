@@ -77,6 +77,7 @@ public class LoginServlet extends HttpServlet {
 				ActivityLogger.log(req, this.getClass(), user);
 
 				if (user.getIsFirst()) {
+					user.setIsFirst(false);
 					resp.sendRedirect("conversion.jsp");
 				} else {
 					resp.sendRedirect(redirectUrl);
