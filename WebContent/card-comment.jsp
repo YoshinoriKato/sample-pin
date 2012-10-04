@@ -141,7 +141,7 @@
 				%>
 				<div class="margin-top-default">
 					<a href="<%=card.getSite()%>" target="_blank"
-						class="large btn btn-info">URL: <%=path%></a>
+						class="large badge opacity60">URL: <%=path%></a>
 				</div>
 				<%
 					}
