@@ -17,25 +17,25 @@
 				?
 			</h1>
 			<div class="profile">
-				<div class="item-group">
-					<div class="items">
-						<img src="img/title.png" style="max-width: 120px;">
-					</div>
-				</div>
+				<h3 class="tab-header">はじめに</h3>
 				<div class="item-group">
 					<div class="item-label">概要</div>
 					<div class="items">
-						<p>気軽に使えるキュレーションサービスです。</p>
+						<p>気軽にキュレーションができるソーシャル検索サービスです。</p>
 						<p>あなたが検索した画像、それを見たときの感想・興味を共有してください。</p>
+						<p>現在はBeta運用中です。</p>
 					</div>
 				</div>
-			</div>
-		</div>
-		<div class="margin-bottom-default">
-			<h3 class="tab-header">動画</h3>
-			<div class="profile">
 				<div class="item-group">
-					<div class="item-label"></div>
+					<div class="item-label">由来</div>
+					<div class="items">
+						<p>DOYAとは、大阪弁の「どうやろか？」、「どや！」を意味する言葉から来ています。</p>
+						<p>DOYAな情報だから、DOYA.infoです。。</p>
+						<p>関西のカルチャーも織り交ぜつつ展開する大阪発のソーシャルサービスです。</p>
+					</div>
+				</div>
+				<div class="item-group">
+					<div class="item-label">動画</div>
 					<div class="items">
 						<div class="margin-bottom-default">
 							<video controls="controls"> <source
@@ -48,7 +48,7 @@
 			</div>
 		</div>
 		<div class="margin-bottom-default">
-			<h3 class="tab-header">はじめに</h3>
+			<h3 class="tab-header">ご登録</h3>
 			<div class="profile">
 				<div class="item-group">
 					<div class="item-label"></div>
@@ -73,6 +73,7 @@
 									<li>Twitterからの指示に沿って、アクセスを許可してください。</li>
 								</ol></li>
 						</ol>
+						<p>※Bata運用中にご登録いただけたユーザーさまには、今後のサービスの変遷のなかで優遇処置をとらさせていただきます。</p>
 					</div>
 				</div>
 			</div>
@@ -119,13 +120,22 @@
 			<h3 class="tab-header">SNS ページ</h3>
 			<div class="profile">
 				<div class="item-group">
-					<div class="item-label"></div>
+					<div class="item-label">Twitter</div>
 					<div class="items">
 						<a href="https://twitter.com/doya_info" target="_blank"
-							style="margin-left: 50px;"><img src="img/bird_gray_48.png"></a><a
-							href="http://www.facebook.com/pages/DOYAinfo/495135587181076"
-							target="_blank" style="margin-left: 80px;"><img
+							><img src="img/bird_gray_48.png"></a>
+					</div>
+					<div class="item-label">Facebook</div>
+					<div class="items">
+						<a href="http://www.facebook.com/pages/DOYAinfo/495135587181076"
+							target="_blank" ><img
 							src="img/f_logo.png" style="height: 40px; width: 40px;"></a>
+					</div>
+				</div>
+				<div class="item-group">
+					<div class="item-label"></div>
+					<div class="items">
+						<p>サイト外のユーザーさまの交流のためにTwitter、Facebookの専用アカウントをご用意しました。</p>
 					</div>
 				</div>
 			</div>

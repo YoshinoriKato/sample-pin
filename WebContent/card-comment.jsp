@@ -41,8 +41,8 @@
 	request.setAttribute("user", user);
 
 	if ((card == null && user == null)
-			|| (card.getAccessLevel() > 0 && !card.getUserId().equals(
-					userId))) {
+			|| (card != null && card.getAccessLevel() > 0 && !card
+					.getUserId().equals(userId))) {
 		response.sendError(HttpServletResponse.SC_NOT_FOUND);
 	}
 %>
@@ -132,7 +132,20 @@
 		<div id="cover" class="center">
 			<div class="middle">
 				<div id="image-close" class="close-button">&times;</div>
-				<img src="<%=card.getImagePath()%>" id="image-origin">
+				<div><img src="<%=card.getImagePath()%>" id="image-origin"></div>
+				<%
+					if (Helper.valid(card.getSite())) {
+							String path = card.getSite();
+							path = path.length() > 40 ? path.substring(0, 40) + "..."
+									: path;
+				%>
+				<div class="margin-top-default">
+					<a href="<%=card.getSite()%>" target="_blank"
+						class="large btn btn-info">URL: <%=path%></a>
+				</div>
+				<%
+					}
+				%>
 			</div>
 		</div>
 		<%
@@ -254,6 +267,9 @@
 					%>
 					<!--  ajax -->
 					<li id="comment-insert"></li>
+					<%
+						if (card != null) {
+					%>
 					<li class="margin-bottom-default"><jsp:include page="_sns.jsp"></jsp:include><br
 						style="clear: both;" /></li>
 					<li id="latest-info" class="cell margin-bottom-default opacity60">
@@ -261,11 +277,10 @@
 						<ul>
 							<%
 								List<Card> cards = Helper.newCards(card.getUpdateDate());
-								for (Card newone : cards) {
-									int length = newone.getCaption().length();
-									String caption = length > 40 ? newone.getCaption().substring(0,
-											40)
-											+ "..." : newone.getCaption();
+									for (Card newone : cards) {
+										int length = newone.getCaption().length();
+										String caption = length > 40 ? newone.getCaption()
+												.substring(0, 40) + "..." : newone.getCaption();
 							%>
 							<li><a
 								href="card-comment.jsp?cardId=<%=newone.getCardId()%>&type=comment&image=open"><span
@@ -276,6 +291,9 @@
 							%>
 						</ul>
 					</li>
+					<%
+						}
+					%>
 				</ul>
 			</div>
 			<br style="clear: both;" />
