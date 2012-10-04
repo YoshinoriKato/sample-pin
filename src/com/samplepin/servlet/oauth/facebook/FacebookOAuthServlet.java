@@ -28,17 +28,17 @@ public class FacebookOAuthServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7700928228357051804L;
+	private static final long	serialVersionUID		= -7700928228357051804L;
 
-	private String redirect_uri = "http://www45022u.sakura.ne.jp/mcq/sys/facebook.jsp";
+	private String				redirect_uri			= "http://www45022u.sakura.ne.jp/mcq/sys/facebook.jsp";
 
-	HttpSession session;
+	HttpSession					session;
 
-	static String FACEBOOK_APP_ID = "";
+	static String				FACEBOOK_APP_ID			= "";
 
-	static String FACEBOOK_APP_ID_SECRET = "";
+	static String				FACEBOOK_APP_ID_SECRET	= "";
 
-	static String KEY_FACEBOOK_INFO = "";
+	static String				KEY_FACEBOOK_INFO		= "";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)

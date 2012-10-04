@@ -10,14 +10,14 @@ import com.google.code.morphia.annotations.Indexed;
 public class Recommend implements Createable {
 
 	@Id
-	ObjectId id;
+	ObjectId	id;
 
 	@Indexed
-	String userId;
+	String		userId;
 
-	Long createDate;
+	Long		createDate;
 
-	String recommendJSON;
+	String		recommendJSON;
 
 	public Recommend(String userId, String recommendJSON) {
 		super();

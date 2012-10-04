@@ -6,9 +6,9 @@ import net.reduls.igo.Tagger;
 
 class IndexingCallbacker implements ParserCallback {
 
-	Tagger tagger;
+	Tagger		tagger;
 
-	Set<String> parsed;
+	Set<String>	parsed;
 
 	public IndexingCallbacker(Tagger tagger, Set<String> parsed) {
 		super();

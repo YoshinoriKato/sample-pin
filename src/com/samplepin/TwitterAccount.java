@@ -10,21 +10,21 @@ import com.google.code.morphia.annotations.Indexed;
 public class TwitterAccount {
 
 	@Id
-	ObjectId id;
+	ObjectId	id;
 
-	String accessToken;
+	String		accessToken;
 
-	String screen_name;
+	String		screen_name;
 
-	String tokenSecret;
+	String		tokenSecret;
 
-	Long twitterId;
-
-	@Indexed
-	Long user_id;
+	Long		twitterId;
 
 	@Indexed
-	String userId;
+	Long		user_id;
+
+	@Indexed
+	String		userId;
 
 	public TwitterAccount() {
 		super();
