@@ -20,13 +20,14 @@ public class SearchAjax extends CardAjax {
 	void ajax(OutputStream os, String otherUserId, String sorted,
 			String offset, String limit, String callback, String old,
 			String young, String type, String userId, String cardId,
-			String words, String dic) throws IOException {
+			String words, String dic, String select) throws IOException {
 
 		List<Card> cards = new ArrayList<>();
 		Map<String, Object> data = new HashMap<>();
 		type = valid(type) ? type : "card";
 		data.put("type", type);
 		data.put("userId", userId);
+		data.put("select", select);
 
 		try (ACMongo mongo = new ACMongo()) {
 			Set<String> searched = NaturalLanguageParser.cardIds(dic, words);

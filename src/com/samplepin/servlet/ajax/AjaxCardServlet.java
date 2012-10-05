@@ -43,20 +43,23 @@ public class AjaxCardServlet extends HttpServlet {
 		String userId = Helper.getUserId(req);
 		String cardId = req.getParameter("cardId");
 		String words = req.getParameter("words");
+		String select = req.getParameter("select");
+		String folderId = req.getParameter("folderId");
+		
 
 		if ("search".equals(sorted)) {
 			String dic = NaturalLanguageParser.getDictionaryPath(req);
 			new SearchAjax().ajax(resp.getOutputStream(), otherUserId, sorted,
 					offset, limit, callback, old, young, type, userId, cardId,
-					words, dic);
+					words, dic, select);
 
 		} else if ("comment".equals(type)) {
 			new CommentAjax().ajax(resp.getOutputStream(), otherUserId, sorted,
-					offset, limit, callback, old, young, type, userId, cardId);
+					offset, limit, callback, old, young, type, userId, cardId, select, folderId);
 
 		} else {
 			new CardAjax().ajax(resp.getOutputStream(), otherUserId, sorted,
-					offset, limit, callback, old, young, type, userId, cardId);
+					offset, limit, callback, old, young, type, userId, cardId, select, folderId);
 		}
 	}
 }

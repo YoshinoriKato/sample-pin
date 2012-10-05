@@ -16,6 +16,7 @@ import com.google.code.morphia.query.Query;
 import com.google.gson.Gson;
 import com.mongodb.MongoException;
 import com.samplepin.Card;
+import com.samplepin.Folder;
 import com.samplepin.User;
 import com.samplepin.View;
 import com.samplepin.common.ACMongo;
@@ -25,14 +26,16 @@ public class CardAjax {
 
 	void ajax(OutputStream os, String otherUserId, String sorted,
 			String offset, String limit, String callback, String old,
-			String young, String type, String userId, String cardId)
-			throws IOException {
+			String young, String type, String userId, String cardId,
+			String select, String folderId) throws IOException {
 
 		List<Card> cards = new ArrayList<>();
 		Map<String, Object> data = new HashMap<>();
 		type = valid(type) ? type : "card";
 		data.put("type", type);
 		data.put("userId", userId);
+		data.put("select", select);
+
 		boolean alreadyRead = false;
 		int _offset = valid(offset) ? Integer.valueOf(offset) : 0;
 		int _limit = valid(limit) ? Integer.valueOf(limit) : 0;
@@ -51,6 +54,7 @@ public class CardAjax {
 			if (valid(young)) {
 				query.filter("updateDate > ", Long.valueOf(young));
 			}
+
 
 			// sort
 			if ("view".equals(sorted)) {
@@ -84,6 +88,20 @@ public class CardAjax {
 			} else if ("mine".equals(sorted)) {
 				query.filter("userId = ", userId);
 				query.order("-updateDate");
+
+			} else if ("folder".equals(sorted)) {
+				query.order("-updateDate");
+
+				if (valid(folderId)) {
+					Folder folder = mongo.createQuery(Folder.class)
+							.filter("folderId = ", folderId)
+							.filter("isDeleted", false).get();
+					if (folder != null) {
+						query.filter("cardId in ", folder.getCards().split(","));
+					} else {
+						query.filter("cardId = ", "XXX");
+					}
+				}
 
 			} else if (valid(otherUserId)) {
 				query.filter("userId = ", otherUserId);

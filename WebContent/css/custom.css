@@ -198,7 +198,6 @@ html {
 	position: absolute;
 	height: 100%;
 	width: 100%;
-	height: 100%;
 }
 
 #main {
@@ -456,6 +455,35 @@ html {
 	/* padding: 20px; */
 }
 
+#select-original-card {
+	display: none;
+	left: 10px;
+	top: 5px;
+}
+
+#select-small-card {
+	/* effect ---------------------------------------------------------------*/
+	background-color: rgba(0, 0, 0, 0.4);
+	box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+	/* layout ---------------------------------------------------------------*/
+	padding: 14px;
+	left: -5px;
+	top : 42px;
+	/* shape ----------------------------------------------------------------*/
+/* 	width: 60px;
+	height: 60px; */
+	height: 40px;
+	border-radius: 0px 0px 25px 0px;
+	-webkit-border-radius: 0px 0px 25px 0px;
+	-moz-border-radius: 0px 0px 25px 0px;
+}
+
+
+#folder-form{
+	display: none;
+}
+
 .sns-like-button {
 	/* effect ---------------------------------------------------------------*/
 	background-color: rgba(0, 0, 0, 0.2);
@@ -685,18 +713,16 @@ html {
 	background-color: rgba(255, 255, 255, 0.2);
 	box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+	font-size: large;
 	/* layout ---------------------------------------------------------------*/
-	padding-top: 5px;
-	padding-bottom: 5px;
-	padding-left: 4px;
-	padding-right: 6px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	/* shape ----------------------------------------------------------------*/
 	border-radius: 5px 25px 5px;
 	-webkit-border-radius: 5px 25px 5px;
 	-moz-border-radius: 5px 25px 5px;
-	padding-bottom: 10px;
-	padding-left: 9px;
-	padding-right: 11px;
 }
 
 .ribon {
@@ -1041,3 +1067,20 @@ html {
 	font-size: xx-small;
 }
 
+
+
+.no-selected-card {
+	filter: alpha(opacity =                     40);
+	-moz-opacity: 0.40;
+	opacity: 0.40;
+}
+
+.float-card {
+	position: relative;
+	margin-right: auto;
+	z-index: 10;
+	top: 40px;
+	left: -5px;
+	color: rgba(255, 255, 255, 0.8);
+	
+}

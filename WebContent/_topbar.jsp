@@ -26,8 +26,10 @@
 			? CLASS_ACTIVE
 			: classHome;
 
-	String classTag = url.contains("/tag.jsp") ? CLASS_ACTIVE : CLASS_NEGATIVE;
-	
+	String classTag = url.contains("/tag.jsp")
+			? CLASS_ACTIVE
+			: CLASS_NEGATIVE;
+
 	String classMakeCard = url.contains("/make-card.jsp")
 			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
@@ -55,41 +57,39 @@
 
 	String userId = Helper.getUserId(session);
 	User user = Helper.getUserById(userId);
-	
-	String cardId = request.getParameter("cardId");
-	
-	String sorted = request.getParameter("sorted");
-	
-	String classLatest = (url.contains("/home.jsp") && sorted == null
-	&& cardId == null) ? CLASS_ACTIVE : CLASS_NEGATIVE;
-	
-	String classMine = "mine".equals(sorted) ? CLASS_ACTIVE : CLASS_NEGATIVE;
-	
-	String classView = "view".equals(sorted) ? CLASS_ACTIVE : CLASS_NEGATIVE;
-	
-	String classComment = "comment".equals(sorted) ? CLASS_ACTIVE : CLASS_NEGATIVE;
-	
-	String classFootprints = "footprints".equals(sorted) ? CLASS_ACTIVE
-	: CLASS_NEGATIVE;
-	
-	String classRecommend = "recommend".equals(sorted) ? CLASS_ACTIVE : CLASS_NEGATIVE;
 
+	String cardId = request.getParameter("cardId");
+
+	String sorted = request.getParameter("sorted");
+
+	String classLatest = (url.contains("/home.jsp") && sorted == null && cardId == null)
+			? CLASS_ACTIVE
+			: CLASS_NEGATIVE;
+
+	String classMine = "mine".equals(sorted)
+			? CLASS_ACTIVE
+			: CLASS_NEGATIVE;
+
+	String classView = "view".equals(sorted)
+			? CLASS_ACTIVE
+			: CLASS_NEGATIVE;
+
+	String classComment = "comment".equals(sorted)
+			? CLASS_ACTIVE
+			: CLASS_NEGATIVE;
+
+	String classFootprints = "footprints".equals(sorted)
+			? CLASS_ACTIVE
+			: CLASS_NEGATIVE;
+
+	String classRecommend = "recommend".equals(sorted)
+			? CLASS_ACTIVE
+			: CLASS_NEGATIVE;
+
+	String select = request.getParameter("select");
+	boolean isSelectMode = "true".equals(select);
 %>
 
-<script type="text/javascript" charset="utf-8">
-	attach(window, 'load', function() {
-		$('.dropdown-toggle').dropdown();
-	});
-
-	var $height = $('#main-menu').height;
-	attach(window, 'scroll', function() {
-		if (isHided()) {
-			pushPull('#main-menu', '#null', 5);
-		} else {
-			pushPull('#null', '#main-menu', 5);
-		}
-	});
-</script>
 
 <div class="navbar navbar-fixed-top">
 	<div id="main-menu" class="navbar-inner">
@@ -109,7 +109,7 @@
 					class="center x-small"><img src="img/home32.png"
 						class="menu-icon" alt="home"><br>ホーム</a></li>
 
-<%-- 				<li class="dropdown"><a href="#"
+				<%-- 				<li class="dropdown"><a href="#"
 					class="dropdown-toggle center x-small" data-toggle="dropdown"><img
 						src="img/search32.png" class="menu-icon" alt="filter"><b
 						class="caret"></b><br>フィルタ</a>
@@ -203,7 +203,8 @@
 				<li class="<%=classMine%>"><a href="home.jsp?sorted=mine">所有</a></li>
 				<li class="<%=classFootprints%>"><a
 					href="home.jsp?sorted=footprints">足あと</a></li>
-				<li class="<%=classRecommend%>"><a href="home.jsp?sorted=recommend">オススメ</a></li>
+				<li class="<%=classRecommend%>"><a
+					href="home.jsp?sorted=recommend">オススメ</a></li>
 				<%
 					}
 				%>
@@ -215,6 +216,29 @@
 		</div>
 	</div>
 	<%
+		if (isSelectMode) {
+	%>
+	<jsp:include page="_folder.jsp"></jsp:include>
+	<%
 		}
 	%>
 </div>
+<%
+	}
+%>
+
+
+<script type="text/javascript" charset="utf-8">
+	attach(window, 'load', function() {
+		$('.dropdown-toggle').dropdown();
+	});
+
+	var $height = $('#main-menu').height;
+	attach(window, 'scroll', function() {
+		if (isHided()) {
+			pushPull('#main-menu', '#null', 5);
+		} else {
+			pushPull('#null', '#main-menu', 5);
+		}
+	});
+</script>

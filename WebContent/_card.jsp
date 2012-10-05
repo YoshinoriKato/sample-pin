@@ -5,11 +5,14 @@
 <%!Card card;%>
 
 <%
+	String select = request.getParameter("select");
+	boolean isSelectMode = "true".equals(select);
+	
 	card = (Card) request.getAttribute("card");
 	if (card != null) {
 %>
 
-<div id="<%=card.getCardId()%>" class="cell">
+<div class="cell">
 	<%
 		int height = card.getHeight();
 			int width = card.getWidth();
@@ -35,7 +38,7 @@
 			<div>
 				<a class="no-hover"
 					href="profile.jsp?userId=<%=card.getUserId()%>"><img
-					class="image-icon" src="<%=card.getUserIcon()%>"></a>
+					class="menu-user-icon img-circle" src="<%=card.getUserIcon()%>"></a>
 			</div>
 		</div>
 		<div class="card-subtext">

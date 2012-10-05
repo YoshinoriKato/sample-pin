@@ -21,6 +21,13 @@
 
 	String words = request.getParameter("words");
 	words = words == null ? "" : words;
+
+	String select = request.getParameter("select");
+	select = select == null ? "" : select;
+	select = "true".equals(select) ? "true" : "false";
+
+	String folderId = request.getParameter("folderId");
+	folderId = folderId == null ? "" : folderId;
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -32,21 +39,22 @@
 		wookmark();
 	});
 
-	attach(window, 'load', 
+	attach(window, 'load',
 			function() {
 				/* search */
 				searchKeywords();
 
 				callAjax($('#sorted').text(), 20, '', $('#userId').text(), '',
-						'card', $('#words').text());
-				
+						'card', $('#words').text(), $('#select').text(), $(
+								'#folderId').text());
+
 				$('#main').fadeIn(1000);
 			});
 
 	attach(window, 'scroll', function() {
 		if (isNeed()) {
-				readMore();
-			}
+			readMore();
+		}
 	});
 </script>
 </head>
@@ -61,10 +69,15 @@
 		</ul>
 		<br style="clear: both;" />
 	</div>
+
 	<div class="center caption star x-large" id="read-cards"></div>
+
 	<div style="display: none" id="sorted"><%=sorted%></div>
 	<div style="display: none" id="userId"><%=otherUserId%></div>
 	<div style="display: none" id="words"><%=words%></div>
+	<div style="display: none" id="select"><%=select%></div>
+	<div style="display: none" id="folderId"><%=folderId%></div>
+
 	<jsp:include page="_footer.jsp"></jsp:include>
 </body>
 

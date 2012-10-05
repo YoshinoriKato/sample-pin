@@ -25,7 +25,6 @@
 						placeholder="Please search images. At last, press enter key."
 						class="input-medium input-search text"><input
 						type="submit" class="btn  btn-submit" value="Search">
-					<div id="float-box" class="input-text text"></div>
 					<%
 						if (isWrite) {
 					%>

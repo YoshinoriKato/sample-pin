@@ -19,6 +19,7 @@ function callback($data) {
 	var $type = $data.type;
 	var $len = $array.length;
 	var $userId = $data.userId;
+	var $select = $data.select;
 	var $interval = 3;
 	$counter += $len;
 	if ($len == 0) {
@@ -32,7 +33,7 @@ function callback($data) {
 			if ($type == 'comment') {
 				makeComment($one, $userId);
 			} else {
-				makeCard($one);
+				makeCard($one, $select);
 				wookmark();
 			}
 		}
@@ -55,7 +56,9 @@ function wookmark() {
 	});
 };
 
-function makeCard($card) {
+function makeCard($card, $select) {
+	
+	$select = ($select === undefined) ? true : $select;
 
 	// components
 	var $url = $card.url;
@@ -79,7 +82,7 @@ function makeCard($card) {
 	var $jqA1 = $('<a/>').addClass('no-hover');
 	var $jqA2 = $('<a/>').addClass('no-hover');
 	var $jqA3 = $('<a/>').addClass('no-hover');
-	var $jqA4 = $('<a/>').addClass('no-hover');
+//	var $jqA4 = $('<a/>').addClass('no-hover');
 	$jqA3.attr(
 			'href',
 			'jump.jsp?cardId=' + $card.cardId + '&redirectUrl='
@@ -90,11 +93,11 @@ function makeCard($card) {
 	var $divCaption = $('<div/>').addClass('caption deco');
 	var $divName = $('<div/>').addClass('bold deco break-word');
 	var $divBr0 = $('<br/>').css('clear', 'both');
-	var $divBr1 = $('<br/>').css('clear', 'both');
-	var $divKey = $('<div/>').addClass('card-info break-word')
-			.text('Keywords:');
-	var $spanKey = $('<span/>').text($card.keywords);
-	var $divUrl = $('<div/>').addClass('card-info break-word').append($jqA3);
+//	var $divBr1 = $('<br/>').css('clear', 'both');
+//	var $divKey = $('<div/>').addClass('card-info break-word')
+//			.text('Keywords:');
+//	var $spanKey = $('<span/>').text($card.keywords);
+	var $divUrl = $('<div/>').addClass('card-info break-word');
 	var $divFooter = $('<div/>').addClass('star right');
 	var $divRibonText = $('<div/>').text($card.view + ' view');
 	var $jqImg = $('<img/>').addClass('image-shot deco').attr('src',
@@ -103,7 +106,7 @@ function makeCard($card) {
 		$jqImg.attr('width', $width);
 	if ($height)
 		$jqImg.attr('height', $height);
-	var $jqIcon = $('<img/>').addClass('image-icon')
+	var $jqIcon = $('<img/>').addClass('menu-user-icon img-circle')
 			.attr('src', $card.userIcon);
 
 	if ($url != null && $url != '') {
@@ -117,7 +120,13 @@ function makeCard($card) {
 	} else {
 		$divName.text($card.userName);
 		$divRibonText.addClass('ribon-text color-red');
+
 		$jqDiv.addClass('cell');
+		if($select){
+			$jqDiv.attr('onclick', 'reverseCard(\'' + $card.cardId +'\')');
+			$jqDiv.addClass('no-selected-card');
+		}
+		
 		$link = 'card-comment.jsp?cardId=' + $card.cardId + '&type=comment';
 		$jqA0.attr('href', $link);
 		$jqA1.attr('href', $link);
@@ -128,15 +137,28 @@ function makeCard($card) {
 	// construct
 	$('#content').append($jqLi);
 	$jqLi.append($jqDiv);
+	$divRibon.append($divRibonText);
 	if ($card.view > 0) {
-		$jqDiv.append($jqA0.append($divRibon.append($divRibonText)));
+		if ($select) {
+			$jqDiv.append($divRibon);
+		}else{
+			$jqDiv.append($jqA0.append($divRibon));
+		}
 	}
-	$jqDiv.append($jqA1.append($divImage)).append($divCardMain)
-			.append($divBr0);
-	$divCardMain.append($divCardIcon0).append($divCardSubtext0);
-	$divCardIcon0.append($jqA2);
-	$divCardSubtext0.append($divName).append($divCaption);
+	if ($select) {
+		$jqDiv.append($divImage);
+		$divCardIcon0.append($jqIcon);
+		
+	} else {
+		$jqDiv.append($jqA1.append($divImage));
+		$divCardIcon0.append($jqA2);
+		$jqA2.append($jqIcon);
+		$divUrl.append($jqA3);
+	}
 	
+	$jqDiv.append($divCardMain).append($divBr0);
+	$divCardMain.append($divCardIcon0).append($divCardSubtext0);
+	$divCardSubtext0.append($divName).append($divCaption);
 	$jqDiv.append($divCardSub);
 	$divCardSub.append($divCardIcon1).append($divCardSubtext1);
 
@@ -160,7 +182,17 @@ function makeCard($card) {
 	.append($divFooter);
 	$divImage.append($jqImg);
 	$divCaption.text($card.caption).autoUrlLink().escapeReturn();
-	$jqA2.append($jqIcon);
+}
+
+function reverseCard($selectId){
+	$card = $('#' + $selectId);
+	if($card.hasClass('no-selected-card')){
+		$card.addClass('selected-card');
+		$card.removeClass('no-selected-card');
+	} else {
+		$card.addClass('no-selected-card');
+		$card.removeClass('selected-card');
+	}
 }
 
 function makeComment($comment, $userId) {
@@ -217,7 +249,7 @@ function makeComment($comment, $userId) {
 	$jqA.append($jqIcon);
 }
 
-function callAjax($sorted, $limit, $offset, $userId, $cardId, $type, $words) {
+function callAjax($sorted, $limit, $offset, $userId, $cardId, $type, $words, $select, $folderId) {
 	if (!$block) {
 		$block = true;
 		$.ajax({
@@ -234,7 +266,9 @@ function callAjax($sorted, $limit, $offset, $userId, $cardId, $type, $words) {
 				userId : $userId,
 				cardId : $cardId,
 				type : $type,
-				words : $words
+				words : $words,
+				select : $select,
+				folderId : $folderId
 			},
 			success : callback,
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
