@@ -140,23 +140,24 @@ function makeCard($card) {
 	$jqDiv.append($divCardSub);
 	$divCardSub.append($divCardIcon1).append($divCardSubtext1);
 
-	if ($card.parentId != null && $card.parentId != '' && $card.parentId != 'self') {
-		$divCardIcon1.append($jqA4);
-		$jqA4.attr('href',
-				'card-comment.jsp?cardId=' + $card.parentId + '&type=comment');
-		$jqA4.append($('<img/>').attr('src', $card.parentIcon).addClass('image-icon'));
-	}
-
-	if ($card.keywords) {
-		$divCardSubtext1.append($divKey);
-		$divKey.append($spanKey.convLink());
-	}
-
-	if ($card.site) {
-		$divCardSubtext1.append($divUrl);
-	}
+//	if ($card.parentId != null && $card.parentId != '' && $card.parentId != 'self') {
+//		$divCardIcon1.append($jqA4);
+//		$jqA4.attr('href',
+//				'card-comment.jsp?cardId=' + $card.parentId + '&type=comment');
+//		$jqA4.append($('<img/>').attr('src', $card.parentIcon).addClass('image-icon'));
+//	}
+//
+//	if ($card.keywords) {
+//		$divCardSubtext1.append($divKey);
+//		$divKey.append($spanKey.convLink());
+//	}
+//
+//	if ($card.site) {
+//		$divCardSubtext1.append($divUrl);
+//	}
 	
-	$jqDiv.append($divBr1).append($divFooter);
+	$jqDiv //.append($divBr1)
+	.append($divFooter);
 	$divImage.append($jqImg);
 	$divCaption.text($card.caption).autoUrlLink().escapeReturn();
 	$jqA2.append($jqIcon);

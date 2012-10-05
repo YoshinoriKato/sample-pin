@@ -92,9 +92,9 @@ function makeImageCell($content, $result) {
 	$parentId = ($parentId != null && $parentId != '') ? $parentId : '';
 	
 	var $a2 = $('<a/>').attr('href', $result.originalContextUrl).attr('target',
-			'_blank');
+			'_blank').addClass('margin-left-default');
 	var $caption = $('<div/>').addClass('caption star');
-	var $image = $('<img/>').attr('src', $result.tbUrl).addClass('image-thumb');
+	var $image = $('<img/>').attr('src', $result.tbUrl); //.addClass('image-thumb');
 	var $clear = $('<br/>').css('clear', 'both');
 
 	var $form = $('<form/>').attr('id', $formId).attr('method', 'post').attr('action', 'upload.do');

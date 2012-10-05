@@ -134,6 +134,16 @@
 				<div id="image-close" class="close-button">&times;</div>
 				<div><img src="<%=card.getImagePath()%>" id="image-origin"></div>
 				<%
+					if (Helper.valid(card.getKeywords())) {
+							String keywords = card.getKeywords();
+				%>
+				<div class="margin-top-default">
+					<span class="large badge opacity60 keywords"><%=keywords%></span>
+				</div>
+				<%
+					}
+				%>
+				<%
 					if (Helper.valid(card.getSite())) {
 							String path = card.getSite();
 							path = path.length() > 40 ? path.substring(0, 40) + "..."
@@ -267,11 +277,11 @@
 					%>
 					<!--  ajax -->
 					<li id="comment-insert"></li>
+					<li class="margin-bottom-default"><jsp:include page="_sns.jsp"></jsp:include><br
+						style="clear: both;" /></li>
 					<%
 						if (card != null) {
 					%>
-					<li class="margin-bottom-default"><jsp:include page="_sns.jsp"></jsp:include><br
-						style="clear: both;" /></li>
 					<li id="latest-info" class="cell margin-bottom-default opacity60">
 						<p>その他のカード</p>
 						<ul>

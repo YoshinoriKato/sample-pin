@@ -14,50 +14,50 @@ public class User implements Serializable, Deleteable, Createable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2561029945069027198L;
+	private static final long	serialVersionUID	= 2561029945069027198L;
 
 	@Id
-	ObjectId id;
+	ObjectId					id;
 
 	@Indexed
-	String userId;
+	String						userId;
 
-	Integer password;
+	Integer						password;
 
-	String imagePath;
+	String						imagePath;
 
-	String birthDay;
+	String						birthDay;
 
-	String mail;
+	String						mail;
 
-	Integer loginFaileds;
+	Integer						loginFaileds;
 
-	Long lastUpdate;
+	Long						lastUpdate;
 
-	Long createDate;
+	Long						createDate;
 
-	String fontColor;
+	String						fontColor;
 
-	String backgroundImage;
+	String						backgroundImage;
 
-	String userName;
+	String						userName;
 
-	String backgroundColor;
+	String						backgroundColor;
 
-	String textShadowColor;
+	String						textShadowColor;
 
-	Boolean useBackgroundImage;
+	Boolean						useBackgroundImage;
 
-	Integer code;
+	Integer						code;
 
-	String comment;
+	String						comment;
 
-	Integer category;
+	Integer						category;
 
 	@Indexed
-	Boolean isDeleted;
+	Boolean						isDeleted;
 
-	Boolean isFirst;
+	Boolean						isFirst;
 
 	public User() {
 		super();

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.code.morphia.query.Query;
 import com.google.gson.Gson;
 import com.samplepin.Card;
 import com.samplepin.common.ACMongo;
@@ -22,7 +21,9 @@ public class RequestCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7818349586239857211L;
+	private static final long	serialVersionUID	= 7818349586239857211L;
+
+	static final String			KEY_TOKEN			= "jfajfoJFLSF_iojwoijiw";
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -38,34 +39,35 @@ public class RequestCardServlet extends HttpServlet {
 		resp.setContentType("text/javascript+json; charset=UTF-8");
 		String lastUpdate = req.getParameter("lastUpdate");
 		String token = req.getParameter("token");
+		OutputStream os = resp.getOutputStream();
 
-		if (!"doya".equals(token)) {
-			Map<String, String> map = new HashMap<>();
+		Map<String, String> map = new HashMap<>();
+		if (!KEY_TOKEN.equals(token)) {
 			map.put("message", "password error");
-			writeToJSON(resp.getOutputStream(), map);
+			writeToJSON(os, map);
 			return;
 		}
 
 		Long updateDate = Long.valueOf(lastUpdate);
 		try (ACMongo mongo = new ACMongo()) {
-			Query<Card> query = mongo.createQuery(Card.class)
+			Card card = mongo.createQuery(Card.class)
 					.filter("isDeleted", false)
-					.filter("updateDate > ", updateDate).order("updateDate");
-			Card card = query.get();
+					.filter("updateDate > ", updateDate).order("updateDate")
+					.get();
+
 			if (card != null) {
-				writeToJSON(resp.getOutputStream(), card);
+				writeToJSON(os, card);
+
 			} else {
-				Map<String, String> map = new HashMap<>();
 				map.put("message", "no data");
-				writeToJSON(resp.getOutputStream(), map);
+				writeToJSON(os, map);
 			}
 		}
 	}
 
 	final void writeToJSON(OutputStream os, Object data) throws IOException {
 		try (OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8")) {
-			Gson gson = new Gson();
-			String out = gson.toJson(data);
+			String out = new Gson().toJson(data);
 			osw.write(out);
 			osw.flush();
 		} catch (Exception e) {

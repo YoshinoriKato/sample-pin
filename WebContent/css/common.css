@@ -24,6 +24,14 @@
 	margin-bottom: 14px;
 }
 
+.margin-right-default {
+	margin-right: 14px;
+}
+
+.margin-left-default {
+	margin-left: 14px;
+}
+
 /* Font HuiFontP */
 @font-face {
 	font-family: 'HuiFontPRegular';
