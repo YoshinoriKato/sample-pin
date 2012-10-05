@@ -33,7 +33,7 @@ public class AccountServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -7182329627922034835L;
+	private static final long serialVersionUID = -7182329627922034835L;
 
 	public static void copyStream(InputStream in, OutputStream os,
 			int bufferSize) throws IOException {
@@ -182,7 +182,7 @@ public class AccountServlet extends HttpServlet {
 				} else if (valid(birthDay)) {
 					user.setBirthDay(birthDay);
 
-				} else if (valid(mail)) {
+				} else if (valid(mail) && SignupServlet.validateMail(mail)) {
 					user.setMail(mail);
 
 				} else if (valid(country)) {

@@ -25,7 +25,12 @@ public class SignupServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 7038314414171973611L;
+	private static final long serialVersionUID = 7038314414171973611L;
+
+	static boolean validateMail(String mail) {
+		return mail
+				.matches("[a-zA-Z][a-zA-Z0-9\\.\\-\\+]+@[a-zA-Z0-9\\.\\-]+[a-zA-Z]");
+	}
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -115,11 +120,6 @@ public class SignupServlet extends HttpServlet {
 				.append(Helper.DOMAIN + "login.jsp?onetime=" + oneTime)
 				.append(LS);
 		return builder.toString();
-	}
-
-	private boolean validateMail(String mail) {
-		return mail
-				.matches("[a-zA-Z][a-zA-Z0-9\\.\\-]+@[a-zA-Z0-9\\.\\-]+[a-zA-Z]");
 	}
 
 }

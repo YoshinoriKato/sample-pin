@@ -9,29 +9,29 @@ public class Card extends Comment implements Updateable {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 2686047770755644944L;
+	private static final long serialVersionUID = 2686047770755644944L;
 
-	String						parentId;
+	String parentId;
 
 	@Transient
-	String						parentIcon;
+	String parentIcon;
 
-	String						url;
+	String url;
 
-	Integer						likes;
+	Integer likes;
 
-	Integer						view;
+	Integer view;
 
-	Integer						width;
+	Integer width;
 
-	Integer						height;
+	Integer height;
 
-	String						keywords;
+	String keywords;
 
-	String						site;
+	String site;
 
 	@Indexed
-	Long						updateDate;
+	Long updateDate;
 
 	public Card() {
 		this("self", "", "", "", "", "", 0, 0, System.currentTimeMillis());

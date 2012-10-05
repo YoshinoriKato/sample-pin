@@ -18,9 +18,9 @@ public class UtilityAnonymous extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -5036134172073312539L;
+	private static final long serialVersionUID = -5036134172073312539L;
 
-	public static String		USER_ID				= "Anonymous";
+	public static String USER_ID = "Anonymous";
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse response)

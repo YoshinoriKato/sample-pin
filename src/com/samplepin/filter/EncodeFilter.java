@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebFilter(urlPatterns = { "/*" }, dispatcherTypes = DispatcherType.REQUEST)
 public class EncodeFilter implements Filter {
 
-	private ServletContext	context;
+	private ServletContext context;
 
 	@Override
 	public void destroy() {

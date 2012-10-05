@@ -22,7 +22,7 @@
 	type = (type != null) ? type : "comment";
 
 	String image = request.getParameter("image");
-	image = (image != null) ? image : "";
+	image = (image != null) ? image : "open";
 
 	Card card = Helper.getCardByID(cardId);
 	if (card != null) {
@@ -80,7 +80,7 @@
 	});
 
 	attach(window, 'load', function() {
-		callAjax($('#sorted').text(), 40, '', $('#userId').text(), $('#cardId')
+		callAjax($('#sorted').text(), 20, '', $('#userId').text(), $('#cardId')
 				.text(), $('#type').text());
 	});
 

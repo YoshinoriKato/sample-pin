@@ -15,38 +15,38 @@ public class Comment implements Serializable, Deleteable, Createable {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 2819722174698713202L;
+	private static final long serialVersionUID = 2819722174698713202L;
 
 	@Id
-	ObjectId					id;
+	ObjectId id;
 
-	String						userId;
-
-	@Indexed
-	String						cardId;
-
-	String						caption;
+	String userId;
 
 	@Indexed
-	Long						createDate;
+	String cardId;
+
+	String caption;
 
 	@Indexed
-	Boolean						isDeleted;
+	Long createDate;
 
-	String						imagePath;
+	@Indexed
+	Boolean isDeleted;
 
-	@Transient
-	String						userIcon;
-
-	@Transient
-	String						cardIcon;
+	String imagePath;
 
 	@Transient
-	String						userName;
+	String userIcon;
 
-	Boolean						anonymous;
+	@Transient
+	String cardIcon;
 
-	Integer						accessLevel;
+	@Transient
+	String userName;
+
+	Boolean anonymous;
+
+	Integer accessLevel;
 
 	public Comment() {
 		super();
