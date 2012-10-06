@@ -91,6 +91,21 @@
 %>
 
 
+<script type="text/javascript" charset="utf-8">
+	attach(window, 'load', function() {
+		$('.dropdown-toggle').dropdown();
+	});
+
+	var $height = $('#main-menu').height;
+	attach(window, 'scroll', function() {
+		if (isHided()) {
+			pushPull('#main-menu', '#null', 5);
+		} else {
+			pushPull('#null', '#main-menu', 5);
+		}
+	});
+</script>
+
 <div class="navbar navbar-fixed-top">
 	<div id="main-menu" class="navbar-inner">
 		<div class="container">
@@ -108,28 +123,6 @@
 				<li class="<%=classHome%>"><a href="home.jsp"
 					class="center x-small"><img src="img/home32.png"
 						class="menu-icon" alt="home"><br>ホーム</a></li>
-
-				<%-- 				<li class="dropdown"><a href="#"
-					class="dropdown-toggle center x-small" data-toggle="dropdown"><img
-						src="img/search32.png" class="menu-icon" alt="filter"><b
-						class="caret"></b><br>フィルタ</a>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-						<li><a href="home.jsp">最新</a></li>
-						<li><a href="home.jsp?sorted=view">注目</a></li>
-						<li><a href="home.jsp?sorted=comment">沸騰</a></li>
-						<%
-							if (userId != null && session.getAttribute("userId") != null) {
-						%>
-						<li class="divider"></li>
-						<li><a href="home.jsp?sorted=mine">所有</a></li>
-						<li><a href="home.jsp?sorted=footprints">足あと</a></li>
-						<li><a href="home.jsp?sorted=recommend">オススメ</a></li>
-						<%
-							}
-						%>
-						<li class="divider"></li>
-						<li><a href="tag.jsp">タグ</a></li>
-					</ul></li> --%>
 				<%
 					if (Helper.valid(userId)) {
 				%>
@@ -222,23 +215,8 @@
 	<%
 		}
 	%>
-</div>
 <%
 	}
 %>
+</div>
 
-
-<script type="text/javascript" charset="utf-8">
-	attach(window, 'load', function() {
-		$('.dropdown-toggle').dropdown();
-	});
-
-	var $height = $('#main-menu').height;
-	attach(window, 'scroll', function() {
-		if (isHided()) {
-			pushPull('#main-menu', '#null', 5);
-		} else {
-			pushPull('#null', '#main-menu', 5);
-		}
-	});
-</script>

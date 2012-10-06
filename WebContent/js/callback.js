@@ -58,7 +58,7 @@ function wookmark() {
 
 function makeCard($card, $select) {
 	
-	$select = ($select === undefined) ? true : $select;
+	$select = ($select === undefined) ? false : ($select == "true") ? true : false;
 
 	// components
 	var $url = $card.url;

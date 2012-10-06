@@ -44,9 +44,10 @@
 				/* search */
 				searchKeywords();
 
-				callAjax($('#sorted').text(), 20, '', $('#userId').text(), '',
+				/* callAjax($('#sorted').text(), 20, '', $('#userId').text(), '',
 						'card', $('#words').text(), $('#select').text(), $(
-								'#folderId').text());
+								'#folderId').text()); */
+				readMore();
 
 				$('#main').fadeIn(1000);
 			});

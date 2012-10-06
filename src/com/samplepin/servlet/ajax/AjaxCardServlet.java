@@ -51,7 +51,7 @@ public class AjaxCardServlet extends HttpServlet {
 			String dic = NaturalLanguageParser.getDictionaryPath(req);
 			new SearchAjax().ajax(resp.getOutputStream(), otherUserId, sorted,
 					offset, limit, callback, old, young, type, userId, cardId,
-					words, dic, select);
+					words, dic, select, folderId);
 
 		} else if ("comment".equals(type)) {
 			new CommentAjax().ajax(resp.getOutputStream(), otherUserId, sorted,

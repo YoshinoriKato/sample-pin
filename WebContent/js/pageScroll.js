@@ -12,7 +12,8 @@ function bottomLabel() {
 
 function readMore() {
 	callAjax($('#sorted').text(), 20, $counter, $('#userId').text(), $(
-			'#cardId').text(), $('#type').text(), $('#words').text());
+			'#cardId').text(), $('#type').text(), $('#words').text(), $('#select').text(), $(
+			'#folderId').text());
 }
 
 function gotoTop() {

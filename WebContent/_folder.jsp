@@ -57,7 +57,6 @@
 		});
 		$('#folderName').val($name);
 		$('#cards').val($array);
-		alert($name + $array);
 		$('#make-folder').submit();
 	}
 </script>
