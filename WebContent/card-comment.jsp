@@ -37,7 +37,7 @@
 		request.setAttribute("subTitle", " [" + subTitle + "]");
 	}
 
-	User user = Helper.getUserById(userId);
+	User user = Helper.getUserById(otherUserId);
 	request.setAttribute("user", user);
 
 	if ((card == null && user == null)
@@ -257,7 +257,7 @@
 						</ul>
 					</div>
 					<%
-						} else if (Helper.valid(userId)) {
+						} else if (Helper.valid(otherUserId)) {
 					%>
 					<jsp:include page="_user.jsp"></jsp:include>
 					<%

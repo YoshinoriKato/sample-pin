@@ -15,9 +15,9 @@ import com.samplepin.common.Helper;
 
 class PageSaver extends HTMLEditorKit.ParserCallback {
 
-	private StringBuilder builder;
+	private StringBuilder	builder;
 
-	private boolean canScan = false;
+	private boolean			canScan	= false;
 
 	public PageSaver(StringBuilder builder) {
 		this.builder = builder;
@@ -77,7 +77,7 @@ class ParserGetter extends HTMLEditorKit {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3311586319722170406L;
+	private static final long	serialVersionUID	= -3311586319722170406L;
 
 	@Override
 	public HTMLEditorKit.Parser getParser() {

@@ -55,7 +55,6 @@ public class CardAjax {
 				query.filter("updateDate > ", Long.valueOf(young));
 			}
 
-
 			// sort
 			if ("view".equals(sorted)) {
 				query.order("-view, -updateDate");

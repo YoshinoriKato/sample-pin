@@ -16,7 +16,7 @@ public class AjaxCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7818349586239857211L;
+	private static final long	serialVersionUID	= 7818349586239857211L;
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -45,7 +45,6 @@ public class AjaxCardServlet extends HttpServlet {
 		String words = req.getParameter("words");
 		String select = req.getParameter("select");
 		String folderId = req.getParameter("folderId");
-		
 
 		if ("search".equals(sorted)) {
 			String dic = NaturalLanguageParser.getDictionaryPath(req);
@@ -55,11 +54,13 @@ public class AjaxCardServlet extends HttpServlet {
 
 		} else if ("comment".equals(type)) {
 			new CommentAjax().ajax(resp.getOutputStream(), otherUserId, sorted,
-					offset, limit, callback, old, young, type, userId, cardId, select, folderId);
+					offset, limit, callback, old, young, type, userId, cardId,
+					select, folderId);
 
 		} else {
 			new CardAjax().ajax(resp.getOutputStream(), otherUserId, sorted,
-					offset, limit, callback, old, young, type, userId, cardId, select, folderId);
+					offset, limit, callback, old, young, type, userId, cardId,
+					select, folderId);
 		}
 	}
 }

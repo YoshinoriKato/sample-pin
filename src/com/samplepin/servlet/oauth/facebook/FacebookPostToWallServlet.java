@@ -28,7 +28,7 @@ public class FacebookPostToWallServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6859695248316214764L;
+	private static final long	serialVersionUID	= -6859695248316214764L;
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)

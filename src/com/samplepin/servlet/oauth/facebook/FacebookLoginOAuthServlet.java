@@ -18,9 +18,9 @@ public class FacebookLoginOAuthServlet extends FacebookOAuthServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7700928228357051804L;
+	private static final long	serialVersionUID	= -7700928228357051804L;
 
-	HttpSession session;
+	HttpSession					session;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)

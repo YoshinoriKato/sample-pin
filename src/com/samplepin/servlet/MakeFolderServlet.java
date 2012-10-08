@@ -20,9 +20,9 @@ public class MakeFolderServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5426777241563315344L;
+	private static final long	serialVersionUID	= 5426777241563315344L;
 
-	public static final Long COMMENTS_LIMIT = 1000L;
+	public static final Long	COMMENTS_LIMIT		= 1000L;
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -44,7 +44,8 @@ public class MakeFolderServlet extends HttpServlet {
 
 				ActivityLogger.log(req, this.getClass(), folder);
 
-				resp.sendRedirect("home.jsp?sorted=folder&folderId=" + folder.getFolderId());
+				resp.sendRedirect("home.jsp?sorted=folder&folderId="
+						+ folder.getFolderId());
 				return;
 			}
 

@@ -22,8 +22,8 @@ public class CommentAjax extends CardAjax {
 	@Override
 	void ajax(OutputStream os, String otherUserId, String sorted,
 			String offset, String limit, String callback, String old,
-			String young, String type, String userId, String cardId, String select, String folderId)
-			throws IOException {
+			String young, String type, String userId, String cardId,
+			String select, String folderId) throws IOException {
 
 		List<Comment> cards = new ArrayList<>();
 		Map<String, Object> data = new HashMap<>();
