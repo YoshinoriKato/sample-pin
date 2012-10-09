@@ -177,7 +177,7 @@
 					<%
 						if (userId.equals(card.getUserId())) {
 					%>
-					<%-- <div class="cell margin-top-default opacity50">
+					<div class="cell margin-top-default opacity50">
 						<p>親</p>
 						<form action="update-parent.do" method="post" class="form">
 							<fieldset>
@@ -229,15 +229,15 @@
 									class="btn btn-large btn-primary">
 							</fieldset>
 						</form>
-					</div> --%>
+					</div>
 					<%
 						}
 					%>
-					<%-- <div>
+					<div>
 						<a
 							class="bold btn btn-large btn-cell opacity80 margin-top-default btn-info"
 							href="make-card.jsp?parentId=<%=cardId%>">+連結</a>
-					</div> --%>
+					</div>
 					<%
 						}
 					%>
@@ -286,7 +286,23 @@
 						if (card != null) {
 					%>
 					<li id="latest-info" class="cell margin-bottom-default opacity60">
-						
+						<p>その他のカード</p>
+						<ul>
+							<%
+								List<Card> cards = Helper.newCards(card.getUpdateDate());
+									for (Card newone : cards) {
+										int length = newone.getCaption().length();
+										String caption = length > 40 ? newone.getCaption()
+												.substring(0, 40) + "..." : newone.getCaption();
+							%>
+							<li><a
+								href="card-comment.jsp?cardId=<%=newone.getCardId()%>&type=comment&image=open"><span
+									class="deco"><%=caption%></span></a> (view:<%=newone.getView()%>,
+								comment:<%=newone.getLikes()%>)</li>
+							<%
+								}
+							%>
+						</ul>
 					</li>
 					<%
 						}
@@ -295,15 +311,6 @@
 			</div>
 		</div>
 		<br style="clear: both;" />
-		<div class="split-r">
-			<div class="split-r-right">
-				<div class="cell">BBB</div>
-			</div>
-			<div class="split-r-left">
-				<div class="cell">AAA</div>
-			</div>
-		</div>
-			<br style="clear: both;" />
 	</div>
 
 	<!-- read cards -->
