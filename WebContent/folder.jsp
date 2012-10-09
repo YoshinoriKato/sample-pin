@@ -18,8 +18,9 @@
 </head>
 
 <%
-	String userId = request.getParameter("userId");
-	userId = Helper.valid(userId) ? userId : Helper.getUserId(session);
+	String otherUserId = request.getParameter("userId");
+	String userId = Helper.getUserId(session);
+	userId = Helper.valid(userId) ? userId : "";
 %>
 
 <body class="home">
@@ -40,22 +41,20 @@
 					}
 			%>
 			<li class="card">
-				<div class="cell">
+				<div id="<%=folder.getFolderId()%>" class="cell">
 					<div>
 						<a class="no-hover center"
-							href="home.jsp?sorted=folder&folderId=<%=folder.getFolderId()%>"> <img
-							class="image-shot deco" src="<%=card.getImagePath()%>">
+							href="home.jsp?sorted=folder&folderId=<%=folder.getFolderId()%>">
+							<img class="image-shot deco" src="<%=card.getImagePath()%>">
 						</a>
 					</div>
 					<div class="caption center deco">
-						<a href="home.jsp?sorted=folder&folderId=<%=folder.getFolderId()%>"><%=folder.getFolderName()%></a>
+						<a
+							href="home.jsp?sorted=folder&folderId=<%=folder.getFolderId()%>"><%=folder.getFolderName()%></a>
 					</div>
 					<div class="star right"><%=cards.length%>
-						cards
+						&ensp;cards
 					</div>
-				</div>
-				<div class="close-button">
-					<a href="confirm-disfolder.jsp?folderId=<%=folder.getFolderId()%>">&times;</a>
 				</div>
 			</li>
 			<%

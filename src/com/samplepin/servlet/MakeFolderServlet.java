@@ -1,6 +1,8 @@
 package com.samplepin.servlet;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,9 +22,9 @@ public class MakeFolderServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 5426777241563315344L;
+	private static final long serialVersionUID = 5426777241563315344L;
 
-	public static final Long	COMMENTS_LIMIT		= 1000L;
+	public static final Long COMMENTS_LIMIT = 1000L;
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -39,7 +41,18 @@ public class MakeFolderServlet extends HttpServlet {
 
 			if (Helper.valid(userId) && Helper.valid(folderName)
 					&& Helper.valid(cards)) {
-				Folder folder = new Folder(userId, folderName, cards);
+
+				Folder folder = mongo.createQuery(Folder.class)
+						.filter("userId = ", userId)
+						.filter("folderName = ", folderName)
+						.filter("isDeleted = ", false).get();
+
+				if (folder != null) {
+					merge(folder, cards);
+				} else {
+					folder = new Folder(userId, folderName, cards);
+				}
+
 				mongo.save(folder);
 
 				ActivityLogger.log(req, this.getClass(), folder);
@@ -60,4 +73,26 @@ public class MakeFolderServlet extends HttpServlet {
 		dispathcer.forward(req, resp);
 	}
 
+	private void merge(Folder folder, String cards) {
+		Set<String> unique = new HashSet<>();
+		String[] cards0 = folder.getCards().split(",");
+		String[] cards1 = cards.split(",");
+		for (String card : cards0) {
+			unique.add(card);
+		}
+		for (String card : cards1) {
+			unique.add(card);
+		}
+		StringBuilder builder = new StringBuilder();
+		boolean isFirst = true;
+		for (String card : unique) {
+			if (isFirst) {
+				isFirst = false;
+			} else {
+				builder.append(",");
+			}
+			builder.append(card);
+		}
+		folder.setCards(builder.toString());
+	}
 }

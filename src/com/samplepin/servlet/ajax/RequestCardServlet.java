@@ -21,9 +21,9 @@ public class RequestCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 7818349586239857211L;
+	private static final long serialVersionUID = 7818349586239857211L;
 
-	static final String			KEY_TOKEN			= "jfajfoJFLSF_iojwoijiw";
+	static final String KEY_TOKEN = "jfajfoJFLSF_iojwoijiw";
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)

@@ -64,6 +64,9 @@
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title"><%=title%></div>
 	<div style="height: 40px;"></div>
+	<% if(Helper.valid(folderId)) { %>
+	<div style="height: 60px;"></div>
+	<% } %>
 	<div id="main">
 		<ul id="content">
 			<!--  ajax -->

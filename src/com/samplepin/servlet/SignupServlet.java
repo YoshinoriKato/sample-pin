@@ -25,7 +25,7 @@ public class SignupServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 7038314414171973611L;
+	private static final long serialVersionUID = 7038314414171973611L;
 
 	static boolean validateMail(String mail) {
 		return mail

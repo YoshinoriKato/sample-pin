@@ -11,24 +11,29 @@ import com.samplepin.common.Helper;
 public class Folder implements Updateable, Deleteable {
 
 	@Id
-	ObjectId	id;
-
-	String		folderId;
-
-	String		userId;
-
-	String		folderName;
-
-	String		cards;
+	ObjectId id;
 
 	@Indexed
-	Long		createDate;
+	String folderId;
 
 	@Indexed
-	Boolean		isDeleted;
+	String userId;
+
+	String folderName;
+
+	String cards;
 
 	@Indexed
-	Long		updateDate;
+	Long createDate;
+
+	@Indexed
+	Boolean isDeleted;
+
+	@Indexed
+	Long updateDate;
+
+	@Indexed
+	Integer accessLevel;
 
 	public Folder() {
 		super();
@@ -38,6 +43,7 @@ public class Folder implements Updateable, Deleteable {
 		this.createDate = System.currentTimeMillis();
 		this.isDeleted = false;
 		this.updateDate = this.createDate;
+		this.accessLevel = 100;
 	}
 
 	public Folder(String userId, String folderName, String cards) {
@@ -45,6 +51,11 @@ public class Folder implements Updateable, Deleteable {
 		this.userId = userId;
 		this.folderName = folderName;
 		this.cards = cards;
+		this.accessLevel = 0;
+	}
+
+	public Integer getAccessLevel() {
+		return this.accessLevel;
 	}
 
 	public String getCards() {
@@ -79,6 +90,10 @@ public class Folder implements Updateable, Deleteable {
 
 	public String getUserId() {
 		return this.userId;
+	}
+
+	public void setAccessLevel(Integer accessLevel) {
+		this.accessLevel = accessLevel;
 	}
 
 	public void setCards(String cards) {

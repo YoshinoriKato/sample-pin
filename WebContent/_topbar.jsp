@@ -221,6 +221,15 @@
 	%>
 	<div class="float-card" style="width: 360px;">
 		<div id="select-small-card" class="x-large"><%=folder.getFolderName()%></div>
+		<%
+		if (folder.getUserId().equals(userId)) {
+		%>
+			<div class="close-button">
+				<a href="confirm-disfolder.jsp?folderId=<%=folder.getFolderId()%>">&times;</a>
+			</div>
+		<%
+		 	}
+		%>
 	</div>
 	<%
 		}

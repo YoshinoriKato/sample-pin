@@ -10,12 +10,12 @@ import com.google.code.morphia.annotations.Indexed;
 public class KeyAndValue {
 
 	@Id
-	ObjectId	id;
+	ObjectId id;
 
 	@Indexed
-	String		key;
+	String key;
 
-	String		value;
+	String value;
 
 	public KeyAndValue() {
 		super();

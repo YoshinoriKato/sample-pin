@@ -72,12 +72,7 @@
 
 <script type="text/javascript">
 	attach(window, 'load', function() {
-		cardId = $("#cardId").text();
 		pushPull('#main', '#ajax');
-		wookmark();
-	});
-	$(window).resize(function() {
-		wookmark();
 	});
 </script>
 

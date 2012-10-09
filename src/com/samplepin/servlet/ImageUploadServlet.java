@@ -24,7 +24,7 @@ public class ImageUploadServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 7137737292592767679L;
+	private static final long serialVersionUID = 7137737292592767679L;
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)

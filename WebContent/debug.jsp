@@ -6,13 +6,27 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<meta NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW,NOARCHIVE">
 <title>Welcome to Debug</title>
-<jsp:include page="_header.jsp" flush="true" />
 </head>
 <body>
 	<h1>
 		JSP Info
 		<%=request.getServletPath()%></h1>
+	<hr>
+	<h2>Header</h2>
+	<ol>
+		<%
+			for (String key : Collections.list(request.getHeaderNames())) {
+				String value = request.getHeader(key);
+		%>
+		<li><%=key%><ol>
+				<li><%=value%></li>
+			</ol></li>
+		<%
+			}
+		%>
+	</ol>
 	<hr>
 	<h2>Request</h2>
 	<ol>

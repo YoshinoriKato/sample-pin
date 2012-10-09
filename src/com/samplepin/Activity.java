@@ -10,18 +10,18 @@ import com.google.code.morphia.annotations.Indexed;
 public class Activity implements Createable {
 
 	@Id
-	ObjectId	id;
+	ObjectId id;
 
 	@Indexed
-	String		userId;
+	String userId;
 
 	@Indexed
-	String		action;
+	String action;
 
-	String		note;
+	String note;
 
 	@Indexed
-	Long		createDate;
+	Long createDate;
 
 	public Activity() {
 		super();

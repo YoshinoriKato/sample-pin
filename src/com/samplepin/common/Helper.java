@@ -33,6 +33,7 @@ import com.samplepin.Card;
 import com.samplepin.Comment;
 import com.samplepin.Country;
 import com.samplepin.Folder;
+import com.samplepin.Header;
 import com.samplepin.OneTime;
 import com.samplepin.Tag;
 import com.samplepin.TwitterAccount;
@@ -41,48 +42,42 @@ import com.samplepin.View;
 
 public class Helper {
 
-	public static final String	TIMESTAMP		= String.valueOf(System
-														.currentTimeMillis());
+	public static final String TIMESTAMP = String.valueOf(System
+			.currentTimeMillis());
 
-	static SimpleDateFormat		SDF_DATE		= new SimpleDateFormat(
-														"yyyy-MM-dd");
+	static SimpleDateFormat SDF_DATE = new SimpleDateFormat("yyyy-MM-dd");
 
-	static SimpleDateFormat		SDF_DATE_TIME	= new SimpleDateFormat(
-														"yyyy-MM-dd HH:mm:ss.SSS");
+	static SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat(
+			"yyyy-MM-dd HH:mm:ss.SSS");
 
-	static SimpleDateFormat		SDF_DATE_HOUR	= new SimpleDateFormat(
-														"yyyy-MM-dd 'at around' HH");
+	static SimpleDateFormat SDF_DATE_HOUR = new SimpleDateFormat(
+			"yyyy-MM-dd 'at around' HH");
 
-	public static final Pattern	convURLLinkPtn0	= Pattern
-														.compile(
-																"(http://|https://){1}[\\w\\.\\-/:\\#\\?\\=\\&\\;\\%\\~\\+]+",
-																Pattern.CASE_INSENSITIVE);
+	public static final Pattern convURLLinkPtn0 = Pattern.compile(
+			"(http://|https://){1}[\\w\\.\\-/:\\#\\?\\=\\&\\;\\%\\~\\+]+",
+			Pattern.CASE_INSENSITIVE);
 
-	public static final Pattern	convURLLinkPtn1	= Pattern
-														.compile(
-																"\\[([^\\]]*)\\]",
-																Pattern.CASE_INSENSITIVE);
+	public static final Pattern convURLLinkPtn1 = Pattern.compile(
+			"\\[([^\\]]*)\\]", Pattern.CASE_INSENSITIVE);
 
-	public static final Pattern	convURLLinkPtn2	= Pattern
-														.compile(
-																"[^ 　\t\f\r\n]+",
-																Pattern.CASE_INSENSITIVE);
+	public static final Pattern convURLLinkPtn2 = Pattern.compile(
+			"[^ 　\t\f\r\n]+", Pattern.CASE_INSENSITIVE);
 
-	static final Long			MILLS_SECOND	= 1000L;
+	static final Long MILLS_SECOND = 1000L;
 
-	static final Long			MILLS_MINUTE	= 60L * MILLS_SECOND;
+	static final Long MILLS_MINUTE = 60L * MILLS_SECOND;
 
-	static final Long			MILLS_HOUR		= 60L * MILLS_MINUTE;
+	static final Long MILLS_HOUR = 60L * MILLS_MINUTE;
 
-	static final Long			MILLS_DAY		= 24L * MILLS_HOUR;
+	static final Long MILLS_DAY = 24L * MILLS_HOUR;
 
-	public static final String	LS				= System.getProperty("line.separator");
+	public static final String LS = System.getProperty("line.separator");
 
-	public static final String	DOMAIN			= "http://doya.info/";
+	public static final String DOMAIN = "http://doya.info/";
 
-	public static final String	NAME			= "DOYA.info Beta";
+	public static final String NAME = "DOYA.info Beta";
 
-	static final String			SEPARATOR		= "[ |\\t|\\f|\\r\\n|\\r|\\n]";
+	static final String SEPARATOR = "[ |\\t|\\f|\\r\\n|\\r|\\n]";
 
 	public static boolean canTweet(HttpSession session) throws IOException {
 		try (ACMongo mongo = new ACMongo()) {
@@ -338,10 +333,21 @@ public class Helper {
 		return new Folder();
 	}
 
+	public static List<Folder> getFolders() throws IOException {
+		try (ACMongo mongo = new ACMongo()) {
+			Query<Folder> query = mongo.createQuery(Folder.class)
+					.filter("accessLevel = ", 0).filter("isDeleted = ", false)
+					.order("-createDate");
+			return query.asList();
+		}
+	}
+
 	public static List<Folder> getFolders(String userId) throws IOException {
 		try (ACMongo mongo = new ACMongo()) {
 			Query<Folder> query = mongo.createQuery(Folder.class)
-					.filter("userId = ", userId).order("-createDate");
+					.filter("isDeleted = ", false).order("-createDate");
+			query.or(query.criteria("userId").equal(userId),
+					query.criteria("accessLevel").equal(0));
 			return query.asList();
 		}
 	}
@@ -354,6 +360,13 @@ public class Helper {
 			return color;
 		}
 		return "";
+	}
+
+	public static List<Header> getHeaders() throws IOException {
+		try (ACMongo mongo = new ACMongo()) {
+			return mongo.createQuery(Header.class).order("-createDate")
+					.asList();
+		}
 	}
 
 	public static OneTime getOneTimeByOneTimePassword(String oneTimePassword) {
