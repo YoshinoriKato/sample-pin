@@ -10,9 +10,9 @@ var $rememmber = "";
 function searchKeywords(){
 	/* search */
 	var $key = 'search-box';
-	observeText($KEY_SEARCH_BOX, $key);
+	observeText($KEY_SEARCH_BOX, $key, false);
 	$timer0 = setInterval(function() {
-		checkLength($KEY_SEARCH_BOX, $key);
+		checkLength($KEY_SEARCH_BOX, $key, false);
 	}, 500);
 }
 

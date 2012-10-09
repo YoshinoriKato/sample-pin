@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.samplepin.common.ActivityLogger;
 import com.samplepin.common.Helper;
+import com.samplepin.servlet.util.MakeThumbnail;
 
 @WebServlet(urlPatterns = { "/upload.do" })
 public class ImageUploadServlet extends HttpServlet {
@@ -38,8 +39,6 @@ public class ImageUploadServlet extends HttpServlet {
 			String parentId = req.getParameter("parentId");
 			parentId = Helper.valid(parentId) ? parentId : "";
 			String userId = Helper.getUserId(req);
-			int len = userId.length();
-			String prefix = userId.substring(len - 8, len);
 
 			req.setAttribute("keywords", keywords);
 			req.setAttribute("site", site);
@@ -49,7 +48,7 @@ public class ImageUploadServlet extends HttpServlet {
 					"../icon-keeper");
 			File referenceFolder = new File("../../icon-keeper");
 			File realFolder = new File(fullPath);
-			String fileName = "I_" + prefix + System.nanoTime();
+			String fileName = Helper.getImageFileName(userId);
 			File realPathFile = new File(realFolder, fileName);
 
 			InputStream is = getInputStreamFromURL(urlPath);
@@ -59,8 +58,11 @@ public class ImageUploadServlet extends HttpServlet {
 
 			String formatName = ImageType.getFormat(realPathFile).toString();
 			fileName = fileName + "." + formatName;
-			realPathFile.renameTo(new File(realFolder, fileName));
+			File renamed = new File(realFolder, fileName);
+			realPathFile.renameTo(renamed);
 			File referenceFile = new File(referenceFolder, fileName);
+			new MakeThumbnail().convert(new File(realFolder, "t"), renamed,
+					formatName);
 
 			ActivityLogger.log(req, this.getClass(), realPathFile.getName());
 
@@ -78,14 +80,14 @@ public class ImageUploadServlet extends HttpServlet {
 		return;
 	}
 
-	final String fileName(MakeCardServlet make, String url) {
-		int begin = url.lastIndexOf("/") + 1;
-		begin = begin > 0 ? begin : 0;
-		int end = url.lastIndexOf("?");
-		end = end > 0 ? end : url.length();
-		String fileName = make.makePrefix() + url.substring(begin, end);
-		return fileName;
-	}
+	// final String fileName(MakeCardServlet make, String url) {
+	// int begin = url.lastIndexOf("/") + 1;
+	// begin = begin > 0 ? begin : 0;
+	// int end = url.lastIndexOf("?");
+	// end = end > 0 ? end : url.length();
+	// String fileName = make.makePrefix() + url.substring(begin, end);
+	// return fileName;
+	// }
 
 	final InputStream getInputStreamFromURL(String urlPath) throws IOException {
 		InputStream is = null;

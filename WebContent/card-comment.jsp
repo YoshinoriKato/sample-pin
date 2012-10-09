@@ -95,7 +95,7 @@
 
 	attach(window, 'load', function() {
 		// text observer
-		observeText('#comment-text', $key);
+		observeText('#comment-text', $key, true);
 		$('#comment-form').submit(function() {
 			if ($('#comment-text').innerHTML != '') {
 				removeText($key);

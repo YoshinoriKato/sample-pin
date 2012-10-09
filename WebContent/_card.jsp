@@ -30,7 +30,7 @@
 		}
 	%>
 	<div class="card-main">
-		<img class="image-shot deco link" src="<%=card.getImagePath()%>"
+		<img class="image-shot deco link" src="<%=Helper.convertThumbnailPath(card.getImagePath())%>"
 			width="<%=width%>" height="<%=height%>" id="image-shot">
 	</div>
 	<div class="card-comment">

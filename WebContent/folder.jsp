@@ -45,7 +45,7 @@
 					<div>
 						<a class="no-hover center"
 							href="home.jsp?sorted=folder&folderId=<%=folder.getFolderId()%>">
-							<img class="image-shot deco" src="<%=card.getImagePath()%>">
+							<img class="image-shot deco" src="<%=Helper.convertThumbnailPath(card.getImagePath())%>">
 						</a>
 					</div>
 					<div class="caption center deco">

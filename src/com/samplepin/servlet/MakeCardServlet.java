@@ -4,6 +4,7 @@ import static com.samplepin.common.Helper.valid;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -27,6 +28,7 @@ import com.samplepin.Card;
 import com.samplepin.User;
 import com.samplepin.common.ActivityLogger;
 import com.samplepin.common.Helper;
+import com.samplepin.servlet.util.MakeThumbnail;
 
 @WebServlet(urlPatterns = "/make-card.do")
 @MultipartConfig(location = "/Developer/uploaded")
@@ -36,6 +38,12 @@ public class MakeCardServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = -7182329627922034835L;
+
+	public static void copyStream(File in, File out, int bufferSize)
+			throws IOException {
+		copyStream(new FileInputStream(in), new FileOutputStream(out),
+				bufferSize);
+	}
 
 	public static void copyStream(InputStream in, OutputStream os,
 			int bufferSize) throws IOException {
@@ -82,10 +90,11 @@ public class MakeCardServlet extends HttpServlet {
 		Card card = readRequest(req.getParts(), userId, uploadQue);
 
 		if ("img/no_image.png".equals(card.getImagePath())) {
-			writeFiles(req, uploadQue, card);
+			card.setWidth(400);
+			card.setHeight(400);
 
 		} else {
-			// registerKeyAndImagePath(card);
+			writeFiles(req, uploadQue, card);
 
 			String fullPath = req.getServletContext().getRealPath(
 					"../icon-keeper");
@@ -212,25 +221,12 @@ public class MakeCardServlet extends HttpServlet {
 				String path = getFileName(part);
 				if (path != null) {
 					readFile(path, part, uploadQue);
+					card.setImagePath(path);
 				}
 			}
 		}
 		return card;
 	}
-
-	// final void registerKeyAndImagePath(Card card) throws IOException {
-	// try (ACMongo mongo = new ACMongo()) {
-	// if (valid(card.getKeywords())) {
-	// // space, zenkaku-space, tab
-	// for (String key : card.getKeywords()
-	// .split("( |	|　|\r\n|\n|\r)")) {
-	// KeyAndImage keyAndImage = new KeyAndImage(key,
-	// card.getImagePath());
-	// mongo.save(keyAndImage);
-	// }
-	// }
-	// }
-	// }
 
 	final void saveCardInfo(File realFolder, File referenceFolder,
 			String fileName, Card card) throws RuntimeException, IOException {
@@ -270,6 +266,9 @@ public class MakeCardServlet extends HttpServlet {
 			throws FileNotFoundException, IOException {
 		File realPathFile = new File(realFolder, fileName);
 		copyStream(is, new FileOutputStream(realPathFile), 1024);
+		String formatName = ImageType.getFormat(realPathFile).toString();
+		new MakeThumbnail().convert(new File(realFolder, "t"), realPathFile,
+				formatName);
 		log("upload user icon: " + realPathFile.getPath());
 	}
 
@@ -278,7 +277,9 @@ public class MakeCardServlet extends HttpServlet {
 			throws FileNotFoundException, IOException {
 		for (Uploader u : uploadQue) {
 			try {
-				String fileName = makePrefix() + u.fileName;
+				String fileName = Helper.getImageFileName(card.getUserId())
+						+ u.fileName.substring(u.fileName.lastIndexOf(".",
+								u.fileName.length()));
 				writeIconFile(realFolder, fileName, u.part.getInputStream());
 				saveCardInfo(realFolder, referenceFolder, fileName, card);
 				acceptFields.add(u.fileName);

@@ -89,6 +89,10 @@ public class Helper {
 		}
 	}
 
+	public static String convertThumbnailPath(String imagePath) {
+		return imagePath.replace("icon-keeper/", "icon-keeper/t/t_");
+	}
+
 	public static String convKeywordLink(String str) {
 		Matcher matcher = convURLLinkPtn2.matcher(str);
 		return matcher
@@ -369,6 +373,13 @@ public class Helper {
 		}
 	}
 
+	public static String getImageFileName(String userId) {
+		int len = userId.length();
+		String prefix = userId.substring(len - 8, len);
+		String fileName = "I_" + prefix + System.nanoTime();
+		return fileName;
+	}
+
 	public static OneTime getOneTimeByOneTimePassword(String oneTimePassword) {
 		if (oneTimePassword != null) {
 			try (ACMongo mongo = new ACMongo()) {
@@ -591,6 +602,6 @@ public class Helper {
 	}
 
 	public static final boolean valid(String val) {
-		return (val != null) && !val.isEmpty();
+		return (val != null) && !val.isEmpty() && !"null".equals(val);
 	}
 }
