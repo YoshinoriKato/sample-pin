@@ -104,12 +104,14 @@
 	<div id="main-menu" class="navbar-inner">
 		<div class="container">
 			<ul class="nav pills">
+				<li class="center"><a><img src="img/menu_doya_info.png" style="height:32px;"><br><span
+						class="user-name">Forbusからトトロまで</span></a></li>
 				<%
 					if (Helper.valid(user)) {
 				%>
 				<li class="<%=classProfile%>"><a href="profile.jsp"
 					class="center"><img src="<%=user.getImagePath()%>"
-						class="menu-user-icon img-circle"><br> <span
+						class="menu-user-icon img-circle"><br><span
 						class="user-name">あなた</span></a></li>
 				<%
 					}

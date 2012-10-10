@@ -19,6 +19,7 @@
 					<%=Helper.NAME%>
 					?
 				</h1>
+				
 				<div class="profile large">
 					<div class="item-group">
 						<div class="item-label">概要</div>
