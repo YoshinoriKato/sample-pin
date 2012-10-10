@@ -21,15 +21,18 @@
 				</h1>
 				<div class="profile large">
 					<div class="item-group">
-						<div class="items">
-							<img src="img/title.png" style="max-width: 120px;">
-						</div>
-					</div>
-					<div class="item-group">
 						<div class="item-label">概要</div>
 						<div class="items">
 							<p>気軽に使えるキュレーションサービスです。</p>
 							<p>あなたが検索した画像、それを見たときの感想・興味を共有してください。</p>
+						</div>
+					</div>
+					<div class="item-group">
+						<div class="item-label">由来</div>
+						<div class="items">
+							<p>大阪弁の「どうやろか？」、「どや！？」から来ています。</p>
+							<p>コミュニケーションで感想・興味を共有するさいのフレーズです。</p>
+							<p>DOYA.infoでは、コミュニケーションの点を共有し、面へと転じさせます。</p>
 						</div>
 					</div>
 				</div>
@@ -44,14 +47,15 @@
 								<video controls="controls"> <source
 									src="../../icon-keeper/movie.mp4"></source></video>
 							</div>
-							<p>サイト利用の一例です。</p>
-							<p>ヘルプからTwitterアカウントでログイン、ホーム画面、コメント、カード作成、ホーム画面切り替えをしています。</p>
+							<p>サイトでの利用例です。</p>
+							<p>ヘルプからTwitterアカウントでログイン。</p>
+							<p>ホーム画面、コメント、カード作成、ホーム画面切り替えをしています。</p>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="cell margin-bottom-default">
-				<h3 class="tab-header">はじめに</h3>
+				<h3 class="tab-header">ご登録</h3>
 				<div class="profile large">
 					<div class="item-group">
 						<div class="item-label"></div>
@@ -125,11 +129,25 @@
 						<div class="item-label"></div>
 						<div class="items">
 							<a href="https://twitter.com/doya_info" target="_blank"
-								style="margin-left: 50px;"><img src="img/bird_gray_48.png"></a><a
-								href="http://www.facebook.com/pages/DOYAinfo/495135587181076"
-								target="_blank" style="margin-left: 80px;"><img
-								src="img/f_logo.png" style="height: 40px; width: 40px;"></a>
+								style="margin-left: 50px;"><img src="img/bird_gray_48.png"></a>
 						</div>
+					</div>
+					<div class="item-group">
+						<div class="item-label">Twitter</div>
+						<div class="items">フォローしていただけると、最新の情報がタイムラインでご覧いただけます。</div>
+					</div>
+					<div class="item-group">
+						<div class="item-label"></div>
+						<div class="items">
+							<a
+								href="http://www.facebook.com/pages/DOYAinfo/495135587181076"
+								target="_blank" style="margin-left: 50px;"><img
+								src="img/f_logo.png" style="height: 48px; width: 48px;"></a>
+						</div>
+					</div>
+					<div class="item-group">
+						<div class="item-label">Facebook</div>
+						<div class="items">イイネ！していただけると、うれしいです。</div>
 					</div>
 				</div>
 			</div>
