@@ -39,6 +39,8 @@ import com.samplepin.Tag;
 import com.samplepin.TwitterAccount;
 import com.samplepin.User;
 import com.samplepin.View;
+import com.samplepin.WebPage;
+import com.samplepin.nl.WebParser;
 
 public class Helper {
 
@@ -210,6 +212,27 @@ public class Helper {
 			return color;
 		}
 		return "";
+	}
+
+	public static WebPage getWebPageByURL(String url) throws IOException {
+		try (ACMongo mongo = new ACMongo()) {
+			Datastore datastore = mongo.createDatastore();
+			Query<WebPage> query = datastore.createQuery(WebPage.class).filter(
+					"url = ", url);
+			WebPage page = query.get();
+			if (page == null) {
+				try {
+					WebParser.parse(url);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				page = query.get();
+			}
+			return page;
+		} catch (UnknownHostException | MongoException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public static Card getCardByID(String cardId) {

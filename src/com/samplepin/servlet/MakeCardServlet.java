@@ -219,7 +219,7 @@ public class MakeCardServlet extends HttpServlet {
 
 			} else {
 				String path = getFileName(part);
-				if (path != null) {
+				if (valid(path)) {
 					readFile(path, part, uploadQue);
 					card.setImagePath(path);
 				}

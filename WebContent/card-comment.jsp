@@ -152,8 +152,18 @@
 							String path = card.getSite();
 							path = path.length() > 40 ? path.substring(0, 40) + "..."
 									: path;
+							WebPage webPage = Helper.getWebPageByURL(card.getSite());
 				%>
-				<div class="margin-top-default">
+				<div class="margin-top-default center">
+					<%
+						if (Helper.valid(webPage)
+										&& Helper.valid(webPage.getFavicon())
+										&& Helper.valid(webPage.getTitle())) {
+					%>
+					<span><img src=<%=webPage.getFavicon()%>><%=webPage.getTitle()%></span>
+					<%
+						}
+					%>
 					<a href="<%=card.getSite()%>" target="_blank"
 						class="large badge opacity60">URL: <%=path%></a>
 				</div>
@@ -164,8 +174,8 @@
 		</div>
 	
 		<%
-			}
-		%>
+				}
+			%>
 		<div class="split-l">
 			<div class="split-l-left">
 				<div class="card margin-bottom-default">

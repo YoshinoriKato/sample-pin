@@ -4,74 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.Enumeration;
+import java.net.URLConnection;
 
-import javax.swing.text.AttributeSet;
-import javax.swing.text.MutableAttributeSet;
-import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLEditorKit;
 
-import com.samplepin.common.Helper;
-
-class PageSaver extends HTMLEditorKit.ParserCallback {
-
-	private StringBuilder builder;
-
-	private boolean canScan = false;
-
-	public PageSaver(StringBuilder builder) {
-		this.builder = builder;
-	}
-
-	@Override
-	public void handleComment(char[] text, int position) {
-		// this.builder.append(new String(text)).append(Helper.LS);
-	}
-
-	@Override
-	public void handleEndTag(HTML.Tag tag, int position) {
-		this.canScan = false;
-	}
-
-	@Override
-	public void handleSimpleTag(HTML.Tag tag, MutableAttributeSet attributes,
-			int position) {
-	}
-
-	@Override
-	public void handleStartTag(HTML.Tag tag, MutableAttributeSet attributes,
-			int position) {
-		if (HTML.Tag.TITLE.equals(tag) || HTML.Tag.BODY.equals(tag)
-				|| HTML.Tag.A.equals(tag) || HTML.Tag.DIV.equals(tag)
-				|| HTML.Tag.SPAN.equals(tag) || HTML.Tag.P.equals(tag)
-				|| HTML.Tag.LI.equals(tag) || HTML.Tag.H1.equals(tag)
-				|| HTML.Tag.H2.equals(tag) || HTML.Tag.H3.equals(tag)
-				|| HTML.Tag.H4.equals(tag) || HTML.Tag.H5.equals(tag)) {
-			this.canScan = true;
-			writeAttributes(attributes);
-		}
-	}
-
-	@Override
-	public void handleText(char[] text, int position) {
-		if (this.canScan) {
-			this.builder.append(new String(text)).append(Helper.LS);
-		}
-	}
-
-	private void writeAttributes(AttributeSet attributes) {
-		Enumeration<?> e = attributes.getAttributeNames();
-		while (e.hasMoreElements()) {
-			Object name = e.nextElement();
-			Object value = attributes.getAttribute(name);
-			if (HTML.Attribute.ALT.equals(name)
-					|| HTML.Attribute.CONTENT.equals(name)) {
-				this.builder.append(value).append(Helper.LS);
-			}
-		}
-	}
-
-}
+import com.samplepin.WebPage;
+import com.samplepin.common.ACMongo;
 
 class ParserGetter extends HTMLEditorKit {
 	/**
@@ -90,11 +28,28 @@ public class WebParser {
 
 	public static void main(String[] args) {
 		try {
-			System.out
-					.println(parse("http://matome.naver.jp/odai/2126620592429462101"));
+			System.out.println(parse("http://shiba-bota.at.webry.info/"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static String charset(URLConnection urlconn) {
+		// Content-Typeを取得
+		String contentType = urlconn.getContentType();
+		contentType = urlconn.getHeaderField("Content-Type");
+
+		// Content-Typeから文字コード判定
+		String charset = urlconn.getContentEncoding();
+		int charsetIndex = contentType.indexOf("=");
+		if (charsetIndex == -1) {
+			// 判定不可ならnullとする
+			charset = null;
+		} else {
+			charset = contentType.substring(charsetIndex + 1,
+					contentType.length());
+		}
+		return charset;
 	}
 
 	public static StringBuilder parse(String urlPath) throws IOException {
@@ -103,11 +58,23 @@ public class WebParser {
 		HTMLEditorKit.Parser parser = kit.getParser();
 
 		URL u = new URL(urlPath);
-		InputStream in = u.openStream();
-		InputStreamReader isr = new InputStreamReader(in);
+		URLConnection urlconn = u.openConnection();
+		String charset = urlconn.getContentEncoding();
+		InputStream in = urlconn.getInputStream();
+		InputStreamReader isr = charset != null ? new InputStreamReader(in,
+				charset) : new InputStreamReader(in);
 		StringBuilder builder = new StringBuilder();
-		HTMLEditorKit.ParserCallback callback = new PageSaver(builder);
-		parser.parse(isr, callback, false);
+		try (ACMongo mongo = new ACMongo()) {
+			WebPage webPage = mongo.createQuery(WebPage.class)
+					.filter("url", urlPath).get();
+			if (webPage == null) {
+				webPage = new WebPage(urlPath, "", "", u.getHost(), "");
+			}
+			HTMLEditorKit.ParserCallback callback = new PageSaver(builder,
+					webPage);
+			parser.parse(isr, callback, false);
+			mongo.save(webPage);
+		}
 
 		return builder;
 	}
