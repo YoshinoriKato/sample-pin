@@ -8,12 +8,12 @@
 <jsp:include page="_effect.jsp"></jsp:include>
 </head>
 
-<body class="home">
+<body>
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title">What?</div>
 	<div id="main">
 		<div id="input-window">
-			<div class="cell margin-bottom-default">
+			<div class="margin-bottom-default">
 				<h1 class="tab-header">
 					What's
 					<%=Helper.NAME%>
@@ -38,7 +38,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="cell margin-bottom-default">
+			<div class="margin-bottom-default">
 				<h3 class="tab-header">動画</h3>
 				<div class="profile large">
 					<div class="item-group">
@@ -55,7 +55,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="cell margin-bottom-default">
+			<div class="margin-bottom-default">
 				<h3 class="tab-header">ご登録</h3>
 				<div class="profile large">
 					<div class="item-group">
@@ -85,7 +85,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="cell margin-bottom-default">
+			<div class="margin-bottom-default">
 				<h3 class="tab-header">使い方</h3>
 				<div class="profile large">
 					<div class="item-group">
@@ -123,7 +123,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="cell margin-bottom-default">
+			<div class="margin-bottom-default">
 				<h3 class="tab-header">SNS ページ</h3>
 				<div class="profile large">
 					<div class="item-group">

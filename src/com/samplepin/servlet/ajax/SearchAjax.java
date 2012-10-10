@@ -55,6 +55,8 @@ public class SearchAjax extends CardAjax {
 		List<Card> cards = new ArrayList<>();
 		Query<Card> query = mongo.createQuery(Card.class)
 				.filter("isDeleted", false).filter("cardId in ", searched);
+		query.or(query.criteria("accessLevel").equal(0),
+				query.criteria("userId").equal(userId));
 
 		if (valid(otherUserId)) {
 			query.filter("userId = ", otherUserId);

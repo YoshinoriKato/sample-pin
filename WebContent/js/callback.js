@@ -40,11 +40,11 @@ function callback($data) {
 		$i++;
 		if ($i >= $len) {
 			clearInterval($timer);
-			$('#content').css('height', $(document).height() - 120);
-			$('#read-cards').text('read ' + $counter + ' cards');
 			if ($type != 'comment') {
 				wookmark();
 			}
+			$('#read-cards').text('read ' + $counter + ' cards');
+			$('#content').css('height', $(document).height() - 300);
 			teaDown();
 		}
 	}, $interval);
@@ -132,6 +132,7 @@ function makeCard($card, $select) {
 		$jqA1.attr('href', $link);
 		$jqA2.attr('href', 'profile.jsp?userId=' + $card.userId);
 		$divFooter.text($card.likes + ' comment').css('clear', 'both');
+		var $btnLike = $('<span/>').attr('id', 'gj_' + $card.cardId);
 	}
 
 	// construct
@@ -214,7 +215,7 @@ function makeComment($comment, $userId) {
 	var $divCardIcon0 = $('<div/>').addClass('card-icon');
 	var $divCardSubtext0 = $('<div/>').addClass('card-subtext');
 
-	$jqDiv.addClass('cell');
+//	$jqDiv.addClass('cell');
 	if ($comment.userIcon != null && $comment.userIcon != '') {
 		$jqIcon.attr('src', $comment.userIcon);
 		$jqA.attr('href', 'profile.jsp?userId=' + $comment.userId);
@@ -247,6 +248,8 @@ function makeComment($comment, $userId) {
 		$jqClose.append($confirm);
 	}
 	$jqA.append($jqIcon);
+	
+	$jqDiv.append($('<hr/>'));
 }
 
 function callAjax($sorted, $limit, $offset, $userId, $cardId, $type, $words, $select, $folderId) {

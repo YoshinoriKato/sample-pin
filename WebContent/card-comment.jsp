@@ -121,7 +121,7 @@
 </script>
 </head>
 
-<body class="home">
+<body>
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title">Comments</div>
 	<div id="main">
@@ -131,11 +131,6 @@
 		<!-- image -->
 		<div id="cover" class="center">
 			<div class="middle">
-
-				<div style="margin: auto 0;">
-					<img src="<%=card.getImagePath()%>" id="image-origin">
-					<div id="image-close" class="close-button">&times;</div>
-				</div>
 				<%
 					if (Helper.valid(card.getKeywords())) {
 							String keywords = card.getKeywords();
@@ -146,6 +141,12 @@
 				<%
 					}
 				%>
+
+				<div class="margin-top-default">
+					<img src="<%=card.getImagePath()%>" id="image-origin">
+					<div id="image-close" class="close-button">&times;</div>
+				</div>
+
 				<%
 					if (Helper.valid(card.getSite())) {
 							String path = card.getSite();
@@ -161,6 +162,7 @@
 				%>
 			</div>
 		</div>
+	
 		<%
 			}
 		%>
@@ -177,59 +179,9 @@
 					<%
 						if (userId.equals(card.getUserId())) {
 					%>
-					<%-- <div class="cell margin-top-default opacity50">
-						<p>親</p>
-						<form action="update-parent.do" method="post" class="form">
-							<fieldset>
-								<input type="hidden" name="cardId" value="<%=cardId%>">
-								<div class="control-group">
-									<label for="parentId" class="control-label"></label>
-									<div class="controls">
-										<input type="text" class="text" name="parentId"
-											value="<%=card.getParentId()%>"
-											placeholder="Parent's Card ID.">
-									</div>
-								</div>
-								<input type="submit" value="Update"
-									class="btn btn-large btn-primary">
-							</fieldset>
-						</form>
-					</div>
-					<div class="cell margin-top-default opacity50">
-						<p>コメント修正</p>
-						<form action="update-caption.do" method="post" class="form">
-							<fieldset>
-								<input type="hidden" name="cardId" value="<%=cardId%>">
-								<div class="control-group">
-									<label for="caption" class="control-label"></label>
-									<div class="controls">
-										<textarea type="text" class="text" name="caption"
-											placeholder="Caption"><%=card.getCaption()%></textarea>
-									</div>
-								</div>
-								<input type="submit" value="Update"
-									class="btn btn-large btn-primary">
-							</fieldset>
-						</form>
-					</div>
-					<div class="cell margin-top-default opacity50">
-						<p>アクセスレベル</p>
-						<form action="update-level.do" method="post" class="form">
-							<fieldset>
-								<input type="hidden" name="cardId" value="<%=cardId%>">
-								<div class="control-group">
-									<label for="accessLevel" class="control-label"></label>
-									<div class="controls">
-										<input type="number" min="0" max="100" name="accessLevel"
-											class="text" placeholder="Caption"
-											value="<%=card.getAccessLevel()%>">
-									</div>
-								</div>
-								<input type="submit" value="Update"
-									class="btn btn-large btn-primary">
-							</fieldset>
-						</form>
-					</div> --%>
+					<%-- <jsp:include page="_parent.jsp"></jsp:include> --%>
+					<jsp:include page="_access-level.jsp"></jsp:include>
+					<jsp:include page="_caption.jsp"></jsp:include>
 					<%
 						}
 					%>
@@ -270,23 +222,39 @@
 			</div>
 			<div class="split-l-right">
 				<ul id="content">
+						<li class="margin-bottom-default"><jsp:include page="_sns.jsp"></jsp:include><br
+						style="clear: both;" /></li>
 					<%
 						if (Helper.valid(cardId)) {
 					%>
-					<li class="cell margin-bottom-default opacity70"
+					<li class="margin-bottom-default opacity70"
 						style="max-height: 170px;"><jsp:include page="_comment.jsp"></jsp:include></li>
 					<%
 						}
 					%>
 					<!--  ajax -->
 					<li id="comment-insert"></li>
-					<li class="margin-bottom-default"><jsp:include page="_sns.jsp"></jsp:include><br
-						style="clear: both;" /></li>
 					<%
 						if (card != null) {
 					%>
-					<li id="latest-info" class="cell margin-bottom-default opacity60">
-						
+					<li id="latest-info" class="margin-bottom-default opacity60">
+						<h4>その他のカード</h4>
+						<ul>
+							<%
+								List<Card> cards = Helper.newCards(card.getUpdateDate());
+									for (Card newone : cards) {
+										int length = newone.getCaption().length();
+										String caption = length > 40 ? newone.getCaption()
+												.substring(0, 40) + "..." : newone.getCaption();
+							%>
+							<li><a
+								href="card-comment.jsp?cardId=<%=newone.getCardId()%>&type=comment&image=open"><span
+									class="deco"><%=caption%></span></a> (view:<%=newone.getView()%>,
+								comment:<%=newone.getLikes()%>)</li>
+							<%
+								}
+							%>
+						</ul>
 					</li>
 					<%
 						}
@@ -295,15 +263,6 @@
 			</div>
 		</div>
 		<br style="clear: both;" />
-		<div class="split-r">
-			<div class="split-r-right">
-				<div class="cell">BBB</div>
-			</div>
-			<div class="split-r-left">
-				<div class="cell">AAA</div>
-			</div>
-		</div>
-			<br style="clear: both;" />
 	</div>
 
 	<!-- read cards -->

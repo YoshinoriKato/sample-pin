@@ -46,6 +46,8 @@ public class CardAjax {
 			// filter
 			Query<Card> query = datastore.createQuery(Card.class).filter(
 					"isDeleted", false);
+			query.or(query.criteria("accessLevel").equal(0),
+					query.criteria("userId").equal(userId));
 
 			if (valid(old)) {
 				query.filter("updateDate < ", Long.valueOf(old));
@@ -150,7 +152,7 @@ public class CardAjax {
 		return (value != null) && !value.isEmpty();
 	}
 
-	final void writeToJSON(OutputStream os, Map<String, Object> data,
+	static final void writeToJSON(OutputStream os, Map<String, Object> data,
 			String callback) throws IOException {
 		try (OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8")) {
 			Gson gson = new Gson();
