@@ -270,7 +270,7 @@ public class NaturalLanguageParser {
 
 	public static void parseWebpage(String urlPath, ParserCallback callback) {
 		try {
-			StringBuilder builder = WebParser.parse(urlPath);
+			StringBuilder builder = WebParser.parse(urlPath, null);
 			callback.parse(builder);
 		} catch (IOException e) {
 			// not throw

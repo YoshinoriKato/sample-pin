@@ -6,10 +6,12 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
+import javax.swing.text.ChangedCharSetException;
 import javax.swing.text.html.HTMLEditorKit;
 
 import com.samplepin.WebPage;
 import com.samplepin.common.ACMongo;
+import com.samplepin.common.Helper;
 
 class ParserGetter extends HTMLEditorKit {
 	/**
@@ -26,21 +28,9 @@ class ParserGetter extends HTMLEditorKit {
 
 public class WebParser {
 
-	public static void main(String[] args) {
-		try {
-			System.out.println(parse("http://shiba-bota.at.webry.info/"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static String charset(URLConnection urlconn) {
-		// Content-Typeを取得
-		String contentType = urlconn.getContentType();
-		contentType = urlconn.getHeaderField("Content-Type");
-
+	public static String charset(String contentType) {
 		// Content-Typeから文字コード判定
-		String charset = urlconn.getContentEncoding();
+		String charset;
 		int charsetIndex = contentType.indexOf("=");
 		if (charsetIndex == -1) {
 			// 判定不可ならnullとする
@@ -52,31 +42,64 @@ public class WebParser {
 		return charset;
 	}
 
-	public static StringBuilder parse(String urlPath) throws IOException {
+	static boolean hasEncode(String charset) {
+		return charset != null;
+	}
+
+	public static void main(String[] args) {
+		try {
+			System.out
+					.println(parse(
+							"http://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A9%E3%83%BC%E3%83%8D%E3%82%B0%E3%83%AC%E3%83%AA%E3%82%A2",
+							null));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static StringBuilder parse(String urlPath, String charset)
+			throws IOException {
 
 		ParserGetter kit = new ParserGetter();
 		HTMLEditorKit.Parser parser = kit.getParser();
+		StringBuilder builder = new StringBuilder();
 
 		URL u = new URL(urlPath);
 		URLConnection urlconn = u.openConnection();
-		String charset = urlconn.getContentEncoding();
-		InputStream in = urlconn.getInputStream();
-		InputStreamReader isr = charset != null ? new InputStreamReader(in,
-				charset) : new InputStreamReader(in);
-		StringBuilder builder = new StringBuilder();
-		try (ACMongo mongo = new ACMongo()) {
-			WebPage webPage = mongo.createQuery(WebPage.class)
-					.filter("url", urlPath).get();
-			if (webPage == null) {
-				webPage = new WebPage(urlPath, "", "", u.getHost(), "");
+		Helper.setUserAgent(urlconn);
+
+		try (InputStream in = urlconn.getInputStream()) {
+			charset = hasEncode(charset) ? charset : urlconn
+					.getContentEncoding();
+
+			try (ACMongo mongo = new ACMongo()) {
+				WebPage webPage = webPage(mongo, urlPath, u.getHost());
+				HTMLEditorKit.ParserCallback callback = new PageSaver(builder,
+						webPage);
+
+				try (InputStreamReader isr = hasEncode(charset) ? new InputStreamReader(
+						in, charset) : new InputStreamReader(in)) {
+					parser.parse(isr, callback, hasEncode(charset));
+
+				} catch (ChangedCharSetException e) {
+					if (!hasEncode(charset)) {
+						charset = charset(e.getCharSetSpec());
+						return parse(urlPath, charset);
+					}
+				}
+				mongo.save(webPage);
 			}
-			HTMLEditorKit.ParserCallback callback = new PageSaver(builder,
-					webPage);
-			parser.parse(isr, callback, false);
-			mongo.save(webPage);
 		}
 
 		return builder;
 	}
 
+	static WebPage webPage(ACMongo mongo, String urlPath, String host) {
+		WebPage webPage = mongo.createQuery(WebPage.class)
+				.filter("url", urlPath).get();
+		if (webPage == null) {
+			webPage = new WebPage(urlPath, "", "", host, "");
+		}
+		return webPage;
+	}
 }

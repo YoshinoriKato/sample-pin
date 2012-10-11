@@ -12,11 +12,26 @@ import com.samplepin.common.Helper;
 
 class PageSaver extends HTMLEditorKit.ParserCallback {
 
+	static String getStringAsUTF8(char[] text) {
+		String value = new String(text);
+		return getStringAsUTF8(value);
+	}
+
+	static String getStringAsUTF8(String value) {
+		// try {
+		// value = new String(value.getBytes(), "UTF-8");
+		// } catch (UnsupportedEncodingException e) {
+		// }
+		return value;
+	}
+
 	private StringBuilder builder;
 
 	private boolean canScan = false;
 
 	private WebPage webPage;
+
+	boolean isTitle = false;
 
 	public PageSaver(StringBuilder builder, WebPage webPage) {
 		this.builder = builder;
@@ -25,14 +40,14 @@ class PageSaver extends HTMLEditorKit.ParserCallback {
 
 	@Override
 	public void handleComment(char[] text, int position) {
-//		System.out.println(new String(text));
-//		this.builder.append(new String(text)).append(Helper.LS);
+		// System.out.println(new String(text));
+		// this.builder.append(new String(text)).append(Helper.LS);
 	}
 
 	@Override
 	public void handleEndTag(HTML.Tag tag, int position) {
 		this.canScan = false;
-		isTitle = false;
+		this.isTitle = false;
 	}
 
 	@Override
@@ -41,11 +56,12 @@ class PageSaver extends HTMLEditorKit.ParserCallback {
 		if (HTML.Tag.LINK.equals(tag)) {
 			String rel = (String) attributes.getAttribute(HTML.Attribute.REL);
 			String href = (String) attributes.getAttribute(HTML.Attribute.HREF);
-			if (href != null && rel != null
+			if ((href != null)
+					&& (rel != null)
 					&& (rel.contains("short") || rel.contains("cut") || rel
 							.contains("icon"))) {
-				if (!Helper.valid(webPage.getFavicon())) {
-					webPage.setFavicon(href);
+				if (!Helper.valid(this.webPage.getFavicon())) {
+					this.webPage.setFavicon(href);
 				}
 			}
 		}
@@ -64,20 +80,18 @@ class PageSaver extends HTMLEditorKit.ParserCallback {
 			this.canScan = true;
 			writeAttributes(attributes);
 
-			isTitle = HTML.Tag.TITLE.equals(tag);
+			this.isTitle = HTML.Tag.TITLE.equals(tag);
 		}
 	}
-
-	boolean isTitle = false;
 
 	@Override
 	public void handleText(char[] text, int position) {
 		if (this.canScan) {
-			System.out.println(new String(text));
-			this.builder.append(new String(text)).append(Helper.LS);
+			String value = getStringAsUTF8(text);
+			this.builder.append(value).append(Helper.LS);
 
-			if (isTitle) {
-				webPage.setTitle(new String(text));
+			if (this.isTitle) {
+				this.webPage.setTitle(value);
 			}
 		}
 	}
@@ -86,10 +100,10 @@ class PageSaver extends HTMLEditorKit.ParserCallback {
 		Enumeration<?> e = attributes.getAttributeNames();
 		while (e.hasMoreElements()) {
 			Object name = e.nextElement();
-			Object value = attributes.getAttribute(name);
+			Object parameter = attributes.getAttribute(name);
 			if (HTML.Attribute.ALT.equals(name)
 					|| HTML.Attribute.CONTENT.equals(name)) {
-//				System.out.println(value);
+				String value = getStringAsUTF8(parameter.toString());
 				this.builder.append(value).append(Helper.LS);
 			}
 		}

@@ -23,62 +23,6 @@ public class WebPage implements Createable {
 
 	Long createDate;
 
-	public ObjectId getId() {
-		return id;
-	}
-
-	public void setId(ObjectId id) {
-		this.id = id;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getCaption() {
-		return caption;
-	}
-
-	public void setCaption(String caption) {
-		this.caption = caption;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDomain() {
-		return domain;
-	}
-
-	public void setDomain(String domain) {
-		this.domain = domain;
-	}
-
-	public String getFavicon() {
-		return favicon;
-	}
-
-	public void setFavicon(String favicon) {
-		this.favicon = favicon;
-	}
-
-	public Long getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(Long createDate) {
-		this.createDate = createDate;
-	}
-
 	public WebPage() {
 		super();
 		this.url = "";
@@ -88,7 +32,6 @@ public class WebPage implements Createable {
 		this.favicon = "";
 		this.createDate = System.currentTimeMillis();
 	}
-
 
 	public WebPage(String url, String caption, String title, String domain,
 			String favicon) {
@@ -100,5 +43,62 @@ public class WebPage implements Createable {
 		this.favicon = favicon;
 	}
 
-	
+	public String getCaption() {
+		return this.caption;
+	}
+
+	@Override
+	public Long getCreateDate() {
+		return this.createDate;
+	}
+
+	public String getDomain() {
+		return this.domain;
+	}
+
+	public String getFavicon() {
+		return this.favicon;
+	}
+
+	public ObjectId getId() {
+		return this.id;
+	}
+
+	public String getTitle() {
+		return this.title;
+	}
+
+	public String getUrl() {
+		return this.url;
+	}
+
+	public void setCaption(String caption) {
+		this.caption = caption;
+	}
+
+	@Override
+	public void setCreateDate(Long createDate) {
+		this.createDate = createDate;
+	}
+
+	public void setDomain(String domain) {
+		this.domain = domain;
+	}
+
+	public void setFavicon(String favicon) {
+		this.favicon = favicon;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 }

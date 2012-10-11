@@ -94,11 +94,8 @@ public class ImageUploadServlet extends HttpServlet {
 		urlPath = URLDecoder.decode(urlPath, "UTF-8");
 		URL url = new URL(urlPath);
 		URLConnection conn = url.openConnection();
-		conn.setRequestProperty(
-				"user-agent",
-				"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.79 Safari/537.4");
+		Helper.setUserAgent(conn);
 		is = conn.getInputStream();
 		return is;
 	}
-
 }

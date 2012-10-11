@@ -6,49 +6,64 @@
 	pageEncoding="UTF-8"%>
 
 <!-- メニュー -->
-<%!final String	CLASS_ACTIVE	= " active";%>
-<%!final String	CLASS_NEGATIVE	= " ";%>
+<%!final String CLASS_ACTIVE = " active";%>
+<%!final String CLASS_NEGATIVE = " ";%>
 <%
 	String url = request.getRequestURI();
 
-	String classIndex = url.contains("/index.jsp") ? CLASS_ACTIVE
+	String classIndex = url.contains("/index.jsp")
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 
-	String classHome = url.contains("/home.jsp") ? CLASS_ACTIVE
+	String classHome = url.contains("/home.jsp")
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 	classHome = url.contains("/tag.jsp") ? CLASS_ACTIVE : classHome;
-	classHome = url.contains("/footprints.jsp") ? CLASS_ACTIVE
+	classHome = url.contains("/footprints.jsp")
+			? CLASS_ACTIVE
 			: classHome;
-	classHome = url.contains("/recommend.jsp") ? CLASS_ACTIVE
+	classHome = url.contains("/recommend.jsp")
+			? CLASS_ACTIVE
 			: classHome;
 
-	String classTag = url.contains("/tag.jsp") ? CLASS_ACTIVE
+	String classTag = url.contains("/tag.jsp")
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 
-	String classFolder = url.contains("/folder.jsp") ? CLASS_ACTIVE
+	String classFolder = url.contains("/folder.jsp")
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
-	classFolder = "folder".equals(request.getParameter("sorted")) ? CLASS_ACTIVE
+	classFolder = "folder".equals(request.getParameter("sorted"))
+			? CLASS_ACTIVE
 			: classFolder;
 
-	String classMakeFolder = url.contains("/home.jsp?select=true") ? CLASS_ACTIVE
+	String classMakeFolder = url.contains("/home.jsp?select=true")
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 
-	String classMakeCard = url.contains("/make-card.jsp") ? CLASS_ACTIVE
+	String classMakeCard = url.contains("/make-card.jsp")
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
-	classMakeCard = url.contains("/confirm-make-card.jsp") ? CLASS_ACTIVE
+	classMakeCard = url.contains("/confirm-make-card.jsp")
+			? CLASS_ACTIVE
 			: classMakeCard;
 
-	String classLogin = url.contains("/login.jsp") ? CLASS_ACTIVE
+	String classLogin = url.contains("/login.jsp")
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
-	String classSignup = url.contains("/signup.jsp") ? CLASS_ACTIVE
+	String classSignup = url.contains("/signup.jsp")
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 
-	String classAccount = url.contains("/account.jsp") ? CLASS_ACTIVE
+	String classAccount = url.contains("/account.jsp")
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
-	classAccount = url.contains("/index.jsp") ? CLASS_ACTIVE
+	classAccount = url.contains("/index.jsp")
+			? CLASS_ACTIVE
 			: classAccount;
 
-	String classProfile = url.contains("/profile.jsp") ? CLASS_ACTIVE
+	String classProfile = url.contains("/profile.jsp")
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 
 	String userId = Helper.getUserId(session);
@@ -58,22 +73,28 @@
 
 	String sorted = request.getParameter("sorted");
 
-	String classLatest = (url.contains("/home.jsp") && sorted == null && cardId == null) ? CLASS_ACTIVE
+	String classLatest = (url.contains("/home.jsp") && sorted == null && cardId == null)
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 
-	String classMine = "mine".equals(sorted) ? CLASS_ACTIVE
+	String classMine = "mine".equals(sorted)
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 
-	String classView = "view".equals(sorted) ? CLASS_ACTIVE
+	String classView = "view".equals(sorted)
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 
-	String classComment = "comment".equals(sorted) ? CLASS_ACTIVE
+	String classComment = "comment".equals(sorted)
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 
-	String classFootprints = "footprints".equals(sorted) ? CLASS_ACTIVE
+	String classFootprints = "footprints".equals(sorted)
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 
-	String classRecommend = "recommend".equals(sorted) ? CLASS_ACTIVE
+	String classRecommend = "recommend".equals(sorted)
+			? CLASS_ACTIVE
 			: CLASS_NEGATIVE;
 
 	String select = request.getParameter("select");
@@ -104,15 +125,16 @@
 	<div id="main-menu" class="navbar-inner">
 		<div class="container">
 			<ul class="nav pills">
-				<li class="center"><a><img src="img/menu_doya_info.png" style="height:32px;"><br><span
-						class="user-name">Forbusからトトロまで</span></a></li>
+				<li class="center"><a><img src="img/menu_doya_info.png"
+						style="height: 32px;"><br>
+					<span class="user-name">Forbusからトトロまで</span></a></li>
 				<%
 					if (Helper.valid(user)) {
 				%>
 				<li class="<%=classProfile%>"><a href="profile.jsp"
 					class="center"><img src="<%=user.getImagePath()%>"
-						class="menu-user-icon img-circle"><br><span
-						class="user-name">あなた</span></a></li>
+						class="menu-user-icon img-circle"><br>
+					<span class="user-name">あなた</span></a></li>
 				<%
 					}
 				%>
@@ -224,13 +246,13 @@
 	<div class="float-card" style="width: 360px;">
 		<div id="select-small-card" class="x-large"><%=folder.getFolderName()%></div>
 		<%
-		if (folder.getUserId().equals(userId)) {
+			if (folder.getUserId().equals(userId)) {
 		%>
-			<div class="close-button">
-				<a href="confirm-disfolder.jsp?folderId=<%=folder.getFolderId()%>">&times;</a>
-			</div>
+		<div class="close-button">
+			<a href="confirm-disfolder.jsp?folderId=<%=folder.getFolderId()%>">&times;</a>
+		</div>
 		<%
-		 	}
+			}
 		%>
 	</div>
 	<%
@@ -241,3 +263,9 @@
 	%>
 </div>
 
+<noscript>
+	<div>
+		<p>現在<strong>JavaScriptが無効</strong>になっています。</p>
+		<p><%=Helper.NAME%>のすべての機能を利用するためには、<strong>JavaScriptの設定を有効</strong>にしてください。</p>
+	</div>
+</noscript>

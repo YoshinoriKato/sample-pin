@@ -35,7 +35,7 @@
 		if (Helper.valid(userId)) {
 	%>
 	<div class="cell">
-		<h1 class="tab-header">Add Graphic</h1>
+		<h1 class="tab-header">Add Card</h1>
 		<jsp:include page="_search.jsp"></jsp:include>
 		<form action="make-card.do" enctype="multipart/form-data"
 			method="post" class="form-horizontal">

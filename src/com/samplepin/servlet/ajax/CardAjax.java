@@ -24,6 +24,19 @@ import com.samplepin.common.Helper;
 
 public class CardAjax {
 
+	static final void writeToJSON(OutputStream os, Map<String, Object> data,
+			String callback) throws IOException {
+		try (OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8")) {
+			Gson gson = new Gson();
+			String out = gson.toJson(data);
+			osw.write(callback + "(" + out + ")");
+			osw.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
 	void ajax(OutputStream os, String otherUserId, String sorted,
 			String offset, String limit, String callback, String old,
 			String young, String type, String userId, String cardId,
@@ -150,19 +163,6 @@ public class CardAjax {
 
 	final boolean valid(String value) {
 		return (value != null) && !value.isEmpty();
-	}
-
-	static final void writeToJSON(OutputStream os, Map<String, Object> data,
-			String callback) throws IOException {
-		try (OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8")) {
-			Gson gson = new Gson();
-			String out = gson.toJson(data);
-			osw.write(callback + "(" + out + ")");
-			osw.flush();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-		}
 	}
 
 }

@@ -43,7 +43,7 @@
 							<label for="userName" class="control-label">Name</label>
 							<div class="controls">
 								<input type="text" name="userName" maxlength="40"
-									value="<%=Helper.escapeHTML(user.getUserName())%>"
+									value="<%=user.getUserName()%>"
 									class="text input-text">
 							</div>
 						</div>
@@ -64,7 +64,7 @@
 						<div class="control-group">
 							<label for="comment" class="control-label">Comment</label>
 							<div class="controls">
-								<textarea class="textarea input-text" name="comment" rows="4"><%=Helper.escapeHTML(user.getComment())%></textarea>
+								<textarea class="textarea input-text" name="comment" rows="4"><%=user.getComment()%></textarea>
 							</div>
 						</div>
 						<div class="control-group">

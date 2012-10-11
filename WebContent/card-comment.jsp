@@ -136,7 +136,7 @@
 							String keywords = card.getKeywords();
 				%>
 				<div class="margin-top-default">
-					<span class="large badge opacity60 keywords"><%=keywords%></span>
+					<span class="large bold opacity60 keywords"><%=keywords%></span>
 				</div>
 				<%
 					}
@@ -154,16 +154,22 @@
 									: path;
 							WebPage webPage = Helper.getWebPageByURL(card.getSite());
 				%>
+				<%
+					if (Helper.valid(webPage)
+
+							&& Helper.valid(webPage.getTitle())) {
+				%>
 				<div class="margin-top-default center">
 					<%
-						if (Helper.valid(webPage)
-										&& Helper.valid(webPage.getFavicon())
-										&& Helper.valid(webPage.getTitle())) {
-					%>
-					<span><img src=<%=webPage.getFavicon()%>><%=webPage.getTitle()%></span>
+						if (Helper.valid(webPage.getFavicon())) {
+					%><%-- <img src=<%=webPage.getFavicon()%>> --%>
 					<%
 						}
-					%>
+					%><%=webPage.getTitle()%></div>
+				<%
+					}
+				%>
+				<div class="margin-top-default center">
 					<a href="<%=card.getSite()%>" target="_blank"
 						class="large badge opacity60">URL: <%=path%></a>
 				</div>
@@ -172,10 +178,10 @@
 				%>
 			</div>
 		</div>
-	
+
 		<%
-				}
-			%>
+			}
+		%>
 		<div class="split-l">
 			<div class="split-l-left">
 				<div class="card margin-bottom-default">
@@ -232,7 +238,7 @@
 			</div>
 			<div class="split-l-right">
 				<ul id="content">
-						<li class="margin-bottom-default"><jsp:include page="_sns.jsp"></jsp:include><br
+					<li class="margin-bottom-default"><jsp:include page="_sns.jsp"></jsp:include><br
 						style="clear: both;" /></li>
 					<%
 						if (Helper.valid(cardId)) {

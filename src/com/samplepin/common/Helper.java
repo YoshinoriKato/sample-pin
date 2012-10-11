@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.URLConnection;
 import java.net.UnknownHostException;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
@@ -212,27 +213,6 @@ public class Helper {
 			return color;
 		}
 		return "";
-	}
-
-	public static WebPage getWebPageByURL(String url) throws IOException {
-		try (ACMongo mongo = new ACMongo()) {
-			Datastore datastore = mongo.createDatastore();
-			Query<WebPage> query = datastore.createQuery(WebPage.class).filter(
-					"url = ", url);
-			WebPage page = query.get();
-			if (page == null) {
-				try {
-					WebParser.parse(url);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				page = query.get();
-			}
-			return page;
-		} catch (UnknownHostException | MongoException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 	public static Card getCardByID(String cardId) {
@@ -486,6 +466,27 @@ public class Helper {
 		return "";
 	}
 
+	public static WebPage getWebPageByURL(String url) throws IOException {
+		try (ACMongo mongo = new ACMongo()) {
+			Datastore datastore = mongo.createDatastore();
+			Query<WebPage> query = datastore.createQuery(WebPage.class).filter(
+					"url = ", url);
+			WebPage page = query.get();
+			if (page == null) {
+				try {
+					WebParser.parse(url, null);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				page = query.get();
+			}
+			return page;
+		} catch (UnknownHostException | MongoException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public static void main(String[] args) {
 		String LS = System.getProperty("line.separator");
 		StringBuilder builder = new StringBuilder();
@@ -583,6 +584,12 @@ public class Helper {
 		}
 	}
 
+	public static void setUserAgent(URLConnection conn) {
+		conn.setRequestProperty(
+				"user-agent",
+				"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.79 Safari/537.4");
+	}
+
 	public static void setUserInfoToComment(Comment comment, User user) {
 		// if (comment.getAnonymous()) {
 		// comment.setUserName("Anonymous");
@@ -627,4 +634,5 @@ public class Helper {
 	public static final boolean valid(String val) {
 		return (val != null) && !val.isEmpty() && !"null".equals(val);
 	}
+
 }

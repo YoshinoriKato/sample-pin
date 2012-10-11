@@ -21,66 +21,72 @@ public class Like implements Createable, Updateable, Deleteable {
 
 	Boolean isDeleted;
 
-	public ObjectId getId() {
-		return id;
-	}
-
-	public void setId(ObjectId id) {
-		this.id = id;
-	}
-
-	public String getCardId() {
-		return cardId;
-	}
-
-	public void setCardId(String cardId) {
-		this.cardId = cardId;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public Long getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(Long createDate) {
-		this.createDate = createDate;
-	}
-
-	public Long getUpdateDate() {
-		return updateDate;
-	}
-
-	public void setUpdateDate(Long updateDate) {
-		this.updateDate = updateDate;
-	}
-
-	public Boolean getIsDeleted() {
-		return isDeleted;
-	}
-
-	public void setIsDeleted(Boolean isDeleted) {
-		this.isDeleted = isDeleted;
-	}
-
 	public Like() {
 		super();
 		this.cardId = "";
 		this.userId = "";
 		this.createDate = System.currentTimeMillis();
-		this.updateDate = createDate;
+		this.updateDate = this.createDate;
 		this.isDeleted = false;
 	}
 
 	public Like(String cardId, String userId) {
 		this();
 		this.cardId = cardId;
+		this.userId = userId;
+	}
+
+	public String getCardId() {
+		return this.cardId;
+	}
+
+	@Override
+	public Long getCreateDate() {
+		return this.createDate;
+	}
+
+	public ObjectId getId() {
+		return this.id;
+	}
+
+	@Override
+	public Boolean getIsDeleted() {
+		return this.isDeleted;
+	}
+
+	@Override
+	public Long getUpdateDate() {
+		return this.updateDate;
+	}
+
+	public String getUserId() {
+		return this.userId;
+	}
+
+	public void setCardId(String cardId) {
+		this.cardId = cardId;
+	}
+
+	@Override
+	public void setCreateDate(Long createDate) {
+		this.createDate = createDate;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
+	}
+
+	@Override
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
+	@Override
+	public void setUpdateDate(Long updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
 
@@ -42,6 +41,37 @@ public class MakeThumbnail extends HttpServlet {
 	};
 
 	static int WIDTH = 230;
+
+	public static void main(String[] args) {
+		try {
+			URL url = new URL(
+					"http://219.94.246.60/icon-keeper/I_A_j0jIME4697277178694978.png");
+
+			File folder = new File("test");
+			folder.mkdir();
+			File copy = new File(folder, "I_A_j0jIME4697277178694978.png");
+			MakeCardServlet.copyStream(url.openStream(), new FileOutputStream(
+					copy), 1024);
+			File input = copy;
+
+			BufferedImage origin = ImageIO.read(input);
+			int width = origin.getWidth();
+			double scale = ((double) WIDTH) / ((double) width);
+			int height = (int) Math.round(scale * origin.getHeight());
+			width = WIDTH;
+
+			String name = input.getName().substring(0,
+					input.getName().lastIndexOf("."));
+			String formatName = ImageType.getFormat(input).toString();
+
+			File output = new File(folder // input.getParentFile()
+					, "t_" + name + "." + formatName);
+
+			scaleImage(origin, output, formatName, width, height);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	static void scaleImage(BufferedImage image, File output, String ext,
 			int width, int height) throws IOException {
@@ -90,37 +120,6 @@ public class MakeThumbnail extends HttpServlet {
 					mongo.save(card);
 				}
 			}
-		}
-	}
-
-	public static void main(String[] args) {
-		try {
-			URL url = new URL(
-					"http://219.94.246.60/icon-keeper/I_A_j0jIME4697277178694978.png");
-
-			File folder = new File("test");
-			folder.mkdir();
-			File copy = new File(folder, "I_A_j0jIME4697277178694978.png");
-			MakeCardServlet.copyStream(url.openStream(), new FileOutputStream(
-					copy), 1024);
-			File input = copy;
-
-			BufferedImage origin = ImageIO.read(input);
-			int width = origin.getWidth();
-			double scale = ((double) WIDTH) / ((double) width);
-			int height = (int) Math.round(scale * origin.getHeight());
-			width = WIDTH;
-
-			String name = input.getName().substring(0,
-					input.getName().lastIndexOf("."));
-			String formatName = ImageType.getFormat(input).toString();
-
-			File output = new File(folder // input.getParentFile()
-					, "t_" + name + "." + formatName);
-
-			scaleImage(origin, output, formatName, width, height);
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 
