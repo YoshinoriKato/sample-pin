@@ -1,4 +1,4 @@
-var $cardWidth = 230;
+var $cardWidth = 200;
 
 var $offset = 14;
 

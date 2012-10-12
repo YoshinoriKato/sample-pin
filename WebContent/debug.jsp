@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-	buffer="16kb" autoFlush="true" errorPage="error.jsp"%>
+	buffer="16kb" autoFlush="true"%>
 <%@page session="true"%>
 <%@page import="java.util.*"%>
 
@@ -28,7 +28,7 @@
 		%>
 	</ol>
 	<hr>
-	<h2>Request</h2>
+	<h2>Request Parameter</h2>
 	<ol>
 		<%
 			Map<String, String[]> params = request.getParameterMap();
@@ -43,6 +43,19 @@
 				<%
 					}
 				%>
+			</ol></li>
+		<%
+			}
+		%>
+	</ol>
+	<h2>Request Attribute</h2>
+	<ol>
+		<%
+			for (String key : Collections.list(request.getAttributeNames())) {
+				String value = request.getAttribute(key).toString();
+		%>
+		<li><%=key%><ol>
+				<li><%=value%></li>
 			</ol></li>
 		<%
 			}

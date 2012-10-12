@@ -125,13 +125,13 @@
 	<div id="main-menu" class="navbar-inner">
 		<div class="container">
 			<ul class="nav pills">
-				<li class="center"><a><img src="img/menu_doya_info.png"
+				<li class="hidden-phone center"><a><img src="img/menu_doya_info.png"
 						style="height: 32px;"><br>
 					<span class="user-name">Forbusからトトロまで</span></a></li>
 				<%
 					if (Helper.valid(user)) {
 				%>
-				<li class="<%=classProfile%>"><a href="profile.jsp"
+				<li class="hidden-phone <%=classProfile%>"><a href="profile.jsp"
 					class="center"><img src="<%=user.getImagePath()%>"
 						class="menu-user-icon img-circle"><br>
 					<span class="user-name">あなた</span></a></li>
@@ -188,7 +188,7 @@
 			<%
 				if (Helper.valid(userId)) {
 			%>
-			<form class="navbar-search pull-right" method="get" action="home.jsp"
+			<form class="navbar-search pull-right hidden-phone" method="get" action="home.jsp"
 				id="card-search-box">
 				<input type="hidden" name="sorted" value="search"><input
 					type="search" name="words" placeholder="Search by Keywords"
@@ -208,18 +208,18 @@
 		style="margin: 0px; width: 100%; position: absolute;">
 		<div class="navbar-inner center">
 			<ul class="nav">
-				<li><a>フィルター：</a></li>
+				<li class="hidden-phone"><a>フィルター：</a></li>
 				<li class="<%=classLatest%>"><a href="home.jsp">最新</a></li>
-				<li class="<%=classView%>"><a href="home.jsp?sorted=view">注目</a></li>
-				<li class="<%=classComment%>"><a href="home.jsp?sorted=comment">沸騰</a></li>
+				<li class="hidden-phone <%=classView%>"><a href="home.jsp?sorted=view">注目</a></li>
+				<li class="hidden-phone <%=classComment%>"><a href="home.jsp?sorted=comment">沸騰</a></li>
 				<%
 					if (userId != null && session.getAttribute("userId") != null) {
 				%>
 				<li class="divider-vertical"></li>
-				<li class="<%=classMine%>"><a href="home.jsp?sorted=mine">所有</a></li>
-				<li class="<%=classFootprints%>"><a
+				<li class="hidden-phone <%=classMine%>"><a href="home.jsp?sorted=mine">所有</a></li>
+				<li class="hidden-phone <%=classFootprints%>"><a
 					href="home.jsp?sorted=footprints">足あと</a></li>
-				<li class="<%=classRecommend%>"><a
+				<li class="hidden-phone <%=classRecommend%>"><a
 					href="home.jsp?sorted=recommend">オススメ</a></li>
 				<%
 					}

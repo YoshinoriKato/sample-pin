@@ -18,8 +18,7 @@
 	String cardId = request.getParameter("cardId");
 	cardId = (cardId != null) ? cardId : "";
 
-	String type = request.getParameter("type");
-	type = (type != null) ? type : "comment";
+	String type = "comment";
 
 	String image = request.getParameter("image");
 	image = (image != null) ? image : "open";
@@ -37,10 +36,7 @@
 		request.setAttribute("subTitle", " [" + subTitle + "]");
 	}
 
-	User user = Helper.getUserById(otherUserId);
-	request.setAttribute("user", user);
-
-	if ((card == null && user == null)
+	if ((card == null)
 			|| (card != null && card.getAccessLevel() > 0 && !card
 					.getUserId().equals(userId))) {
 		response.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -125,156 +121,36 @@
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title">Comments</div>
 	<div id="main">
-		<%
-			if (card != null) {
-		%>
 		<!-- image -->
 		<div id="cover" class="center">
-			<div class="middle">
-				<%
-					if (Helper.valid(card.getKeywords())) {
-							String keywords = card.getKeywords();
-				%>
-				<div class="margin-top-default">
-					<span class="large bold opacity60 keywords"><%=keywords%></span>
-				</div>
-				<%
-					}
-				%>
-
-				<div class="margin-top-default">
-					<img src="<%=card.getImagePath()%>" id="image-origin">
-					<div id="image-close" class="close-button">&times;</div>
-				</div>
-
-				<%
-					if (Helper.valid(card.getSite())) {
-							String path = card.getSite();
-							path = path.length() > 40 ? path.substring(0, 40) + "..."
-									: path;
-							WebPage webPage = Helper.getWebPageByURL(card.getSite());
-				%>
-				<%
-					if (Helper.valid(webPage)
-
-							&& Helper.valid(webPage.getTitle())) {
-				%>
-				<div class="margin-top-default center">
-					<%
-						if (Helper.valid(webPage.getFavicon())) {
-					%><%-- <img src=<%=webPage.getFavicon()%>> --%>
-					<%
-						}
-					%><%=webPage.getTitle()%></div>
-				<%
-					}
-				%>
-				<div class="margin-top-default center">
-					<a href="<%=card.getSite()%>" target="_blank"
-						class="large badge opacity60">URL: <%=path%></a>
-				</div>
-				<%
-					}
-				%>
-			</div>
+			<jsp:include page="_cover.jsp"></jsp:include>
 		</div>
-
-		<%
-			}
-		%>
 		<div class="split-l">
 			<div class="split-l-left">
 				<div class="card margin-bottom-default">
-					<%
-						if (Helper.valid(cardId)) {
-					%>
 					<jsp:include page="_card.jsp"></jsp:include>
 					<%
-						if (Helper.valid(userId)) {
+						if (Helper.valid(userId) && userId.equals(card.getUserId())) {
 					%>
-					<%
-						if (userId.equals(card.getUserId())) {
-					%>
-					<%-- <jsp:include page="_parent.jsp"></jsp:include> --%>
 					<jsp:include page="_access-level.jsp"></jsp:include>
 					<jsp:include page="_caption.jsp"></jsp:include>
 					<%
 						}
 					%>
-					<%-- <div>
-						<a
-							class="bold btn btn-large btn-cell opacity80 margin-top-default btn-info"
-							href="make-card.jsp?parentId=<%=cardId%>">+連結</a>
-					</div> --%>
-					<%
-						}
-					%>
-					<div id="card-family" class="margin-top-default">
-						<ul id="children">
-							<%
-								List<Card> cards = Helper.getCardsByID(cardId);
-									if (Helper.valid(cards)) {
-										for (Card child : cards) {
-							%>
-
-							<li><a
-								href="card-comment.jsp?cardId=<%=child.getCardId()%>&type=comment"><img
-									class="child" src="<%=child.getImagePath()%>"></a></li>
-
-							<%
-								}
-									}
-							%>
-						</ul>
-					</div>
-					<%
-						} else if (Helper.valid(otherUserId)) {
-					%>
-					<jsp:include page="_user.jsp"></jsp:include>
-					<%
-						}
-					%>
+					<jsp:include page="_children.jsp"></jsp:include>
 				</div>
 			</div>
 			<div class="split-l-right">
 				<ul id="content">
 					<li class="margin-bottom-default"><jsp:include page="_sns.jsp"></jsp:include><br
 						style="clear: both;" /></li>
-					<%
-						if (Helper.valid(cardId)) {
-					%>
 					<li class="margin-bottom-default opacity70"
 						style="max-height: 170px;"><jsp:include page="_comment.jsp"></jsp:include></li>
-					<%
-						}
-					%>
 					<!--  ajax -->
 					<li id="comment-insert"></li>
-					<%
-						if (card != null) {
-					%>
 					<li id="latest-info" class="margin-bottom-default opacity60">
-						<h4>その他のカード</h4>
-						<ul>
-							<%
-								List<Card> cards = Helper.newCards(card.getUpdateDate());
-									for (Card newone : cards) {
-										int length = newone.getCaption().length();
-										String caption = length > 40 ? newone.getCaption()
-												.substring(0, 40) + "..." : newone.getCaption();
-							%>
-							<li><a
-								href="card-comment.jsp?cardId=<%=newone.getCardId()%>&type=comment&image=open"><span
-									class="deco"><%=caption%></span></a> (view:<%=newone.getView()%>,
-								comment:<%=newone.getLikes()%>)</li>
-							<%
-								}
-							%>
-						</ul>
+						<jsp:include page="_others.jsp"></jsp:include>
 					</li>
-					<%
-						}
-					%>
 				</ul>
 			</div>
 		</div>

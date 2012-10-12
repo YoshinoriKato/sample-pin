@@ -18,17 +18,18 @@
 			<div class="control-group">
 				<label for="search-box" class="control-label">Image Search</label>
 				<div class="controls">
+				<div class="input-append">
 					<%
 						}
 					%>
 					<input type="search" id="search-box" name="search-box" value=""
 						placeholder="Please search images. At last, press enter key."
-						class="input-medium input-search text"><input
-						type="submit" class="btn  btn-submit" value="Search">
+						class="input-search span4"><input
+						type="submit" class="btn" value="Search">
 					<%
 						if (isWrite) {
 					%>
-				</div>
+				</div></div>
 			</div>
 		</div>
 		<%
