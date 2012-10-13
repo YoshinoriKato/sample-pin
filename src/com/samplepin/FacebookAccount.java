@@ -9,124 +9,71 @@ import com.google.code.morphia.annotations.Id;
 public class FacebookAccount {
 
 	@Id
-	ObjectId id;
+	ObjectId	id;
 
-	String accesToken;
+	String		facebookId;
 
-	String applicationID;
+	String		userName;
 
-	String applicationSecret;
+	String		accessToken;
 
-	String code;
-
-	Long createDate;
-
-	Long facebookID;
-
-	String pageID;
-
-	Long updateDate;
-
-	String userId;
+	String		userId;
 
 	public FacebookAccount() {
 		super();
-		this.facebookID = 0L;
+		this.facebookId = "";
+		this.userName = "";
+		this.accessToken = "";
 		this.userId = "";
-		this.applicationID = "";
-		this.applicationSecret = "";
-		this.createDate = 0L;
-		this.updateDate = 0L;
-		this.code = "";
-		this.accesToken = "";
-		this.pageID = "";
 	}
 
-	public FacebookAccount(Long facebookID, String userId,
-			String applicationID, String applicationSecret, String code,
-			Long createDate, Long updateDate, String accesToken, String pageID) {
+	public FacebookAccount(String facebookId, String userName,
+			String accessToken, String userId) {
 		super();
-		this.facebookID = facebookID;
+		this.facebookId = facebookId;
+		this.userName = userName;
+		this.accessToken = accessToken;
 		this.userId = userId;
-		this.applicationID = applicationID;
-		this.applicationSecret = applicationSecret;
-		this.createDate = createDate;
-		this.updateDate = updateDate;
-		this.code = code;
-		this.accesToken = accesToken;
-		this.pageID = pageID;
 	}
 
-	public String getAccesToken() {
-		return this.accesToken;
+	public String getAccessToken() {
+		return this.accessToken;
 	}
 
-	public String getApplicationID() {
-		return this.applicationID;
+	public String getFacebookId() {
+		return this.facebookId;
 	}
 
-	public String getApplicationSecret() {
-		return this.applicationSecret;
-	}
-
-	public String getCode() {
-		return this.code;
-	}
-
-	public Long getCreateDate() {
-		return this.createDate;
-	}
-
-	public Long getFacebookID() {
-		return this.facebookID;
-	}
-
-	public String getPageID() {
-		return this.pageID;
-	}
-
-	public Long getUpdateDate() {
-		return this.updateDate;
+	public ObjectId getId() {
+		return this.id;
 	}
 
 	public String getUserId() {
 		return this.userId;
 	}
 
-	public void setAccesToken(String accesToken) {
-		this.accesToken = accesToken;
+	public String getUserName() {
+		return this.userName;
 	}
 
-	public void setApplicationID(String applicationID) {
-		this.applicationID = applicationID;
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
 	}
 
-	public void setApplicationSecret(String applicationSecret) {
-		this.applicationSecret = applicationSecret;
+	public void setFacebookId(String facebookId) {
+		this.facebookId = facebookId;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public void setCreateDate(Long createDate) {
-		this.createDate = createDate;
-	}
-
-	public void setFacebookID(Long facebookID) {
-		this.facebookID = facebookID;
-	}
-
-	public void setPageID(String pageID) {
-		this.pageID = pageID;
-	}
-
-	public void setUpdateDate(Long updateDate) {
-		this.updateDate = updateDate;
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 }

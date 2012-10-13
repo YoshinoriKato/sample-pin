@@ -23,7 +23,7 @@ public class AjaxLikeServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3402207306957799959L;
+	private static final long	serialVersionUID	= 3402207306957799959L;
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)

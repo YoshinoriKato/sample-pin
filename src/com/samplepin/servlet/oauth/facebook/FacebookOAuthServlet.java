@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.UnknownHostException;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,11 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.code.morphia.query.Query;
-import com.mongodb.MongoException;
+import com.google.gson.Gson;
 import com.samplepin.FacebookAccount;
 import com.samplepin.User;
 import com.samplepin.common.ACMongo;
 import com.samplepin.common.Helper;
+import com.samplepin.servlet.LoginServlet;
 
 @WebServlet(urlPatterns = { "/oauth-facebook.jsp" })
 public class FacebookOAuthServlet extends HttpServlet {
@@ -28,66 +29,124 @@ public class FacebookOAuthServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7700928228357051804L;
+	private static final long	serialVersionUID							= -7700928228357051804L;
 
-	private String redirect_uri = "http://doya.info/oauth-facebook.jsp";
+	public static String		APP_ID										= "279279575524882";
 
-	HttpSession session;
+	public static String		APP_SECRET									= "83803e2fd2083789030a380399eb5603";
 
-	static String FACEBOOK_APP_ID = "";
+	public static String		COMMA_SEPARATED_LIST_OF_PERMISSION_NAMES	= "";
 
-	static String FACEBOOK_APP_ID_SECRET = "";
+	public static String		SOME_ARBITRARY_BUT_UNIQUE_STRING			= getRandomString();
 
-	static String KEY_FACEBOOK_INFO = "facebook";
+	private static String		REDIRECT_URI								= Helper.DOMAIN
+																					+ "oauth-facebook.jsp";
+
+	static String				OAUTH_PATH									= "https://www.facebook.com/dialog/oauth?client_id="
+																					+ APP_ID
+																					+ "&redirect_uri="
+																					+ REDIRECT_URI
+																					+ "&scope="
+																					+ COMMA_SEPARATED_LIST_OF_PERMISSION_NAMES
+																					+ "&state="
+																					+ SOME_ARBITRARY_BUT_UNIQUE_STRING;
+
+	public static String getOAuthURL() {
+		return OAUTH_PATH;
+	}
+
+	public static String getOAuthUrlForFacebook() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("https://www.facebook.com/dialog/oauth");
+		builder.append("?client_id=" + APP_ID);
+		builder.append("&redirect_uri=" + REDIRECT_URI);
+		builder.append("&state=" + SOME_ARBITRARY_BUT_UNIQUE_STRING);
+		builder.append("&scope=offline_access,publish_stream,user_status,read_stream,status_update,manage_pages");
+
+		return builder.toString();
+	}
+
+	static final String getRandomString() {
+		return UUID.randomUUID().toString();
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		this.session = req.getSession();
+		HttpSession session = req.getSession();
 		String code = req.getParameter("code");
+		String state = req.getParameter("state");
 
-		if (code != null) {
-			// take 1
-			URL url = new URL(getCode(req, resp, code));
-			URLConnection conn = url.openConnection();
-			FacebookOAuth oauth = getFacebookOAuth(conn.getInputStream());
-			this.session.setAttribute("facebook_url", url.toString());
+		if ((code != null) && SOME_ARBITRARY_BUT_UNIQUE_STRING.equals(state)) {
+			FacebookOAuth oauth = getFacebookOAuth(req, resp, code);
 
-			log("access_token: " + oauth.access_token);
+			if ((oauth != null) && exists(oauth.access_token)) {
+				FacebookInfo facebookInfo = getFacebookInfo(req, oauth);
 
-			if ((oauth != null) && Helper.valid(oauth.access_token)) {
-				URL url2 = new URL("https://graph.facebook.com/me"
-						+ "?access_token=" + oauth.access_token
-						+ "&fields=name,picture,id");
-				URLConnection conn2 = url2.openConnection();
-				FacebookUserInfo facebookInfo = Helper.readJson(
-						conn2.getInputStream(), FacebookUserInfo.class);
-
-				if (Helper.valid(facebookInfo)) {
-					// take 2
+				if (exists(facebookInfo)) {
 					saveAccesToken(req, resp, oauth.access_token, facebookInfo);
-					resp.sendRedirect("facebook-oauthed.jsp");
+					// RequestDispatcher dispatcher = req
+					// .getRequestDispatcher("debug.jsp");
+					// dispatcher.forward(req, resp);
+					resp.sendRedirect("conversion.jsp");
 					return;
 				}
 			}
 		}
-		resp.sendRedirect("../error.jsp");
+
+		Object loopCheck = session.getAttribute("loopCheck");
+		if (loopCheck == null) {
+			session.setAttribute("loopCheck", new Object());
+			resp.sendRedirect(getOAuthURL());
+		} else {
+			session.removeAttribute("loopCheck");
+			resp.sendRedirect("error.jsp");
+		}
 	}
 
-	String getCode(HttpServletRequest req, HttpServletResponse resp, String code) {
+	boolean exists(Object value) {
+		return value != null;
+	}
+
+	boolean exists(String value) {
+		return (value != null) && !value.isEmpty();
+	}
+
+	String getCodeURL(HttpServletRequest req, HttpServletResponse resp,
+			String code) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("https://graph.facebook.com/oauth/access_token");
 		builder.append("?client_id=");
-		builder.append(FACEBOOK_APP_ID);
+		builder.append(APP_ID);
 		builder.append("&redirect_uri=");
-		builder.append(this.redirect_uri);
+		builder.append(REDIRECT_URI);
 		builder.append("&client_secret=");
-		builder.append(FACEBOOK_APP_ID_SECRET);
+		builder.append(APP_SECRET);
 		builder.append("&code=");
 		builder.append(req.getParameter("code"));
 		builder.append("&state=");
 		builder.append(req.getParameter("state"));
 		return builder.toString();
+	}
+
+	FacebookInfo getFacebookInfo(HttpServletRequest req, FacebookOAuth oauth)
+			throws IOException {
+		URL url = new URL("https://graph.facebook.com/me" + "?access_token="
+				+ oauth.access_token + "&fields=name,picture,id");
+		URLConnection conn = url.openConnection();
+		FacebookInfo facebookInfo = new Gson().fromJson(new InputStreamReader(
+				conn.getInputStream()), FacebookInfo.class);
+		req.setAttribute("access_token", oauth.access_token);
+		return facebookInfo;
+	}
+
+	FacebookOAuth getFacebookOAuth(HttpServletRequest req,
+			HttpServletResponse resp, String code) throws IOException {
+		URL url = new URL(getCodeURL(req, resp, code));
+		URLConnection conn = url.openConnection();
+		FacebookOAuth oauth = getFacebookOAuth(conn.getInputStream());
+		req.setAttribute("facebook_url", url.toString());
+		return oauth;
 	}
 
 	final FacebookOAuth getFacebookOAuth(InputStream inputStream)
@@ -101,7 +160,6 @@ public class FacebookOAuthServlet extends HttpServlet {
 		}
 		line = builder.toString();
 		log(line);
-		this.session.setAttribute("facebook_ret", line);
 		String[] params = line.split("&");
 		FacebookOAuth oauth = new FacebookOAuth();
 		for (String param : params) {
@@ -117,30 +175,32 @@ public class FacebookOAuthServlet extends HttpServlet {
 	}
 
 	void saveAccesToken(HttpServletRequest req, HttpServletResponse resp,
-			String access_token, FacebookUserInfo me)
-			throws UnknownHostException, MongoException {
-		User user = Helper.getUserById(req.getSession());
-		Long mills = System.currentTimeMillis();
-		Long facebookID = mills;
+			String access_token, FacebookInfo me) throws IOException {
+		req.setAttribute("id", me.id);
+		req.setAttribute("name", me.name);
+		req.setAttribute("picture", me.picture);
 
 		try (ACMongo mongo = new ACMongo()) {
-			Query<FacebookAccount> query0 = mongo
-					.createQuery(FacebookAccount.class);
+			Query<FacebookAccount> query = mongo.createQuery(
+					FacebookAccount.class).filter("facebookId = ", me.id);
+			FacebookAccount account = null;
 
-			FacebookAccount facebook = query0.filter("access_token",
-					access_token).get();
-			if (Helper.valid(facebook)) {
-				log("has facebook info in mongo.");
-				facebook.setUserId(user.getUserId());
-				mongo.save(facebook);
+			if (query.countAll() == 0) {
+				// sign up
+				String userId = Helper.getUserId(req);
+				userId = Helper.valid(userId) ? userId : Helper
+						.generatedIdString("FB_");
+				account = new FacebookAccount(me.id, me.name, access_token,
+						userId);
+				mongo.save(account);
+				User user = new User(userId, "Sign up by Facebook.", me.name,
+						-1);
+				mongo.save(user);
 			} else {
-				log("no facebook info in mongo.");
-				facebook = new FacebookAccount(facebookID, user.getUserId(),
-						"", "", "", mills, mills, access_token, me.getId());
-				mongo.save(facebook);
+				// login
+				account = query.get();
 			}
-
-			req.getSession().setAttribute(KEY_FACEBOOK_INFO, facebook);
+			LoginServlet.login(req, account.getUserId());
 		}
 	}
 }

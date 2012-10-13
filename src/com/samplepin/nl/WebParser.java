@@ -17,7 +17,7 @@ class ParserGetter extends HTMLEditorKit {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3311586319722170406L;
+	private static final long	serialVersionUID	= -3311586319722170406L;
 
 	@Override
 	public HTMLEditorKit.Parser getParser() {
@@ -48,10 +48,9 @@ public class WebParser {
 
 	public static void main(String[] args) {
 		try {
-			System.out
-					.println(parse(
-							"http://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A9%E3%83%BC%E3%83%8D%E3%82%B0%E3%83%AC%E3%83%AA%E3%82%A2",
-							null));
+			System.out.println(parse(
+					"http://ggsoku.com/2012/10/google-nexus-call-center-open/",
+					null));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -69,6 +68,8 @@ public class WebParser {
 		Helper.setUserAgent(urlconn);
 
 		try (InputStream in = urlconn.getInputStream()) {
+			charset = hasEncode(charset) ? charset : charset(urlconn
+					.getContentType());
 			charset = hasEncode(charset) ? charset : urlconn
 					.getContentEncoding();
 

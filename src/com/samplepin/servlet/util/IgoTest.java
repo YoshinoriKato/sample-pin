@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,14 +21,15 @@ import com.google.code.morphia.query.Query;
 import com.samplepin.Card;
 import com.samplepin.common.ACMongo;
 
+@WebServlet(urlPatterns = { "/igo.do" })
 public class IgoTest extends HttpServlet {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4233313439420920524L;
+	private static final long			serialVersionUID	= -4233313439420920524L;
 
-	static Map<String, AtomicInteger> counts = new HashMap<>();
+	static Map<String, AtomicInteger>	counts				= new HashMap<>();
 
 	public static void main(String[] args) {
 		try (ACMongo mongo = new ACMongo()) {

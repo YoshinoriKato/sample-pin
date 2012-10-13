@@ -31,9 +31,9 @@ public class MakeThumbnail extends HttpServlet {
 
 	class AsyncService implements Runnable {
 
-		String imageFolderPath;
+		String			imageFolderPath;
 
-		AsyncContext ctx;
+		AsyncContext	ctx;
 
 		public AsyncService(AsyncContext ctx, String imageFolderPath) {
 			this.ctx = ctx;
@@ -45,7 +45,7 @@ public class MakeThumbnail extends HttpServlet {
 		@Override
 		public void run() {
 			try {
-				resize(imageFolderPath);
+				resize(this.imageFolderPath);
 				PrintWriter writer = this.ctx.getResponse().getWriter();
 				writer.write("Asynchronous processing complete");
 				writer.close();
@@ -79,38 +79,28 @@ public class MakeThumbnail extends HttpServlet {
 		}
 	}
 
-	static boolean valid(String value) {
-		return (value != null) && !value.isEmpty();
-	}
-
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws IOException {
-		String imageFolderPath = req.getServletContext().getRealPath(
-				"../icon-keeper");
-		// AsyncContext asyncC = req.startAsync();
-		// asyncC.addListener(new AsyncServiceListener());
-		// asyncC.start(new AsyncService(asyncC, imageFolderPath));
-		resize(imageFolderPath);
-		resp.sendRedirect("home.jsp");
-	}
-
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5036134172073312539L;
+	private static final long	serialVersionUID	= -5036134172073312539L;
 
-	static FileFilter FILTER = new FileFilter() {
-		@Override
-		public boolean accept(File pathname) {
-			String name = pathname.getName().toLowerCase();
-			return name.endsWith(".png") || name.endsWith(".jpeg")
-					|| name.endsWith(".jpg") || name.endsWith(".gif")
-					|| name.endsWith(".bmp");
-		}
-	};
+	static FileFilter			FILTER				= new FileFilter() {
+														@Override
+														public boolean accept(
+																File pathname) {
+															String name = pathname
+																	.getName()
+																	.toLowerCase();
+															return name
+																	.endsWith(".png")
+																	|| name.endsWith(".jpeg")
+																	|| name.endsWith(".jpg")
+																	|| name.endsWith(".gif")
+																	|| name.endsWith(".bmp");
+														}
+													};
 
-	static int WIDTH = 200;
+	static int					WIDTH				= 200;
 
 	public static void main(String[] args) {
 		try {
@@ -144,42 +134,8 @@ public class MakeThumbnail extends HttpServlet {
 		}
 	}
 
-	void scaleImage(BufferedImage image, File output, String ext, int width,
-			int height) throws IOException {
-		BufferedImage shrinkImage = new BufferedImage(width, height,
-				image.getType());
-
-		Graphics2D g2d = shrinkImage.createGraphics();
-
-		g2d.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION,
-				RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
-
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
-
-		g2d.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING,
-				RenderingHints.VALUE_COLOR_RENDER_QUALITY);
-
-		// g2d.setRenderingHint(RenderingHints.KEY_DITHERING,
-		// RenderingHints.VALUE_DITHER_ENABLE);
-
-		// g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
-		// RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
-		g2d.setRenderingHint(RenderingHints.KEY_RENDERING,
-				RenderingHints.VALUE_RENDER_QUALITY);
-
-		// g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-		// RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-
-		// g2d.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS,
-		// RenderingHints.VALUE_FRACTIONALMETRICS_ON);
-
-		// g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL,
-		// RenderingHints.VALUE_STROKE_NORMALIZE);
-
-		g2d.drawImage(image, 0, 0, width, height, null);
-		ImageIO.write(shrinkImage, ext, output);
+	static boolean valid(String value) {
+		return (value != null) && !value.isEmpty();
 	}
 
 	void checkTable(File input, String formatName) throws UnknownHostException,
@@ -224,6 +180,18 @@ public class MakeThumbnail extends HttpServlet {
 				, "t_" + name + "." + ext);
 
 		scaleImage(origin, output, ext, width, height);
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		String imageFolderPath = req.getServletContext().getRealPath(
+				"../icon-keeper");
+		// AsyncContext asyncC = req.startAsync();
+		// asyncC.addListener(new AsyncServiceListener());
+		// asyncC.start(new AsyncService(asyncC, imageFolderPath));
+		resize(imageFolderPath);
+		resp.sendRedirect("home.jsp");
 	}
 
 	public void resize(String imageFolderPath) throws IOException {
@@ -282,5 +250,43 @@ public class MakeThumbnail extends HttpServlet {
 			}
 		}
 
+	}
+
+	void scaleImage(BufferedImage image, File output, String ext, int width,
+			int height) throws IOException {
+		BufferedImage shrinkImage = new BufferedImage(width, height,
+				image.getType());
+
+		Graphics2D g2d = shrinkImage.createGraphics();
+
+		g2d.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION,
+				RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
+
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+
+		g2d.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING,
+				RenderingHints.VALUE_COLOR_RENDER_QUALITY);
+
+		// g2d.setRenderingHint(RenderingHints.KEY_DITHERING,
+		// RenderingHints.VALUE_DITHER_ENABLE);
+
+		// g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+		// RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+
+		g2d.setRenderingHint(RenderingHints.KEY_RENDERING,
+				RenderingHints.VALUE_RENDER_QUALITY);
+
+		// g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+		// RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+
+		// g2d.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS,
+		// RenderingHints.VALUE_FRACTIONALMETRICS_ON);
+
+		// g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL,
+		// RenderingHints.VALUE_STROKE_NORMALIZE);
+
+		g2d.drawImage(image, 0, 0, width, height, null);
+		ImageIO.write(shrinkImage, ext, output);
 	}
 }

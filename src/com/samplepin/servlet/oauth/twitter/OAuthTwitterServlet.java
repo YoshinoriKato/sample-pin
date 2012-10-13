@@ -27,7 +27,7 @@ public class OAuthTwitterServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -8159111239999377057L;
+	private static final long	serialVersionUID	= -8159111239999377057L;
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -70,7 +70,9 @@ public class OAuthTwitterServlet extends HttpServlet {
 			// session.setAttribute("AccessTokenSecret",
 			// accessToken.getTokenSecret());
 
-			String userId = Helper.generatedIdString("TW_");
+			String userId = Helper.getUserId(request);
+			userId = Helper.valid(userId) ? userId : Helper
+					.generatedIdString("TW_");
 			OAuthStatus status = TwitterService.storeAccessToken(userId,
 					twitter.verifyCredentials().getId(), accessToken);
 
@@ -84,17 +86,17 @@ public class OAuthTwitterServlet extends HttpServlet {
 			}
 
 			switch (status) {
-			case LOGIN:
-				response.sendRedirect("home.jsp");
-				break;
+				case LOGIN:
+					response.sendRedirect("home.jsp");
+					break;
 
-			case SIGNUP:
-				response.sendRedirect("conversion.jsp");
-				break;
+				case SIGNUP:
+					response.sendRedirect("conversion.jsp");
+					break;
 
-			default:
-				response.sendRedirect("error.jsp");
-				break;
+				default:
+					response.sendRedirect("error.jsp");
+					break;
 			}
 
 		} else {

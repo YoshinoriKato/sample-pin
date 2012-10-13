@@ -9,17 +9,17 @@ import com.google.code.morphia.annotations.Id;
 public class Like implements Createable, Updateable, Deleteable {
 
 	@Id
-	ObjectId id;
+	ObjectId	id;
 
-	String cardId;
+	String		cardId;
 
-	String userId;
+	String		userId;
 
-	Long createDate;
+	Long		createDate;
 
-	Long updateDate;
+	Long		updateDate;
 
-	Boolean isDeleted;
+	Boolean		isDeleted;
 
 	public Like() {
 		super();

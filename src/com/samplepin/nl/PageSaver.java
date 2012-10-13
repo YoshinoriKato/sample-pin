@@ -25,13 +25,13 @@ class PageSaver extends HTMLEditorKit.ParserCallback {
 		return value;
 	}
 
-	private StringBuilder builder;
+	private StringBuilder	builder;
 
-	private boolean canScan = false;
+	private boolean			canScan	= false;
 
-	private WebPage webPage;
+	private WebPage			webPage;
 
-	boolean isTitle = false;
+	boolean					isTitle	= false;
 
 	public PageSaver(StringBuilder builder, WebPage webPage) {
 		this.builder = builder;
