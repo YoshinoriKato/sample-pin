@@ -660,9 +660,9 @@ html {
 	padding-left: 10px;
 	padding-right: 10px;
 	/* shape ----------------------------------------------------------------*/
-	border-radius: 5px 25px 5px;
-	-webkit-border-radius: 5px 25px 5px;
-	-moz-border-radius: 5px 25px 5px;
+	border-radius: 5px 15px 5px;
+	-webkit-border-radius: 5px 15px 5px;
+	-moz-border-radius: 5px 15px 5px;
 }
 
 .cell2 {
@@ -678,9 +678,9 @@ html {
 	padding-left: 10px;
 	padding-right: 10px;
 	/* shape ----------------------------------------------------------------*/
-	border-radius: 5px 25px 5px;
-	-webkit-border-radius: 5px 25px 5px;
-	-moz-border-radius: 5px 25px 5px;
+	border-radius: 5px 15px 5px;
+	-webkit-border-radius: 5px 15px 5px;
+	-moz-border-radius: 5px 15px 5px;
 }
 
 .ribon {
