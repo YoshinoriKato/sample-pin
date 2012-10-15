@@ -7,18 +7,18 @@
 
 <%
 	Card card = (Card) request.getAttribute("card");
+	List<Card> cards = Helper.searchCards(request, card.getKeywords());
+	if (!cards.isEmpty()) {
 %>
 
-<h4 class="card-header">その他のカード</h4>
+<h4 class="card-header">関連するカード</h4>
 <div class="card-body">
 	<ul>
 		<%
-			List<Card> cards = Helper.newCards(card.getUpdateDate());
 			for (Card newone : cards) {
-				int length = newone.getCaption().length();
-				String caption = length > 40 ? newone.getCaption().substring(0,
-						40)
-						+ "..." : newone.getCaption();
+					int length = newone.getCaption().length();
+					String caption = length > 40 ? newone.getCaption()
+							.substring(0, 40) + "..." : newone.getCaption();
 		%>
 		<li><a
 			href="card-comment.jsp?cardId=<%=newone.getCardId()%>&type=comment&image=open"><span
@@ -29,3 +29,6 @@
 		%>
 	</ul>
 </div>
+<%
+	}
+%>

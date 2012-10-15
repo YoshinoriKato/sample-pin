@@ -48,7 +48,7 @@ public class SearchAjax extends CardAjax {
 		writeToJSON(os, data, callback);
 	}
 
-	List<Card> cards(ACMongo mongo, String otherUserId, String sorted,
+	public List<Card> cards(ACMongo mongo, String otherUserId, String sorted,
 			String offset, String limit, String callback, String old,
 			String young, String type, String userId, String cardId,
 			Set<String> searched) {

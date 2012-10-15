@@ -9,50 +9,60 @@
 	Card card = (Card) request.getAttribute("card");
 %>
 
-<div class="middle">
+
+<div>
+	<div class="margin-top-default">
+		<h4 class="card-header">画像</h4>
+		<div class="card-body">
+			<img src="<%=card.getImagePath()%>" class="card-image">
+		</div>
+	</div>
+	<%
+		String keywords = card.getKeywords();
+		if (Helper.valid(keywords)) {
+	%>
+	<div class="margin-top-default">
+		<h4 class="card-header">検索キーワード</h4>
+		<div class="card-body">
+			<p class="bold opacity60 keywords"><%=keywords%></p>
+		</div>
+	</div>
+	<%
+		}
+	%>
 	<%
 		if (Helper.valid(card.getSite())) {
 			String path = card.getSite();
-			path = path.length() > 40 ? path.substring(0, 40) + "..."
+			path = path.length() > 40
+					? path.substring(0, 40) + "..."
 					: path;
 			WebPage webPage = Helper.getWebPageByURL(card.getSite());
 			if (Helper.valid(webPage)
 
 			&& Helper.valid(webPage.getTitle())) {
 	%>
-	<h2 class="margin-top-default">
+	<div class="margin-top-default">
 		<%
 			if (Helper.valid(webPage.getFavicon())) {
 		%><%-- <img src=<%=webPage.getFavicon()%>> --%>
 		<%
 			}
 		%>
-		<a href="<%=card.getSite()%>" target="_blank"><%=webPage.getTitle()%></a>
-	</h2>
-	<%
-		}
-		}
-	%>
-
-	<div class="margin-top-default">
-		<img src="<%=card.getImagePath()%>" id="image-origin">
-	</div>
-	
-	<%
-		String keywords = card.getKeywords();
-		if (Helper.valid(keywords)) {
-	%>
-	<div class="margin-top-default">
-		<span class="large bold opacity60 keywords"><%=keywords%></span>
+		<h4 class="card-header">参照元</h4>
+		<div class="card-body">
+			<a href="<%=card.getSite()%>" target="_blank"><%=webPage.getTitle()%><i class="icon-globe"></i></a>
+		</div>
 	</div>
 	<%
 		}
+		}
 	%>
-
-
 </div>
 
-
+<script type="text/javascript">
+	$('.deco').autoUrlLink();
+	$('.keywords').convLink();
+</script>
 
 
 

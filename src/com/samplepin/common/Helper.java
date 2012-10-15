@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import java.util.Random;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,7 +42,9 @@ import com.samplepin.TwitterAccount;
 import com.samplepin.User;
 import com.samplepin.View;
 import com.samplepin.WebPage;
+import com.samplepin.nl.NaturalLanguageParser;
 import com.samplepin.nl.WebParser;
+import com.samplepin.servlet.ajax.SearchAjax;
 
 public class Helper {
 
@@ -514,6 +517,24 @@ public class Helper {
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();
 		}
+		return new ArrayList<Card>();
+	}
+
+	public static List<Card> searchCards(HttpServletRequest req, String keywords)
+			throws IOException {
+		String dic = NaturalLanguageParser.getDictionaryPath(req);
+		String userId = getUserId(req);
+		if (keywords != null && !keywords.isEmpty())
+			try (ACMongo mongo = new ACMongo()) {
+				Set<String> searched = NaturalLanguageParser.cardIds(dic,
+						keywords);
+				if (valid(searched)) {
+					return new SearchAjax().cards(mongo, "", "search", "0",
+							"10", "", "", "", "card", userId, "", searched);
+				}
+			} catch (UnknownHostException | MongoException e) {
+				e.printStackTrace();
+			}
 		return new ArrayList<Card>();
 	}
 

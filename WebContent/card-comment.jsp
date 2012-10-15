@@ -121,44 +121,59 @@
 	<jsp:include page="_topbar.jsp" flush="true" />
 	<div id="title">Comments</div>
 	<div id="main">
-		<!-- image -->
-		<div id="cover" class="center">
-			<jsp:include page="_cover.jsp"></jsp:include>
-		</div>
-		<div class="split-l">
-			<div class="split-l-left">
-				<div class="card margin-bottom-default">
-					<jsp:include page="_card.jsp"></jsp:include>
+		<div class="middle">
+			<br style="clear: both;" />
+			<div class="split-l">
+				<div class="split-l-left"><jsp:include page="_card.jsp"></jsp:include>
 					<%
 						if (Helper.valid(userId) && userId.equals(card.getUserId())) {
 					%>
+					<jsp:include page="_parent.jsp"></jsp:include>
 					<jsp:include page="_access-level.jsp"></jsp:include>
 					<jsp:include page="_caption.jsp"></jsp:include>
+					<jsp:include page="_children.jsp"></jsp:include>
 					<%
 						}
 					%>
-					<jsp:include page="_children.jsp"></jsp:include>
+				</div>
+				<div class="split-l-right">
+					<!-- image -->
+					<div>
+						<jsp:include page="_cover.jsp"></jsp:include>
+					</div>
+					<div>
+						<h4 class="card-header">キャプション</h4>
+						<div class="card-body"><%=Helper.escapeHTML(card.getCaption())%></div>
+					</div>
+					<div>
+						<h4 class="card-header">コメント</h4>
+						<ul id="content">
+							<li class="margin-bottom-default opacity70"
+								style="max-height: 170px;"><jsp:include page="_comment.jsp"></jsp:include></li>
+							<!--  ajax -->
+							<li id="comment-insert"></li>
+							<li id="latest-info" class="margin-bottom-default opacity60">
+
+							</li>
+						</ul>
+					</div>
+					<div>
+						<h4 class="card-header">SNS</h4>
+						<div class="card-body"><jsp:include page="_sns.jsp"></jsp:include><br
+								style="clear: both;" />
+						</div>
+					</div>
+					<div>
+						<jsp:include page="_relative.jsp"></jsp:include>
+					</div>
+					<div>
+						<jsp:include page="_others.jsp"></jsp:include>
+					</div>
 				</div>
 			</div>
-			<div class="split-l-right">
-				<ul id="content">
-					<li class="margin-bottom-default"><jsp:include page="_sns.jsp"></jsp:include><br
-						style="clear: both;" /></li>
-					<li class="margin-bottom-default opacity70"
-						style="max-height: 170px;"><jsp:include page="_comment.jsp"></jsp:include></li>
-					<!--  ajax -->
-					<li id="comment-insert"></li>
-					<li id="latest-info" class="margin-bottom-default opacity60">
-						<jsp:include page="_others.jsp"></jsp:include>
-					</li>
-				</ul>
-			</div>
+			<br style="clear: both;" />
 		</div>
-		<br style="clear: both;" />
 	</div>
-
-	<!-- read cards -->
-	<div class="center caption star large" id="read-cards"></div>
 
 	<!-- parameters -->
 	<div style="display: none" id="sorted"><%=sorted%></div>

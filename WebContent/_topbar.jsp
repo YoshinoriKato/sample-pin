@@ -127,7 +127,7 @@
 			<ul class="nav pills">
 				<li class="hidden-phone center"><a><img src="img/menu_doya_info.png"
 						style="height: 32px;"><br>
-					<span class="user-name">Forbusからトトロまで</span></a></li>
+					<span class="user-name">Forbusからジョジョまで</span></a></li>
 				<%
 					if (Helper.valid(user)) {
 				%>

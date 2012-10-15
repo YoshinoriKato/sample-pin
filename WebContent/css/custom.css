@@ -206,6 +206,7 @@ html {
 	display: none;
 	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
 	/* layout ---------------------------------------------------------------*/
+	position:relative;
 	margin-top: 100px;
 	margin-bottom: 60px;
 	/* shape ----------------------------------------------------------------*/
@@ -1098,7 +1099,7 @@ html {
 .split-l-right {
 	/* effect ---------------------------------------------------------------*/
 	/* layout ---------------------------------------------------------------*/
-	margin-left: 240px;
+	margin-left: 230px;
 	/* shape ----------------------------------------------------------------*/
 	min-width: 300px;
 }
@@ -1143,22 +1144,21 @@ html {
 	width: 350px;
 }
 
-/* Large desktop */
-@media ( min-width : 1200px) {
-	...
+
+.card-header {
+	border-bottom: solid 1px rgba(0,0,0,0.2);
+	border-left: solid 10px rgba(0,0,0,0.2);
+	padding: 6px;
+	text-align: left;
 }
 
-/* Portrait tablet to landscape and desktop */
-@media ( min-width : 768px) and (max-width: 979px) {
-	...
+.card-body {
+	padding: 6px;
+	margin-left: 20px;
+	font-size: large;
 }
 
-/* Landscape phone to portrait tablet */
-@media ( max-width : 767px) {
-	...
-}
 
-/* Landscape phones and down */
-@media ( max-width : 480px) {
-	...
+.card-image {
+	min-width: 300px;
 }

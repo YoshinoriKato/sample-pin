@@ -42,9 +42,9 @@ function callback($data) {
 			clearInterval($timer);
 			if ($type != 'comment') {
 				wookmark();
+				$('#content').css('height', $(document).height());
 			}
 			$('#read-cards').text('read ' + $counter + ' cards');
-			$('#content').css('height', $(document).height() - 300);
 			teaDown();
 		}
 	}, $interval);
@@ -132,7 +132,7 @@ function makeCard($card, $select) {
 		$jqA1.attr('href', $link);
 		$jqA2.attr('href', 'profile.jsp?userId=' + $card.userId);
 		$divFooter.text($card.likes + ' comment').css('clear', 'both');
-		var $btnLike = $('<span/>').attr('id', 'gj_' + $card.cardId);
+//		var $btnLike = $('<span/>').attr('id', 'gj_' + $card.cardId);
 	}
 
 	// construct
@@ -207,7 +207,7 @@ function makeComment($comment, $userId) {
 	var $divName = $('<div/>').addClass('bold deco comment');
 	var $divCaption = $('<div/>').addClass('caption comment deco');
 	var $divFooter = $('<div/>').addClass('star comment right');
-	var $divBr = $('<br/>').css('clear', 'both');
+//	var $divBr = $('<br/>').css('clear', 'both');
 	var $jqIcon = $('<img/>').addClass('image-icon');
 	var $jqClose = $('<div/>').addClass('close-button');
 	
@@ -231,7 +231,8 @@ function makeComment($comment, $userId) {
 	// construct
 	$('#comment-insert').before($jqLi);
 	$jqLi.append($jqDiv);
-	$jqDiv.append($divCardSub).append($divBr).append(
+	$jqDiv.append($divCardSub)//.append($divBr)
+	.append(
 			$divFooter);
 	$divCardSub.append($divCardIcon0).append($divCardSubtext0);
 	$divCardIcon0.append($jqA);
@@ -248,8 +249,6 @@ function makeComment($comment, $userId) {
 		$jqClose.append($confirm);
 	}
 	$jqA.append($jqIcon);
-	
-	$jqDiv.append($('<hr/>'));
 }
 
 function callAjax($sorted, $limit, $offset, $userId, $cardId, $type, $words, $select, $folderId) {
