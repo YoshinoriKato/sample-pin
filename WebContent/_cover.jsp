@@ -11,7 +11,7 @@
 
 
 <div>
-	<div class="margin-top-default">
+	<div>
 		<h4 class="card-header">画像</h4>
 		<div class="card-body">
 			<img src="<%=card.getImagePath()%>" class="card-image">
@@ -58,12 +58,4 @@
 		}
 	%>
 </div>
-
-<script type="text/javascript">
-	$('.deco').autoUrlLink();
-	$('.keywords').convLink();
-</script>
-
-
-
 

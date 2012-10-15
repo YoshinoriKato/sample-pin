@@ -122,8 +122,8 @@
 	<div id="title">Comments</div>
 	<div id="main">
 		<div class="middle">
-			<br style="clear: both;" />
 			<div class="split-l">
+			<h1>Card & Comments</h1>
 				<div class="split-l-left"><jsp:include page="_card.jsp"></jsp:include>
 					<%
 						if (Helper.valid(userId) && userId.equals(card.getUserId())) {
@@ -183,6 +183,11 @@
 	<div style="display: none" id="image"><%=image%></div>
 
 	<jsp:include page="_footer.jsp"></jsp:include>
+
+	<script type="text/javascript">
+		$('.deco').autoUrlLink();
+		$('.keywords').convLink();
+	</script>
 </body>
 
 </html>
