@@ -105,12 +105,6 @@
 		}
 	%>
 </div>
-
-<script type="text/javascript">
-	$('.deco').autoUrlLink();
-	$('.keywords').convLink();
-</script>
-
 <%
 	}
 %>

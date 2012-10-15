@@ -122,8 +122,8 @@
 	<div id="title">Comments</div>
 	<div id="main">
 		<div class="middle">
-			<br style="clear: both;" />
 			<div class="split-l">
+				<h1>Card & Comments</h1>
 				<div class="split-l-left"><jsp:include page="_card.jsp"></jsp:include>
 					<%
 						if (Helper.valid(userId) && userId.equals(card.getUserId())) {
@@ -138,14 +138,12 @@
 				</div>
 				<div class="split-l-right">
 					<!-- image -->
-					<div>
-						<jsp:include page="_cover.jsp"></jsp:include>
-					</div>
-					<div>
+					<jsp:include page="_cover.jsp"></jsp:include>
+					<div class="margin-bottom-default">
 						<h4 class="card-header">キャプション</h4>
 						<div class="card-body"><%=Helper.escapeHTML(card.getCaption())%></div>
 					</div>
-					<div>
+					<div class="margin-bottom-default">
 						<h4 class="card-header">コメント</h4>
 						<ul id="content">
 							<li class="margin-bottom-default opacity70"
@@ -157,16 +155,16 @@
 							</li>
 						</ul>
 					</div>
-					<div>
+					<div class="margin-bottom-default">
 						<h4 class="card-header">SNS</h4>
 						<div class="card-body"><jsp:include page="_sns.jsp"></jsp:include><br
 								style="clear: both;" />
 						</div>
 					</div>
-					<div>
+					<div class="margin-bottom-default">
 						<jsp:include page="_relative.jsp"></jsp:include>
 					</div>
-					<div>
+					<div class="margin-bottom-default">
 						<jsp:include page="_others.jsp"></jsp:include>
 					</div>
 				</div>
@@ -183,6 +181,11 @@
 	<div style="display: none" id="image"><%=image%></div>
 
 	<jsp:include page="_footer.jsp"></jsp:include>
+
+	<script type="text/javascript">
+		$('.deco').autoUrlLink();
+		$('.keywords').convLink();
+	</script>
 </body>
 
 </html>
