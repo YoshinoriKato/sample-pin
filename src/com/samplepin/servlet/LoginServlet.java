@@ -27,11 +27,11 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5426777241563315344L;
+	private static final long	serialVersionUID	= 5426777241563315344L;
 
-	public static String KEY_FIRST = "Dioscuri";
+	public static String		KEY_FIRST			= "Dioscuri";
 
-	public static String KEY_SECOND = "Pollux";
+	public static String		KEY_SECOND			= "Pollux";
 
 	public static final void login(HttpServletRequest req, String userId)
 			throws UnknownHostException, MongoException {
@@ -77,7 +77,6 @@ public class LoginServlet extends HttpServlet {
 				ActivityLogger.log(req, this.getClass(), user);
 
 				if (user.getIsFirst()) {
-					user.setIsFirst(false);
 					resp.sendRedirect("conversion.jsp");
 				} else {
 					resp.sendRedirect(redirectUrl);

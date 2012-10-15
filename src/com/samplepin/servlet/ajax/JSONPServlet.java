@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.mongodb.util.JSON;
 import com.samplepin.filter.FormHandler;
 
-@WebServlet(urlPatterns = {})
+@WebServlet(urlPatterns = { "/jsonp.do" })
 public class JSONPServlet extends HttpServlet {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6987824290551696489L;
+	private static final long	serialVersionUID	= -6987824290551696489L;
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) {

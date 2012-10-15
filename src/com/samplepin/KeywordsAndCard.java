@@ -12,12 +12,12 @@ import com.google.code.morphia.annotations.Indexed;
 public class KeywordsAndCard {
 
 	@Id
-	ObjectId id;
+	ObjectId	id;
 
-	String[] keywords;
+	String[]	keywords;
 
 	@Indexed
-	String cardId;
+	String		cardId;
 
 	public KeywordsAndCard() {
 		super();

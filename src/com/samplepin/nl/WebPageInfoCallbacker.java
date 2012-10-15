@@ -6,9 +6,9 @@ import net.reduls.igo.Tagger;
 
 class WebPageInfoCallbacker implements ParserCallback {
 
-	Tagger tagger;
+	Tagger		tagger;
 
-	Set<String> parsed;
+	Set<String>	parsed;
 
 	public WebPageInfoCallbacker(Tagger tagger, Set<String> parsed) {
 		super();

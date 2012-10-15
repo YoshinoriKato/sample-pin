@@ -22,7 +22,7 @@ public class LinkImageServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4530246405324364355L;
+	private static final long	serialVersionUID	= 4530246405324364355L;
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)

@@ -10,9 +10,7 @@
 <jsp:include page="_header.jsp"></jsp:include>
 <jsp:include page="_effect.jsp"></jsp:include>
 </head>
-<%
-	/* response.sendRedirect("home.jsp"); */
-%>
+
 <body class="home" id="full-body">
 	<jsp:include page="_topbar.jsp"></jsp:include>
 	<table height="100%" width="100%" class="gradient-white">
@@ -20,11 +18,15 @@
 			<tr>
 				<td align="center" valign="middle">
 					<div>
-						<h1>ようこそ
-						<%=Helper.NAME%>
-						へ</h1>
+						<h1>
+							ようこそ
+							<%=Helper.NAME%>
+							へ
+						</h1>
 						<p class="margin-top-default">ホーム画面から登録ユーザー専用の機能をご利用ください。</p>
-						<p class="margin-top-default"><a href="home.jsp" class="btn btn-large">Home</a></p>
+						<p class="margin-top-default">
+							<a href="home.jsp" class="btn btn-large">Home</a>
+						</p>
 					</div>
 				</td>
 			</tr>
