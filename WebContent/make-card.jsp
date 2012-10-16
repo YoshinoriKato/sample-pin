@@ -10,7 +10,8 @@
 <jsp:include page="_effect.jsp"></jsp:include>
 <script type="text/javascript">
 	attach(window, 'load', function() {
-		observeText('#comment-text', 'make-card');
+		observeText('#card-title', 'make-card0');
+		observeText('#comment-text', 'make-card1');
 		
 		/* search */
 		searchKeywords();

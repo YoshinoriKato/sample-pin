@@ -81,7 +81,7 @@
 				<div class="control-group">
 					<label for="title" class="control-label">Title</label>
 					<div class="controls">
-						<input id="card-title" type="text" name="title" maxlength="40"
+						<input id="card-title" type="text" name="title" maxlength="120"
 							class="text input-text">
 					</div>
 				</div>
