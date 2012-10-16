@@ -33,7 +33,6 @@ public class SearchAjax extends CardAjax {
 			if (valid(searched)) {
 				cards = cards(mongo, otherUserId, sorted, offset, limit,
 						callback, old, young, type, userId, cardId, searched);
-				fillValues(cards);
 			}
 		}
 
@@ -78,6 +77,7 @@ public class SearchAjax extends CardAjax {
 		}
 
 		cards = query.asList();
+		fillValues(cards);
 		return cards;
 	}
 

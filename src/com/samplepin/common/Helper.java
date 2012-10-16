@@ -44,6 +44,7 @@ import com.samplepin.View;
 import com.samplepin.WebPage;
 import com.samplepin.nl.NaturalLanguageParser;
 import com.samplepin.nl.WebParser;
+import com.samplepin.servlet.ajax.CardAjax;
 import com.samplepin.servlet.ajax.SearchAjax;
 
 public class Helper {
@@ -532,7 +533,9 @@ public class Helper {
 					.filter("accessLevel = ", 0).filter("isDeleted", false)
 					.filter("updateDate < ", updateDate).order("-updateDate")
 					.limit(10);
-			return query.asList();
+			List<Card>cards = query.asList();
+			CardAjax.fillValues(cards);
+			return cards;
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();
 		}

@@ -37,7 +37,7 @@ public class CardAjax {
 		}
 	}
 
-	void fillValues(List<Card> cards) {
+	static public void fillValues(List<Card> cards) {
 		for (Card card : cards) {
 			User user = Helper.getUserById(card.getUserId());
 			if (user != null) {
@@ -165,11 +165,11 @@ public class CardAjax {
 
 	}
 
-	final <T> boolean valid(Collection<T> value) {
+	static final <T> boolean valid(Collection<T> value) {
 		return (value != null) && !value.isEmpty();
 	}
 
-	final boolean valid(String value) {
+	static final boolean valid(String value) {
 		return (value != null) && !value.isEmpty();
 	}
 

@@ -16,9 +16,8 @@
 	<ul>
 		<%
 			for (Card newone : cards) {
-					int length = newone.getCaption().length();
-					String caption = length > 40 ? newone.getCaption()
-							.substring(0, 40) + "..." : newone.getCaption();
+					String caption = Helper.getOmitedString(newone.getTitle(),
+							40);
 		%>
 		<li><a
 			href="card-comment.jsp?cardId=<%=newone.getCardId()%>&type=comment&image=open"><span

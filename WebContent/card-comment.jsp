@@ -149,7 +149,7 @@
 						<jsp:include page="_cover.jsp"></jsp:include></div>
 					<div class="margin-bottom-default">
 						<h2 class="card-header">キャプション</h2>
-						<div class="card-body well"><%=Helper.escapeHTML(card.getCaption())%></div>
+						<div class="card-body well deco"><%=Helper.convURLLink(Helper.escapeHTML(card.getCaption()))%></div>
 					</div>
 					<div class="margin-bottom-default">
 						<h2 class="card-header">コメント</h2>
@@ -188,10 +188,6 @@
 
 	<jsp:include page="_footer.jsp"></jsp:include>
 
-	<script type="text/javascript">
-		$('.deco').autoUrlLink();
-		$('.keywords').convLink();
-	</script>
 </body>
 
 </html>

@@ -16,7 +16,7 @@
 			List<Card> cards = Helper.newCards(card.getUpdateDate());
 			for (Card newone : cards) {
 				String caption = Helper
-						.getOmitedString(newone.getCaption(), 40);
+						.getOmitedString(newone.getTitle(), 40);
 		%>
 		<li><a
 			href="card-comment.jsp?cardId=<%=newone.getCardId()%>&type=comment&image=open"><span
