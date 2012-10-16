@@ -46,6 +46,12 @@
 								</div>
 							</div>
 							<div class="control-group">
+								<label class="control-label"></label>
+								<div class="controls">
+									<div class="well" style="margin-right: 20px;"><%=Helper.escapeHTML(card.getCaption())%></div>
+								</div>
+							</div>
+							<div class="control-group">
 								<div class="controls">
 									<input type="submit" value="Confirm"
 										class="btn btn-large btn-primary btn-cell"> <input

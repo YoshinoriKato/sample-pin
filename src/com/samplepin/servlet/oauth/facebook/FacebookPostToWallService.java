@@ -26,7 +26,7 @@ public class FacebookPostToWallService {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -6859695248316214764L;
+	private static final long serialVersionUID = -6859695248316214764L;
 
 	HttpURLConnection connectToFacebook(FacebookAccount facebook)
 			throws IOException {

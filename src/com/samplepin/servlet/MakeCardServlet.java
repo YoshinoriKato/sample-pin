@@ -37,7 +37,7 @@ public class MakeCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -7182329627922034835L;
+	private static final long serialVersionUID = -7182329627922034835L;
 
 	public static void copyStream(File in, File out, int bufferSize)
 			throws IOException {
@@ -192,6 +192,7 @@ public class MakeCardServlet extends HttpServlet {
 			String accessLevel = getValueByKeyword(part, "accessLevel");
 
 			if (title != null) {
+				card.setTitle(title);
 
 			} else if (valid(caption)) {
 				card.setCaption(caption);
@@ -266,9 +267,9 @@ public class MakeCardServlet extends HttpServlet {
 			throws FileNotFoundException, IOException {
 		File realPathFile = new File(realFolder, fileName);
 		copyStream(is, new FileOutputStream(realPathFile), 1024);
-		String formatName = ImageType.getFormat(realPathFile).toString();
+		// String formatName = ImageType.getFormat(realPathFile).toString();
 		new MakeThumbnail().convert(new File(realFolder, "t"), realPathFile,
-				formatName);
+				"png");
 		log("upload user icon: " + realPathFile.getPath());
 	}
 

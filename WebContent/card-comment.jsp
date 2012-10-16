@@ -91,6 +91,7 @@
 
 	attach(window, 'load', function() {
 		// text observer
+		observeText('#card-title', $key, true);
 		observeText('#comment-text', $key, true);
 		$('#comment-form').submit(function() {
 			if ($('#comment-text').innerHTML != '') {
@@ -138,25 +139,30 @@
 				</div>
 				<div class="split-l-right">
 					<!-- image -->
-					<jsp:include page="_cover.jsp"></jsp:include>
 					<div class="margin-bottom-default">
-						<h4 class="card-header">キャプション</h4>
-						<div class="card-body"><%=Helper.escapeHTML(card.getCaption())%></div>
+						<h2 class="card-header">タイトル</h2>
+						<div class="card-body">
+							<h2><%=Helper.escapeHTML(card.getTitle())%></h2>
+						</div>
+					</div>
+					<div style="margin-left: 20px;">
+						<jsp:include page="_cover.jsp"></jsp:include></div>
+					<div class="margin-bottom-default">
+						<h2 class="card-header">キャプション</h2>
+						<div class="card-body well"><%=Helper.escapeHTML(card.getCaption())%></div>
 					</div>
 					<div class="margin-bottom-default">
-						<h4 class="card-header">コメント</h4>
+						<h2 class="card-header">コメント</h2>
 						<ul id="content">
-							<li class="margin-bottom-default opacity70"
-								style="max-height: 170px;"><jsp:include page="_comment.jsp"></jsp:include></li>
+							<li class="margin-bottom-default" style="max-height: 170px;"><jsp:include
+									page="_comment.jsp"></jsp:include></li>
 							<!--  ajax -->
 							<li id="comment-insert"></li>
-							<li id="latest-info" class="margin-bottom-default opacity60">
-
-							</li>
+							<li id="latest-info" class="margin-bottom-default"></li>
 						</ul>
 					</div>
 					<div class="margin-bottom-default">
-						<h4 class="card-header">SNS</h4>
+						<h2 class="card-header">SNS</h2>
 						<div class="card-body"><jsp:include page="_sns.jsp"></jsp:include><br
 								style="clear: both;" />
 						</div>

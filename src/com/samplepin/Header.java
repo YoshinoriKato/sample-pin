@@ -9,33 +9,33 @@ import com.google.code.morphia.annotations.Id;
 public class Header implements Createable {
 
 	@Id
-	ObjectId	id;
+	ObjectId id;
 
-	String		host;
+	String host;
 
-	String		connection;
+	String connection;
 
-	String		cacheControl;
+	String cacheControl;
 
-	String		userAgent;
+	String userAgent;
 
-	String		accept;
+	String accept;
 
-	String		acceptEncoding;
+	String acceptEncoding;
 
-	String		acceptLanguage;
+	String acceptLanguage;
 
-	String		acceptCharset;
+	String acceptCharset;
 
-	String		cookie;
+	String cookie;
 
-	String		remoteAddress;
+	String remoteAddress;
 
-	String		uri;
+	String uri;
 
-	String		protocol;
+	String protocol;
 
-	Long		createDate;
+	Long createDate;
 
 	public Header() {
 		super();

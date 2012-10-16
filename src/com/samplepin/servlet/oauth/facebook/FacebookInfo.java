@@ -2,11 +2,11 @@ package com.samplepin.servlet.oauth.facebook;
 
 public class FacebookInfo {
 
-	String	id;
+	String id;
 
-	String	name;
+	String name;
 
-	Object	picture;
+	Object picture;
 
 	public FacebookInfo() {
 

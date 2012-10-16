@@ -9,19 +9,20 @@
 
 	String message = (String) request.getAttribute("message");
 	String imagePath = (String) request.getAttribute("imagePath");
-/* 	imagePath = imagePath != null ? URLDecoder.decode(imagePath,
-			"UTF-8") : "";
- */
-	String keywords = (String)request.getAttribute("keywords");
-/* 	keywords = keywords != null ? URLDecoder.decode(keywords, "UTF-8")
-			: keywords; */
+	/* 	imagePath = imagePath != null ? URLDecoder.decode(imagePath,
+	 "UTF-8") : "";
+	 */
+	String keywords = (String) request.getAttribute("keywords");
+	/* 	keywords = keywords != null ? URLDecoder.decode(keywords, "UTF-8")
+	 : keywords; */
 	keywords = (keywords != null) ? keywords : "";
-	String site = (String)request.getAttribute("site");
-/* 	site = Helper.valid(site) ? URLDecoder.decode(site, "UTF-8") : site; */
+	String site = (String) request.getAttribute("site");
+	/* 	site = Helper.valid(site) ? URLDecoder.decode(site, "UTF-8") : site; */
 	site = Helper.valid(site) ? site : "";
-	
-	String parentId = (String)request.getAttribute("parentId");
-	parentId = Helper.valid(parentId) ? parentId : request.getParameter("parentId");
+
+	String parentId = (String) request.getAttribute("parentId");
+	parentId = Helper.valid(parentId) ? parentId : request
+			.getParameter("parentId");
 	parentId = Helper.valid(parentId) ? parentId : "";
 
 	message = message != null ? message : "";
@@ -77,6 +78,13 @@
 				<%
 					}
 				%>
+				<div class="control-group">
+					<label for="title" class="control-label">Title</label>
+					<div class="controls">
+						<input id="card-title" type="text" name="title" maxlength="40"
+							class="text input-text">
+					</div>
+				</div>
 				<div class="control-group <%=error%>">
 					<label for="caption" class="control-label">Caption</label>
 					<div class="controls">
@@ -100,8 +108,9 @@
 				<div class="control-group">
 					<label for="accessLevel" class="control-label">Access Level</label>
 					<div class="controls">
-						<input type="number" min="0" max="100" name="accessLevel" class="text" value="0">
-						<span class="help-inline">level 0 ... 公開, level 100 ... 非公開</span>
+						<input type="number" min="0" max="100" name="accessLevel"
+							class="text" value="0"> <span class="help-inline">level
+							0 ... 公開, level 100 ... 非公開</span>
 					</div>
 				</div>
 				<div class="control-group">

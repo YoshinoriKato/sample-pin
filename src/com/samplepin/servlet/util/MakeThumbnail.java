@@ -31,17 +31,15 @@ public class MakeThumbnail extends HttpServlet {
 
 	class AsyncService implements Runnable {
 
-		String			imageFolderPath;
+		String imageFolderPath;
 
-		AsyncContext	ctx;
+		AsyncContext ctx;
 
 		public AsyncService(AsyncContext ctx, String imageFolderPath) {
 			this.ctx = ctx;
 			this.imageFolderPath = imageFolderPath;
 		}
 
-		// <link rel="alternate" type="application/rss+xml"
-		// href="http://news.google.co.jp/news?pz=1&amp;cf=all&amp;ned=jp&amp;hl=ja&amp;topic=h&amp;num=3&amp;output=rss">
 		@Override
 		public void run() {
 			try {
@@ -82,25 +80,19 @@ public class MakeThumbnail extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -5036134172073312539L;
+	private static final long serialVersionUID = -5036134172073312539L;
 
-	static FileFilter			FILTER				= new FileFilter() {
-														@Override
-														public boolean accept(
-																File pathname) {
-															String name = pathname
-																	.getName()
-																	.toLowerCase();
-															return name
-																	.endsWith(".png")
-																	|| name.endsWith(".jpeg")
-																	|| name.endsWith(".jpg")
-																	|| name.endsWith(".gif")
-																	|| name.endsWith(".bmp");
-														}
-													};
+	static FileFilter FILTER = new FileFilter() {
+		@Override
+		public boolean accept(File pathname) {
+			String name = pathname.getName().toLowerCase();
+			return name.endsWith(".png") || name.endsWith(".jpeg")
+					|| name.endsWith(".jpg") || name.endsWith(".gif")
+					|| name.endsWith(".bmp");
+		}
+	};
 
-	static int					WIDTH				= 200;
+	static float WIDTH = 200;
 
 	public static void main(String[] args) {
 		try {
@@ -116,9 +108,9 @@ public class MakeThumbnail extends HttpServlet {
 
 			BufferedImage origin = ImageIO.read(input);
 			int width = origin.getWidth();
-			double scale = ((double) WIDTH) / ((double) width);
-			int height = (int) Math.round(scale * origin.getHeight());
-			width = WIDTH;
+			float scale = WIDTH / width;
+			int height = Math.round(scale * origin.getHeight());
+			width = Math.round(WIDTH);
 
 			String name = input.getName().substring(0,
 					input.getName().lastIndexOf("."));
@@ -170,16 +162,18 @@ public class MakeThumbnail extends HttpServlet {
 		}
 
 		BufferedImage origin = ImageIO.read(input);
-		int width = origin.getWidth();
-		double scale = ((double) WIDTH) / ((double) width);
-		int height = (int) Math.round(scale * origin.getHeight());
-		width = WIDTH;
+		// int width = origin.getWidth();
+		// float scale = WIDTH / ((float) width);
+		// int height = Math.round(scale * origin.getHeight());
+		// width = Math.round(WIDTH);
+
 		String name = input.getName().substring(0,
 				input.getName().lastIndexOf("."));
 		File output = new File(folder // input.getParentFile()
 				, "t_" + name + "." + ext);
 
-		scaleImage(origin, output, ext, width, height);
+		// scaleImage(origin, output, ext, width, height);
+		ImageIO.write(getOptimalScalingImage(origin), ext, output);
 	}
 
 	@Override
@@ -194,6 +188,71 @@ public class MakeThumbnail extends HttpServlet {
 		resp.sendRedirect("home.jsp");
 	}
 
+	private BufferedImage getOptimalScalingImage(BufferedImage inputImage) {
+
+		// 現在のイメージのサイズ
+		int currentWidth = inputImage.getWidth();
+		int currentHeight = inputImage.getHeight();
+
+		// 最終的なイメージのサイズ
+		int endWidth = Math.round(WIDTH);
+		int endHeight = Math.round(currentHeight * (WIDTH / currentWidth));
+
+		// 現在のイメージ
+		BufferedImage currentImage = inputImage;
+
+		// 最終的なサイズと現在のイメージの差
+		int delta = currentWidth - endWidth;
+
+		// 次に縮小するサイズ
+		int nextPow2 = currentWidth >> 1;
+
+		while (currentWidth > 1) {
+			// 最終的なイメージとサイズの差が、次に縮小するサイズよりも
+			// 小さいかどうか調べる
+			if (delta <= nextPow2) {
+
+				// イメージのサイズの差が小さい場合
+				if (currentWidth != endWidth) {
+
+					// 最終的な縮小率が 1/2n にならない場合
+					BufferedImage tmpImage = new BufferedImage(endWidth,
+							endHeight, BufferedImage.TYPE_INT_RGB);
+					Graphics2D g = (Graphics2D) tmpImage.getGraphics();
+					g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+							RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+					g.drawImage(currentImage, 0, 0, tmpImage.getWidth(),
+							tmpImage.getHeight(), null);
+					g.dispose();
+
+					currentImage = tmpImage;
+				}
+
+				return currentImage;
+			} else {
+				// イメージのサイズの差が大きい場合
+				// 更に半分に縮小する
+				BufferedImage tmpImage = new BufferedImage(currentWidth >> 1,
+						currentHeight >> 1, BufferedImage.TYPE_INT_RGB);
+				Graphics2D g = (Graphics2D) tmpImage.getGraphics();
+				g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+						RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+				g.drawImage(currentImage, 0, 0, tmpImage.getWidth(),
+						tmpImage.getHeight(), null);
+				g.dispose();
+
+				// 変数の更新
+				currentImage = tmpImage;
+				currentWidth = currentImage.getWidth();
+				currentHeight = currentImage.getHeight();
+				delta = currentWidth - endWidth;
+				nextPow2 = currentWidth >> 1;
+			}
+		}
+
+		return currentImage;
+	}
+
 	public void resize(String imageFolderPath) throws IOException {
 		File folder = new File(imageFolderPath);
 		if (folder.exists()) {
@@ -202,8 +261,8 @@ public class MakeThumbnail extends HttpServlet {
 			for (File input : folder.listFiles()) {
 				if (input.isFile()) {
 					try {
-						String formatName = ImageType.getFormat(input)
-								.toString();
+						String formatName = "png";
+						// ImageType.getFormat(input).toString();
 						if (!"UNKNOWN".equals(formatName)) {
 							resizeImage(folder, input, child, formatName);
 						}
@@ -268,25 +327,26 @@ public class MakeThumbnail extends HttpServlet {
 		g2d.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING,
 				RenderingHints.VALUE_COLOR_RENDER_QUALITY);
 
-		// g2d.setRenderingHint(RenderingHints.KEY_DITHERING,
-		// RenderingHints.VALUE_DITHER_ENABLE);
+		g2d.setRenderingHint(RenderingHints.KEY_DITHERING,
+				RenderingHints.VALUE_DITHER_ENABLE);
 
-		// g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
-		// RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+		g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+				RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
 		g2d.setRenderingHint(RenderingHints.KEY_RENDERING,
 				RenderingHints.VALUE_RENDER_QUALITY);
 
-		// g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-		// RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+				RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 
-		// g2d.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS,
-		// RenderingHints.VALUE_FRACTIONALMETRICS_ON);
+		g2d.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS,
+				RenderingHints.VALUE_FRACTIONALMETRICS_ON);
 
-		// g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL,
-		// RenderingHints.VALUE_STROKE_NORMALIZE);
+		g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL,
+				RenderingHints.VALUE_STROKE_NORMALIZE);
 
 		g2d.drawImage(image, 0, 0, width, height, null);
 		ImageIO.write(shrinkImage, ext, output);
 	}
+
 }

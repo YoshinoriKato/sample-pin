@@ -29,27 +29,26 @@ public class FacebookOAuthServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID							= -7700928228357051804L;
+	private static final long serialVersionUID = -7700928228357051804L;
 
-	public static String		APP_ID										= "279279575524882";
+	public static String APP_ID = "279279575524882";
 
-	public static String		APP_SECRET									= "83803e2fd2083789030a380399eb5603";
+	public static String APP_SECRET = "83803e2fd2083789030a380399eb5603";
 
-	public static String		COMMA_SEPARATED_LIST_OF_PERMISSION_NAMES	= "";
+	public static String COMMA_SEPARATED_LIST_OF_PERMISSION_NAMES = "";
 
-	public static String		SOME_ARBITRARY_BUT_UNIQUE_STRING			= getRandomString();
+	public static String SOME_ARBITRARY_BUT_UNIQUE_STRING = getRandomString();
 
-	private static String		REDIRECT_URI								= Helper.DOMAIN
-																					+ "oauth-facebook.jsp";
+	private static String REDIRECT_URI = Helper.DOMAIN + "oauth-facebook.jsp";
 
-	static String				OAUTH_PATH									= "https://www.facebook.com/dialog/oauth?client_id="
-																					+ APP_ID
-																					+ "&redirect_uri="
-																					+ REDIRECT_URI
-																					+ "&scope="
-																					+ COMMA_SEPARATED_LIST_OF_PERMISSION_NAMES
-																					+ "&state="
-																					+ SOME_ARBITRARY_BUT_UNIQUE_STRING;
+	static String OAUTH_PATH = "https://www.facebook.com/dialog/oauth?client_id="
+			+ APP_ID
+			+ "&redirect_uri="
+			+ REDIRECT_URI
+			+ "&scope="
+			+ COMMA_SEPARATED_LIST_OF_PERMISSION_NAMES
+			+ "&state="
+			+ SOME_ARBITRARY_BUT_UNIQUE_STRING;
 
 	public static String getOAuthURL() {
 		return OAUTH_PATH;

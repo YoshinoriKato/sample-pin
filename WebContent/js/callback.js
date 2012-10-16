@@ -100,8 +100,10 @@ function makeCard($card, $select) {
 	var $divUrl = $('<div/>').addClass('card-info break-word');
 	var $divFooter = $('<div/>').addClass('star right');
 	var $divRibonText = $('<div/>').text($card.view + ' view');
+	var $imagePath = $card.imagePath.replace('icon-keeper/', 'icon-keeper/t/t_');
+	$imagePath = $imagePath.substring(0, $imagePath.lastIndexOf('.')) + '.png';
 	var $jqImg = $('<img/>').addClass('image-shot deco').attr('src',
-			$card.imagePath.replace('icon-keeper/', 'icon-keeper/t/t_'));
+			$imagePath);
 	if ($width)
 		$jqImg.attr('width', $width);
 	if ($height)
@@ -182,7 +184,8 @@ function makeCard($card, $select) {
 	$jqDiv //.append($divBr1)
 	.append($divFooter);
 	$divImage.append($jqImg);
-	$divCaption.text($card.caption).autoUrlLink().escapeReturn();
+	$divCaption.text($card.title);
+//	.autoUrlLink().escapeReturn();
 }
 
 function reverseCard($selectId){
@@ -199,7 +202,7 @@ function reverseCard($selectId){
 function makeComment($comment, $userId) {
 
 	// components
-	var $jqLi = $('<li/>').addClass('opacity80 margin-bottom-default');
+	var $jqLi = $('<li/>').addClass('margin-bottom-default');
 	var $jqDiv = $('<div/>')
 			.attr('id', $comment.cardId + '+' + $comment.userId);
 	var $jqA = $('<a/>').addClass('no-hover');

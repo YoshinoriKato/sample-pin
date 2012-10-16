@@ -42,9 +42,9 @@
 			</div>
 		</div>
 		<div class="card-subtext">
-			<div class="bold deco break-word">
+			<div class="bold break-word">
 			<%=Helper.escapeHTML(card.getUserName())%></div>
-			<div class="caption deco"><%=Helper.escapeHTML(card.getCaption())%></div>
+			<div class="caption deco"><%=Helper.escapeHTML(card.getTitle())%></div>
 		</div>
 	</div>
 	<br style="clear: both;">

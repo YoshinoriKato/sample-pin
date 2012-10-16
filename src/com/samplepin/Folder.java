@@ -11,29 +11,29 @@ import com.samplepin.common.Helper;
 public class Folder implements Updateable, Deleteable {
 
 	@Id
-	ObjectId	id;
+	ObjectId id;
 
 	@Indexed
-	String		folderId;
+	String folderId;
 
 	@Indexed
-	String		userId;
+	String userId;
 
-	String		folderName;
+	String folderName;
 
-	String		cards;
-
-	@Indexed
-	Long		createDate;
+	String cards;
 
 	@Indexed
-	Boolean		isDeleted;
+	Long createDate;
 
 	@Indexed
-	Long		updateDate;
+	Boolean isDeleted;
 
 	@Indexed
-	Integer		accessLevel;
+	Long updateDate;
+
+	@Indexed
+	Integer accessLevel;
 
 	public Folder() {
 		super();

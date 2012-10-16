@@ -29,7 +29,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 6534228482284422460L;
+	private static final long serialVersionUID = 6534228482284422460L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -73,23 +73,22 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 
 	final String makeMessage(Card card) throws IOException {
 		StringBuilder builder = new StringBuilder();
-
-		builder.append(card.getCaption()).append(Helper.LS);
+		int len = 140 - (Helper.LS.length() * 3);
 
 		String keywords = card.getKeywords();
 		if (valid(keywords)) {
-			keywords = valid(keywords) ? "[" + keywords + "]" : "";
-			builder.append(keywords).append(Helper.LS);
+			keywords = "[" + keywords + "]";
+			len -= keywords.length();
 		}
 
-		builder.append(new ShortCutServlet().toShortCut(card.getCardId()))
-				.append(Helper.LS);
+		String shortcut = new ShortCutServlet().toShortCut(card.getCardId());
+		len -= shortcut.length();
 
-		// if (Helper.valid(card.getImagePath())) {
-		// builder.append(
-		// new LinkImageServlet().toShortCut(card.getImagePath()))
-		// .append(Helper.LS);
-		// }
+		String title = Helper.getOmitedString(card.getTitle(), len);
+
+		builder.append(title).append(Helper.LS);
+		builder.append(keywords).append(Helper.LS);
+		builder.append(shortcut).append(Helper.LS);
 
 		return builder.toString();
 	}

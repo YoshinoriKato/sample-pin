@@ -9,19 +9,19 @@ import com.google.code.morphia.annotations.Id;
 public class WebPage implements Createable {
 
 	@Id
-	ObjectId	id;
+	ObjectId id;
 
-	String		url;
+	String url;
 
-	String		caption;
+	String caption;
 
-	String		title;
+	String title;
 
-	String		domain;
+	String domain;
 
-	String		favicon;
+	String favicon;
 
-	Long		createDate;
+	Long createDate;
 
 	public WebPage() {
 		super();

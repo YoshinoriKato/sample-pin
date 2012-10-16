@@ -24,16 +24,16 @@ import com.samplepin.common.Helper;
 
 public class TwitterService {
 
-	public static final String	consumerKey				= "dV2mPk3qpbF0WjRzAG4WA";
+	public static final String consumerKey = "dV2mPk3qpbF0WjRzAG4WA";
 
-	public static final String	consumerSecret			= "fNPyRGxguYusu4CVGarKAVVsivJSMqHaERsWqPu0MhQ";
+	public static final String consumerSecret = "fNPyRGxguYusu4CVGarKAVVsivJSMqHaERsWqPu0MhQ";
 
-	private static final String	accessToken				= "549106982-sopZwtHopVicxBWgkSDSOdAGGr2WbevJJ9AflVFT";
+	private static final String accessToken = "549106982-sopZwtHopVicxBWgkSDSOdAGGr2WbevJJ9AflVFT";
 
-	private static final String	oauthAccessTokenSecret_	= "10EXax8KjrVdcYg3UirwYMdST2TuLSuPoC4s11UBU";
+	private static final String oauthAccessTokenSecret_ = "10EXax8KjrVdcYg3UirwYMdST2TuLSuPoC4s11UBU";
 
-	public static final String	callbackUrl				= Helper.DOMAIN
-																+ "oauth-twitter.jsp";
+	public static final String callbackUrl = Helper.DOMAIN
+			+ "oauth-twitter.jsp";
 
 	private static AccessToken loadAccessToken(String userId)
 			throws UnknownHostException, MongoException,

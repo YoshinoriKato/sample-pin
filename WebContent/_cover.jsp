@@ -11,7 +11,7 @@
 
 
 <div class="margin-bottom-default">
-	<h4 class="card-header">画像</h4>
+	<h4 class="sub-header">画像</h4>
 	<div class="card-body">
 		<img src="<%=card.getImagePath()%>" class="card-image">
 	</div>
@@ -21,7 +21,7 @@
 	if (Helper.valid(keywords)) {
 %>
 <div class="margin-bottom-default">
-	<h4 class="card-header">検索キーワード</h4>
+	<h4 class="sub-header">検索キーワード</h4>
 	<div class="card-body">
 		<p class="keywords"><%=keywords%></p>
 	</div>
@@ -40,7 +40,7 @@
 		&& Helper.valid(webPage.getTitle())) {
 %>
 <div class="margin-bottom-default">
-	<h4 class="card-header">参照元</h4>
+	<h4 class="sub-header">参照元</h4>
 	<div class="card-body">
 		<a href="<%=card.getSite()%>" target="_blank"><%=webPage.getTitle()%><i
 			class="icon-globe"></i></a>

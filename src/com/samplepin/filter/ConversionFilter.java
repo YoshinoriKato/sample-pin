@@ -21,7 +21,7 @@ import com.samplepin.common.Helper;
 @WebFilter(urlPatterns = { "/conversion.jsp" }, dispatcherTypes = DispatcherType.REQUEST)
 public class ConversionFilter implements Filter {
 
-	private ServletContext	context;
+	private ServletContext context;
 
 	@Override
 	public void destroy() {

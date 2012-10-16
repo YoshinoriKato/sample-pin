@@ -24,7 +24,7 @@ public class DeleteFolderServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 4585224248438234342L;
+	private static final long serialVersionUID = 4585224248438234342L;
 
 	final void deleteFolder(String userId, String folderId)
 			throws UnknownHostException, MongoException {

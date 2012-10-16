@@ -25,7 +25,7 @@ public class ImageUploadServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 7137737292592767679L;
+	private static final long serialVersionUID = 7137737292592767679L;
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -56,7 +56,7 @@ public class ImageUploadServlet extends HttpServlet {
 			MakeCardServlet.copyStream(is, new FileOutputStream(realPathFile),
 					1024);
 
-			String formatName = ImageType.getFormat(realPathFile).toString();
+			String formatName = "png";// ImageType.getFormat(realPathFile).toString();
 			fileName = fileName + "." + formatName;
 			File renamed = new File(realFolder, fileName);
 			realPathFile.renameTo(renamed);

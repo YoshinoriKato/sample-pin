@@ -11,7 +11,7 @@
 	if (!cards.isEmpty()) {
 %>
 
-<h4 class="card-header">関連するカード</h4>
+<h2 class="card-header">関連するカード</h2>
 <div class="card-body">
 	<ul>
 		<%

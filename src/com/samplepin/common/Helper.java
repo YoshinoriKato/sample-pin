@@ -48,48 +48,42 @@ import com.samplepin.servlet.ajax.SearchAjax;
 
 public class Helper {
 
-	public static final String	TIMESTAMP		= String.valueOf(System
-														.currentTimeMillis());
+	public static final String TIMESTAMP = String.valueOf(System
+			.currentTimeMillis());
 
-	static SimpleDateFormat		SDF_DATE		= new SimpleDateFormat(
-														"yyyy-MM-dd");
+	static SimpleDateFormat SDF_DATE = new SimpleDateFormat("yyyy-MM-dd");
 
-	static SimpleDateFormat		SDF_DATE_TIME	= new SimpleDateFormat(
-														"yyyy-MM-dd HH:mm:ss.SSS");
+	static SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat(
+			"yyyy-MM-dd HH:mm:ss.SSS");
 
-	static SimpleDateFormat		SDF_DATE_HOUR	= new SimpleDateFormat(
-														"yyyy-MM-dd 'at around' HH");
+	static SimpleDateFormat SDF_DATE_HOUR = new SimpleDateFormat(
+			"yyyy-MM-dd 'at around' HH");
 
-	public static final Pattern	convURLLinkPtn0	= Pattern
-														.compile(
-																"(http://|https://){1}[\\w\\.\\-/:\\#\\?\\=\\&\\;\\%\\~\\+]+",
-																Pattern.CASE_INSENSITIVE);
+	public static final Pattern convURLLinkPtn0 = Pattern.compile(
+			"(http://|https://){1}[\\w\\.\\-/:\\#\\?\\=\\&\\;\\%\\~\\+]+",
+			Pattern.CASE_INSENSITIVE);
 
-	public static final Pattern	convURLLinkPtn1	= Pattern
-														.compile(
-																"\\[([^\\]]*)\\]",
-																Pattern.CASE_INSENSITIVE);
+	public static final Pattern convURLLinkPtn1 = Pattern.compile(
+			"\\[([^\\]]*)\\]", Pattern.CASE_INSENSITIVE);
 
-	public static final Pattern	convURLLinkPtn2	= Pattern
-														.compile(
-																"[^ 　\t\f\r\n]+",
-																Pattern.CASE_INSENSITIVE);
+	public static final Pattern convURLLinkPtn2 = Pattern.compile(
+			"[^ 　\t\f\r\n]+", Pattern.CASE_INSENSITIVE);
 
-	static final Long			MILLS_SECOND	= 1000L;
+	static final Long MILLS_SECOND = 1000L;
 
-	static final Long			MILLS_MINUTE	= 60L * MILLS_SECOND;
+	static final Long MILLS_MINUTE = 60L * MILLS_SECOND;
 
-	static final Long			MILLS_HOUR		= 60L * MILLS_MINUTE;
+	static final Long MILLS_HOUR = 60L * MILLS_MINUTE;
 
-	static final Long			MILLS_DAY		= 24L * MILLS_HOUR;
+	static final Long MILLS_DAY = 24L * MILLS_HOUR;
 
-	public static final String	LS				= System.getProperty("line.separator");
+	public static final String LS = System.getProperty("line.separator");
 
-	public static final String	DOMAIN			= "http://doya.info/";
+	public static final String DOMAIN = "http://doya.info/";
 
-	public static final String	NAME			= "DOYA.info Beta";
+	public static final String NAME = "DOYA.info Beta";
 
-	static final String			SEPARATOR		= "[ |\\t|\\f|\\r\\n|\\r|\\n]";
+	static final String SEPARATOR = "[ |\\t|\\f|\\r\\n|\\r|\\n]";
 
 	public static boolean canTweet(HttpSession session) throws IOException {
 		try (ACMongo mongo = new ACMongo()) {
@@ -102,7 +96,8 @@ public class Helper {
 	}
 
 	public static String convertThumbnailPath(String imagePath) {
-		return imagePath.replace("icon-keeper/", "icon-keeper/t/t_");
+		imagePath = imagePath.replace("icon-keeper/", "icon-keeper/t/t_");
+		return imagePath.substring(0, imagePath.lastIndexOf(".")) + ".png";
 	}
 
 	public static String convKeywordLink(String str) {
@@ -167,6 +162,14 @@ public class Helper {
 		input = substitute(input, "'", "''");
 		input = substitute(input, "\\", "\\\\");
 		return input;
+	}
+
+	public static String getOmitedString(String text, int length) {
+		String suffix = "...";
+		length -= suffix.length();
+		String caption = valid(text) && text.length() > length ? text
+				.substring(0, length) + suffix : text;
+		return caption;
 	}
 
 	public static String formatToAboutTimeString(long mills) {
@@ -235,6 +238,11 @@ public class Helper {
 				if (user != null) {
 					setUserInfoToComment(card, user);
 				}
+				if (!valid(card.getTitle())) {
+					String caption = Helper.getOmitedString(card.getCaption(),
+							40);
+					card.setTitle(caption);
+				}
 			}
 			return card;
 		} catch (UnknownHostException | MongoException e) {
@@ -253,6 +261,11 @@ public class Helper {
 				User user = Helper.getUserById(card.getUserId());
 				if (user != null) {
 					setUserInfoToComment(card, user);
+				}
+				if (!valid(card.getTitle())) {
+					String caption = Helper.getOmitedString(card.getCaption(),
+							40);
+					card.setTitle(caption);
 				}
 			}
 			return card;
@@ -526,24 +539,6 @@ public class Helper {
 		return new ArrayList<Card>();
 	}
 
-	public static List<Card> searchCards(HttpServletRequest req, String keywords)
-			throws IOException {
-		String dic = NaturalLanguageParser.getDictionaryPath(req);
-		String userId = getUserId(req);
-		if (keywords != null && !keywords.isEmpty())
-			try (ACMongo mongo = new ACMongo()) {
-				Set<String> searched = NaturalLanguageParser.cardIds(dic,
-						keywords);
-				if (valid(searched)) {
-					return new SearchAjax().cards(mongo, "", "search", "0",
-							"10", "", "", "", "card", userId, "", searched);
-				}
-			} catch (UnknownHostException | MongoException e) {
-				e.printStackTrace();
-			}
-		return new ArrayList<Card>();
-	}
-
 	public static <T> T readJson(InputStream is, Class<T> clazz)
 			throws IOException {
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
@@ -557,6 +552,25 @@ public class Helper {
 			e.printStackTrace();
 			throw new IOException(e);
 		}
+	}
+
+	public static List<Card> searchCards(HttpServletRequest req, String keywords)
+			throws IOException {
+		String dic = NaturalLanguageParser.getDictionaryPath(req);
+		String userId = getUserId(req);
+		if ((keywords != null) && !keywords.isEmpty()) {
+			try (ACMongo mongo = new ACMongo()) {
+				Set<String> searched = NaturalLanguageParser.cardIds(dic,
+						keywords);
+				if (valid(searched)) {
+					return new SearchAjax().cards(mongo, "", "search", "0",
+							"10", "", "", "", "card", userId, "", searched);
+				}
+			} catch (UnknownHostException | MongoException e) {
+				e.printStackTrace();
+			}
+		}
+		return new ArrayList<Card>();
 	}
 
 	public static void sendMail(String mail, String text, String title) {

@@ -9,43 +9,58 @@ public class Card extends Comment implements Updateable {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 2686047770755644944L;
+	private static final long serialVersionUID = 2686047770755644944L;
 
-	String						parentId;
+	String parentId;
 
 	@Transient
-	String						parentIcon;
+	String parentIcon;
 
-	String						url;
+	String url;
 
-	Integer						likes;
+	Integer likes;
 
-	Integer						view;
+	Integer view;
 
-	Integer						width;
+	Integer width;
 
-	Integer						height;
+	Integer height;
 
-	String						keywords;
+	String keywords;
 
-	String						site;
+	String site;
+	
+	String title;
+
+	
+	
+	
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 	@Indexed
-	Long						updateDate;
+	Long updateDate;
 
 	public Card() {
-		this("self", "", "", "", "", "", 0, 0, System.currentTimeMillis());
+		this("self", "", "", "", "", "", "", 0, 0, System.currentTimeMillis());
 	}
 
 	public Card(String parentId, String cardId, String userId,
-			String imagePath, String url, String caption, int likes, int view,
-			long createDate) {
+			String imagePath, String url, String title, String caption, int likes,
+			int view, long createDate) {
 		super();
 		this.parentId = parentId;
 		this.cardId = cardId;
 		this.userId = userId;
 		this.imagePath = imagePath;
 		this.url = url;
+		this.title = title;
 		this.caption = caption;
 		this.likes = likes;
 		this.view = view;

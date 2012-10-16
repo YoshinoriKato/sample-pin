@@ -37,6 +37,19 @@ public class CardAjax {
 		}
 	}
 
+	void fillValues(List<Card> cards) {
+		for (Card card : cards) {
+			User user = Helper.getUserById(card.getUserId());
+			if (user != null) {
+				Helper.setUserInfoToComment(card, user);
+			}
+			if (!valid(card.getTitle())) {
+				String caption = Helper.getOmitedString(card.getCaption(), 40);
+				card.setTitle(caption);
+			}
+		}
+	}
+
 	void ajax(OutputStream os, String otherUserId, String sorted,
 			String offset, String limit, String callback, String old,
 			String young, String type, String userId, String cardId,
@@ -140,12 +153,7 @@ public class CardAjax {
 				cards = query.asList();
 			}
 
-			for (Card card : cards) {
-				User user = Helper.getUserById(card.getUserId());
-				if (user != null) {
-					Helper.setUserInfoToComment(card, user);
-				}
-			}
+			fillValues(cards);
 
 		} catch (UnknownHostException | MongoException e) {
 			e.printStackTrace();

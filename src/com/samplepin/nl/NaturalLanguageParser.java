@@ -26,9 +26,9 @@ import com.samplepin.common.Helper;
 
 public class NaturalLanguageParser {
 
-	static final String	SYMBOLS		= "[ -/:-@\\[-\\`\\{-\\~]+";
+	static final String SYMBOLS = "[ -/:-@\\[-\\`\\{-\\~]+";
 
-	static final String	ALPHA_NUM	= "[A-Za-z0-9]";
+	static final String ALPHA_NUM = "[A-Za-z0-9]";
 
 	public static Set<String> cardIds(String dic, String text)
 			throws IOException {
@@ -255,7 +255,8 @@ public class NaturalLanguageParser {
 		keywords = keywords != null ? keywords : "";
 		String url = card.getSite();
 		url = url != null ? url : "";
-		callbacker.parse(card.getCaption() + Helper.LS + keywords
+		callbacker.parse(card.getTitle() + Helper.LS + card.getCaption()
+				+ Helper.LS + keywords
 		// + Helper.LS + url
 				);
 	}

@@ -9,13 +9,13 @@ import com.google.code.morphia.annotations.Id;
 public class ShortCut {
 
 	@Id
-	ObjectId	id;
+	ObjectId id;
 
-	String		hex;
+	String hex;
 
-	String		cardId;
+	String cardId;
 
-	String		category;
+	String category;
 
 	public ShortCut() {
 		super();

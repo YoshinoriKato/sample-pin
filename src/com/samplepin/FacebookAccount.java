@@ -9,15 +9,15 @@ import com.google.code.morphia.annotations.Id;
 public class FacebookAccount {
 
 	@Id
-	ObjectId	id;
+	ObjectId id;
 
-	String		facebookId;
+	String facebookId;
 
-	String		userName;
+	String userName;
 
-	String		accessToken;
+	String accessToken;
 
-	String		userId;
+	String userId;
 
 	public FacebookAccount() {
 		super();

@@ -9,16 +9,14 @@
 	Card card = (Card) request.getAttribute("card");
 %>
 
-<h4 class="card-header">その他のカード</h4>
+<h2 class="card-header">その他のカード</h2>
 <div class="card-body">
 	<ul>
 		<%
 			List<Card> cards = Helper.newCards(card.getUpdateDate());
 			for (Card newone : cards) {
-				int length = newone.getCaption().length();
-				String caption = length > 40 ? newone.getCaption().substring(0,
-						40)
-						+ "..." : newone.getCaption();
+				String caption = Helper
+						.getOmitedString(newone.getCaption(), 40);
 		%>
 		<li><a
 			href="card-comment.jsp?cardId=<%=newone.getCardId()%>&type=comment&image=open"><span

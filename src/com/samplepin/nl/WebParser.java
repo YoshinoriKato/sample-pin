@@ -17,7 +17,7 @@ class ParserGetter extends HTMLEditorKit {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -3311586319722170406L;
+	private static final long serialVersionUID = -3311586319722170406L;
 
 	@Override
 	public HTMLEditorKit.Parser getParser() {
