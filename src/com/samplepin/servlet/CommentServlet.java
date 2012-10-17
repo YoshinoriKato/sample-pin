@@ -60,8 +60,7 @@ public class CommentServlet extends HttpServlet {
 
 				ActivityLogger.log(req, this.getClass(), comment);
 
-				resp.sendRedirect("card-comment.jsp?cardId=" + cardId
-						+ "&type=comment");
+				resp.sendRedirect("card-comment.jsp?cardId=" + cardId);
 				return;
 			}
 
@@ -72,8 +71,7 @@ public class CommentServlet extends HttpServlet {
 
 		req.setAttribute("message", "Please, write a comment.");
 		RequestDispatcher dispathcer = req
-				.getRequestDispatcher("card-comment.jsp?cardId=" + cardId
-						+ "&type=comment");
+				.getRequestDispatcher("card-comment.jsp?cardId=" + cardId);
 		dispathcer.forward(req, resp);
 	}
 
@@ -113,15 +111,17 @@ public class CommentServlet extends HttpServlet {
 	final void tweet(String cardId, String userId, String comment, String tweet)
 			throws IOException, MongoException, TwitterException {
 		try {
-			TwitterService service = new TwitterService();
-
-			Card card = Helper.getCardByID(cardId);
-			String keywords = card != null ? card.getKeywords() : "";
-			keywords = valid(keywords) ? "[" + keywords + "]" : "";
-			String message = comment + Helper.LS + keywords + Helper.LS
-					+ new ShortCutServlet().toShortCut(cardId);
-
 			if (valid(tweet) && "on".equals(tweet)) {
+				TwitterService service = new TwitterService();
+				
+				Card card = Helper.getCardByID(cardId);
+				String keywords = card != null ? card.getKeywords() : "";
+				keywords = valid(keywords) ? "[" + keywords + "]" : "";
+				String message = Helper.LS + keywords + Helper.LS
+						+ new ShortCutServlet().toShortCut(cardId);
+				message = Helper.getOmitedString(comment, (130 - message.length()))
+						+ message;
+				
 				service.tweet("MSG: " + message);
 				service.tweet(userId, message);
 			}

@@ -72,8 +72,7 @@ public class AjaxLikeServlet extends HttpServlet {
 				ret.put("likes", likes);
 				ret.put("userId", self != null);
 
-				resp.sendRedirect("card-comment.jsp?cardId=" + cardId
-						+ "&type=comment");
+				resp.sendRedirect("card-comment.jsp?cardId=" + cardId);
 
 				CardAjax.writeToJSON(resp.getOutputStream(), ret, callback);
 				return;
@@ -86,8 +85,7 @@ public class AjaxLikeServlet extends HttpServlet {
 
 		req.setAttribute("message", "Please, write a comment.");
 		RequestDispatcher dispathcer = req
-				.getRequestDispatcher("card-comment.jsp?cardId=" + cardId
-						+ "&type=comment");
+				.getRequestDispatcher("card-comment.jsp?cardId=" + cardId);
 		dispathcer.forward(req, resp);
 	}
 }

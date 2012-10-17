@@ -19,7 +19,7 @@
 						.getOmitedString(newone.getTitle(), 40);
 		%>
 		<li><a
-			href="card-comment.jsp?cardId=<%=newone.getCardId()%>&type=comment&image=open"><span
+			href="card-comment.jsp?cardId=<%=newone.getCardId()%>"><span
 				class="deco"><%=caption%></span></a> (view:<%=newone.getView()%>,
 			comment:<%=newone.getLikes()%>)</li>
 		<%

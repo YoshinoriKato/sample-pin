@@ -57,7 +57,7 @@
 			%>
 			<div class="card-info break-word">
 				<a class="no-hover"
-					href="card-comment.jsp?cardId=<%=card.getParentId()%>&type=comment"><img
+					href="card-comment.jsp?cardId=<%=card.getParentId()%>"><img
 					class="image-icon" src="<%=parent.getImagePath()%>"></a>
 			</div>
 			<%

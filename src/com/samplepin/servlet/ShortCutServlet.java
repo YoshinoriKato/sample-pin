@@ -29,8 +29,7 @@ public class ShortCutServlet extends HttpServlet {
 			Query<ShortCut> query = mongo.createQuery(ShortCut.class)
 					.filter("category = ", "S").filter("hex = ", hex);
 			ShortCut shortCut = query.get();
-			resp.sendRedirect("card-comment.jsp?cardId=" + shortCut.getCardId()
-					+ "&type=comment&image=open");
+			resp.sendRedirect("card-comment.jsp?cardId=" + shortCut.getCardId());
 			ActivityLogger.log(req, this.getClass(), shortCut);
 		}
 	}

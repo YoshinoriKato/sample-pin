@@ -250,7 +250,7 @@
 							%>
 
 							<li><a
-								href="card-comment.jsp?cardId=<%=child.getCardId()%>&type=comment"><img
+								href="card-comment.jsp?cardId=<%=child.getCardId()%>"><img
 									class="child" src="<%=child.getImagePath()%>"></a></li>
 
 							<%
@@ -296,7 +296,7 @@
 												.substring(0, 40) + "..." : newone.getCaption();
 							%>
 							<li><a
-								href="card-comment.jsp?cardId=<%=newone.getCardId()%>&type=comment&image=open"><span
+								href="card-comment.jsp?cardId=<%=newone.getCardId()%>"><span
 									class="deco"><%=caption%></span></a> (view:<%=newone.getView()%>,
 								comment:<%=newone.getLikes()%>)</li>
 							<%

@@ -19,7 +19,7 @@
 		%>
 
 		<li><a
-			href="card-comment.jsp?cardId=<%=child.getCardId()%>&type=comment"><img
+			href="card-comment.jsp?cardId=<%=child.getCardId()%>"><img
 				class="child" src="<%=child.getImagePath()%>"></a></li>
 
 		<%

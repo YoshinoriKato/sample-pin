@@ -47,6 +47,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta name="robots" content="index,follow">
+<meta name="description" content="検索キーワードと画像のアンマッチが醸し出す趣きを楽しむサービスです。">
+<meta name="keywords" content="<%=card.getKeywords()%>">
 <jsp:include page="_header.jsp"></jsp:include>
 <script type="text/javascript" charset="utf-8">
 	$(window).resize(function() {
@@ -149,7 +152,7 @@
 						<jsp:include page="_cover.jsp"></jsp:include></div>
 					<div class="margin-bottom-default">
 						<h2 class="card-header">キャプション</h2>
-						<div class="card-body well deco"><%=Helper.convURLLink(Helper.escapeHTML(card.getCaption()))%></div>
+						<div class="card-body well deco break-word"><%=Helper.convURLLink(Helper.escapeHTML(card.getCaption()))%></div>
 					</div>
 					<div class="margin-bottom-default">
 						<h2 class="card-header">コメント</h2>

@@ -51,8 +51,7 @@ public class DeleteCommentServlet extends HttpServlet {
 
 				ActivityLogger.log(req, this.getClass(), userId);
 
-				resp.sendRedirect("card-comment.jsp?cardId=" + cardId
-						+ "&type=comment");
+				resp.sendRedirect("card-comment.jsp?cardId=" + cardId);
 				return;
 			}
 
@@ -63,8 +62,7 @@ public class DeleteCommentServlet extends HttpServlet {
 
 		req.setAttribute("message", "Not delete comment.");
 		RequestDispatcher dispathcer = req
-				.getRequestDispatcher("card-comment.jsp?cardId=" + cardId
-						+ "&type=comment");
+				.getRequestDispatcher("card-comment.jsp?cardId=" + cardId);
 		dispathcer.forward(req, resp);
 	}
 

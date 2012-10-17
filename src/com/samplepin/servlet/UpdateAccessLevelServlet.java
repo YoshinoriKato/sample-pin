@@ -50,7 +50,7 @@ public class UpdateAccessLevelServlet extends HttpServlet {
 			}
 		}
 
-		resp.sendRedirect("card-comment.jsp?cardId=" + cardId + "&type=comment");
+		resp.sendRedirect("card-comment.jsp?cardId=" + cardId);
 		return;
 	}
 }

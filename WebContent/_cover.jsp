@@ -13,7 +13,7 @@
 <div class="margin-bottom-default">
 	<h4 class="sub-header">画像</h4>
 	<div class="card-body">
-		<img src="<%=card.getImagePath()%>" class="card-image">
+		<img src="<%=card.getImagePath()%>" alt="<%=card.getKeywords()%>" class="card-image">
 	</div>
 </div>
 <%
