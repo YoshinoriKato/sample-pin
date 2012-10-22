@@ -93,6 +93,24 @@
 	});
 
 	attach(window, 'load', function() {
+		$('#near li').wookmark({
+			autoResize : true,
+			offset : 14,
+			container : $('#card-near'),
+			itemWidth : 220
+		});
+	});
+
+	attach(window, 'load', function() {
+		$('#recent li').wookmark({
+			autoResize : true,
+			offset : 14,
+			container : $('#card-recent'),
+			itemWidth : 220
+		});
+	});
+
+	attach(window, 'load', function() {
 		// text observer
 		observeText('#card-title', $key, true);
 		observeText('#comment-text', $key, true);
@@ -172,9 +190,11 @@
 					</div>
 					<div class="margin-bottom-default">
 						<jsp:include page="_relative.jsp"></jsp:include>
+						<br style="clear: both;" />
 					</div>
 					<div class="margin-bottom-default">
 						<jsp:include page="_others.jsp"></jsp:include>
+						<br style="clear: both;" />
 					</div>
 				</div>
 			</div>

@@ -6,25 +6,25 @@
 	pageEncoding="UTF-8"%>
 
 <%
+	String cardId = request.getParameter("cardId");
 	Card card = (Card) request.getAttribute("card");
 	List<Card> cards = Helper.searchCards(request, card.getKeywords());
-	if (!cards.isEmpty()) {
+	if (cards.size() > 1) {
 %>
 
 <h2 class="card-header">関連するカード</h2>
-<div class="card-body">
-	<ul>
+<div id="card-near">
+	<ul id="near">
 		<%
 			for (Card newone : cards) {
-					String caption = Helper.getOmitedString(newone.getTitle(),
-							40);
+					if (!newone.getCardId().equals(cardId)) {
+						request.setAttribute("card", newone);
 		%>
-		<li><a
-			href="card-comment.jsp?cardId=<%=newone.getCardId()%>"><span
-				class="deco"><%=caption%></span></a> (view:<%=newone.getView()%>,
-			comment:<%=newone.getLikes()%>)</li>
+		<li class="card"><jsp:include page="_card.jsp"></jsp:include></li>
 		<%
 			}
+			}
+					request.setAttribute("card", card);
 		%>
 	</ul>
 </div>

@@ -5,10 +5,13 @@
 <%!Card card;%>
 
 <%
+	String cardId = request.getParameter("cardId");
+
 	String select = request.getParameter("select");
 	boolean isSelectMode = "true".equals(select);
-	
+
 	card = (Card) request.getAttribute("card");
+
 	if (card != null) {
 %>
 
@@ -16,34 +19,35 @@
 	<%
 		int height = card.getHeight();
 			int width = card.getWidth();
-			float cardWidth = 240;
+			float cardWidth = 200;
 			height = Math.round(height * (cardWidth / width));
 			width = Math.round(cardWidth);
 			if (card.getView() > 0) {
 	%>
 	<div class="ribon">
-		<div class="ribon-text color-red link" id="ribon"><%=card.getView()%>
-			view
-		</div>
+		<a href="card-comment.jsp?cardId=<%=card.getCardId()%>"><span
+			class="ribon-text color-red link" id="ribon"><%=card.getView()%>
+				view </span></a>
 	</div>
 	<%
 		}
 	%>
 	<div class="card-main">
-		<img class="image-shot deco link" src="<%=Helper.convertThumbnailPath(card.getImagePath())%>"
-			width="<%=width%>" height="<%=height%>" id="image-shot">
+		<a href="card-comment.jsp?cardId=<%=card.getCardId()%>"> <img
+			class="image-shot deco link"
+			src="<%=Helper.convertThumbnailPath(card.getImagePath())%>"
+			width="<%=width%>" height="<%=height%>" id="image-shot"></a>
 	</div>
 	<div class="card-comment">
 		<div class="card-icon">
 			<div>
-				<a class="no-hover"
-					href="profile.jsp?userId=<%=card.getUserId()%>"><img
+				<a class="no-hover" href="profile.jsp?userId=<%=card.getUserId()%>"><img
 					class="menu-user-icon img-circle" src="<%=card.getUserIcon()%>"></a>
 			</div>
 		</div>
 		<div class="card-subtext">
 			<div class="bold break-word">
-			<%=Helper.escapeHTML(card.getUserName())%></div>
+				<%=Helper.escapeHTML(card.getUserName())%></div>
 			<div class="caption deco"><%=Helper.escapeHTML(card.getTitle())%></div>
 		</div>
 	</div>
@@ -96,7 +100,8 @@
 		String userId = Helper.getUserId(session);
 			String url = request.getRequestURI();
 			if (url.contains("/card-comment.jsp")
-					&& card.getUserId().equals(userId)) {
+					&& card.getUserId().equals(userId)
+					&& card.getCardId().equals(cardId)) {
 	%>
 	<div class="close-button">
 		<a href="confirm-discard.jsp?cardId=<%=card.getCardId()%>">&times;</a>

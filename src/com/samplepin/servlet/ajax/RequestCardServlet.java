@@ -52,8 +52,8 @@ public class RequestCardServlet extends HttpServlet {
 		try (ACMongo mongo = new ACMongo()) {
 			Card card = mongo.createQuery(Card.class)
 					.filter("isDeleted", false)
-					.filter("updateDate > ", updateDate).order("updateDate")
-					.get();
+					.filter("updateDate > ", updateDate)
+					.filter("accessLevel = ", 0).order("updateDate").get();
 
 			if (card != null) {
 				writeToJSON(os, card);

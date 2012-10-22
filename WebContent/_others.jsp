@@ -6,24 +6,25 @@
 	pageEncoding="UTF-8"%>
 
 <%
+	String cardId = request.getParameter("cardId");
 	Card card = (Card) request.getAttribute("card");
+	List<Card> cards = Helper.newCards(card.getUpdateDate());
 %>
 
 <h2 class="card-header">その他のカード</h2>
-<div class="card-body">
-	<ul>
+<div id="card-recent">
+	<ul id="recent">
 		<%
-			List<Card> cards = Helper.newCards(card.getUpdateDate());
-			for (Card newone : cards) {
-				String caption = Helper
-						.getOmitedString(newone.getTitle(), 40);
+			for (Card other : cards) {
+				request.setAttribute("card", other);
 		%>
-		<li><a
-			href="card-comment.jsp?cardId=<%=newone.getCardId()%>"><span
-				class="deco"><%=caption%></span></a> (view:<%=newone.getView()%>,
-			comment:<%=newone.getLikes()%>)</li>
+		<li class="card"><jsp:include page="_card.jsp"></jsp:include></li>
 		<%
 			}
 		%>
 	</ul>
 </div>
+
+<%
+	request.setAttribute("card", card);
+%>
