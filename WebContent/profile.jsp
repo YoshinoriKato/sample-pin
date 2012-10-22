@@ -45,6 +45,11 @@
 					</div>
 				</div>
 				<div class="item-group">
+					<div class="item-label">User Level</div>
+					<div class="items"><%=Helper.getUserLevel(session)%>
+					</div>
+				</div>
+				<div class="item-group">
 					<div class="item-label">Name</div>
 					<div class="items"><%=Helper.escapeHTML(user.getUserName())%>
 					</div>

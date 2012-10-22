@@ -252,6 +252,30 @@ public class Helper {
 		return new Card();
 	}
 
+	public static int getUserLevel(HttpSession session) {
+		String userId = getUserId(session);
+		return getUserLevel(userId);
+	}
+
+	public static int getUserLevel(String userId) {
+		try (ACMongo mongo = new ACMongo()) {
+			Query<Card> query = mongo.createQuery(Card.class)
+					.filter("userId = ", userId).filter("accessLevel = ", 0)
+					.filter("isDeleted = ", false);
+			long cards = query.countAll();
+			int level = 1;
+			int count = 1;
+			while (cards - count > 0) {
+				count *= 2;
+				level++;
+			}
+			return level > 99 ? 99 : level;
+		} catch (UnknownHostException | MongoException e) {
+			e.printStackTrace();
+		}
+		return 1;
+	}
+
 	public static Card getCardByImagePath(String imagePath) {
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
@@ -533,7 +557,7 @@ public class Helper {
 					.filter("accessLevel = ", 0).filter("isDeleted", false)
 					.filter("updateDate < ", updateDate).order("-updateDate")
 					.limit(10);
-			List<Card>cards = query.asList();
+			List<Card> cards = query.asList();
 			CardAjax.fillValues(cards);
 			return cards;
 		} catch (UnknownHostException | MongoException e) {

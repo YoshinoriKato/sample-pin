@@ -173,6 +173,9 @@
 						<div class="card-body well deco break-word"><%=Helper.convURLLink(Helper.escapeHTML(card.getCaption()))%></div>
 					</div>
 					<div class="margin-bottom-default">
+						<jsp:include page="_scamper.jsp"></jsp:include>
+					</div>
+					<div class="margin-bottom-default">
 						<h2 class="card-header">コメント</h2>
 						<ul id="content">
 							<li class="margin-bottom-default" style="max-height: 170px;"><jsp:include
