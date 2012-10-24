@@ -258,22 +258,25 @@ public class Helper {
 	}
 
 	public static int getUserLevel(String userId) {
-		try (ACMongo mongo = new ACMongo()) {
-			Query<Card> query = mongo.createQuery(Card.class)
-					.filter("userId = ", userId).filter("accessLevel = ", 0)
-					.filter("isDeleted = ", false);
-			long cards = query.countAll();
-			int level = 1;
-			int count = 1;
-			while (cards - count > 0) {
-				count *= 2;
-				level++;
+		if (Helper.getUserById(userId) != null) {
+			try (ACMongo mongo = new ACMongo()) {
+				Query<Card> query = mongo.createQuery(Card.class)
+						.filter("userId = ", userId)
+						.filter("accessLevel = ", 0)
+						.filter("isDeleted = ", false);
+				long cards = query.countAll();
+				int level = 1;
+				int count = 1;
+				while (cards - count > 0) {
+					count *= 2;
+					level++;
+				}
+				return level > 99 ? 99 : level;
+			} catch (UnknownHostException | MongoException e) {
+				e.printStackTrace();
 			}
-			return level > 99 ? 99 : level;
-		} catch (UnknownHostException | MongoException e) {
-			e.printStackTrace();
 		}
-		return 1;
+		return 0;
 	}
 
 	public static Card getCardByImagePath(String imagePath) {
