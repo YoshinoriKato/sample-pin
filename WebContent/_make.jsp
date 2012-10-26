@@ -89,7 +89,7 @@
 					<label for="caption" class="control-label">Caption</label>
 					<div class="controls">
 						<textarea id="comment-text" class="textarea input-text"
-							name="caption" rows="4" placeholder="Please write a comment."></textarea>
+							name="caption" rows="8" placeholder="Please write a comment."></textarea>
 						<span class="help-inline"><%=message%></span>
 					</div>
 				</div>

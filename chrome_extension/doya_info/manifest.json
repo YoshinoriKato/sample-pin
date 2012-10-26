@@ -1,0 +1,15 @@
+{
+    "manifest_version": 2,
+    "name": "DOYA.info Search",
+    "description": "ページ上の単語をDOYA.infoで検索する",
+    "version": "0.1",
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "permissions": [
+        "tabs", "http://*/*", "contextMenus"
+    ],
+    "icons": {
+        "16": "icon.png"
+    }
+}
