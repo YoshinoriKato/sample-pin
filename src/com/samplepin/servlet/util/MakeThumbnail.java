@@ -1,5 +1,6 @@
 package com.samplepin.servlet.util;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
@@ -97,11 +98,11 @@ public class MakeThumbnail extends HttpServlet {
 	public static void main(String[] args) {
 		try {
 			URL url = new URL(
-					"http://localhost:8080/icon-keeper/I_OZ8CehbL1349873393107608000.gif");
+					"http://localhost:8080/icon-keeper/I_A_j0jIME6293937806712846.png");
 
 			File folder = new File("test");
 			folder.mkdir();
-			File copy = new File(folder, "I_OZ8CehbL1349873393107608000.gif");
+			File copy = new File(folder, "I_A_j0jIME6293937806712846.png");
 			MakeCardServlet.copyStream(url.openStream(), new FileOutputStream(
 					copy), 1024);
 			File input = copy;
@@ -119,8 +120,10 @@ public class MakeThumbnail extends HttpServlet {
 			File output = new File(folder // input.getParentFile()
 					, "t_" + name + "." + formatName);
 
-			new MakeThumbnail().scaleImage(origin, output, formatName, width,
-					height);
+			File child = new File(folder, "t");
+			child.mkdirs();
+
+			new MakeThumbnail().resizeImage(folder, input, child, formatName);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -219,6 +222,8 @@ public class MakeThumbnail extends HttpServlet {
 					BufferedImage tmpImage = new BufferedImage(endWidth,
 							endHeight, BufferedImage.TYPE_INT_RGB);
 					Graphics2D g = (Graphics2D) tmpImage.getGraphics();
+					g.setColor(Color.white);
+					g.fillRect(0, 0, tmpImage.getWidth(), tmpImage.getHeight());
 					g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
 							RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 					g.drawImage(currentImage, 0, 0, tmpImage.getWidth(),
@@ -235,6 +240,8 @@ public class MakeThumbnail extends HttpServlet {
 				BufferedImage tmpImage = new BufferedImage(currentWidth >> 1,
 						currentHeight >> 1, BufferedImage.TYPE_INT_RGB);
 				Graphics2D g = (Graphics2D) tmpImage.getGraphics();
+				g.setColor(Color.white);
+				g.fillRect(0, 0, tmpImage.getWidth(), tmpImage.getHeight());
 				g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
 						RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 				g.drawImage(currentImage, 0, 0, tmpImage.getWidth(),
