@@ -51,8 +51,9 @@ public class CommentServlet extends HttpServlet {
 			log(userId + " > " + comment);
 
 			if ((userId != null) && (comment != null) && !comment.isEmpty()) {
-				saveComment(new Comment(userId, cardId, comment,
-						System.currentTimeMillis(), isAnonymous(anonymous)));
+				saveComment(new Comment(System.nanoTime(), userId, cardId,
+						comment, System.currentTimeMillis(),
+						isAnonymous(anonymous)));
 
 				tweet(cardId, userId, comment, tweet);
 
@@ -113,15 +114,16 @@ public class CommentServlet extends HttpServlet {
 		try {
 			if (valid(tweet) && "on".equals(tweet)) {
 				TwitterService service = new TwitterService();
-				
+
 				Card card = Helper.getCardByID(cardId);
 				String keywords = card != null ? card.getKeywords() : "";
 				keywords = valid(keywords) ? "[" + keywords + "]" : "";
 				String message = Helper.LS + keywords + Helper.LS
 						+ new ShortCutServlet().toShortCut(cardId);
-				message = Helper.getOmitedString(comment, (130 - message.length()))
+				message = Helper.getOmitedString(comment,
+						(130 - message.length()))
 						+ message;
-				
+
 				service.tweet("MSG: " + message);
 				service.tweet(userId, message);
 			}

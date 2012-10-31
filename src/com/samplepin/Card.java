@@ -29,20 +29,8 @@ public class Card extends Comment implements Updateable {
 	String keywords;
 
 	String site;
-	
+
 	String title;
-
-	
-	
-	
-	
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
 
 	@Indexed
 	Long updateDate;
@@ -52,8 +40,8 @@ public class Card extends Comment implements Updateable {
 	}
 
 	public Card(String parentId, String cardId, String userId,
-			String imagePath, String url, String title, String caption, int likes,
-			int view, long createDate) {
+			String imagePath, String url, String title, String caption,
+			int likes, int view, long createDate) {
 		super();
 		this.parentId = parentId;
 		this.cardId = cardId;
@@ -95,6 +83,10 @@ public class Card extends Comment implements Updateable {
 		return this.site;
 	}
 
+	public String getTitle() {
+		return this.title;
+	}
+
 	@Override
 	public Long getUpdateDate() {
 		return this.updateDate;
@@ -134,6 +126,10 @@ public class Card extends Comment implements Updateable {
 
 	public void setSite(String site) {
 		this.site = site;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	@Override

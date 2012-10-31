@@ -50,7 +50,7 @@ public class RemotePostServlet extends HttpServlet {
 		try (ACMongo mongo = new ACMongo()) {
 			String userId = Helper.getUserId(req);
 
-			if (Helper.valid(title) & Helper.valid(caption)
+			if ((Helper.valid(title) & Helper.valid(caption))
 					&& Helper.valid(code)
 					&& RemotePostServlet.code.equals(code)) {
 
@@ -71,7 +71,7 @@ public class RemotePostServlet extends HttpServlet {
 			log(e.getMessage());
 			req.setAttribute("error", e);
 		}
-		
+
 	}
 
 	final void saveCard(Card card) throws UnknownHostException, MongoException {

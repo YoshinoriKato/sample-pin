@@ -165,14 +165,6 @@ public class Helper {
 		return input;
 	}
 
-	public static String getOmitedString(String text, int length) {
-		String suffix = "...";
-		length -= suffix.length();
-		String caption = valid(text) && text.length() > length ? text
-				.substring(0, length) + suffix : text;
-		return caption;
-	}
-
 	public static String formatToAboutTimeString(long mills) {
 		Long current = System.currentTimeMillis();
 		Long gap = current - mills;
@@ -250,33 +242,6 @@ public class Helper {
 			e.printStackTrace();
 		}
 		return new Card();
-	}
-
-	public static int getUserLevel(HttpSession session) {
-		String userId = getUserId(session);
-		return getUserLevel(userId);
-	}
-
-	public static int getUserLevel(String userId) {
-		if (Helper.getUserById(userId) != null) {
-			try (ACMongo mongo = new ACMongo()) {
-				Query<Card> query = mongo.createQuery(Card.class)
-						.filter("userId = ", userId)
-						.filter("accessLevel = ", 0)
-						.filter("isDeleted = ", false);
-				long cards = query.countAll();
-				int level = 1;
-				int count = 1;
-				while (cards - count > 0) {
-					count *= 2;
-					level++;
-				}
-				return level > 99 ? 99 : level;
-			} catch (UnknownHostException | MongoException e) {
-				e.printStackTrace();
-			}
-		}
-		return 0;
 	}
 
 	public static Card getCardByImagePath(String imagePath) {
@@ -433,6 +398,14 @@ public class Helper {
 		return fileName;
 	}
 
+	public static String getOmitedString(String text, int length) {
+		String suffix = "...";
+		length -= suffix.length();
+		String caption = valid(text) && (text.length() > length) ? text
+				.substring(0, length) + suffix : text;
+		return caption;
+	}
+
 	public static OneTime getOneTimeByOneTimePassword(String oneTimePassword) {
 		if (oneTimePassword != null) {
 			try (ACMongo mongo = new ACMongo()) {
@@ -478,6 +451,33 @@ public class Helper {
 
 	public static String getUserId(HttpSession session) {
 		return (String) session.getAttribute("userId");
+	}
+
+	public static int getUserLevel(HttpSession session) {
+		String userId = getUserId(session);
+		return getUserLevel(userId);
+	}
+
+	public static int getUserLevel(String userId) {
+		if (Helper.getUserById(userId) != null) {
+			try (ACMongo mongo = new ACMongo()) {
+				Query<Card> query = mongo.createQuery(Card.class)
+						.filter("userId = ", userId)
+						.filter("accessLevel = ", 0)
+						.filter("isDeleted = ", false);
+				long cards = query.countAll();
+				int level = 1;
+				int count = 1;
+				while ((cards - count) > 0) {
+					count *= 2;
+					level++;
+				}
+				return level > 99 ? 99 : level;
+			} catch (UnknownHostException | MongoException e) {
+				e.printStackTrace();
+			}
+		}
+		return 0;
 	}
 
 	public static List<View> getViewsInfoByID(String userId) {

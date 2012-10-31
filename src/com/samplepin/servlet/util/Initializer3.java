@@ -166,8 +166,9 @@ public class Initializer3 extends HttpServlet {
 				String song2 = song.substring(0,
 						dice.nextInt(song.length() - cap_min) + cap_min);
 				cards.add(new Card("self", cardId, userId, "img/flag/"
-						+ FLAGS[i], "", null, ((dice.nextInt() % 2) == 0) ? caption2
-						: song2, likes, views, mills2));
+						+ FLAGS[i], "", null,
+						((dice.nextInt() % 2) == 0) ? caption2 : song2, likes,
+						views, mills2));
 
 				mills2 += 1000 * 60 * 30 * (dice.nextInt(7) + 1);
 			}
@@ -185,7 +186,8 @@ public class Initializer3 extends HttpServlet {
 					String song2 = song.substring(0,
 							dice.nextInt(song.length() - cap_min) + cap_min);
 
-					Comment comment = new Comment(userId, card.getCardId(),
+					Comment comment = new Comment(System.nanoTime(), userId,
+							card.getCardId(),
 							((dice.nextInt() % 2) == 0) ? caption2 : song2,
 							mills3, false);
 					datastore.save(comment);

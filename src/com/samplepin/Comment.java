@@ -20,6 +20,9 @@ public class Comment implements Serializable, Deleteable, Createable {
 	@Id
 	ObjectId id;
 
+	@Indexed
+	Long commentId;
+
 	String userId;
 
 	@Indexed
@@ -50,15 +53,17 @@ public class Comment implements Serializable, Deleteable, Createable {
 
 	public Comment() {
 		super();
+		this.commentId = System.nanoTime();
 		this.anonymous = false;
 		this.isDeleted = false;
 		this.imagePath = "";
 		this.accessLevel = 0;
 	}
 
-	public Comment(String userId, String cardId, String caption,
-			Long createDate, Boolean anonymous) {
+	public Comment(Long commentId, String userId, String cardId,
+			String caption, Long createDate, Boolean anonymous) {
 		this();
+		this.commentId = commentId;
 		this.userId = userId;
 		this.cardId = cardId;
 		this.caption = caption;
@@ -84,6 +89,10 @@ public class Comment implements Serializable, Deleteable, Createable {
 
 	public String getCardId() {
 		return this.cardId;
+	}
+
+	public Long getCommentId() {
+		return this.commentId;
 	}
 
 	@Override
@@ -134,6 +143,10 @@ public class Comment implements Serializable, Deleteable, Createable {
 
 	public void setCardId(String cardId) {
 		this.cardId = cardId;
+	}
+
+	public void setCommentId(Long commentId) {
+		this.commentId = commentId;
 	}
 
 	@Override

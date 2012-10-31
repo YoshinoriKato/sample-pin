@@ -24,19 +24,6 @@ import com.samplepin.common.Helper;
 
 public class CardAjax {
 
-	static final void writeToJSON(OutputStream os, Map<String, Object> data,
-			String callback) throws IOException {
-		try (OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8")) {
-			Gson gson = new Gson();
-			String out = gson.toJson(data);
-			osw.write(callback + "(" + out + ")");
-			osw.flush();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-		}
-	}
-
 	static public void fillValues(List<Card> cards) {
 		for (Card card : cards) {
 			User user = Helper.getUserById(card.getUserId());
@@ -47,6 +34,27 @@ public class CardAjax {
 				String caption = Helper.getOmitedString(card.getCaption(), 40);
 				card.setTitle(caption);
 			}
+		}
+	}
+
+	static final <T> boolean valid(Collection<T> value) {
+		return (value != null) && !value.isEmpty();
+	}
+
+	static final boolean valid(String value) {
+		return (value != null) && !value.isEmpty();
+	}
+
+	static final void writeToJSON(OutputStream os, Map<String, Object> data,
+			String callback) throws IOException {
+		try (OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8")) {
+			Gson gson = new Gson();
+			String out = gson.toJson(data);
+			osw.write(callback + "(" + out + ")");
+			osw.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -163,14 +171,6 @@ public class CardAjax {
 		data.put("array", cards.toArray(new Card[0]));
 		writeToJSON(os, data, callback);
 
-	}
-
-	static final <T> boolean valid(Collection<T> value) {
-		return (value != null) && !value.isEmpty();
-	}
-
-	static final boolean valid(String value) {
-		return (value != null) && !value.isEmpty();
 	}
 
 }
