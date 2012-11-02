@@ -127,29 +127,42 @@
 				<h3 class="tab-header">SNS ページ</h3>
 				<div class="profile large">
 					<div class="item-group">
-						<div class="item-label"></div>
-						<div class="items">
+						<div class="item-label">
 							<a href="https://twitter.com/doya_info" target="_blank"
 								style="margin-left: 50px;"><img src="img/bird_gray_48.png"></a>
 						</div>
+						<div class="items"></div>
 					</div>
 					<div class="item-group">
 						<div class="item-label">Twitter</div>
 						<div class="items">フォローしていただけると、最新の情報がタイムラインでご覧いただけます。</div>
 					</div>
 					<div class="item-group">
-						<div class="item-label"></div>
-						<div class="items">
+						<div class="item-label">
 							<a
 								href="http://www.facebook.com/pages/DOYAinfo/495135587181076"
 								target="_blank" style="margin-left: 50px;"><img
 								src="img/f_logo.png" style="height: 48px; width: 48px;"></a>
 						</div>
+						<div class="items"></div>
 					</div>
 					<div class="item-group">
 						<div class="item-label">Facebook</div>
 						<div class="items">イイネ！していただけると、うれしいです。</div>
 					</div>
+					<div class="item-group">
+						<div class="item-label"><a
+								href="http://dev-doya-info.tumblr.com/"
+								target="_blank" style="margin-left: 50px;"><img
+								src="img/Tumblr.png" style="height: 48px; width: 48px;"></a></div>
+						<div class="items">
+						</div>
+					</div>
+					<div class="item-group">
+						<div class="item-label">Tumblr</div>
+						<div class="items">開発に関わる記録を残してます。</div>
+					</div>
+					
 				</div>
 			</div>
 		</div>

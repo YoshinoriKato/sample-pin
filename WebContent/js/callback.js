@@ -13,9 +13,10 @@ function teaDown() {
 	$block = false;
 	
 	$(".pined").each(function(index, domEle) {
-		var deg = Math.floor( Math.random() * 5 ) - 3;
+		var deg = Math.floor( Math.random() * 8 ) - 3;
 		$(domEle).transition({
-			rotate : deg + 'deg'
+			rotate : deg + 'deg',
+			scale: 0.98
 		});
 		$(domEle).removeClass('pined');
 	});

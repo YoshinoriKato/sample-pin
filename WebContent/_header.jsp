@@ -57,7 +57,6 @@
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/jquery.wookmark.js"></script>
 <script type="text/javascript" src="js/jquery.dateFormat-1.0.js"></script>
-<script type="text/javascript" src="js/jquery.dateFormat-1.0.js"></script>
 <script type="text/javascript" src="js/jquery.transit.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap-dropdown.js"></script>
@@ -71,6 +70,8 @@
 
 <!-- original -->
 <script type="text/javascript" src="js/callback.js?<%=suffix%>"
+	charset="UTF-8"></script>
+<script type="text/javascript" src="js/dateformat.js?<%=suffix%>"
 	charset="UTF-8"></script>
 <script type="text/javascript" src="js/aboutTimestamp.js?<%=suffix%>"
 	charset="UTF-8"></script>
