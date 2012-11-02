@@ -38,4 +38,3 @@
 		"pushPull('#null','#error-dialog')");
 	});
 </script>
-
