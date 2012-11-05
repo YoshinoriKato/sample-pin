@@ -29,7 +29,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6534228482284422460L;
+	private static final long	serialVersionUID	= 6534228482284422460L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -73,7 +73,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 
 	final String makeMessage(Card card) throws IOException {
 		StringBuilder builder = new StringBuilder();
-		int len = 140 - (Helper.LS.length() * 3);
+		int len = 130 - (Helper.LS.length() * 3);
 
 		String keywords = card.getKeywords();
 		if (valid(keywords)) {
@@ -85,9 +85,13 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 		len -= shortcut.length();
 
 		String title = Helper.getOmitedString(card.getTitle(), len);
+		len -= title.length();
+
+		String caption = Helper.getOmitedString(card.getCaption(), len);
 
 		builder.append(title).append(Helper.LS);
 		builder.append(keywords).append(Helper.LS);
+		builder.append(caption).append(Helper.LS);
 		builder.append(shortcut).append(Helper.LS);
 
 		return builder.toString();
