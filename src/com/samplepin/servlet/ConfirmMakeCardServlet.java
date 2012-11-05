@@ -29,7 +29,7 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 6534228482284422460L;
+	private static final long serialVersionUID = 6534228482284422460L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -79,6 +79,8 @@ public class ConfirmMakeCardServlet extends HttpServlet {
 		if (valid(keywords)) {
 			keywords = "[" + keywords + "]";
 			len -= keywords.length();
+		} else {
+			keywords = "";
 		}
 
 		String shortcut = new ShortCutServlet().toShortCut(card.getCardId());
