@@ -87,7 +87,7 @@ public class MakeCardServlet extends HttpServlet {
 		log("upload start.");
 		String userId = Helper.getUserId(req);
 		List<Uploader> uploadQue = new ArrayList<Uploader>();
-		Card card = readRequest(req.getParts(), userId, uploadQue);
+		Card card = readRequest(req, resp, req.getParts(), userId, uploadQue);
 
 		if ("img/no_image.png".equals(card.getImagePath())) {
 			card.setWidth(400);
@@ -169,9 +169,9 @@ public class MakeCardServlet extends HttpServlet {
 		log("destination file name: " + fileName);
 	}
 
-	final Card readRequest(Collection<Part> parts, String userId,
-			List<Uploader> uploadQue) throws IllegalStateException,
-			IOException, ServletException {
+	final Card readRequest(HttpServletRequest req, HttpServletResponse resp,
+			Collection<Part> parts, String userId, List<Uploader> uploadQue)
+			throws IllegalStateException, IOException, ServletException {
 		String cardId = Helper.generatedIdString("C_");
 		Card card = new Card();
 		card.setImagePath("img/no_image.png");
@@ -187,6 +187,7 @@ public class MakeCardServlet extends HttpServlet {
 			String keywords = getValueByKeyword(part, "keywords");
 			String site = getValueByKeyword(part, "site");
 			String imagePath = getValueByKeyword(part, "imagePath");
+			String imageUrl = getValueByKeyword(part, "imageUrl");
 			String anonymous = getValueByKeyword(part, "anonymous");
 			String parentId = getValueByKeyword(part, "parentId");
 			String accessLevel = getValueByKeyword(part, "accessLevel");
@@ -199,6 +200,11 @@ public class MakeCardServlet extends HttpServlet {
 
 			} else if (valid(imagePath)) {
 				card.setImagePath(imagePath);
+
+			} else if (valid(imageUrl)) {
+				String path = new ImageUploadServlet().copyToServer(req, resp, imageUrl);
+				card.setImagePath(path);
+				card.setSite(imageUrl);
 
 			} else if (valid(url)) {
 				card.setUrl(url);

@@ -13,7 +13,8 @@
 <div class="margin-bottom-default">
 	<h4 class="sub-header">画像</h4>
 	<div class="card-body">
-		<img src="<%=card.getImagePath()%>" alt="<%=card.getKeywords()%>" class="card-image">
+		<img src="<%=card.getImagePath()%>" alt="<%=card.getKeywords()%>"
+			class="card-image">
 	</div>
 </div>
 <%
@@ -37,13 +38,18 @@
 		WebPage webPage = Helper.getWebPageByURL(card.getSite());
 		if (Helper.valid(webPage)
 
-		&& Helper.valid(webPage.getTitle())) {
+		) {
 %>
 <div class="margin-bottom-default">
 	<h4 class="sub-header">参照元</h4>
 	<div class="card-body">
-		<a href="<%=card.getSite()%>" target="_blank"><%=webPage.getTitle()%><i
-			class="icon-globe"></i></a>
+		<a href="<%=card.getSite()%>" target="_blank"> <%
+ 	if (Helper.valid(webPage.getTitle())) {
+ %> <%=webPage.getTitle()%> <%
+ 	} else {
+ %> <%=card.getSite()%> <%
+ 	}
+ %><i class="icon-globe"></i></a>
 	</div>
 </div>
 <%

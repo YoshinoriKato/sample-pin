@@ -42,22 +42,31 @@
 			method="post" class="form-horizontal">
 			<fieldset>
 				<div class="control-group">
+					<label for="imageUrl" class="control-label">or Image Path</label>
+					<div class="controls">
+						<div class="control-group">
+							<input type="url" name="imageUrl" class="span4" />
+						</div>
+					</div>
+
 					<label for="iconPath" class="control-label">or Image File</label>
 					<div class="controls">
-						<%
-							if (Helper.valid(imagePath)) {
-						%>
-						<img alt="" src="<%=imagePath%>" class="image-shot"
-							style="max-width: 85%">
-						<%
-							} else {
-						%>
 						<input type="file" name="iconPath" />
-						<%
-							}
-						%>
 					</div>
 				</div>
+				<%
+					if (Helper.valid(imagePath)) {
+				%>
+				<div class="control-group">
+					<div class="controls">
+						<img alt="" src="<%=imagePath%>" class="image-shot"
+							style="max-width: 85%"> <input type="hidden"
+							name="imagePath" value="<%=imagePath%>">
+					</div>
+				</div>
+				<%
+					}
+				%>
 				<%
 					if (Helper.valid(imagePath)) {
 				%>
@@ -78,6 +87,7 @@
 				<%
 					}
 				%>
+				<hr>
 				<div class="control-group">
 					<label for="title" class="control-label">Title</label>
 					<div class="controls">
@@ -124,7 +134,6 @@
 							class="image-anonymous"> -->
 					</div>
 				</div>
-				<input type="hidden" name="imagePath" value="<%=imagePath%>">
 				<input type="hidden" name="parentId" value="<%=parentId%>">
 			</fieldset>
 		</form>

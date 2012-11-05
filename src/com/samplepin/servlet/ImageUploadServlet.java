@@ -31,43 +31,20 @@ public class ImageUploadServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
 		try {
-			String urlPath = URLDecoder
-					.decode(req.getParameter("url"), "UTF-8");
+			String urlPath = URLDecoder.decode(req.getParameter("url"), "UTF-8");
 			String keywords = URLDecoder.decode(req.getParameter("keywords"),
 					"UTF-8");
 			String site = URLDecoder.decode(req.getParameter("site"), "UTF-8");
 			String parentId = req.getParameter("parentId");
 			parentId = Helper.valid(parentId) ? parentId : "";
-			String userId = Helper.getUserId(req);
+			
 
+			String copyed = copyToServer(req, resp, urlPath);
 			req.setAttribute("keywords", keywords);
 			req.setAttribute("site", site);
 			req.setAttribute("parentId", parentId);
-
-			String fullPath = req.getServletContext().getRealPath(
-					"../icon-keeper");
-			File referenceFolder = new File("../../icon-keeper");
-			File realFolder = new File(fullPath);
-			String fileName = Helper.getImageFileName(userId);
-			File realPathFile = new File(realFolder, fileName);
-
-			InputStream is = getInputStreamFromURL(urlPath);
-
-			MakeCardServlet.copyStream(is, new FileOutputStream(realPathFile),
-					1024);
-
-			String formatName = "png";// ImageType.getFormat(realPathFile).toString();
-			fileName = fileName + "." + formatName;
-			File renamed = new File(realFolder, fileName);
-			realPathFile.renameTo(renamed);
-			File referenceFile = new File(referenceFolder, fileName);
-			new MakeThumbnail().convert(new File(realFolder, "t"), renamed,
-					formatName);
-
-			ActivityLogger.log(req, this.getClass(), realPathFile.getName());
-
-			req.setAttribute("imagePath", referenceFile.getPath());
-
+			req.setAttribute("imagePath", copyed);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("error", e);
@@ -80,14 +57,33 @@ public class ImageUploadServlet extends HttpServlet {
 		return;
 	}
 
-	// final String fileName(MakeCardServlet make, String url) {
-	// int begin = url.lastIndexOf("/") + 1;
-	// begin = begin > 0 ? begin : 0;
-	// int end = url.lastIndexOf("?");
-	// end = end > 0 ? end : url.length();
-	// String fileName = make.makePrefix() + url.substring(begin, end);
-	// return fileName;
-	// }
+	final String copyToServer(HttpServletRequest req, HttpServletResponse resp,String urlPath)
+			throws IOException {
+		String userId = Helper.getUserId(req);
+
+		String fullPath = req.getServletContext().getRealPath("../icon-keeper");
+		File referenceFolder = new File("../../icon-keeper");
+		File realFolder = new File(fullPath);
+		String fileName = Helper.getImageFileName(userId);
+		File realPathFile = new File(realFolder, fileName);
+
+		InputStream is = getInputStreamFromURL(urlPath);
+
+		MakeCardServlet
+				.copyStream(is, new FileOutputStream(realPathFile), 1024);
+
+		String formatName = "png";// ImageType.getFormat(realPathFile).toString();
+		fileName = fileName + "." + formatName;
+		File renamed = new File(realFolder, fileName);
+		realPathFile.renameTo(renamed);
+		File referenceFile = new File(referenceFolder, fileName);
+		new MakeThumbnail().convert(new File(realFolder, "t"), renamed,
+				formatName);
+
+		ActivityLogger.log(req, this.getClass(), realPathFile.getName());
+
+		return referenceFile.getPath();
+	}
 
 	final InputStream getInputStreamFromURL(String urlPath) throws IOException {
 		InputStream is = null;

@@ -99,7 +99,11 @@ public class NaturalLanguageParser {
 
 				// web
 				if (valid(card.getSite())) {
-					parseWebpage(card.getSite(), callbacker);
+					try {
+						parseWebpage(card.getSite(), callbacker);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 
 				// comments
