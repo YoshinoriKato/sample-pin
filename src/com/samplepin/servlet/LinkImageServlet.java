@@ -32,14 +32,26 @@ public class LinkImageServlet extends HttpServlet {
 			Query<ShortCut> query = mongo.createQuery(ShortCut.class)
 					.filter("category = ", "I").filter("hex = ", hex);
 			ShortCut shortCut = query.get();
-			String filePath = req.getServletContext().getRealPath(
-					shortCut.getCardId());
+			String imagePath = shortCut.getCardId();
+			String imagePath2 = imagePath.replace("../../icon-keeper",
+					"../icon-keeper");
+			String filePath = req.getServletContext().getRealPath(imagePath2);
 			ActivityLogger.log(req, this.getClass(), filePath);
 			write(resp, filePath);
-			Helper.setFootprint(
-					Helper.getCardByImagePath(shortCut.getCardId()), req
-							.getSession().getId());
+			Helper.setFootprint(Helper.getCardByImagePath(imagePath), req
+					.getSession().getId());
 		}
+	}
+
+	public static void main(String[] args) {
+		System.out.println("start.");
+		try {
+			String imagePath = "../../icon-keeper/I_b0NAJ4T71352085314689554000.png";
+			System.out.println(new LinkImageServlet().toShortCut(imagePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("bye.");
 	}
 
 	public String toShortCut(String imagePath) throws IOException {
@@ -59,14 +71,10 @@ public class LinkImageServlet extends HttpServlet {
 
 	final void write(HttpServletResponse resp, String filePath)
 			throws IOException {
-		BufferedImage im = ImageIO.read(new File(filePath));
-
-		for (String name : ImageIO.getWriterFormatNames()) {
-			if (filePath.endsWith(name)) {
-				resp.setContentType("image/" + name);
-				ImageIO.write(im, name, resp.getOutputStream());
-				break;
-			}
-		}
+		File input = new File(filePath);
+		BufferedImage im = ImageIO.read(input);
+		String formatName = ImageType.getFormat(input).toString();
+		resp.setContentType("image/" + formatName);
+		ImageIO.write(im, formatName, resp.getOutputStream());
 	}
 }
