@@ -19,7 +19,6 @@
 					<%=Helper.NAME%>
 					?
 				</h1>
-				
 				<div class="profile large">
 					<div class="item-group">
 						<div class="item-label">概要</div>
@@ -62,6 +61,14 @@
 						<div class="item-label"></div>
 						<div class="items">
 							<p>
+								<img src="img/ps_signup.png?20121107" class="screen"
+									width="400px" />
+							</p>
+							<p>
+								<img src="img/ps_send-mail.png?20121107" class="screen"
+									width="400px" />
+							</p>
+							<p>
 								メニューの中の<a href="signup.jsp">"サインアップ"</a>をクリックしてください。
 							</p>
 							<p>※サインアップしなくても、ホーム画面やコメントをご覧いただけます。</p>
@@ -91,6 +98,8 @@
 					<div class="item-group">
 						<div class="item-label">使い方 1</div>
 						<div class="items">
+							<img src="img/doya_page.png?20121107" class="screen"
+								width="400px" />
 							<p>
 								メニューの中の<a href="home.jsp">"ホーム"</a>を押してください。
 							</p>
@@ -105,11 +114,13 @@
 					<div class="item-group">
 						<div class="item-label">使い方 2</div>
 						<div class="items">
+							<img src="img/ps_add-card.png?20121107" class="screen"
+								width="400px" />
 							<p>
 								<a href="home.jsp">"ホーム"</a>の上部に注目してください。
 							</p>
 							<ol>
-								<li>Search Imagesという欄があります。</li>
+								<li>+Cardというボタンがあります。</li>
 								<li>キーワードを入力して、画像を検索してください。</li>
 								<li>気に入った画像を選択してください。</li>
 								<li>感想や説明を書いて投稿してください。</li>
@@ -139,8 +150,7 @@
 					</div>
 					<div class="item-group">
 						<div class="item-label">
-							<a
-								href="http://www.facebook.com/pages/DOYAinfo/495135587181076"
+							<a href="http://www.facebook.com/pages/DOYAinfo/495135587181076"
 								target="_blank" style="margin-left: 50px;"><img
 								src="img/f_logo.png" style="height: 48px; width: 48px;"></a>
 						</div>
@@ -151,18 +161,18 @@
 						<div class="items">イイネ！していただけると、うれしいです。</div>
 					</div>
 					<div class="item-group">
-						<div class="item-label"><a
-								href="http://dev-doya-info.tumblr.com/"
-								target="_blank" style="margin-left: 50px;"><img
-								src="img/Tumblr.png" style="height: 48px; width: 48px;"></a></div>
-						<div class="items">
+						<div class="item-label">
+							<a href="http://dev-doya-info.tumblr.com/" target="_blank"
+								style="margin-left: 50px;"><img src="img/Tumblr.png"
+								style="height: 48px; width: 48px;"></a>
 						</div>
+						<div class="items"></div>
 					</div>
 					<div class="item-group">
 						<div class="item-label">Tumblr</div>
 						<div class="items">開発に関わる記録を残してます。</div>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
