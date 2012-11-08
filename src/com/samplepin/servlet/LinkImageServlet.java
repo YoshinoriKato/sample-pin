@@ -24,6 +24,17 @@ public class LinkImageServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 4530246405324364355L;
 
+	public static void main(String[] args) {
+		System.out.println("start.");
+		try {
+			String imagePath = "../../icon-keeper/I_b0NAJ4T71352085314689554000.png";
+			System.out.println(new LinkImageServlet().toShortCut(imagePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("bye.");
+	}
+
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
@@ -41,17 +52,6 @@ public class LinkImageServlet extends HttpServlet {
 			Helper.setFootprint(Helper.getCardByImagePath(imagePath), req
 					.getSession().getId());
 		}
-	}
-
-	public static void main(String[] args) {
-		System.out.println("start.");
-		try {
-			String imagePath = "../../icon-keeper/I_b0NAJ4T71352085314689554000.png";
-			System.out.println(new LinkImageServlet().toShortCut(imagePath));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		System.out.println("bye.");
 	}
 
 	public String toShortCut(String imagePath) throws IOException {

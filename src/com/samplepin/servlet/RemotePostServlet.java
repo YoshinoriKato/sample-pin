@@ -2,7 +2,14 @@ package com.samplepin.servlet;
 
 import static com.samplepin.common.Helper.valid;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.net.UnknownHostException;
 
 import javax.servlet.ServletException;
@@ -17,6 +24,7 @@ import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
 import com.mongodb.MongoException;
 import com.samplepin.Card;
+import com.samplepin.User;
 import com.samplepin.common.ACMongo;
 import com.samplepin.common.ActivityLogger;
 import com.samplepin.common.Helper;
@@ -35,6 +43,37 @@ public class RemotePostServlet extends HttpServlet {
 
 	public static String code = "cnjakhfavjabvibaribvavaroiwhfiowjgiawjgifjwefnanvlanvjkanwknncjkanjkvna;veruonbvajbiabajkbvkjakjvnaskjbvau;bnafbnafjkbkjasbvkladsbvjknavjabkjbvaksnvjkabjajkbvjkasdnviurhbaevebkdnvkb jbfheiutyiwauyrwuhvaiho";
 
+	public static void main(String[] args) {
+		try {
+			URL url = new URL("http://localhost:8080/sample-pin/remote-post.do");
+
+			URLConnection uc = url.openConnection();
+
+			uc.setDoOutput(true);
+
+			uc.setRequestProperty("Accept-Language", "ja");// ヘッダを設定
+			OutputStream os = uc.getOutputStream();// POST用のOutputStreamを取得
+
+			String postStr = "title=hoge" + "&caption=foo" + "&code=" + code;// POSTするデータ
+			PrintStream ps = new PrintStream(os);
+			ps.print(postStr);// データをPOSTする
+			ps.close();
+
+			InputStream is = uc.getInputStream();// POSTした結果を取得
+			BufferedReader reader = new BufferedReader(
+					new InputStreamReader(is));
+			String s = null;
+			while ((s = reader.readLine()) != null) {
+				System.out.println(s);
+			}
+			reader.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("bye.");
+	}
+
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
@@ -43,12 +82,21 @@ public class RemotePostServlet extends HttpServlet {
 
 		String cardId = Helper.generatedIdString("R_");
 		String title = req.getParameter("title");
+		String url = req.getParameter("url");
 		String caption = req.getParameter("caption");
 		String code = req.getParameter("code");
 		resp.setHeader("Content-Type", "text/javascript");
 
 		try (ACMongo mongo = new ACMongo()) {
-			String userId = Helper.getUserId(req);
+			String userId = "DOYA_NEWS";
+			User user = Helper.getUserById(userId);
+			if (user == null) {
+				mongo.save(new User(userId, "news@doya.info", "DOYA-NEWS",
+						"hoge".hashCode()));
+			} else {
+				user.setPassword("hoge".hashCode());
+				mongo.save(user);
+			}
 
 			if ((Helper.valid(title) & Helper.valid(caption))
 					&& Helper.valid(code)
@@ -57,14 +105,17 @@ public class RemotePostServlet extends HttpServlet {
 				Card card = new Card("self", cardId, userId,
 						"img/doya_news.png", "", title, caption, 0, 0,
 						System.currentTimeMillis());
+				card.setWidth(400);
+				card.setHeight(400);
+				card.setUrl(url);
 
-				saveCard(card);
+				if (saveCard(card)) {
+					tweet(cardId, userId, title);
 
-				tweet(cardId, userId, title);
+					NaturalLanguageParser.makeIndex(req, cardId);
 
-				NaturalLanguageParser.makeIndex(req, cardId);
-
-				ActivityLogger.log(req, this.getClass(), title);
+					ActivityLogger.log(req, this.getClass(), title);
+				}
 			}
 
 		} catch (Exception e) {
@@ -72,9 +123,11 @@ public class RemotePostServlet extends HttpServlet {
 			req.setAttribute("error", e);
 		}
 
+		resp.sendRedirect("home.jsp");
 	}
 
-	final void saveCard(Card card) throws UnknownHostException, MongoException {
+	final boolean saveCard(Card card) throws UnknownHostException,
+			MongoException {
 
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
@@ -85,8 +138,10 @@ public class RemotePostServlet extends HttpServlet {
 
 			if ((query0.countAll() == 0) && (query1.countAll() == 0)) {
 				datastore.save(card);
+				return true;
 			}
 		}
+		return false;
 	}
 
 	final void tweet(String cardId, String userId, String comment)
@@ -102,7 +157,7 @@ public class RemotePostServlet extends HttpServlet {
 			message = Helper.getOmitedString(comment, (130 - message.length()))
 					+ message;
 
-			service.tweet("MSG: " + message);
+			// service.tweet("MSG: " + message);
 			service.tweet(userId, message);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -123,15 +123,15 @@ function makeCard($card, $select) {
 	var $jqIcon = $('<img/>').addClass('menu-user-icon img-circle').attr('src',
 			$card.userIcon);
 
-	if ($url != null && $url != '') {
-		$divRibonText.addClass('ribon-text color-blue');
-		$jqDiv.addClass('cell2');
-		$link = 'jump.jsp?cardId=' + $card.cardId + '&redirectUrl=' + $url;
-		$jqA0.attr('href', $link).attr('target', '_blank');
-		$jqA1.attr('href', $link).attr('target', '_blank');
-		$divFooter.text($url);
-
-	} else {
+//	if ($url != null && $url != '') {
+//		$divRibonText.addClass('ribon-text color-blue');
+//		$jqDiv.addClass('cell2');
+//		$link = 'jump.jsp?cardId=' + $card.cardId + '&redirectUrl=' + $url;
+//		$jqA0.attr('href', $link).attr('target', '_blank');
+//		$jqA1.attr('href', $link).attr('target', '_blank');
+////		$divFooter.text($url);
+//
+//	} else {
 		$divName.text($card.userName);
 		$divRibonText.addClass('ribon-text color-red');
 
@@ -147,7 +147,7 @@ function makeCard($card, $select) {
 		$jqA2.attr('href', 'profile.jsp?userId=' + $card.userId);
 		$divFooter.text($card.likes + ' comment').css('clear', 'both');
 		// var $btnLike = $('<span/>').attr('id', 'gj_' + $card.cardId);
-	}
+//	}
 
 	// construct
 	$('#content').append($jqLi);

@@ -7,6 +7,8 @@
 
 <%
 	Card card = (Card) request.getAttribute("card");
+	boolean isNews = card.getUserId().equals("DOYA_NEWS");
+	if(!isNews){
 %>
 
 
@@ -53,6 +55,7 @@
 	</div>
 </div>
 <%
+	}
 	}
 	}
 %>

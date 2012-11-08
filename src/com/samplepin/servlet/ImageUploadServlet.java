@@ -27,38 +27,8 @@ public class ImageUploadServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 7137737292592767679L;
 
-	@Override
-	public void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws IOException, ServletException {
-		try {
-			String urlPath = URLDecoder.decode(req.getParameter("url"), "UTF-8");
-			String keywords = URLDecoder.decode(req.getParameter("keywords"),
-					"UTF-8");
-			String site = URLDecoder.decode(req.getParameter("site"), "UTF-8");
-			String parentId = req.getParameter("parentId");
-			parentId = Helper.valid(parentId) ? parentId : "";
-			
-
-			String copyed = copyToServer(req, resp, urlPath);
-			req.setAttribute("keywords", keywords);
-			req.setAttribute("site", site);
-			req.setAttribute("parentId", parentId);
-			req.setAttribute("imagePath", copyed);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			req.setAttribute("error", e);
-			req.setAttribute("imagePath", "img/no_image.png");
-		}
-
-		RequestDispatcher dispathcer = req
-				.getRequestDispatcher("make-card.jsp");
-		dispathcer.forward(req, resp);
-		return;
-	}
-
-	final String copyToServer(HttpServletRequest req, HttpServletResponse resp,String urlPath)
-			throws IOException {
+	final String copyToServer(HttpServletRequest req, HttpServletResponse resp,
+			String urlPath) throws IOException {
 		String userId = Helper.getUserId(req);
 
 		String fullPath = req.getServletContext().getRealPath("../icon-keeper");
@@ -83,6 +53,36 @@ public class ImageUploadServlet extends HttpServlet {
 		ActivityLogger.log(req, this.getClass(), realPathFile.getName());
 
 		return referenceFile.getPath();
+	}
+
+	@Override
+	public void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException, ServletException {
+		try {
+			String urlPath = URLDecoder
+					.decode(req.getParameter("url"), "UTF-8");
+			String keywords = URLDecoder.decode(req.getParameter("keywords"),
+					"UTF-8");
+			String site = URLDecoder.decode(req.getParameter("site"), "UTF-8");
+			String parentId = req.getParameter("parentId");
+			parentId = Helper.valid(parentId) ? parentId : "";
+
+			String copyed = copyToServer(req, resp, urlPath);
+			req.setAttribute("keywords", keywords);
+			req.setAttribute("site", site);
+			req.setAttribute("parentId", parentId);
+			req.setAttribute("imagePath", copyed);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("error", e);
+			req.setAttribute("imagePath", "img/no_image.png");
+		}
+
+		RequestDispatcher dispathcer = req
+				.getRequestDispatcher("make-card.jsp");
+		dispathcer.forward(req, resp);
+		return;
 	}
 
 	final InputStream getInputStreamFromURL(String urlPath) throws IOException {

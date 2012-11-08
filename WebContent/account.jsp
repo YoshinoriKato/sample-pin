@@ -43,8 +43,7 @@
 							<label for="userName" class="control-label">Name</label>
 							<div class="controls">
 								<input type="text" name="userName" maxlength="40"
-									value="<%=user.getUserName()%>"
-									class="text input-text">
+									value="<%=user.getUserName()%>" class="text input-text">
 							</div>
 						</div>
 						<div class="control-group">
@@ -86,7 +85,7 @@
 							</div>
 						</div>
 						<%
-							if (userId.startsWith("ID_")) {
+							if (userId.startsWith("ID_") || userId.startsWith("DOYA")) {
 						%>
 						<div class="control-group <%=error%>">
 							<label for="password0" class="control-label">Password</label>
