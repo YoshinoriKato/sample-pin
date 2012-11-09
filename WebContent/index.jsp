@@ -37,7 +37,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="margin-bottom-default">
+			<!-- <div class="margin-bottom-default">
 				<h3 class="tab-header">動画</h3>
 				<div class="profile large">
 					<div class="item-group">
@@ -53,7 +53,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<div class="margin-bottom-default">
 				<h3 class="tab-header">ご登録</h3>
 				<div class="profile large">
@@ -65,15 +65,12 @@
 									width="400px" />
 							</p>
 							<p>
-								<img src="img/ps_send-mail.png?20121107" class="screen"
-									width="400px" />
-							</p>
-							<p>
 								メニューの中の<a href="signup.jsp">"サインアップ"</a>をクリックしてください。
 							</p>
 							<p>※サインアップしなくても、ホーム画面やコメントをご覧いただけます。</p>
 							<ol>
-								<li>メールアドレスを登録いただくか、<a href="oauth-twitter.jsp">Twitterログイン</a>をしてください。
+								<li>メールアドレスを登録いただくか、<a href="oauth-twitter.jsp">Twitterログイン</a>、<a
+									href="oauth-facebook.jsp">Facebookログイン</a>をしてください。
 								</li>
 								<li>メールアドレスを登録いただいた場合
 									<ol>
@@ -86,6 +83,10 @@
 								<li><a href="oauth-twitter.jsp">Twitterログイン</a>をされた場合
 									<ol>
 										<li>Twitterからの指示に沿って、アクセスを許可してください。</li>
+									</ol></li>
+								<li><a href="oauth-facebook.jsp">Facebookログイン</a>をされた場合
+									<ol>
+										<li>Facebookからの指示に沿って、アクセスを許可してください。</li>
 									</ol></li>
 							</ol>
 						</div>
@@ -120,7 +121,7 @@
 								<a href="home.jsp">"ホーム"</a>の上部に注目してください。
 							</p>
 							<ol>
-								<li>+Cardというボタンがあります。</li>
+								<li><a href="make-card.jsp">+カード</a>というボタンがあります。</li>
 								<li>キーワードを入力して、画像を検索してください。</li>
 								<li>気に入った画像を選択してください。</li>
 								<li>感想や説明を書いて投稿してください。</li>
