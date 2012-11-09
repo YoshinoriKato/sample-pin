@@ -15,7 +15,7 @@
 	if (card != null) {
 %>
 
-<div class="cell">
+<div class="cell tilt">
 	<%
 		int height = card.getHeight();
 			int width = card.getWidth();

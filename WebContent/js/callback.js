@@ -12,14 +12,14 @@ function teaDown() {
 	$('#ajax').fadeOut(1000);
 	$block = false;
 	
-	$(".pined").each(function(index, domEle) {
-		var deg = Math.floor( Math.random() * 8 ) - 3;
-		$(domEle).transition({
-			rotate : deg + 'deg',
-			scale: 0.98
-		});
-		$(domEle).removeClass('pined');
-	});
+//	$(".pined").each(function(index, domEle) {
+//		var deg = Math.floor( Math.random() * 8 ) - 3;
+//		$(domEle).transition({
+//			rotate : deg + 'deg',
+//			scale: 0.98
+//		});
+//		$(domEle).removeClass('pined');
+//	});
 }
 
 function callback($data) {
@@ -135,7 +135,7 @@ function makeCard($card, $select) {
 		$divName.text($card.userName);
 		$divRibonText.addClass('ribon-text color-red');
 
-		$jqDiv.addClass('cell pined');
+		$jqDiv.addClass('cell pined tilt');
 		if ($select) {
 			$jqDiv.attr('onclick', 'reverseCard(\'' + $card.cardId + '\')');
 			$jqDiv.addClass('no-selected-card');

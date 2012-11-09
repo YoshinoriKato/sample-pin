@@ -68,6 +68,11 @@
 
 
 
+<!-- Bing -->
+<meta name="msvalidate.01" content="B640D1E37CD2F75C8F50F08E6A9BAF6C" />
+
+
+
 <!-- original -->
 <script type="text/javascript" src="js/callback.js?<%=suffix%>"
 	charset="UTF-8"></script>
