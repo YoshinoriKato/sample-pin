@@ -12,14 +12,14 @@ function teaDown() {
 	$('#ajax').fadeOut(1000);
 	$block = false;
 	
-	$(".pined").each(function(index, domEle) {
-		var deg = Math.floor( Math.random() * 8 ) - 3;
-		$(domEle).transition({
-			rotate : deg + 'deg',
-			scale: 0.98
-		});
-		$(domEle).removeClass('pined');
-	});
+//	$(".pined").each(function(index, domEle) {
+//		var deg = Math.floor( Math.random() * 8 ) - 3;
+//		$(domEle).transition({
+//			rotate : deg + 'deg',
+//			scale: 0.98
+//		});
+//		$(domEle).removeClass('pined');
+//	});
 }
 
 function callback($data) {
@@ -123,19 +123,19 @@ function makeCard($card, $select) {
 	var $jqIcon = $('<img/>').addClass('menu-user-icon img-circle').attr('src',
 			$card.userIcon);
 
-	if ($url != null && $url != '') {
-		$divRibonText.addClass('ribon-text color-blue');
-		$jqDiv.addClass('cell2');
-		$link = 'jump.jsp?cardId=' + $card.cardId + '&redirectUrl=' + $url;
-		$jqA0.attr('href', $link).attr('target', '_blank');
-		$jqA1.attr('href', $link).attr('target', '_blank');
-		$divFooter.text($url);
-
-	} else {
+//	if ($url != null && $url != '') {
+//		$divRibonText.addClass('ribon-text color-blue');
+//		$jqDiv.addClass('cell2');
+//		$link = 'jump.jsp?cardId=' + $card.cardId + '&redirectUrl=' + $url;
+//		$jqA0.attr('href', $link).attr('target', '_blank');
+//		$jqA1.attr('href', $link).attr('target', '_blank');
+////		$divFooter.text($url);
+//
+//	} else {
 		$divName.text($card.userName);
 		$divRibonText.addClass('ribon-text color-red');
 
-		$jqDiv.addClass('cell pined');
+		$jqDiv.addClass('cell pined tilt');
 		if ($select) {
 			$jqDiv.attr('onclick', 'reverseCard(\'' + $card.cardId + '\')');
 			$jqDiv.addClass('no-selected-card');
@@ -147,7 +147,7 @@ function makeCard($card, $select) {
 		$jqA2.attr('href', 'profile.jsp?userId=' + $card.userId);
 		$divFooter.text($card.likes + ' comment').css('clear', 'both');
 		// var $btnLike = $('<span/>').attr('id', 'gj_' + $card.cardId);
-	}
+//	}
 
 	// construct
 	$('#content').append($jqLi);

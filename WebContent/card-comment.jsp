@@ -33,6 +33,7 @@
 		String subTitle = card.getKeywords();
 		subTitle = Helper.valid(subTitle) ? subTitle : card
 				.getCaption().split("[\r|\n|\r\n]")[0];
+		subTitle = Helper.escapeHTML(card.getTitle());
 		request.setAttribute("subTitle", " [" + subTitle + "]");
 	}
 
@@ -41,6 +42,8 @@
 					.getUserId().equals(userId))) {
 		response.sendError(HttpServletResponse.SC_NOT_FOUND);
 	}
+
+	boolean isNews = card.getUserId().equals("DOYA_NEWS");
 %>
 
 
@@ -170,8 +173,29 @@
 						<jsp:include page="_cover.jsp"></jsp:include></div>
 					<div class="margin-bottom-default">
 						<h2 class="card-header">キャプション</h2>
-						<div class="card-body well deco break-word"><%=Helper.convURLLink(Helper.escapeHTML(card.getCaption()))%></div>
+						<%
+							if (isNews) {
+						%>
+						<div class="card-body well deco break-word"><%=card.getCaption()%></div>
+						<%
+							} else {
+						%>
+						<div class="card-body well deco break-word"><%=Helper.convURLLink(Helper.escapeHTML(card
+						.getCaption()))%></div>
+						<%
+							}
+						%>
 					</div>
+					<%
+						if (isNews) {
+					%>
+					<div class="margin-bottom-default">
+						<h2 class="card-header">掲載元</h2>
+						<div class="card-body well deco break-word"><%=Helper.convURLLink(card.getUrl())%></div>
+					</div>
+					<%
+						}
+					%>
 					<div class="margin-bottom-default">
 						<h2 class="card-header">コメント</h2>
 						<ul id="content">

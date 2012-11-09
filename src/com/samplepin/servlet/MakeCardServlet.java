@@ -202,7 +202,8 @@ public class MakeCardServlet extends HttpServlet {
 				card.setImagePath(imagePath);
 
 			} else if (valid(imageUrl)) {
-				String path = new ImageUploadServlet().copyToServer(req, resp, imageUrl);
+				String path = new ImageUploadServlet().copyToServer(req, resp,
+						imageUrl);
 				card.setImagePath(path);
 				card.setSite(imageUrl);
 
