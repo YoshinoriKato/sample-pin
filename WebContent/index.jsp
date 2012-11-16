@@ -84,6 +84,7 @@
 									メールアドレスを登録いただくか、<a href="oauth-twitter.jsp">Twitterログイン</a>、<a
 										href="oauth-facebook.jsp">Facebookログイン</a>をしてください。
 								</p>
+								<p>迷ったら、<a href="oauth-twitter.jsp">Twitterログイン</a>をお選びください。</p>
 							</div>
 						</div>
 					</div>
