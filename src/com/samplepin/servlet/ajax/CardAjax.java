@@ -58,21 +58,18 @@ public class CardAjax {
 		}
 	}
 
-	void ajax(OutputStream os, String otherUserId, String sorted,
-			String offset, String limit, String callback, String old,
-			String young, String type, String userId, String cardId,
-			String select, String folderId) throws IOException {
+	void ajax(OutputStream os, AjaxInfo info) throws IOException {
 
 		List<Card> cards = new ArrayList<>();
 		Map<String, Object> data = new HashMap<>();
-		type = valid(type) ? type : "card";
-		data.put("type", type);
-		data.put("userId", userId);
-		data.put("select", select);
+		info.type = valid(info.type) ? info.type : "card";
+		data.put("type", info.type);
+		data.put("userId", info.userId);
+		data.put("select", info.select);
 
 		boolean alreadyRead = false;
-		int _offset = valid(offset) ? Integer.valueOf(offset) : 0;
-		int _limit = valid(limit) ? Integer.valueOf(limit) : 0;
+		int _offset = valid(info.offset) ? Integer.valueOf(info.offset) : 0;
+		int _limit = valid(info.limit) ? Integer.valueOf(info.limit) : 0;
 
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
@@ -81,26 +78,26 @@ public class CardAjax {
 			Query<Card> query = datastore.createQuery(Card.class).filter(
 					"isDeleted", false);
 			query.or(query.criteria("accessLevel").equal(0),
-					query.criteria("userId").equal(userId));
+					query.criteria("userId").equal(info.userId));
 
-			if (valid(old)) {
-				query.filter("updateDate < ", Long.valueOf(old));
+			if (valid(info.old)) {
+				query.filter("updateDate < ", Long.valueOf(info.old));
 			}
 
-			if (valid(young)) {
-				query.filter("updateDate > ", Long.valueOf(young));
+			if (valid(info.young)) {
+				query.filter("updateDate > ", Long.valueOf(info.young));
 			}
 
 			// sort
-			if ("view".equals(sorted)) {
+			if ("view".equals(info.sorted)) {
 				query.order("-view, -updateDate");
 
-			} else if ("comment".equals(sorted)) {
+			} else if ("comment".equals(info.sorted)) {
 				query.order("-likes, -updateDate");
 
-			} else if ("footprints".equals(sorted)) {
-				List<View> views = Helper.getViewsInfoByID(userId, _offset,
-						_limit);
+			} else if ("footprints".equals(info.sorted)) {
+				List<View> views = Helper.getViewsInfoByID(info.userId,
+						_offset, _limit);
 				if (valid(views)) {
 					for (View view : views) {
 						Card card = Helper.getCardByID(view.getCardId());
@@ -111,25 +108,25 @@ public class CardAjax {
 					alreadyRead = true;
 				}
 				alreadyRead = true;
-			} else if ("recommend".equals(sorted)) {
+			} else if ("recommend".equals(info.sorted)) {
 				Set<String> recommends = new RecommendEngine()
-						.getRecommendCards(userId);
+						.getRecommendCards(info.userId);
 				if (valid(recommends)) {
 					query.filter("cardId in ", recommends);
 					query.order("-updateDate");
 				} else {
 					alreadyRead = true;
 				}
-			} else if ("mine".equals(sorted)) {
-				query.filter("userId = ", userId);
+			} else if ("mine".equals(info.sorted)) {
+				query.filter("userId = ", info.userId);
 				query.order("-updateDate");
 
-			} else if ("folder".equals(sorted)) {
+			} else if ("folder".equals(info.sorted)) {
 				query.order("-updateDate");
 
-				if (valid(folderId)) {
+				if (valid(info.folderId)) {
 					Folder folder = mongo.createQuery(Folder.class)
-							.filter("folderId = ", folderId)
+							.filter("folderId = ", info.folderId)
 							.filter("isDeleted", false).get();
 					if (folder != null) {
 						query.filter("cardId in ", folder.getCards().split(","));
@@ -138,8 +135,8 @@ public class CardAjax {
 					}
 				}
 
-			} else if (valid(otherUserId)) {
-				query.filter("userId = ", otherUserId);
+			} else if (valid(info.otherUserId)) {
+				query.filter("userId = ", info.otherUserId);
 				query.order("-updateDate");
 
 			} else {
@@ -169,7 +166,7 @@ public class CardAjax {
 		}
 
 		data.put("array", cards.toArray(new Card[0]));
-		writeToJSON(os, data, callback);
+		writeToJSON(os, data, info.callback);
 
 	}
 

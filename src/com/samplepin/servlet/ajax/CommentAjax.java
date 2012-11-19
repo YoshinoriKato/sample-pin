@@ -20,15 +20,12 @@ import com.samplepin.common.Helper;
 public class CommentAjax extends CardAjax {
 
 	@Override
-	void ajax(OutputStream os, String otherUserId, String sorted,
-			String offset, String limit, String callback, String old,
-			String young, String type, String userId, String cardId,
-			String select, String folderId) throws IOException {
+	void ajax(OutputStream os, AjaxInfo info) throws IOException {
 
 		List<Comment> cards = new ArrayList<>();
 		Map<String, Object> data = new HashMap<>();
-		type = valid(type) ? type : "card";
-		data.put("type", type);
+		info.type = valid(info.type) ? info.type : "card";
+		data.put("type", info.type);
 
 		try (ACMongo mongo = new ACMongo()) {
 			Datastore datastore = mongo.createDatastore();
@@ -37,34 +34,34 @@ public class CommentAjax extends CardAjax {
 			Query<Comment> query = datastore.createQuery(Comment.class).filter(
 					"isDeleted", false);
 
-			if (valid(cardId)) {
-				query.filter("cardId = ", cardId);
+			if (valid(info.cardId)) {
+				query.filter("cardId = ", info.cardId);
 			}
 
-			if (valid(otherUserId)) {
-				query.filter("userId = ", otherUserId);
+			if (valid(info.otherUserId)) {
+				query.filter("userId = ", info.otherUserId);
 			}
 
-			if (valid(old)) {
-				query.filter("createDate < ", Long.valueOf(old));
+			if (valid(info.old)) {
+				query.filter("createDate < ", Long.valueOf(info.old));
 			}
 
-			if (valid(young)) {
-				query.filter("createDate > ", Long.valueOf(young));
+			if (valid(info.young)) {
+				query.filter("createDate > ", Long.valueOf(info.young));
 			}
 
 			// sort
 			query.order("-createDate");
 
 			// option
-			if (valid(limit)) {
-				query.limit(Integer.valueOf(limit));
+			if (valid(info.limit)) {
+				query.limit(Integer.valueOf(info.limit));
 			} else {
 				query.limit(1000);
 			}
 
-			if (valid(offset)) {
-				query.offset(Integer.valueOf(offset));
+			if (valid(info.offset)) {
+				query.offset(Integer.valueOf(info.offset));
 			}
 
 			cards = query.asList();
@@ -77,7 +74,7 @@ public class CommentAjax extends CardAjax {
 			User user = Helper.getUserById(comment.getUserId());
 			if (user != null) {
 				Helper.setUserInfoToComment(comment, user);
-				if (valid(otherUserId)) {
+				if (valid(info.otherUserId)) {
 					// own comments
 					Card card = Helper.getCardByID(comment.getCardId());
 					if (card != null) {
@@ -89,8 +86,8 @@ public class CommentAjax extends CardAjax {
 		}
 
 		data.put("array", cards.toArray(new Comment[0]));
-		data.put("userId", userId);
-		writeToJSON(os, data, callback);
+		data.put("userId", info.userId);
+		writeToJSON(os, data, info.callback);
 	}
 
 }

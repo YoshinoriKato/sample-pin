@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.samplepin.common.Helper;
 import com.samplepin.nl.NaturalLanguageParser;
 
 @WebServlet(urlPatterns = { "/xxx.do" })
@@ -30,37 +29,17 @@ public class AjaxCardServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/javascript+json; charset=UTF-8");
-		// String name = req.getParameter("name");
-		// String key = req.getParameter("key");
-		String type = req.getParameter("type");
-		String otherUserId = req.getParameter("userId");
-		String sorted = req.getParameter("sorted");
-		String offset = req.getParameter("offset");
-		String limit = req.getParameter("limit");
-		String callback = req.getParameter("callback");
-		String old = req.getParameter("old");
-		String young = req.getParameter("young");
-		String userId = Helper.getUserId(req);
-		String cardId = req.getParameter("cardId");
-		String words = req.getParameter("words");
-		String select = req.getParameter("select");
-		String folderId = req.getParameter("folderId");
+		AjaxInfo info = new AjaxInfo(req);
 
-		if ("search".equals(sorted)) {
+		if ("search".equals(info.sorted)) {
 			String dic = NaturalLanguageParser.getDictionaryPath(req);
-			new SearchAjax().ajax(resp.getOutputStream(), otherUserId, sorted,
-					offset, limit, callback, old, young, type, userId, cardId,
-					words, dic, select, folderId);
+			new SearchAjax().ajax(resp.getOutputStream(), info, dic);
 
-		} else if ("comment".equals(type)) {
-			new CommentAjax().ajax(resp.getOutputStream(), otherUserId, sorted,
-					offset, limit, callback, old, young, type, userId, cardId,
-					select, folderId);
+		} else if ("comment".equals(info.type)) {
+			new CommentAjax().ajax(resp.getOutputStream(), info);
 
 		} else {
-			new CardAjax().ajax(resp.getOutputStream(), otherUserId, sorted,
-					offset, limit, callback, old, young, type, userId, cardId,
-					select, folderId);
+			new CardAjax().ajax(resp.getOutputStream(), info);
 		}
 	}
 }

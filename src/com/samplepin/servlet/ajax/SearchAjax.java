@@ -15,65 +15,58 @@ import com.samplepin.nl.NaturalLanguageParser;
 
 public class SearchAjax extends CardAjax {
 
-	void ajax(OutputStream os, String otherUserId, String sorted,
-			String offset, String limit, String callback, String old,
-			String young, String type, String userId, String cardId,
-			String words, String dic, String select, String folderId)
-			throws IOException {
+	void ajax(OutputStream os, AjaxInfo info, String dic) throws IOException {
 
 		List<Card> cards = new ArrayList<>();
 		Map<String, Object> data = new HashMap<>();
-		type = valid(type) ? type : "card";
-		data.put("type", type);
-		data.put("userId", userId);
-		data.put("select", select);
+		info.type = valid(info.type) ? info.type : "card";
+		data.put("type", info.type);
+		data.put("userId", info.userId);
+		data.put("select", info.select);
 
 		try (ACMongo mongo = new ACMongo()) {
-			Set<String> searched = NaturalLanguageParser.cardIds(dic, words);
+			Set<String> searched = NaturalLanguageParser.cardIds(dic,
+					info.words);
 			if (valid(searched)) {
-				cards = cards(mongo, otherUserId, sorted, offset, limit,
-						callback, old, young, type, userId, cardId, searched);
+				cards = cards(mongo, info, searched);
 			}
 		}
 
 		data.put("array", cards.toArray(new Card[0]));
-		writeToJSON(os, data, callback);
+		writeToJSON(os, data, info.callback);
 	}
 
-	public List<Card> cards(ACMongo mongo, String otherUserId, String sorted,
-			String offset, String limit, String callback, String old,
-			String young, String type, String userId, String cardId,
-			Set<String> searched) {
+	public List<Card> cards(ACMongo mongo, AjaxInfo info, Set<String> searched) {
 		List<Card> cards = new ArrayList<>();
 		Query<Card> query = mongo.createQuery(Card.class)
 				.filter("isDeleted", false).filter("cardId in ", searched);
 		query.or(query.criteria("accessLevel").equal(0),
-				query.criteria("userId").equal(userId));
+				query.criteria("userId").equal(info.userId));
 
-		if (valid(otherUserId)) {
-			query.filter("userId = ", otherUserId);
+		if (valid(info.otherUserId)) {
+			query.filter("userId = ", info.otherUserId);
 		}
 
-		if (valid(old)) {
-			query.filter("createDate < ", Long.valueOf(old));
+		if (valid(info.old)) {
+			query.filter("createDate < ", Long.valueOf(info.old));
 		}
 
-		if (valid(young)) {
-			query.filter("createDate > ", Long.valueOf(young));
+		if (valid(info.young)) {
+			query.filter("createDate > ", Long.valueOf(info.young));
 		}
 
 		// sort
 		query.order("-updateDate");
 
 		// option
-		if (valid(limit)) {
-			query.limit(Integer.valueOf(limit));
+		if (valid(info.limit)) {
+			query.limit(Integer.valueOf(info.limit));
 		} else {
 			query.limit(1000);
 		}
 
-		if (valid(offset)) {
-			query.offset(Integer.valueOf(offset));
+		if (valid(info.offset)) {
+			query.offset(Integer.valueOf(info.offset));
 		}
 
 		cards = query.asList();

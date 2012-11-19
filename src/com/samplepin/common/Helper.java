@@ -44,6 +44,7 @@ import com.samplepin.View;
 import com.samplepin.WebPage;
 import com.samplepin.nl.NaturalLanguageParser;
 import com.samplepin.nl.WebParser;
+import com.samplepin.servlet.ajax.AjaxInfo;
 import com.samplepin.servlet.ajax.CardAjax;
 import com.samplepin.servlet.ajax.SearchAjax;
 
@@ -593,8 +594,10 @@ public class Helper {
 				Set<String> searched = NaturalLanguageParser.cardIds(dic,
 						keywords);
 				if (valid(searched)) {
-					return new SearchAjax().cards(mongo, "", "search", "0",
-							"10", "", "", "", "card", userId, "", searched);
+
+					AjaxInfo info = new AjaxInfo("", "search", "0", "10", "",
+							"", "", "card", userId, "");
+					return new SearchAjax().cards(mongo, info, searched);
 				}
 			} catch (UnknownHostException | MongoException e) {
 				e.printStackTrace();
