@@ -1,0 +1,29 @@
+{
+    "manifest_version": 2,
+    "name": "拡張機能の名前",
+    "description": "__MSG_extDescription__",
+    "version": "バージョン番号(XX.XX.XX形式)",
+    "browser_action": {
+        "default_icon": "./icon_**.png(**はサイズ)",
+        "default_title": "タイトル文字列",
+        "default_popup": "./popup.html"
+    },
+    "permissions": [
+        ・・・
+    ],
+    "optional_permissions": [
+        ・・・
+    ],
+    "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
+    "icons": {
+        "16": "./icon_16.png",
+        "48": "./icon_48.png",
+        "128": "./icon_128.png"
+    },
+    "background": {
+        "page": "./background.html"
+    },
+    "options_page": "options.html",
+    "default_locale": "en",
+    ・・・
+}
