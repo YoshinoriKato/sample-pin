@@ -219,14 +219,14 @@
 				<li class="hidden-phone <%=classMine%>"><a href="home.jsp?sorted=mine">所有</a></li>
 				<li class="hidden-phone <%=classFootprints%>"><a
 					href="home.jsp?sorted=footprints">足あと</a></li>
-				<li class="hidden-phone <%=classRecommend%>"><a
-					href="home.jsp?sorted=recommend">オススメ</a></li>
+				<%-- <li class="hidden-phone <%=classRecommend%>"><a
+					href="home.jsp?sorted=recommend">オススメ</a></li> --%>
 				<%
 					}
 				%>
 				<li class="divider-vertical"></li>
-				<li class="<%=classTag%>"><a href="tag.jsp">タグ</a></li>
-				<li class="divider-vertical"></li>
+				<%-- <li class="<%=classTag%>"><a href="tag.jsp">タグ</a></li>
+				<li class="divider-vertical"></li> --%>
 				<li class="<%=classFolder%>"><a href="folder.jsp">フォルダ</a></li>
 				<li class="divider-vertical"></li>
 				<li><a id="scrolled-val"></a></li>
