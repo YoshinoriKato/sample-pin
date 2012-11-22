@@ -22,6 +22,8 @@ public class Card extends Comment implements Updateable {
 
 	Integer view;
 
+	Integer category;
+
 	Integer width;
 
 	Integer height;
@@ -36,12 +38,13 @@ public class Card extends Comment implements Updateable {
 	Long updateDate;
 
 	public Card() {
-		this("self", "", "", "", "", "", "", 0, 0, System.currentTimeMillis());
+		this("self", "", "", "", "", "", "", 0, 0, 0, System
+				.currentTimeMillis());
 	}
 
 	public Card(String parentId, String cardId, String userId,
 			String imagePath, String url, String title, String caption,
-			int likes, int view, long createDate) {
+			int likes, int view, int category, long createDate) {
 		super();
 		this.parentId = parentId;
 		this.cardId = cardId;
@@ -52,6 +55,7 @@ public class Card extends Comment implements Updateable {
 		this.caption = caption;
 		this.likes = likes;
 		this.view = view;
+		this.category = category;
 		this.createDate = createDate;
 		this.updateDate = createDate;
 		this.isDeleted = false;
@@ -147,6 +151,14 @@ public class Card extends Comment implements Updateable {
 
 	public void setWidth(Integer width) {
 		this.width = width;
+	}
+
+	public Integer getCategory() {
+		return category;
+	}
+
+	public void setCategory(Integer category) {
+		this.category = category;
 	}
 
 }
