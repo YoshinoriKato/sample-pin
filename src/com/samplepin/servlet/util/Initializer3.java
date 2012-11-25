@@ -168,7 +168,7 @@ public class Initializer3 extends HttpServlet {
 				cards.add(new Card("self", cardId, userId, "img/flag/"
 						+ FLAGS[i], "", null,
 						((dice.nextInt() % 2) == 0) ? caption2 : song2, likes,
-						views, mills2));
+						views, 0, mills2));
 
 				mills2 += 1000 * 60 * 30 * (dice.nextInt(7) + 1);
 			}

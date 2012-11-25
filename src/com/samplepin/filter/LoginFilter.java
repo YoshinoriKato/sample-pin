@@ -28,9 +28,12 @@ import com.samplepin.servlet.LoginServlet;
 @WebFilter(urlPatterns = { "/*" }, dispatcherTypes = DispatcherType.REQUEST)
 public class LoginFilter implements Filter {
 
-	private ServletContext context;
+	private ServletContext	context;
 
-	static String[] needs = { "/make-card.jsp", "/my-card.jsp", "/account.jsp", "/tag.jsp", "/folder.jsp", "/home.jsp", "/card-comment.jsp" };
+	static String[]			needs	= { "/make-card.jsp", "/my-card.jsp",
+			"/account.jsp" // , "/tag.jsp", "/folder.jsp", "/home.jsp",
+							// "/card-comment.jsp"
+									};
 
 	@Override
 	public void destroy() {

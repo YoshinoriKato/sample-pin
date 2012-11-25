@@ -37,11 +37,11 @@ public class RemotePostServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5426777241563315344L;
+	private static final long	serialVersionUID	= 5426777241563315344L;
 
-	public static final Long COMMENTS_LIMIT = 1000L;
+	public static final Long	COMMENTS_LIMIT		= 1000L;
 
-	public static String code = "cnjakhfavjabvibaribvavaroiwhfiowjgiawjgifjwefnanvlanvjkanwknncjkanjkvna;veruonbvajbiabajkbvkjakjvnaskjbvau;bnafbnafjkbkjasbvkladsbvjknavjabkjbvaksnvjkabjajkbvjkasdnviurhbaevebkdnvkb jbfheiutyiwauyrwuhvaiho";
+	public static String		code				= "cnjakhfavjabvibaribvavaroiwhfiowjgiawjgifjwefnanvlanvjkanwknncjkanjkvna;veruonbvajbiabajkbvkjakjvnaskjbvau;bnafbnafjkbkjasbvkladsbvjknavjabkjbvaksnvjkabjajkbvjkasdnviurhbaevebkdnvkb jbfheiutyiwauyrwuhvaiho";
 
 	public static void main(String[] args) {
 		try {
@@ -103,7 +103,7 @@ public class RemotePostServlet extends HttpServlet {
 					&& RemotePostServlet.code.equals(code)) {
 
 				Card card = new Card("self", cardId, userId,
-						"img/doya_news.png", "", title, caption, 0, 0,
+						"img/doya_news.png", "", title, caption, 0, 0, 0,
 						System.currentTimeMillis());
 				card.setWidth(400);
 				card.setHeight(400);
