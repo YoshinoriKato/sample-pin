@@ -23,7 +23,10 @@
 				String message = inquiry.getMessage();
 		%>
 		<li><%=Helper.formatToDateString(inquiry.getCreateDate())%><ol>
-				<li><%=inquiry.getMessage()%></li>
+				<li><%=inquiry.getMail() != null
+						&& !inquiry.getMail().isEmpty() ? inquiry.getMail()
+						: "no-mail"%>
+					: <%=Helper.escapeHTML(inquiry.getMessage())%></li>
 			</ol></li>
 		<%
 			}
