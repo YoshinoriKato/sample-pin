@@ -84,7 +84,9 @@
 									メールアドレスを登録いただくか、<a href="oauth-twitter.jsp">Twitterログイン</a>、<a
 										href="oauth-facebook.jsp">Facebookログイン</a>をしてください。
 								</p>
-								<p>迷ったら、<a href="oauth-twitter.jsp">Twitterログイン</a>をお選びください。</p>
+								<p>
+									迷ったら、<a href="oauth-twitter.jsp">Twitterログイン</a>をお選びください。
+								</p>
 							</div>
 						</div>
 					</div>
@@ -238,6 +240,38 @@
 
 				</div>
 			</div>
+
+			<div class="chapter">
+				<h3 class="tab-header">お問い合わせフォーム</h3>
+				<div class="profile large">
+					<div class="section">
+						<form method="post" class="form-horizontal" action="make-message.do">
+							<div class="control-group">
+								<div class="control-label">お問い合わせ</div>
+								<div class="controls">
+									<textarea id="message-text" class="textarea input-text"
+										name="message" rows="8" placeholder="Please write a message."></textarea>
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="control-label">メールアドレス</div>
+								<div class="controls">
+									<input type="mail" name="mail" class="text span4"><span
+										class="help-inline small">必須ではありません、よろしければご記入ください。</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="control-label"></div>
+								<div class="controls">
+									<input type="submit" value="Send"
+										class="btn btn-large btn-primary btn-cell">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 	<jsp:include page="_footer.jsp"></jsp:include>

@@ -149,6 +149,11 @@
 					class="center x-small"><img src="img/linedpaperplus32.png"
 						class="menu-icon" alt="add a card"><br>＋カード</a></li>
 
+				<%-- <li class="<%=classMakeCard%>"><a onclick="$('#f-make-card').modal('show')" 
+				role="button" data-toggle="modal"
+					class="center x-small"><img src="img/linedpaperplus32.png"
+						class="menu-icon" alt="add a card"><br>＋カード</a></li> --%>
+
 				<li class="<%=classMakeFolder%>"><a href="home.jsp?select=true"
 					class="center x-small"><img src="img/folderplus32.png"
 						class="menu-icon" alt="add a card"><br>＋フォルダ</a></li>

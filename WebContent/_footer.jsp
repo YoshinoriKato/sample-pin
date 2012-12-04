@@ -32,6 +32,8 @@
 
 <a href="#top"><span id="bottom-label">Go top</span></a>
 
+<jsp:include page="_f-make.jsp"></jsp:include>
+
 <script type="text/javascript" charset="UTF-8">
 	attach(window, 'load', function() {	
 		$('#error-dialog').attr("onclick",

@@ -36,6 +36,7 @@ import com.samplepin.Comment;
 import com.samplepin.Country;
 import com.samplepin.Folder;
 import com.samplepin.Header;
+import com.samplepin.Inquiry;
 import com.samplepin.OneTime;
 import com.samplepin.Tag;
 import com.samplepin.TwitterAccount;
@@ -164,6 +165,13 @@ public class Helper {
 		input = substitute(input, "'", "''");
 		input = substitute(input, "\\", "\\\\");
 		return input;
+	}
+
+	public static List<Inquiry> getInquiries() throws IOException {
+		try (ACMongo mongo = new ACMongo()) {
+			List<Inquiry> list = mongo.createQuery(Inquiry.class).asList();
+			return list != null ? list : new ArrayList<Inquiry>();
+		}
 	}
 
 	public static String formatToAboutTimeString(long mills) {

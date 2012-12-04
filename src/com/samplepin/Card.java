@@ -63,6 +63,10 @@ public class Card extends Comment implements Updateable {
 		this.height = 400;
 	}
 
+	public Integer getCategory() {
+		return this.category;
+	}
+
 	public Integer getHeight() {
 		return this.height;
 	}
@@ -108,6 +112,10 @@ public class Card extends Comment implements Updateable {
 		return this.width;
 	}
 
+	public void setCategory(Integer category) {
+		this.category = category;
+	}
+
 	public void setHeight(Integer height) {
 		this.height = height;
 	}
@@ -151,14 +159,6 @@ public class Card extends Comment implements Updateable {
 
 	public void setWidth(Integer width) {
 		this.width = width;
-	}
-
-	public Integer getCategory() {
-		return category;
-	}
-
-	public void setCategory(Integer category) {
-		this.category = category;
 	}
 
 }
