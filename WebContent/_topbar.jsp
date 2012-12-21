@@ -154,9 +154,9 @@
 					class="center x-small"><img src="img/linedpaperplus32.png"
 						class="menu-icon" alt="add a card"><br>＋カード</a></li> --%>
 
-				<li class="<%=classMakeFolder%>"><a href="home.jsp?select=true"
+				<%-- <li class="<%=classMakeFolder%>"><a href="home.jsp?select=true"
 					class="center x-small"><img src="img/folderplus32.png"
-						class="menu-icon" alt="add a card"><br>＋フォルダ</a></li>
+						class="menu-icon" alt="add a card"><br>＋フォルダ</a></li> --%>
 
 				<li class="dropdown <%=classAccount%>"><a href="#"
 					class="dropdown-toggle center x-small" data-toggle="dropdown"><img
@@ -232,7 +232,7 @@
 				<li class="divider-vertical"></li>
 				<%-- <li class="<%=classTag%>"><a href="tag.jsp">タグ</a></li>
 				<li class="divider-vertical"></li> --%>
-				<li class="<%=classFolder%>"><a href="folder.jsp">フォルダ</a></li>
+				<%-- <li class="<%=classFolder%>"><a href="folder.jsp">フォルダ</a></li> --%>
 				<li class="divider-vertical"></li>
 				<li><a id="scrolled-val"></a></li>
 			</ul>

@@ -69,16 +69,15 @@
 
 	<!-- facebook -->
 	<div id="facebook-button" class="sns-like-button">
-		<div class="fb-like" data-send="false"
-			data-layout="button_count" data-width="450" data-show-faces="false"></div>
+		<div class="fb-like" data-send="false" data-layout="button_count"
+			data-width="450" data-show-faces="false"></div>
 	</div>
 
 	<!-- mixi -->
 	<div id="mixi-button" class="sns-like-button">
 		<div data-plugins-type="mixi-favorite"
 			data-service-key="bf28d3d3db4ee8eeb397cac5038c541e30c1dd65"
-			data-size="medium" 
-			data-show-faces="false" data-show-count="true"
+			data-size="medium" data-show-faces="false" data-show-count="true"
 			data-show-comment="false" data-width=""></div>
 	</div>
 
@@ -90,11 +89,17 @@
 
 	<!-- hatena -->
 	<div id="hatena-button" class="sns-like-button">
-		<a href="http://b.hatena.ne.jp/entry/"
-			class="hatena-bookmark-button" data-hatena-bookmark-title="DOYA.info"
+		<a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button"
+			data-hatena-bookmark-title="DOYA.info"
 			data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img
 			src="http://b.st-hatena.com/images/entry-button/button-only.gif"
 			alt="このエントリーをはてなブックマークに追加" width="20" height="20"
 			style="border: none;" /></a>
+	</div>
+
+	<div id="line-button" class="sns-like-button">
+		<a
+			href="http://line.naver.jp/R/msg/text/?LINE%E3%81%A7%E9%80%81%E3%82%8B%0D%0Ahttp%3A%2F%2Fline.naver.jp%2F"><img
+			src="img/linebutton_86x20.png" width="88" height="20" alt="LINEで送る" /></a>
 	</div>
 </div>
